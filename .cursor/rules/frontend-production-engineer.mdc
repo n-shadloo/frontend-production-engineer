@@ -1,0 +1,31 @@
+---
+description: Production-grade frontend engineering for Next.js and TypeScript against a Django/DRF backend — plan first, verify the installed versions, never invent an API, keep the diff minimal, run the checks, and hold the work to a stated definition of done. Covers routing and rendering, the server/client boundary, the React component tree, the typed backend contract, and the non-functional guarantees (accessibility, security, performance, testing) that gate completion. Domains are integrated one per release; the router in SKILL.md is the authoritative list of what is loadable. Canonical instructions live in SKILL.md and references/.
+globs: ["**/*.ts", "**/*.tsx"]
+alwaysApply: false
+---
+
+When writing or reviewing frontend code in this repo, use the skill defined in
+`SKILL.md` at the repo root as the source of truth. Read `SKILL.md` first for
+the standing rules, the router, and the mode logic, then open the relevant
+`references/*.md` file(s). `AGENTS.md` is the condensed always-on layer and
+defers to `SKILL.md` on any conflict. Review-time produces findings ordered by
+severity (location, the concrete failure a user would experience, fix) and
+ends by stating what was not reviewed; write-time plans first, then applies
+the defaults from the integrated domains while generating code.
+
+Treat these as first-class triggers regardless of the wording of the task:
+anything under `app/`, a route handler, a layout or page, `proxy.ts`,
+`next.config.ts`, `tsconfig.json`, or `package.json`; a `"use client"` or
+`"use server"` boundary; a React hook or a React 19 API; a response type that
+came from a DRF endpoint; an interactive control, a form, or a focus order;
+and any change to the bundle, the headers, or the build. Verify the installed
+versions from `package.json` before generating code — never mix Next 15 and
+Next 16 idioms in one file — and report an API you cannot confirm as
+unconfirmed rather than guessing at it.
+
+Work is not done because it renders: typecheck, lint, the tests covering the
+change, and the production build all have to be run. Apply the conflict rule
+— security > accessibility > correctness > performance > developer convenience
+— with no level trading down to satisfy a level above it. The domain routing
+table grows one entry per release. Do not rely on this summary alone — read
+the referenced files.

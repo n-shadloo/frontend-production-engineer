@@ -1,0 +1,28 @@
+# Node
+node_modules/
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environments / secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# Tooling caches
+.turbo/
+.eslintcache
+.cache/
+.vitest/
+playwright-report/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
