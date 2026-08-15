@@ -1,0 +1,86 @@
+name: docs-integrity
+
+on: [push, pull_request]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check documentation integrity
+        run: |
+          python - <<'PY'
+          import pathlib
+          import re
+          import sys
+
+          MAX_SKILL_BYTES = 40960
+          REFERENCE_LINK = re.compile(r"references/([A-Za-z0-9._-]+\.md)")
+
+          root = pathlib.Path(".")
+          skill = root / "SKILL.md"
+          references = root / "references"
+
+          errors = []
+
+          # Checks 1 and 2 are no-ops until reference files exist.
+          reference_files = sorted(references.glob("*.md")) if references.is_dir() else []
+
+          cited = {}
+          for source in [skill] + reference_files:
+              text = source.read_text(encoding="utf-8")
+              for name in REFERENCE_LINK.findall(text):
+                  cited.setdefault(name, set()).add(source.as_posix())
+
+          # 1. Every referenced file resolves on disk.
+          for name, citers in sorted(cited.items()):
+              if not (references / name).is_file():
+                  where = ", ".join(sorted(citers))
+                  errors.append(
+                      f"{where}: links to references/{name}, which does not exist on disk"
+                  )
+
+          # 2. Every reference file is cited by something other than itself.
+          for path in reference_files:
+              if not cited.get(path.name, set()) - {path.as_posix()}:
+                  errors.append(
+                      f"{path.as_posix()}: orphaned, no link to it from SKILL.md "
+                      f"or any other reference file"
+                  )
+
+          # 3. Code fences are balanced in every Markdown file.
+          for path in sorted(root.rglob("*.md")):
+              if ".git" in path.parts:
+                  continue
+              fences = sum(
+                  1
+                  for line in path.read_text(encoding="utf-8").splitlines()
+                  if line.startswith("```")
+              )
+              if fences % 2:
+                  errors.append(
+                      f"{path.as_posix()}: odd number of code fence lines ({fences}), "
+                      f"so a fence is never closed"
+                  )
+
+          # 4. SKILL.md stays under the size ceiling.
+          size = skill.stat().st_size
+          if size > MAX_SKILL_BYTES:
+              errors.append(
+                  f"SKILL.md: {size} bytes exceeds the limit of {MAX_SKILL_BYTES} bytes"
+              )
+
+          if errors:
+              sys.exit(
+                  "Documentation integrity check failed:\n"
+                  + "\n".join(f"  - {e}" for e in errors)
+              )
+
+          print(
+              f"Documentation integrity OK: {len(reference_files)} reference file(s), "
+              f"SKILL.md {size}/{MAX_SKILL_BYTES} bytes"
+          )
+          PY
