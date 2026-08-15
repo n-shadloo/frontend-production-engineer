@@ -1,0 +1,72 @@
+name: validate-skill
+
+on: [push, pull_request]
+
+jobs:
+  frontmatter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pyyaml
+      - name: Validate SKILL.md frontmatter
+        run: |
+          python - <<'PY'
+          import pathlib
+          import sys
+
+          import yaml
+
+          EXPECTED_NAME = "frontend-production-engineer"
+          MAX_DESCRIPTION = 1024
+
+          lines = pathlib.Path("SKILL.md").read_text(encoding="utf-8").splitlines()
+
+          if not lines or lines[0].strip() != "---":
+              sys.exit("SKILL.md: first line is not the '---' frontmatter delimiter")
+
+          end = next(
+              (i for i, line in enumerate(lines[1:], start=1) if line.strip() == "---"),
+              None,
+          )
+          if end is None:
+              sys.exit("SKILL.md: frontmatter is never closed by a '---' line")
+
+          try:
+              data = yaml.safe_load("\n".join(lines[1:end]))
+          except yaml.YAMLError as exc:
+              sys.exit(f"SKILL.md: frontmatter is not valid YAML:\n{exc}")
+
+          if not isinstance(data, dict):
+              sys.exit(f"SKILL.md: frontmatter must be a mapping, got {type(data).__name__}")
+
+          errors = []
+
+          name = data.get("name")
+          if "name" not in data:
+              errors.append("missing required key 'name'")
+          elif name != EXPECTED_NAME:
+              errors.append(f"'name' must be {EXPECTED_NAME!r}, got {name!r}")
+
+          description = data.get("description")
+          if "description" not in data:
+              errors.append("missing required key 'description'")
+          elif not isinstance(description, str):
+              errors.append(
+                  f"'description' must be a string, got {type(description).__name__}"
+              )
+          elif not description.strip():
+              errors.append("'description' is empty")
+          elif len(description) >= MAX_DESCRIPTION:
+              errors.append(
+                  f"'description' is {len(description)} characters, "
+                  f"must be under {MAX_DESCRIPTION}"
+              )
+
+          if errors:
+              sys.exit("SKILL.md frontmatter is invalid:\n" + "\n".join(f"  - {e}" for e in errors))
+
+          print(f"SKILL.md frontmatter OK: name={name}, description={len(description)} chars")
+          PY
