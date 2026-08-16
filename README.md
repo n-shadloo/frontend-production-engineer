@@ -2,48 +2,50 @@
 
 A Claude Agent Skill for frontend engineering. It plans, writes, and reviews
 production Next.js and TypeScript against a Django / Django REST Framework
-backend. The deep specialty is the pinned stack — Next.js 16, React 19,
-TypeScript 5, Tailwind v4, and a DRF contract consumed through a generated
-OpenAPI client — over a portable principle layer that survives the next major
-version. It covers the browser-facing application only; the Django backend
-belongs to the author's other skills.
+backend. The deep specialty is the pinned stack: Next.js 16, React 19,
+TypeScript 5, Tailwind v4, and a DRF contract that a generated OpenAPI client
+consumes. A portable principle layer sits under that stack, and it survives the
+next major version. It covers the browser-facing application only; the Django
+backend belongs to the author's other skills.
 
 ## Why this exists
 
 A frontend is easy to get to the point where it renders and hard to get to the
-point where it ships. The work that separates the two — the render boundary a
-component actually sits on, types that come from the backend schema instead of
-a guess, a focus order a keyboard user can follow, a bundle that does not
-regress INP, a build that survives a self-hosted deploy — is well understood,
-but it is spread across framework docs, specs, and release notes that move
-every few months. An agent working without it writes code that looks right and
-fails in production.
+point where it ships. Five things separate the two. They are the render
+boundary a component actually sits on, and types that come from the backend
+schema rather than a guess. The others are a focus order a keyboard user can
+follow, and a bundle that does not regress INP. The last is a build that
+survives a self-hosted deploy.
+
+The work is well understood. Framework docs, specs, and release notes hold it,
+and those sources move every few months. An agent that works without it writes
+code that looks right and fails in production.
 
 This skill packages that knowledge so an agent applies it the same way every
-time. It is one skill, not twenty-four: `SKILL.md` is the spine and router,
-and every domain lives in `references/`, loaded only when the task calls for
+time. It is one skill, not twenty-four. `SKILL.md` is the spine and the router.
+Every domain lives in `references/`, and it loads only when the task calls for
 it. Each reference file has two layers — a framework-agnostic statement of the
 concern, then the pinned-stack implementation with runnable code and a binary
 review checklist.
 
-Two things are non-negotiable in it. **Never invent an API:** the installed
-versions are verified from `package.json` before any code is written, and an
-unconfirmed function, prop, or option is reported as unconfirmed rather than
-guessed. **The conflict rule:** security > accessibility > correctness >
+Two things are non-negotiable in it. **Never invent an API.** The skill
+verifies the installed versions from `package.json` before it writes any code.
+It reports an unconfirmed function, prop, or option as unconfirmed, and it
+never guesses. **The conflict rule:** security > accessibility > correctness >
 performance > developer convenience, and no level trades down to satisfy a
 level above it.
 
 ## What it covers
 
-Domains are integrated one per release. The roster below is the full plan,
-each entry marked with its current status; the router table in `SKILL.md` is
-the authoritative list of what is loadable today.
+Domains are integrated one per release. The roster below is the full plan, and
+each entry carries its current status. The router table in `SKILL.md` is the
+authoritative list of what is loadable today.
 
 Tier 0 is the operating discipline, in effect on every task.
 
 - `24 agent-operating-doctrine` — how the agent plans, verifies the installed
-  versions, refuses to guess at an API, keeps the diff minimal, runs the
-  commands, and decides the work is done. Integrated.
+  versions, and refuses to guess at an API. It also keeps the diff minimal,
+  runs the commands, and decides the work is done. Integrated.
 
 Tier 1 is the foundations: where files go and how they are typed.
 
@@ -103,29 +105,35 @@ Tier 4 is the non-functional guarantees, applied as a review pass before done.
 - `23 analytics-privacy-and-consent` — events, consent gating, GDPR,
   third-party scripts. Pending.
 
-Six further domains — commerce and checkout, the admin shell, chat UI, maps,
-PDF and print output, and email templates — follow the same pipeline once the
-twenty-four are in.
+Six further domains follow the same pipeline once the twenty-four are in. They
+are commerce and checkout, the admin shell, chat UI, maps, PDF and print
+output, and email templates.
 
 Seven of these are blocking. `nextjs-app-router-architecture`,
 `typescript-type-system-discipline`, `django-drf-api-contract`,
 `authentication-and-authorization`, `accessibility-wcag`, `frontend-security`,
-and `testing-and-quality` each hold a veto over completion once integrated,
-and the last two are absolute: a task that fails accessibility or security is
-a failed task, not a follow-up ticket.
+and `testing-and-quality` each hold a veto over completion once integrated. The
+last two are absolute. A task that fails accessibility or security is a failed
+task, and never a follow-up ticket.
 
-Stack baseline is pinned: Next.js 16.3 (Turbopack by default, `middleware.ts`
-replaced by `proxy.ts` on the Node runtime, async-only `params` and
-`searchParams`, Cache Components, `next lint` removed), Node.js 20.9 or later,
-React 19.2.1 or later, React Compiler 1.0, TypeScript 5.9 with `strict` and
-`noUncheckedIndexedAccess`, Tailwind CSS v4 with CSS-first `@theme` config,
-shadcn/ui on Base UI, TanStack Query 5.101 or later, Zod 4, React Hook Form,
-Vitest with React Testing Library, MSW, and Playwright, against a Django and
-DRF backend that publishes OpenAPI 3.0.3 through drf-spectacular (verified
-August 2026). The baseline is what the reference material is written against,
-not an assumption about your repository: the installed version is verified
-from `package.json` before any code is generated, and Next 15 and Next 16
-idioms are never mixed in one file.
+The stack baseline is pinned, and it was verified in August 2026. The framework
+is Next.js 16.3, with Turbopack by default and `proxy.ts` in place of
+`middleware.ts` on the Node runtime. That release also makes `params` and
+`searchParams` async only, adds Cache Components, and removes `next lint`. The
+runtime is Node.js 20.9 or later. The UI layer is React 19.2.1 or later, with
+React Compiler 1.0. The language is TypeScript 5.9, with `strict` and
+`noUncheckedIndexedAccess`.
+
+Tailwind CSS v4 supplies the styling, with the CSS-first `@theme` config, and
+shadcn/ui sits on Base UI. TanStack Query 5.101 or later holds the server
+state, and Zod 4 validates the values. React Hook Form binds the forms. Vitest,
+React Testing Library, MSW, and Playwright run the tests. The backend is Django
+and DRF, and it publishes OpenAPI 3.0.3 through drf-spectacular.
+
+The baseline is what the reference material is written against. It is not an
+assumption about your repository. The skill verifies the installed version from
+`package.json` before it generates any code. It never mixes Next 15 and Next 16
+idioms in one file.
 
 ## Install
 
@@ -195,8 +203,8 @@ Gemini CLI doesn't read Agent Skills directly; it reads `GEMINI.md`.
 - **Per project:** copy `GEMINI.md` into the repository root.
 - **All projects:** copy it to `~/.gemini/GEMINI.md`.
 
-`GEMINI.md` points Gemini to the canonical `SKILL.md` and `references/`
-instead of duplicating the content.
+`GEMINI.md` points Gemini to the canonical `SKILL.md` and `references/`, and it
+does not duplicate the content.
 
 The only requirement is `git` and a Git repository to run in.
 
@@ -210,25 +218,26 @@ Review existing frontend code — ask for a review, or point it at a component:
 Review this dashboard route before we ship it.
 ```
 
-You get the installed versions established first, then findings ordered by
-severity, each with a location, the concrete failure a user would experience,
-and a fix — followed by a statement of what was not reviewed.
+It establishes the installed versions first. Then it reports the findings,
+ordered by severity. Each finding carries a location, the concrete failure a
+user would experience, and a fix. It ends with a statement of what it did not
+review.
 
-Write new code — it plans first, states the success criteria, verifies the
-installed versions, applies the defaults from the integrated domains, and runs
-the checks:
+Write new code. The skill plans first, states the success criteria, and
+verifies the installed versions. It then applies the defaults from the
+integrated domains, and it runs the checks:
 
 ```
 Add a paginated orders table backed by the DRF orders endpoint.
 ```
 
-It reports the choices a reviewer would want to see, and it does not call the
-work done until typecheck, lint, tests, and the production build have actually
-been run.
+It reports the choices a reviewer would want to see. It never calls the work
+done until the typecheck, the lint, the tests, and the production build have
+run.
 
 ## Example output
 
-At 1.2.0 the integrated material is the operating doctrine, the App Router
+At 1.2.1 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. The worked example
 is the shape of a task and the facts that gate it:
 
@@ -273,16 +282,19 @@ Done
 
 ## Notes
 
-The skill version is recorded in `SKILL.md` frontmatter (`metadata.version`);
-releases are tagged in git. Versioning tracks integrated domains rather than
-brief numbers: **1.0.0** is the scaffold plus the first domain, released
-together; each domain after the first is one minor bump, so the minor number
-is the count of integrated domains minus one; **1.23.0** is all twenty-four
-in; patch releases are corrections to already-integrated material. Domains may
-be integrated in any order — count the router rows, not the version string.
+`SKILL.md` frontmatter records the skill version in `metadata.version`, and git
+holds the release tags. The version tracks the integrated domains, and never a
+brief number. **1.0.0** is the scaffold and the first domain, released
+together. Each domain after the first adds one to the minor number. The
+doctrine of domain 24 has no router entry, because `SKILL.md` holds it. The
+minor number is therefore the count of router domains minus one, and
+**1.22.0** is all twenty-four domains.
+
+A patch release corrects material that is already integrated. Domains land in
+any order, so read the router rather than the version string.
 
 The reference material is a strong, current baseline, not a guarantee. The
-stack moves; verify the installed version before trusting a pinned-stack
+stack moves; verify the installed version before you trust a pinned-stack
 example, and treat the principle layer as the part with the longer half-life.
 
 ## Layout
@@ -311,7 +323,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds three domains at 1.2.0 and fills one domain at a time.
+`references/` holds three domains at 1.2.1 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 

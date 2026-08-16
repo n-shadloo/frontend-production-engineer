@@ -4,29 +4,32 @@ globs: ["**/*.ts", "**/*.tsx"]
 alwaysApply: false
 ---
 
-When writing or reviewing frontend code in this repo, use the skill defined in
-`SKILL.md` at the repo root as the source of truth. Read `SKILL.md` first for
-the standing rules, the router, and the mode logic, then open the relevant
-`references/*.md` file(s). `AGENTS.md` is the condensed always-on layer and
-defers to `SKILL.md` on any conflict. Review-time produces findings ordered by
-severity (location, the concrete failure a user would experience, fix) and
-ends by stating what was not reviewed; write-time plans first, then applies
-the defaults from the integrated domains while generating code.
+Use the skill in `SKILL.md` at the repo root as the source of truth for every
+frontend change. Read `SKILL.md` first for the standing rules, the router, and
+the mode logic. Then open the relevant `references/*.md` file(s). `AGENTS.md`
+is the condensed always-on layer, and it defers to `SKILL.md` on any conflict.
 
-Treat these as first-class triggers regardless of the wording of the task:
-anything under `app/`, a route handler, a layout or page, `proxy.ts`,
-`next.config.ts`, `tsconfig.json`, or `package.json`; a `"use client"` or
-`"use server"` boundary; a React hook or a React 19 API; a compiler flag, a
-cast, an `any`, a union, a branded id, or a Zod schema; a response type that
-came from a DRF endpoint; an interactive control, a form, or a focus order;
-and any change to the bundle, the headers, or the build. Verify the installed
-versions from `package.json` before generating code — never mix Next 15 and
-Next 16 idioms in one file — and report an API you cannot confirm as
-unconfirmed rather than guessing at it.
+Review-time produces findings ordered by severity, and each finding names a
+location, the concrete failure a user would experience, and a fix. It ends with
+a statement of what it did not review. Write-time plans first, and then applies
+the defaults from the integrated domains as it writes the code.
 
-Work is not done because it renders: typecheck, lint, the tests covering the
-change, and the production build all have to be run. Apply the conflict rule
-— security > accessibility > correctness > performance > developer convenience
-— with no level trading down to satisfy a level above it. The domain routing
-table grows one entry per release. Do not rely on this summary alone — read
-the referenced files.
+Treat these as first-class triggers, whatever the words of the task. The first
+group is anything under `app/`, a route handler, a layout or page, `proxy.ts`,
+`next.config.ts`, `tsconfig.json`, and `package.json`. The second group is a
+`"use client"` or `"use server"` boundary, a React hook, and a React 19 API.
+The third group is a compiler flag, a cast, an `any`, a union, a branded id, or
+a Zod schema. The fourth group is a response type from a DRF endpoint, an
+interactive control, a form, or a focus order. The last group is any change to
+the bundle, the headers, or the build.
+
+Verify the installed versions from `package.json` before you generate code.
+Never mix Next 15 and Next 16 idioms in one file. Report an API you cannot
+confirm as unconfirmed, and never guess at it.
+
+Work is not done because it renders. Run the typecheck, the lint, the tests
+that cover the change, and the production build. Apply the conflict rule:
+security > accessibility > correctness > performance > developer convenience.
+No level trades down to satisfy a level above it. The domain routing table
+grows one entry per release. Do not rely on this summary alone, and read the
+referenced files.

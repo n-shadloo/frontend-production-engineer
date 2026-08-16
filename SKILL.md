@@ -20,23 +20,24 @@ license: MIT
 allowed-tools: Read, Grep, Glob, Bash, Edit, Write
 metadata:
   author: n-shadloo
-  version: 1.2.0
+  version: 1.2.1
 ---
 
 # frontend-production-engineer
 
 A frontend engineering skill. It plans, writes, and reviews production Next.js
-and TypeScript against a Django / Django REST Framework backend, holding the
-work to a stated definition of done instead of stopping at code that renders.
-Scope is the browser-facing application: routing and rendering, the React
-component tree, the typed contract with the backend, and the non-functional
-guarantees a shipped frontend owes its users. It does not cover the Django
-backend itself — server-side code, the ORM, the database, backend security,
-and backend performance belong to the author's `secure-code-auditor` and
-`django-performance-optimizer` skills, and this skill defers to them rather
-than restating their material. Its canonical content is reused by other agents
-(Codex, Cursor, Gemini CLI) via `AGENTS.md`, with Claude as the primary
-integration.
+and TypeScript against a Django / Django REST Framework backend. It holds the
+work to a stated definition of done, and it does not stop at code that renders.
+Scope is the browser-facing application. That scope is routing and rendering,
+the React component tree, and the typed contract with the backend. It also
+holds the non-functional guarantees a shipped frontend owes its users.
+
+It does not cover the Django backend itself. Server-side code, the ORM, the
+database, backend security, and backend performance belong to the author's
+`secure-code-auditor` and `django-performance-optimizer` skills. This skill
+defers to them. It does not restate their material. Other agents (Codex,
+Cursor, Gemini CLI) reuse its canonical content through `AGENTS.md`, with
+Claude as the primary integration.
 
 ## How the reference material is organized
 
@@ -46,8 +47,8 @@ has two layers:
 1. **Principle** — the concern, why it matters, and the correct approach,
    stated framework-agnostically so it survives the next major version.
 2. **Pinned-stack depth** — the concrete Next.js, React, TypeScript, and
-   Django/DRF-contract implementation: runnable code, `// Wrong:` and
-   `// Correct:` pairs naming the failure each wrong version produces, and a
+   Django/DRF-contract implementation. It holds runnable code, `// Wrong:` and
+   `// Correct:` pairs that name the failure each wrong version produces, and a
    binary review checklist. This is where the depth lives.
 
 Load only the file(s) relevant to the concern in front of you.
@@ -55,7 +56,7 @@ Load only the file(s) relevant to the concern in front of you.
 | Concern | Reference file |
 |---|---|
 | The route tree and the request — `app/`, `layout.tsx`, `page.tsx`, `template.tsx`, `loading.tsx`, `error.tsx`, `global-error.tsx`, `not-found.tsx`, `forbidden.tsx`, `unauthorized.tsx`, `default.tsx`, `route.ts`, `instrumentation.ts`; the folder tokens `(group)`, `_folder`, `[param]`, `[...slug]`, `[[...slug]]`, `@slot`, `(.)`, `(..)`, `(...)`; a parallel or intercepting route, a modal that breaks on reload; `await params`, `await searchParams`, `cookies()`, `headers()`, `draftMode()`, `PageProps`, `LayoutProps`, `next typegen`, `redirect()`, `notFound()`, `generateStaticParams`; `middleware.ts` renamed to `proxy.ts`, the `proxy` export, `skipProxyUrlNormalize`, a redirect or a locale rule at the network boundary, an auth check that belongs in a layout, CVE-2025-29927; `next.config.ts` keys — `typedRoutes`, `turbopack`, `images.remotePatterns`, `serverRuntimeConfig`, `experimental.ppr`, `next/legacy/image`, `next lint`; `NEXT_PUBLIC_` variables; Node 20.9, the Next 15 to 16 upgrade, a codemod, `@next-codemod-error`; the errors "Cannot access Request information synchronously", "Dynamic APIs are Asynchronous", "middleware ... renamed to proxy". Not here: `useQuery` and `staleTime` (domain 06), CSP and header values (domain 17), metadata content (domain 18), locale message files (domain 19). | `references/app-router-structure.md` |
-| The boundary inside a route — `"use client"`, `"use server"`, a Server Component, a Client Component, a directive on a layout or a page, a provider that needs the client, a client leaf, `server-only`, `client-only`; a prop that fails to serialize, a class instance or a callback across the boundary, "Only plain objects can be passed"; `<Suspense>`, a streamed promise, `use()`, a skeleton, `reset()`, an error boundary, `useSearchParams()`; a fetch in `useEffect` that belongs on the server; a hydration error, "Text content does not match server-rendered HTML", `suppressHydrationWarning`, `typeof window`, `localStorage` in a render. Not here: which component holds the state (`references/state-and-effects.md`), the granularity of a boundary inside a route and the React 19 Actions (`references/suspense-and-actions.md`), the client cache (domain 06), bundle bytes and INP (domain 16), the accessible name of a control (domain 10). | `references/server-and-client-components.md` |
+| The boundary inside a route — `"use client"`, `"use server"`, a Server Component, a Client Component, a directive on a layout or a page, a provider that needs the client, a client leaf, `server-only`, `client-only`; a prop that fails to serialize, a class instance or a callback across the boundary, "Only plain objects can be passed"; a streamed promise, `use()`, the `"use client"` directive on an `error.tsx`, `useSearchParams()`; a fetch in `useEffect` that belongs on the server; a hydration error, "Text content does not match server-rendered HTML", `suppressHydrationWarning`, `typeof window`, `localStorage` in a render. Not here: which component holds the state (`references/state-and-effects.md`), the granularity of a boundary inside a route, the shape of a fallback, and the React 19 Actions (`references/suspense-and-actions.md`), the client cache (domain 06), bundle bytes and INP (domain 16), the accessible name of a control (domain 10). | `references/server-and-client-components.md` |
 | The call to the backend — a data access layer, a DAL module, where a fetch belongs, a Server Component fetch, a Route Handler, a BFF or a proxy in front of Django, a browser call to Django, CORS on a session cookie; a Server Action, `<form action>`, an action that must authorize, validate, mutate, invalidate, and redirect in that order, a `redirect()` swallowed by a catch; a generated client, `openapi-typescript`, a drf-spectacular schema, a renamed serializer field, the DRF pagination envelope `{count, next, previous, results}`, a DRF error envelope; `prefetchQuery`, `dehydrate`, `HydrationBoundary`, a client that refetches after a prefetch; two sources for one resource. Not here: the schema generation config and the contract itself (domain 05), the query keys and the mutation state (domain 06), the field-level error mapping in a form (domain 11), the Django query behind a slow endpoint (sibling skill `django-performance-optimizer`). | `references/data-access-and-mutations.md` |
 | The lifetime of a response — `cacheComponents`, Cache Components, the previous caching model, `"use cache"`, `cacheLife`, `cacheTag`, `unstable_cache`, `fetch` `cache` and `next.revalidate` and `next.tags`, route segment `revalidate` and `dynamic`; `revalidateTag`, `updateTag`, `refresh()`, `revalidatePath`, `router.refresh()`, the Router Cache, read-your-writes, stale data after a mutation; Partial Prerendering, a static shell with a dynamic hole, a route that is unexpectedly dynamic or unexpectedly static, the build report symbols, `connection()`, `unstable_noStore`, `Math.random()` or `new Date()` on a route; one user seeing another user's data. Not here: `staleTime` and the client query cache (domain 06), the `Cache-Control` header and the CDN (domain 22), whether the data may be cached at all (domain 17), the Django-side cache (sibling skill `django-performance-optimizer`). | `references/caching-and-revalidation.md` |
 | The compiler and the gates that prove it — `tsconfig.json`, `compilerOptions`, `strict`, `strictNullChecks`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `verbatimModuleSyntax`, `isolatedModules`, `moduleResolution`, `moduleDetection`, `noImplicitOverride`, `noPropertyAccessFromIndexSignature`, `skipLibCheck`, `baseUrl`, `paths`, the `next` plugin; `next-env.d.ts`, a `*.d.ts` file, a generated type that someone edited by hand; `tsc --noEmit`, a typecheck that CI runs and the build does not, `typescript.ignoreBuildErrors`, `useTypeScriptCli`, a green build with a red editor; `eslint.config.ts`, typescript-eslint, `strictTypeChecked`, `stylisticTypeChecked`, `projectService`, `disableTypeChecked`, `no-explicit-any`, `no-unsafe-assignment`, `no-floating-promises`, `no-misused-promises`, `switch-exhaustiveness-check`, `ban-ts-comment`; `@ts-ignore`, `@ts-expect-error`, a suppression with no reason; `vitest --typecheck`, `expectTypeOf`, a `*.test-d.ts` file, `type-coverage`; a slow editor, a slow compiler, `--extendedDiagnostics`, `--generateTrace`, the errors `TS2589` and `TS1484`; TypeScript 5.9, 6.0, or 7.0. Not here: the folder layout and the Prettier config (domain 04), the test runner and the contract test (domain 20), the CI pipeline and the Docker build (domain 22). | `references/typescript-config-and-enforcement.md` |
@@ -73,26 +74,25 @@ task can contain, and the near-misses that belong to a neighbouring domain.
 Never write a row as a summary of the file. A vague row is a domain that never
 loads.
 
-Cross-references between reference files are deliberate, and the seams are
-recorded here as the domains land: which file owns a concern, and which files
-defer to it rather than repeating it. The four files of
-`nextjs-app-router-architecture` split on one line each.
+Cross-references between reference files are deliberate. This file records the
+seams as the domains land: which file owns a concern, and which files defer to
+it rather than repeat it.
+
+The four files of `nextjs-app-router-architecture` split on one line each.
 `app-router-structure` owns the route tree, the request, and `proxy.ts`.
 `server-and-client-components` owns the boundary inside a route.
 `data-access-and-mutations` owns the call to the backend.
 `caching-and-revalidation` owns the lifetime of the response. A rule about a
-route file lives in the first file only. A rule about a `"use client"` leaf
-lives in the second file only.
+route file lives in the first file only, and a rule about a `"use client"` leaf
+lives in the second.
 
 The three files of `typescript-type-system-discipline` split the same way.
 `typescript-config-and-enforcement` owns the compiler flags and the gates.
 `type-modeling-and-narrowing` owns the vocabulary that models a value inside
 the program. `boundary-validation-and-api-types` owns every value that enters
 from outside the program, and the types that a DRF response produces. A rule
-about a `tsconfig.json` flag lives in the first file only. A rule about a
-schema lives in the third file only. Where the two domains meet, domain 01
-owns the route file and the awaited request data. Domain 02 owns the types
-that the route file uses.
+about a `tsconfig.json` flag lives in the first file only, and a rule about a
+schema lives in the third.
 
 The three files of `react-component-architecture` split on the same rule.
 `component-composition` owns the shape of a component and the way that parts
@@ -100,31 +100,36 @@ compose. `state-and-effects` owns where a value lives, when an effect is
 correct, and the Rules of React that the compiler depends on.
 `suspense-and-actions` owns the boundary that renders while a value is absent,
 and the Action that changes a value. A rule about a slot lives in the first
-file only. A rule about a dependency array lives in the second file only. Where
-these two domains meet, domain 03 decides which component holds the state, and
-domain 01 states the boundary.
+file only, and a rule about a dependency array lives in the second.
+
+Two seams cross the domains. Where domain 01 and domain 02 meet, domain 01 owns
+the route file and the awaited request data. Domain 02 owns the types that the
+route file uses. Where domain 01 and domain 03 meet, domain 03 decides which
+component holds the state. Domain 01 states the boundary.
 
 ## Mode selection
 
-Both modes are bound by the same standing rules. Plan before editing, and
-state the success criteria the work will be checked against. Verify the
-installed versions from `package.json`, `next.config.ts`, and `tsconfig.json`
-before generating code — never mix Next 15 and Next 16 idioms in one file, and
-never write against a version the repository does not have. Never invent an
-API: if you cannot confirm that a function, prop, or option exists in the
-installed version, say so instead of guessing. Keep the diff minimal, so every
-changed line traces to the request. Run the commands rather than asserting
-their result.
+The same standing rules bind both modes. Plan before you edit, and state the
+success criteria that the work must meet. Verify the installed versions from
+`package.json`, `next.config.ts`, and `tsconfig.json` before you generate code.
+Never mix Next 15 and Next 16 idioms in one file. Never write against a version
+that the repository does not have.
 
-**Review-time.** Trigger when the user asks to review, audit, or "check"
-existing frontend code; pastes a component and asks whether it is correct; or
-has just finished a feature and wants it looked at. Behavior:
+Never invent an API. Where you cannot confirm that a function, prop, or option
+exists in the installed version, say so rather than guess. Keep the diff
+minimal, so every changed line traces to the request. Run the commands, and
+never assert their result.
+
+**Review-time.** Trigger on three conditions. The user asks to review, audit,
+or "check" existing frontend code. The user pastes a component and asks whether
+it is correct. The user finished a feature and asks for a review of it.
+Behavior:
 
 - Treat the codebase as **read-only**. Do not edit, refactor, or "fix in
   place" unless the user explicitly asks you to apply fixes afterward.
 - Establish the installed versions first. A finding written against the wrong
   major version is noise.
-- Investigate before flagging. Confirm the render path, the boundary the
+- Investigate before you flag. Confirm the render path, the boundary the
   component actually sits on, and whether the code is reachable at runtime.
   Do not pattern-match a keyword into a finding.
 - Report findings ordered by severity, each with a location, the concrete
@@ -139,28 +144,30 @@ a feature. Behavior:
   you guessed is a bug with a delay on it.
 - Note the choices a reviewer would want to see. If a requirement forces a
   pattern this skill would otherwise reject, say so and describe the residual
-  risk rather than hiding it.
-- Run the definition-of-done checks before reporting the work complete.
+  risk. Never hide it.
+- Run the definition-of-done checks before you report the work complete.
 
-**If it is ambiguous,** apply write-time guardrails while coding and offer to
-run a review afterward.
+**If it is ambiguous,** apply the write-time guardrails as you write, and offer
+a review afterward.
 
 ## Definition of done
 
-Resolve domains in this order on any feature task: the standing rules above,
-always; then the foundations, for where files go and how they are typed; then
-the backend contract, before any code that touches Django; then whichever
-domain files match the feature; then the non-functional domains, as a review
-pass before done. At 1.2.0 the standing rules,
+Resolve the domains in this order on any feature task. The standing rules above
+come first, and they always apply. The foundations come next, for where files
+go and how they are typed. The backend contract comes before any code that
+touches Django. The domain files that match the feature come after it. The
+non-functional domains come last, as a review pass before done.
+
+At 1.2.1 the integrated material is the standing rules,
 `nextjs-app-router-architecture`, `typescript-type-system-discipline`, and
-`react-component-architecture` are integrated, so the rest of the order fills
-in as the router grows.
+`react-component-architecture`. The rest of the order applies as the router
+grows.
 
 Work is not done because it renders. It is done when all of the following
-hold, each established by running the command rather than by inspection:
+hold. Run the command for each one, and never establish it by inspection:
 
-- The installed versions were verified before any code was written, and no
-  file mixes idioms from two major versions.
+- The versions were verified before any code, and no file mixes idioms from
+  two major versions.
 - TypeScript compiles clean, with no suppression added to make it do so.
 - Lint passes.
 - The tests covering the change pass.
@@ -172,9 +179,11 @@ hold, each established by running the command rather than by inspection:
 `authentication-and-authorization`, `accessibility-wcag`, `frontend-security`,
 and `testing-and-quality` each hold a veto over completion. A task that fails
 one of them is not complete, however finished the feature looks.
-`frontend-security` and `accessibility-wcag` are absolute: a keyboard trap, an
-interactive control with no accessible name, an unescaped injection sink, or a
-secret that reaches the client is a failed task, not a follow-up ticket.
+
+`frontend-security` and `accessibility-wcag` are absolute. A keyboard trap or
+an interactive control with no accessible name is a failed task. An unescaped
+injection sink or a secret that reaches the client is a failed task. Neither is
+a follow-up ticket.
 
 **`nextjs-app-router-architecture` — integrated, blocking.** The task fails
 when any one of these holds:
