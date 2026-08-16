@@ -21,8 +21,11 @@ group is anything under `app/`, a route handler, a layout or page, `proxy.ts`,
 The third group is a compiler flag, a cast, an `any`, a union, a branded id, or
 a Zod schema. The fourth group is the DRF contract — an OpenAPI schema,
 `api:generate`, a generated client, a pagination or error envelope, a CORS or
-CSRF failure, or a proxy in front of Django. The fifth group is an interactive
-control, a form, or a focus order. The sixth group is the project setup — a
+CSRF failure, or a proxy in front of Django. The fifth group is the client cache
+and the state that the backend does not own — `useQuery`, `useMutation`, a query
+key, `staleTime`, an optimistic update, a search param, or a store. The sixth
+group is an interactive control, a form, or a focus order. The seventh group is
+the project setup — a
 folder move, a barrel file, `eslint.config.ts`, the lockfile, a git hook, or a
 new dependency. The last group is any change to the bundle, the headers, or the
 build.

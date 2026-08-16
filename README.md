@@ -63,7 +63,7 @@ Tier 2 is the backend contract and the state built on it.
 - `05 django-drf-api-contract` — OpenAPI codegen, DRF error and pagination
   shapes, CSRF and CORS. Integrated.
 - `06 data-fetching-and-state` — TanStack Query, cache design, client state,
-  URL state. Pending.
+  URL state. Integrated.
 - `07 authentication-and-authorization` — session and token strategy, route
   protection, RBAC in the UI. Pending.
 - `08 realtime-and-streaming` — WebSockets and Channels, server-sent events,
@@ -126,7 +126,8 @@ React Compiler 1.0. The language is TypeScript 5.9, with `strict` and
 
 Tailwind CSS v4 supplies the styling, with the CSS-first `@theme` config, and
 shadcn/ui sits on Base UI. TanStack Query 5.101 or later holds the server
-state, and Zod 4 validates the values. React Hook Form binds the forms. Vitest,
+state, nuqs 2.9 holds the URL state, and Zustand 5 holds the client store. Zod
+4 validates the values. React Hook Form binds the forms. Vitest,
 React Testing Library, MSW, and Playwright run the tests. The backend is Django
 and DRF 3.17, and it publishes OpenAPI 3.0.3 through drf-spectacular 0.30.
 `openapi-typescript` 7.13 generates the types, `openapi-fetch` 0.17 sends the
@@ -243,10 +244,10 @@ run.
 
 ## Example output
 
-At 1.4.0 the integrated material is the operating doctrine, the App Router
+At 1.5.0 the integrated material is the operating doctrine, the App Router
 foundation, the type system, the React component tree, the project structure,
-and the backend contract. The worked example is the shape of a task and the
-facts that gate it:
+the backend contract, and the client cache and state. The worked example is the
+shape of a task and the facts that gate it:
 
 ```
 Plan
@@ -291,6 +292,12 @@ Contract facts
 - Page 2 follows the next URL; no offset is computed.
 - A 400 becomes ApiError.fieldErrors; the GET retries, a POST never does.
 
+State facts
+- Server state in the Query cache; one ordersListOptions in features/orders.
+- Key from the factory, carrying the search term and the page.
+- Prefetch on the server, one HydrationBoundary, and no refetch on mount.
+- q and page live in the URL through nuqs; the cache key derives from them.
+
 Done
 - pnpm lint              clean, at --max-warnings=0
 - pnpm typecheck         clean
@@ -331,6 +338,7 @@ frontend-production-engineer/
 │   ├── app-router-structure.md
 │   ├── boundary-validation-and-api-types.md
 │   ├── caching-and-revalidation.md
+│   ├── client-and-url-state.md
 │   ├── component-composition.md
 │   ├── cross-origin-and-bff-proxy.md
 │   ├── data-access-and-mutations.md
@@ -339,6 +347,7 @@ frontend-production-engineer/
 │   ├── lint-format-and-scripts.md
 │   ├── openapi-schema-and-codegen.md
 │   ├── server-and-client-components.md
+│   ├── server-state-and-query-cache.md
 │   ├── state-and-effects.md
 │   ├── suspense-and-actions.md
 │   ├── type-modeling-and-narrowing.md
@@ -348,7 +357,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds five domains at 1.4.0 and fills one domain at a time.
+`references/` holds six domains at 1.5.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 
