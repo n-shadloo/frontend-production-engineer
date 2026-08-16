@@ -1,6 +1,6 @@
 ---
 description: Production-grade frontend engineering for Next.js and TypeScript against a Django/DRF backend — plan first, verify the installed versions, never invent an API, keep the diff minimal, run the checks, and hold the work to a stated definition of done. Covers routing and rendering, the server/client boundary, the React component tree, the typed backend contract, and the non-functional guarantees (accessibility, security, performance, testing) that gate completion. Domains are integrated one per release; the router in SKILL.md is the authoritative list of what is loadable. Canonical instructions live in SKILL.md and references/.
-globs: ["**/*.ts", "**/*.tsx"]
+globs: ["**/*.ts", "**/*.tsx", "**/package.json"]
 alwaysApply: false
 ---
 
@@ -20,8 +20,10 @@ group is anything under `app/`, a route handler, a layout or page, `proxy.ts`,
 `"use client"` or `"use server"` boundary, a React hook, and a React 19 API.
 The third group is a compiler flag, a cast, an `any`, a union, a branded id, or
 a Zod schema. The fourth group is a response type from a DRF endpoint, an
-interactive control, a form, or a focus order. The last group is any change to
-the bundle, the headers, or the build.
+interactive control, a form, or a focus order. The fifth group is the project
+setup — a folder move, a barrel file, `eslint.config.ts`, the lockfile, a git
+hook, or a new dependency. The last group is any change to the bundle, the
+headers, or the build.
 
 Verify the installed versions from `package.json` before you generate code.
 Never mix Next 15 and Next 16 idioms in one file. Report an API you cannot

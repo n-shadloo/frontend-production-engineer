@@ -1,26 +1,26 @@
 ---
 name: frontend-production-engineer
 description: >-
-  Production-grade frontend engineering for Next.js and TypeScript against a
-  Django and Django REST Framework backend. Use whenever frontend work is
-  planned, written, or reviewed and the task touches App Router files (app/,
-  layout.tsx, page.tsx, proxy.ts, next.config.ts, tsconfig.json), the "use
-  client" or "use server" boundary, await params or cookies(), "use cache"
-  and revalidateTag, a Server Action, a Route Handler, a hydration error, a
-  React hook (useState, useEffect, useActionState), a <Suspense> or error
-  boundary, a compound component, a list key, the React Compiler, a type or
-  a cast (any, unknown, satisfies, as const, a branded id, a discriminated
-  union, assertNever, tsc --noEmit, React.FC), a Zod schema (safeParse,
-  z.infer), or a DRF response that is typed or parsed, and the agent has to
-  verify the installed versions, plan first, and hold the result to a
-  definition of done rather than guess at an API, even if "frontend" is
-  never used. Next.js 16, React 19, and TypeScript 5.9 are the pinned
-  baseline.
+  Frontend engineering for Next.js and TypeScript against a Django and DRF
+  backend. Use whenever frontend work is planned, written, or reviewed and
+  the task touches App Router files (app/, layout.tsx, page.tsx, proxy.ts,
+  next.config.ts, tsconfig.json), the "use client" or "use server"
+  boundary, await params or cookies(), "use cache" and revalidateTag, a
+  Server Action, a Route Handler, a hydration error, a React hook
+  (useState, useEffect, useActionState), a <Suspense> or error boundary, a
+  compound component, a list key, the React Compiler, a type or a cast
+  (any, unknown, satisfies, as const, a branded id, a discriminated
+  union), a Zod schema (safeParse, z.infer), a DRF response that is typed
+  or parsed, or the project setup (package.json, eslint.config.ts,
+  Prettier, Biome, pnpm and the lockfile, a path alias, a barrel file, a
+  git hook, a Conventional Commit, a monorepo), and the agent has to
+  verify the installed versions, plan first, and hold the work to a
+  definition of done, even if "frontend" is never used.
 license: MIT
 allowed-tools: Read, Grep, Glob, Bash, Edit, Write
 metadata:
   author: n-shadloo
-  version: 1.2.1
+  version: 1.3.0
 ---
 
 # frontend-production-engineer
@@ -65,6 +65,9 @@ Load only the file(s) relevant to the concern in front of you.
 | The shape of a component and the way that parts compose — a God component, a component file past 200 lines, more than five `useState` calls, a decomposition, "single responsibility"; three or more boolean props that change the layout, composition over configuration, `children`, a slot, a named part, a compound component, `Tabs.List`, `Tabs.Panel`, a render prop, a polymorphic component, `asChild`, `Slot`, the Base UI `render` prop, `useRender`, `data-slot`; controlled against uncontrolled, `value` and `onChange` against `defaultValue`, `useControllableState`, "A component is changing an uncontrolled input to be controlled"; `ref` as a prop against `forwardRef` in new code, `useImperativeHandle`, a parent that reaches into a child; a list `key`, an index key, "Each child in a list should have a unique key prop", a row that keeps the state of another row after a sort or a filter; a headless hook, a custom hook that returns markup; shadcn/ui on Base UI, Radix Primitives, `usehooks-ts`, `prop-types`. Not here: where the state itself lives and whether an effect is correct (`references/state-and-effects.md`), the `<Suspense>` boundary and the Action hooks (`references/suspense-and-actions.md`), `React.FC` and `PropsWithChildren` and `ComponentProps` (`references/type-modeling-and-narrowing.md`), the classes and the tokens on a part (domain 09), the ARIA role and the focus order (domain 10), the virtualiser for a long list (domain 12). | `references/component-composition.md` |
 | Where a value lives and when an effect is correct — `useState`, `useReducer`, `useEffect`, `useLayoutEffect`, `useContext`, `createContext`, `useSyncExternalStore`, `useEffectEvent`, `useMemo`, `useCallback`, `memo`, `<Profiler>`; colocate state, lift state up, prop drilling, a global store, a derived value, a filtered list held in state, an effect that sets state, an effect that resets state when a prop changes, a `key` that remounts a component, five `useState` calls for five form fields, a context that holds a list from the backend; a subscription, `window.matchMedia`, a browser API read during a render, a socket that reconnects on an unrelated change, a stale closure, a dependency array that lies; Strict Mode, `reactStrictMode`, an effect that runs twice in development, a missing cleanup; the Rules of React, purity, a mutation during a render, `eslint-plugin-react-hooks`, `rules-of-hooks`, `exhaustive-deps`, `set-state-in-render`, `set-state-in-effect`, `reactCompiler`, `babel-plugin-react-compiler`, `"use memo"`, `"use no memo"`, `compilationMode`, a compiler bailout, `eslint-plugin-react-compiler`; CVE-2025-55182 and the React 19.2.1 floor; the errors "Rendered more hooks than during the previous render", "Cannot update a component while rendering a different component", "Too many re-renders", "Maximum update depth exceeded", "Missing getServerSnapshot, which is required for server-rendered content", "Hooks can only be called inside the body of a function component". Not here: `useQuery` and `staleTime` and the query cache (domain 06), the shape of the component around the state (`references/component-composition.md`), the boundary and the Action (`references/suspense-and-actions.md`), the `"use client"` directive itself (`references/server-and-client-components.md`), the type-aware lint config (`references/typescript-config-and-enforcement.md`), the INP that a re-render costs (domain 16). | `references/state-and-effects.md` |
 | The boundary that renders while a value is absent, and the Action that changes it — `<Suspense>`, a fallback, a skeleton that does not match the content, a page that shows one spinner, a section boundary, a widget boundary, layout shift when the data arrives; `ErrorBoundary`, `react-error-boundary`, `fallbackRender`, `resetErrorBoundary`, `useErrorBoundary`, a panel that must fail alone; `use(` on a promise, a promise created in a render, a fallback that never resolves, `use()` inside a `try`; a React 19 Action, `useActionState`, `useFormStatus`, `useOptimistic`, `startTransition`, `useTransition`, `formAction`, a submit button that must disable while pending, an optimistic value that must roll back; a DRF 400 rendered beside a field, a validation error that was thrown, a 5xx that must reach a boundary; `<Activity>`, `visible` and `hidden`, hidden UI that must keep its state, a tab panel that loses a scroll position; `<title>` or `<meta>` rendered from a component, `preload`, `preinit`, `prefetchDNS`, `preconnect`. Not here: `loading.tsx` and `error.tsx` as route files (`references/app-router-structure.md`), the body of the Server Action and its authorize, validate, mutate, invalidate, redirect order (`references/data-access-and-mutations.md`), the DRF error envelope shapes (`references/boundary-validation-and-api-types.md`), the mutation state in the query cache (domain 06), the resolver and the field array (domain 11), the choreography of a transition (domain 14), the words in the message (domain 15). | `references/suspense-and-actions.md` |
+| Where a file goes and which module may import it — `src/`, `src/app`, `src/features`, `src/components/ui`, `src/components/common`, `src/lib`, `src/server`, `src/config`, feature-first, layer-first, colocation, a shared layer, dependency direction, a public API, a private folder that holds too much; a barrel file, `index.ts`, `export *`, a global barrel, a deep relative import `../../../..`, the `@/*` path alias, `optimizePackageImports`, `transpilePackages`; `eslint-plugin-boundaries`, `boundaries/element-types`, `no-restricted-paths`, `dependency-cruiser`, `.dependency-cruiser.js`, `sheriff`, `sheriff.config.ts`, a cycle, an orphan module; `src/api/generated`, `api:generate`, a generated client that someone edited, the schema artifact, the drift check; a monorepo, a workspace, `pnpm-workspace.yaml`, `turbo.json`, Turborepo, Nx; a repository restructure inside a feature task; the errors "Importing elements of type ... is not allowed", "is not allowed in elements of type", "Cannot find module" from a missing alias. Not here: the folder tokens `(group)`, `_folder`, and `@slot`, and the route files (`references/app-router-structure.md`), the `server-only` and `client-only` guards (`references/server-and-client-components.md`), `tsconfig.json` and the `paths` value (`references/typescript-config-and-enforcement.md`), the rest of the lint config array (`references/lint-format-and-scripts.md`), the drf-spectacular config and the generator (domain 05), the tokens that `components/ui` renders (domain 09). | `references/directory-and-module-boundaries.md` |
+| The checks over the code and the commands that run them — `package.json` scripts, `dev`, `build`, `lint`, `lint:fix`, `format`, `typecheck`, `test`, `test:watch`, `test:e2e`, `analyze`, `pnpm check`, `pnpm dlx`, `--max-warnings=0`, a warning that CI accepts; `eslint.config.ts`, `eslint.config.mjs`, a flat config, `defineConfig`, `eslint-config-next`, `core-web-vitals`, `eslint-config-next/typescript`, an `ignores` entry, a lint rule that reports nothing; `next lint`, the `eslint` key in `next.config.ts`, `next-lint-to-eslint-cli`, a CI step that lints nothing; Prettier, `.prettierrc`, Biome, `biome.json`, `prettier-plugin-tailwindcss`, `tailwindStylesheet`, `eslint-plugin-tailwindcss`, `eslint-plugin-better-tailwindcss`, `.editorconfig`; `eslint-disable`, `eslint-disable-next-line`, a suppression with no reason; `next typegen` before a typecheck; `AGENTS.md`, `.cursorrules`, `.cursor/rules`, `.vscode/settings.json`, `.vscode/extensions.json`; the errors "Parsing error: ESLint was configured to run on", "next lint is deprecated and will be removed in Next.js 16", "It looks like you're trying to use tailwindcss directly as a PostCSS plugin". Not here: `projectService`, `strictTypeChecked`, and `tsc --noEmit` (`references/typescript-config-and-enforcement.md`), `eslint-plugin-react-hooks` and `reactCompiler` (`references/state-and-effects.md`), the boundaries block (`references/directory-and-module-boundaries.md`), the hook that calls a script (`references/dependencies-and-git-workflow.md`), the Tailwind theme (domain 09), the test layout and the coverage threshold (domain 20), the CI workflow (domain 22). | `references/lint-format-and-scripts.md` |
+| What enters the repository and how a change leaves it — pnpm, npm, yarn, bun, `pnpm install --frozen-lockfile`, `pnpm-lock.yaml`, a lockfile conflict, a hand-edited lockfile, `packageManager`, Corepack, `corepack enable`, Volta, `.nvmrc`, `engines.node`, `.npmrc`, `overrides`; `minimumReleaseAge`, `minimumReleaseAgeExclude`, a cooldown, `onlyBuiltDependencies`, `allowBuilds`, `ignore-scripts`, a lifecycle script, `pnpm audit`, a new dependency and its justification; Renovate, `renovate.json`, Dependabot, `.github/dependabot.yml`, `automerge`, `matchUpdateTypes`, `fetch-metadata`; lefthook, `lefthook.yml`, Husky, `.husky/`, `lint-staged`, `stage_fixed`, a `prepare` script, a hook that never fires; commitlint, `commitlint.config.js`, a Conventional Commit, a commit-msg hook; `.gitignore`, a committed `.env.local`, gitleaks, `.gitleaks.toml`, a secret in the history; `CODEOWNERS`, `.gitattributes`, `linguist-generated`. Not here: the body of a script that a hook calls (`references/lint-format-and-scripts.md`), the folder that a new file goes into (`references/directory-and-module-boundaries.md`), the `NEXT_PUBLIC_` prefix (`references/app-router-structure.md`), whether a package is malicious (domain 17), the CI workflow and the deploy (domain 22), the server-side secret storage (sibling skill `secure-code-auditor`). | `references/dependencies-and-git-workflow.md` |
 
 The operating doctrine is integrated but has no row, because it is always in
 effect and lives in this file rather than in `references/`. Each release
@@ -102,10 +105,23 @@ correct, and the Rules of React that the compiler depends on.
 and the Action that changes a value. A rule about a slot lives in the first
 file only, and a rule about a dependency array lives in the second.
 
-Two seams cross the domains. Where domain 01 and domain 02 meet, domain 01 owns
-the route file and the awaited request data. Domain 02 owns the types that the
-route file uses. Where domain 01 and domain 03 meet, domain 03 decides which
-component holds the state. Domain 01 states the boundary.
+The three files of `project-structure-and-tooling` split on the same rule.
+`directory-and-module-boundaries` owns the place where a file goes, and the
+rule for which module may import it. `lint-format-and-scripts` owns the checks
+that run over the code, and the commands that run them.
+`dependencies-and-git-workflow` owns what enters the repository, and how a
+change leaves it. A rule about a barrel file lives in the first file only, and
+a rule about a lockfile lives in the third.
+
+Four seams cross the domains. Where domain 01 and domain 02 meet, domain 01
+owns the route file and the awaited request data. Domain 02 owns the types that
+the route file uses. Where domain 01 and domain 03 meet, domain 03 decides
+which component holds the state. Domain 01 states the boundary.
+
+Where domain 04 and domain 01 meet, domain 01 owns the folder tokens inside
+`app/`. Domain 04 owns every folder outside `app/`. Where domain 04 and domain
+02 meet, domain 02 owns `tsconfig.json` and the type-aware lint rules. Domain
+04 owns the config array that holds them, and the scripts that run them.
 
 ## Mode selection
 
@@ -158,10 +174,10 @@ go and how they are typed. The backend contract comes before any code that
 touches Django. The domain files that match the feature come after it. The
 non-functional domains come last, as a review pass before done.
 
-At 1.2.1 the integrated material is the standing rules,
-`nextjs-app-router-architecture`, `typescript-type-system-discipline`, and
-`react-component-architecture`. The rest of the order applies as the router
-grows.
+At 1.3.0 the integrated material is the standing rules,
+`nextjs-app-router-architecture`, `typescript-type-system-discipline`,
+`react-component-architecture`, and `project-structure-and-tooling`. The rest
+of the order applies as the router grows.
 
 Work is not done because it renders. It is done when all of the following
 hold. Run the command for each one, and never establish it by inspection:
@@ -246,6 +262,33 @@ task only where a blocking domain fails with it. Report each of these:
 - A hand-written `useMemo`, `useCallback`, or `memo` with no stated
   measurement, in a project that enables the React Compiler.
 - Three or more boolean props that change the layout of one component.
+
+**`project-structure-and-tooling` — integrated, not blocking.** This domain
+holds no veto. Its rules are findings on a review pass, and one of them fails a
+task only where a blocking domain fails with it. Report each of these:
+
+- Application code outside `src/`, or a config file inside it.
+- A file in a shared folder that one consumer uses.
+- An import of another feature's internal path, or a relative path of three
+  parent steps or more.
+- A barrel outside a feature, or a feature barrel that the same feature
+  imports.
+- A lint invocation with no `--max-warnings=0`, or `next lint` still in a
+  script or in CI.
+- A flat config that takes `eslint-config-next/core-web-vitals` and not
+  `eslint-config-next/typescript`.
+- An `eslint-disable` with no reason after two hyphens, or a file-level
+  disable.
+- A CI install with no `--frozen-lockfile`, or a hand-edited lockfile.
+- `packageManager`, `engines.node`, and `.nvmrc` that disagree, or pnpm 11 on
+  Node 20.
+- No `minimumReleaseAge`, or a new dependency with no stated replacement,
+  size, and maintenance status.
+- A hand-edited file under `src/api/generated/`, or CI that proves the
+  generated client against neither the compiler nor a diff.
+- A pre-commit, pre-push, or commit-msg hook that a fresh clone does not
+  install, or a tracked `.env` file.
+- A file move that the request did not ask for.
 
 **Conflict rule.** security > accessibility > correctness > performance >
 developer convenience. No level trades down to satisfy a level above it. When

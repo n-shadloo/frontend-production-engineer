@@ -56,7 +56,7 @@ Tier 1 is the foundations: where files go and how they are typed.
 - `03 react-component-architecture` — composition, hooks, the React 19 APIs,
   render correctness. Integrated.
 - `04 project-structure-and-tooling` — folders, ESLint and Prettier, Git,
-  monorepos, dependencies. Pending.
+  monorepos, dependencies. Integrated.
 
 Tier 2 is the backend contract and the state built on it.
 
@@ -129,6 +129,10 @@ shadcn/ui sits on Base UI. TanStack Query 5.101 or later holds the server
 state, and Zod 4 validates the values. React Hook Form binds the forms. Vitest,
 React Testing Library, MSW, and Playwright run the tests. The backend is Django
 and DRF, and it publishes OpenAPI 3.0.3 through drf-spectacular.
+
+pnpm manages the packages, on the 10.x line while the Node floor is 20.9.
+ESLint 9 with the flat config and Prettier 3 run the checks. lefthook holds the
+git hooks, and commitlint reads the messages.
 
 The baseline is what the reference material is written against. It is not an
 assumption about your repository. The skill verifies the installed version from
@@ -237,9 +241,10 @@ run.
 
 ## Example output
 
-At 1.2.1 the integrated material is the operating doctrine, the App Router
-foundation, the type system, and the React component tree. The worked example
-is the shape of a task and the facts that gate it:
+At 1.3.0 the integrated material is the operating doctrine, the App Router
+foundation, the type system, the React component tree, and the project
+structure. The worked example is the shape of a task and the facts that gate
+it:
 
 ```
 Plan
@@ -272,11 +277,16 @@ Component facts
 - Rows keyed by order id, never by index.
 - Section <Suspense> around the table, with a row-shaped skeleton.
 
+Structure facts
+- Route at src/app/(app)/orders; the table in src/features/orders.
+- Types from src/api/generated, which is gitignored and regenerated.
+- No new dependency; the sort control uses the existing ui primitive.
+
 Done
-- tsc --noEmit           clean
-- eslint .               clean
-- vitest run             14 passed
-- next build             succeeded
+- pnpm lint              clean, at --max-warnings=0
+- pnpm typecheck         clean
+- pnpm test              14 passed
+- pnpm build             succeeded
 - Diff: 4 files, all traceable to the request.
 ```
 
@@ -313,6 +323,9 @@ frontend-production-engineer/
 │   ├── caching-and-revalidation.md
 │   ├── component-composition.md
 │   ├── data-access-and-mutations.md
+│   ├── dependencies-and-git-workflow.md
+│   ├── directory-and-module-boundaries.md
+│   ├── lint-format-and-scripts.md
 │   ├── server-and-client-components.md
 │   ├── state-and-effects.md
 │   ├── suspense-and-actions.md
@@ -323,7 +336,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds three domains at 1.2.1 and fills one domain at a time.
+`references/` holds four domains at 1.3.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 
