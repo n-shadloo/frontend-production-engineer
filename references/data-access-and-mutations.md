@@ -191,20 +191,32 @@ export async function POST(request: Request) {
 ```
 
 ```tsx
-// Correct: the form calls the Server Action directly.
-// app/posts/new/page.tsx
+// Correct: the form calls the Server Action directly, through the dispatcher
+// that useActionState returns.
+// app/posts/new/new-post-form.tsx
+"use client"; // reason: useActionState holds the state that the Action returns
+import { useActionState } from "react";
 import { createPostAction } from "../actions";
 
-export default function Page() {
+export function NewPostForm() {
+  const [state, formAction, isPending] = useActionState(createPostAction, {});
   return (
-    <form action={createPostAction}>
+    <form action={formAction}>
       <label htmlFor="title">Title</label>
       <input id="title" name="title" required />
-      <button type="submit">Create</button>
+      {state.error && <p role="alert">{state.error}</p>}
+      <button type="submit" disabled={isPending}>
+        Create
+      </button>
     </form>
   );
 }
 ```
+
+The action takes the previous state as its first parameter, so `<form action>`
+receives the dispatcher and never the action itself. The pending state, the
+errors that the Action returns, and the optimistic value are
+`references/suspense-and-actions.md`.
 
 Keep a Route Handler for the cases that a Server Action cannot serve: an
 external consumer, a webhook from a payment provider, a file upload, and a
@@ -293,6 +305,8 @@ rg -n 'NEXT_PUBLIC_[A-Z_]*(KEY|SECRET|TOKEN|PASSWORD)' .
 - The session strategy, the token storage, and the role checks → domain 07
   `authentication-and-authorization`. Not integrated yet. The DRF permission
   classes belong to the sibling skill `secure-code-auditor`.
+- The pending state of a form, the error that the Action returns, and the
+  optimistic value → `references/suspense-and-actions.md`.
 - The form binding, the field-level error mapping, and the multi-step flow →
   domain 11 `forms-and-validation`. Not integrated yet.
 - The N+1 query and the endpoint latency behind a slow call → the sibling

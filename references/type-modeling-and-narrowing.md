@@ -382,8 +382,12 @@ rg -n '^\s*(export )?interface ' src/
   `references/boundary-validation-and-api-types.md`.
 - The `"use client"` boundary that a component sits on, and what a prop must
   serialize to cross it → `references/server-and-client-components.md`.
-- Composition, the hook rules, and the React 19 API surface beyond the types →
-  domain 03 `react-component-architecture`. Not integrated yet.
+- Composition, the slots, the controlled and uncontrolled choice, and the list
+  key → `references/component-composition.md`.
+- Where the state of a component lives, the effect rules, and the Rules of
+  React → `references/state-and-effects.md`.
+- The React 19 Actions, and the boundary that renders while a value is absent →
+  `references/suspense-and-actions.md`.
 - The theme object and the token types behind it → domain 09
   `design-system-and-styling`. Not integrated yet. The `satisfies` rule above
   covers only the type concern.
