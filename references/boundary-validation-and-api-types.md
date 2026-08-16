@@ -84,9 +84,9 @@ transform, a `.default()`, or a coercion makes the two differ.
 
 NEVER hand-copy the OpenAPI model into TypeScript or into Zod for every
 endpoint. Two sources for one shape drift in silence, and the drift surfaces
-as a run-time crash. Domain 05 `django-drf-api-contract` owns the generation
-config and the codegen command. The sibling skill `django-api-contract` owns
-the server side of the contract.
+as a run-time crash. `references/openapi-schema-and-codegen.md` owns the
+generation config and the codegen command. The sibling skill
+`django-api-contract` owns the server side of the contract.
 
 ### What a DRF construct produces
 
@@ -112,11 +112,15 @@ export type Paginated<T> = {
 
 ```ts
 // The drf-standardized-errors envelope, as a discriminated union.
-export type ApiError =
+export type StandardizedErrorBody =
   | { type: "validation_error"; errors: { code: string; detail: string; attr: string }[] }
   | { type: "client_error"; errors: { code: string; detail: string; attr: string | null }[] }
   | { type: "server_error"; errors: { code: string; detail: string; attr: string | null }[] };
 ```
+
+This type is the body on the wire, never the type that a component reads. The
+normalizer turns it, and the default DRF shapes, into one `ApiError`. Domain 05
+owns that type, in `references/api-client-and-request-safety.md`.
 
 `attr` names the field. A nested field arrives as `shipping_address.zipcode`,
 with a separator the server configures. Split on that separator to reach the
@@ -134,9 +138,9 @@ is never null, and the API sends `null`.
 The symptom is a run-time crash on a field that TypeScript called non-null.
 Detect it by a comparison of the generated type against a live payload. Fix it
 on the frontend with a `.nullable()` in the boundary schema, and raise the
-emission with domain 05 `django-drf-api-contract`. The `blank` and `null`
-choice setting on the enum generator is the other toggle that domain owns.
-Name it and hand it over rather than change it here.
+emission through `references/openapi-schema-and-codegen.md`. The `blank` and
+`null` choice setting on the enum generator is the other toggle that file
+owns. Name it and hand it over rather than change it here.
 
 ### Zod 4
 
@@ -272,10 +276,14 @@ rg -n 'createEnv|EnvSchema' src/env.ts
   `references/typescript-config-and-enforcement.md`.
 - Where the call to the backend belongs, and the data access layer that holds
   it → `references/data-access-and-mutations.md`.
-- The drf-spectacular config, the codegen command, the schema artifact, and
-  the CSRF and CORS rules → domain 05 `django-drf-api-contract`. Not
-  integrated yet. The server side belongs to the sibling skill
-  `django-api-contract`.
+- The drf-spectacular config, the codegen command, and the schema artifact →
+  `references/openapi-schema-and-codegen.md`. The server side belongs to the
+  sibling skill `django-api-contract`.
+- The one client, the retry rule, and the `normalizeApiError` that turns every
+  envelope into one `ApiError` →
+  `references/api-client-and-request-safety.md`.
+- The CSRF token, the CORS symptoms, and the proxy Route Handler →
+  `references/cross-origin-and-bff-proxy.md`.
 - The query keys, the cache, and the mutation state built on these types →
   domain 06 `data-fetching-and-state`. Not integrated yet.
 - The resolver, the field array, and the map from `attr` to a form field →

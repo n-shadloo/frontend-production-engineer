@@ -306,9 +306,13 @@ done
   `references/type-modeling-and-narrowing.md`. The rule that a generated route
   type is never edited by hand is
   `references/typescript-config-and-enforcement.md`.
-- The DRF schema, the error envelope, and the generated client → domain 05
-  `django-drf-api-contract`. Not integrated yet. The server side of that
-  contract belongs to the sibling skill `django-api-contract`.
+- The DRF schema and the generated client →
+  `references/openapi-schema-and-codegen.md`. The error envelope and the client
+  that carries a request are
+  `references/api-client-and-request-safety.md`. CORS, the CSRF token, and the
+  proxy Route Handler are `references/cross-origin-and-bff-proxy.md`. The
+  server side of that contract belongs to the sibling skill
+  `django-api-contract`.
 - The session strategy, the token storage, and the role checks in the UI →
   domain 07 `authentication-and-authorization`. Not integrated yet. The
   server-side permission classes belong to the sibling skill

@@ -84,13 +84,18 @@ renders instead of a `.map` on `undefined`.
 `references/boundary-validation-and-api-types.md` rules on which boundary the
 generated type covers and which one needs a schema as well.
 
+This file owns where the module sits. It does not own the client that the
+module calls. The typed client, the two base URLs, the timeout, the retry rule,
+and the error normalizer are
+`references/api-client-and-request-safety.md`.
+
 ### The DRF seam
 
 The path is fixed. DRF views produce an OpenAPI 3.0.3 document through
 drf-spectacular. `openapi-typescript` turns that document into TypeScript, and
-the data access layer imports the result. Domain 05
-`django-drf-api-contract` owns the generation config. The sibling skill
-`django-api-contract` owns the server side of the contract.
+the data access layer imports the result.
+`references/openapi-schema-and-codegen.md` owns the generation config. The
+sibling skill `django-api-contract` owns the server side of the contract.
 
 Four kinds of drift break the frontend. Each one is silent until run time.
 
@@ -300,9 +305,13 @@ rg -n 'NEXT_PUBLIC_[A-Z_]*(KEY|SECRET|TOKEN|PASSWORD)' .
   and the parse at the boundary → domain 02
   `typescript-type-system-discipline`, in
   `references/boundary-validation-and-api-types.md`.
-- The drf-spectacular config, the schema artifact, the error envelope, and the
-  CSRF and CORS rules → domain 05 `django-drf-api-contract`. Not integrated
-  yet. The server side belongs to the sibling skill `django-api-contract`.
+- The drf-spectacular config, the generator, and the schema artifact →
+  `references/openapi-schema-and-codegen.md`. The server side belongs to the
+  sibling skill `django-api-contract`.
+- The typed client that this layer calls, the base URLs, the retry rule, and
+  the error normalizer → `references/api-client-and-request-safety.md`.
+- The CSRF token, the CORS symptoms, and the proxy Route Handler that hides the
+  internal address → `references/cross-origin-and-bff-proxy.md`.
 - The client cache config, the query keys, the mutations, and the optimistic
   state → domain 06 `data-fetching-and-state`. Not integrated yet.
 - The session strategy, the token storage, and the role checks → domain 07

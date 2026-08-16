@@ -220,13 +220,14 @@ The frontend consumes a DRF contract through a generated TypeScript client.
 This file owns three facts about it. `src/api/generated/` is the path. The
 script name is `api:generate`. The folder stays out of version control.
 
-Domain 05 `django-drf-api-contract` owns the generator choice and the
+`references/openapi-schema-and-codegen.md` owns the generator choice and the
 drf-spectacular config. `references/data-access-and-mutations.md` owns the
 module that calls the backend.
 `references/boundary-validation-and-api-types.md` owns the parse.
 
 ```jsonc
-// package.json — the script name is fixed here; the generator is domain 05.
+// package.json — the script name is fixed here; the generator is
+// references/openapi-schema-and-codegen.md.
 {
   "scripts": {
     "api:generate": "openapi-typescript schema.yml -o src/api/generated/schema.d.ts"
@@ -352,8 +353,8 @@ git log --oneline -- src/api/generated
   `references/app-router-structure.md`.
 - The decomposition threshold that starts a new file →
   `references/component-composition.md`.
-- The drf-spectacular config, the generator choice, and the schema itself →
-  domain 05 `django-drf-api-contract`. Not integrated yet. The server side
+- The drf-spectacular config, the generator choice, the schema artifact, and
+  the drift gate → `references/openapi-schema-and-codegen.md`. The server side
   belongs to the sibling skill `django-api-contract`.
 - The tokens that `src/components/ui` renders → domain 09
   `design-system-and-styling`. Not integrated yet.

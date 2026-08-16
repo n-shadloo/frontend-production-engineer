@@ -210,7 +210,8 @@ export async function createPostAction(
 ): Promise<State> {
   const response = await postToDjango(formData);
   if (response.status === 400) {
-    return { fieldErrors: await readValidationErrors(response) };
+    const { fieldErrors } = normalizeApiError(400, await response.json());
+    return { fieldErrors };
   }
   if (!response.ok) {
     throw new Error(`posts: ${response.status}`); // the boundary renders
@@ -349,6 +350,9 @@ rg -n 'action=\{' -g '*.tsx' src/
   invalidate, redirect → `references/data-access-and-mutations.md`.
 - The DRF error envelope, the pagination envelope, and the parse at the
   boundary → `references/boundary-validation-and-api-types.md`.
+- `normalizeApiError`, the `ApiError` shape that it returns, and the
+  `fieldErrors` that a 400 produces →
+  `references/api-client-and-request-safety.md`.
 - The cache entry that a mutation invalidates, and read-your-writes →
   `references/caching-and-revalidation.md`.
 - Where the state of a component lives, and the memoisation rule →
