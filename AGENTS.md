@@ -19,9 +19,10 @@ The Django backend itself is out of scope and defers to the author's
 `secure-code-auditor` and `django-performance-optimizer` skills. Domains are
 integrated one per release across four tiers — foundations, backend contract
 and state, interface craft, and non-functional guarantees — over a Tier 0
-operating doctrine that is always in effect. At 1.1.0 the integrated material
-is that doctrine plus the App Router foundation and the type system in
-`references/`; `SKILL.md` is the authoritative list of what is loadable.
+operating doctrine that is always in effect. At 1.2.0 the integrated material
+is that doctrine plus the App Router foundation, the type system, and the React
+component tree in `references/`; `SKILL.md` is the authoritative list of what
+is loadable.
 
 ## Two modes
 - Review-time: audit existing frontend code, produce findings ordered by

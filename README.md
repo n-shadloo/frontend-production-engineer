@@ -52,7 +52,7 @@ Tier 1 is the foundations: where files go and how they are typed.
 - `02 typescript-type-system-discipline` — type safety, generics, `tsconfig`,
   the no-`any` doctrine. Integrated.
 - `03 react-component-architecture` — composition, hooks, the React 19 APIs,
-  render correctness. Pending.
+  render correctness. Integrated.
 - `04 project-structure-and-tooling` — folders, ESLint and Prettier, Git,
   monorepos, dependencies. Pending.
 
@@ -117,7 +117,7 @@ a failed task, not a follow-up ticket.
 Stack baseline is pinned: Next.js 16.3 (Turbopack by default, `middleware.ts`
 replaced by `proxy.ts` on the Node runtime, async-only `params` and
 `searchParams`, Cache Components, `next lint` removed), Node.js 20.9 or later,
-React 19.2.x, React Compiler 1.0, TypeScript 5.9 with `strict` and
+React 19.2.1 or later, React Compiler 1.0, TypeScript 5.9 with `strict` and
 `noUncheckedIndexedAccess`, Tailwind CSS v4 with CSS-first `@theme` config,
 shadcn/ui on Base UI, TanStack Query 5.101 or later, Zod 4, React Hook Form,
 Vitest with React Testing Library, MSW, and Playwright, against a Django and
@@ -228,9 +228,9 @@ been run.
 
 ## Example output
 
-At 1.1.0 the integrated material is the operating doctrine, the App Router
-foundation, and the type system. The worked example is the shape of a task and
-the facts that gate it:
+At 1.2.0 the integrated material is the operating doctrine, the App Router
+foundation, the type system, and the React component tree. The worked example
+is the shape of a task and the facts that gate it:
 
 ```
 Plan
@@ -241,7 +241,7 @@ Plan
   (3) table, (4) tests for empty / error / page-2.
 
 Versions verified (package.json)
-- next 16.3.1, react 19.2.0, typescript 5.9.2, @tanstack/react-query 5.104.0
+- next 16.3.1, react 19.2.7, typescript 5.9.2, @tanstack/react-query 5.104.0
 - Async params apply; proxy.ts, not middleware.ts.
 
 Unconfirmed
@@ -257,6 +257,11 @@ Type facts
 - Shape from the generated components["schemas"]["PaginatedOrderList"].
 - Totals parsed at the boundary; no cast on response.json().
 - OrderId branded. Row state is a union, not three optional booleans.
+
+Component facts
+- State lives in the sort control; the table stays a Server Component.
+- Rows keyed by order id, never by index.
+- Section <Suspense> around the table, with a row-shaped skeleton.
 
 Done
 - tsc --noEmit           clean
@@ -294,8 +299,11 @@ frontend-production-engineer/
 │   ├── app-router-structure.md
 │   ├── boundary-validation-and-api-types.md
 │   ├── caching-and-revalidation.md
+│   ├── component-composition.md
 │   ├── data-access-and-mutations.md
 │   ├── server-and-client-components.md
+│   ├── state-and-effects.md
+│   ├── suspense-and-actions.md
 │   ├── type-modeling-and-narrowing.md
 │   └── typescript-config-and-enforcement.md
 ├── README.md
@@ -303,7 +311,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds two domains at 1.1.0 and fills one domain at a time.
+`references/` holds three domains at 1.2.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 
