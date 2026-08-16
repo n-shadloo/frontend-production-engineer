@@ -22,10 +22,10 @@ it defers to the author's `secure-code-auditor` and
 Domains are integrated one per release across four tiers. The tiers are
 foundations, backend contract and state, interface craft, and non-functional
 guarantees. A Tier 0 operating doctrine sits under them, and it is always in
-effect. At 1.3.0 the integrated material is that doctrine, the App Router
-foundation, the type system, the React component tree, and the project
-structure in `references/`. `SKILL.md` is the authoritative list of what is
-loadable.
+effect. At 1.4.0 the integrated material is that doctrine, the App Router
+foundation, the type system, the React component tree, the project structure,
+and the DRF contract in `references/`. `SKILL.md` is the authoritative list of
+what is loadable.
 
 ## Two modes
 - Review-time: audit existing frontend code, produce findings ordered by

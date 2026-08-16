@@ -7,20 +7,20 @@ description: >-
   next.config.ts, tsconfig.json), the "use client" or "use server"
   boundary, await params or cookies(), "use cache" and revalidateTag, a
   Server Action, a Route Handler, a hydration error, a React hook
-  (useState, useEffect, useActionState), a <Suspense> or error boundary, a
-  compound component, a list key, the React Compiler, a type or a cast
-  (any, unknown, satisfies, as const, a branded id, a discriminated
-  union), a Zod schema (safeParse, z.infer), a DRF response that is typed
-  or parsed, or the project setup (package.json, eslint.config.ts,
-  Prettier, Biome, pnpm and the lockfile, a path alias, a barrel file, a
-  git hook, a Conventional Commit, a monorepo), and the agent has to
+  (useState, useEffect, useActionState), a <Suspense> or error boundary,
+  the React Compiler, a type or a cast (any, unknown, a branded id, a
+  discriminated union), a Zod schema (safeParse, z.infer), the DRF
+  contract (an OpenAPI schema, drf-spectacular, a generated client, an
+  error or pagination envelope, CORS, CSRF), or the project setup
+  (package.json, eslint.config.ts, Prettier, pnpm and the lockfile, a path
+  alias, a barrel file, a git hook, a monorepo), and the agent has to
   verify the installed versions, plan first, and hold the work to a
   definition of done, even if "frontend" is never used.
 license: MIT
 allowed-tools: Read, Grep, Glob, Bash, Edit, Write
 metadata:
   author: n-shadloo
-  version: 1.3.0
+  version: 1.4.0
 ---
 
 # frontend-production-engineer
@@ -68,6 +68,9 @@ Load only the file(s) relevant to the concern in front of you.
 | Where a file goes and which module may import it — `src/`, `src/app`, `src/features`, `src/components/ui`, `src/components/common`, `src/lib`, `src/server`, `src/config`, feature-first, layer-first, colocation, a shared layer, dependency direction, a public API, a private folder that holds too much; a barrel file, `index.ts`, `export *`, a global barrel, a deep relative import `../../../..`, the `@/*` path alias, `optimizePackageImports`, `transpilePackages`; `eslint-plugin-boundaries`, `boundaries/element-types`, `no-restricted-paths`, `dependency-cruiser`, `.dependency-cruiser.js`, `sheriff`, `sheriff.config.ts`, a cycle, an orphan module; `src/api/generated`, `api:generate`, a generated client that someone edited, the schema artifact, the drift check; a monorepo, a workspace, `pnpm-workspace.yaml`, `turbo.json`, Turborepo, Nx; a repository restructure inside a feature task; the errors "Importing elements of type ... is not allowed", "is not allowed in elements of type", "Cannot find module" from a missing alias. Not here: the folder tokens `(group)`, `_folder`, and `@slot`, and the route files (`references/app-router-structure.md`), the `server-only` and `client-only` guards (`references/server-and-client-components.md`), `tsconfig.json` and the `paths` value (`references/typescript-config-and-enforcement.md`), the rest of the lint config array (`references/lint-format-and-scripts.md`), the drf-spectacular config and the generator (domain 05), the tokens that `components/ui` renders (domain 09). | `references/directory-and-module-boundaries.md` |
 | The checks over the code and the commands that run them — `package.json` scripts, `dev`, `build`, `lint`, `lint:fix`, `format`, `typecheck`, `test`, `test:watch`, `test:e2e`, `analyze`, `pnpm check`, `pnpm dlx`, `--max-warnings=0`, a warning that CI accepts; `eslint.config.ts`, `eslint.config.mjs`, a flat config, `defineConfig`, `eslint-config-next`, `core-web-vitals`, `eslint-config-next/typescript`, an `ignores` entry, a lint rule that reports nothing; `next lint`, the `eslint` key in `next.config.ts`, `next-lint-to-eslint-cli`, a CI step that lints nothing; Prettier, `.prettierrc`, Biome, `biome.json`, `prettier-plugin-tailwindcss`, `tailwindStylesheet`, `eslint-plugin-tailwindcss`, `eslint-plugin-better-tailwindcss`, `.editorconfig`; `eslint-disable`, `eslint-disable-next-line`, a suppression with no reason; `next typegen` before a typecheck; `AGENTS.md`, `.cursorrules`, `.cursor/rules`, `.vscode/settings.json`, `.vscode/extensions.json`; the errors "Parsing error: ESLint was configured to run on", "next lint is deprecated and will be removed in Next.js 16", "It looks like you're trying to use tailwindcss directly as a PostCSS plugin". Not here: `projectService`, `strictTypeChecked`, and `tsc --noEmit` (`references/typescript-config-and-enforcement.md`), `eslint-plugin-react-hooks` and `reactCompiler` (`references/state-and-effects.md`), the boundaries block (`references/directory-and-module-boundaries.md`), the hook that calls a script (`references/dependencies-and-git-workflow.md`), the Tailwind theme (domain 09), the test layout and the coverage threshold (domain 20), the CI workflow (domain 22). | `references/lint-format-and-scripts.md` |
 | What enters the repository and how a change leaves it — pnpm, npm, yarn, bun, `pnpm install --frozen-lockfile`, `pnpm-lock.yaml`, a lockfile conflict, a hand-edited lockfile, `packageManager`, Corepack, `corepack enable`, Volta, `.nvmrc`, `engines.node`, `.npmrc`, `overrides`; `minimumReleaseAge`, `minimumReleaseAgeExclude`, a cooldown, `onlyBuiltDependencies`, `allowBuilds`, `ignore-scripts`, a lifecycle script, `pnpm audit`, a new dependency and its justification; Renovate, `renovate.json`, Dependabot, `.github/dependabot.yml`, `automerge`, `matchUpdateTypes`, `fetch-metadata`; lefthook, `lefthook.yml`, Husky, `.husky/`, `lint-staged`, `stage_fixed`, a `prepare` script, a hook that never fires; commitlint, `commitlint.config.js`, a Conventional Commit, a commit-msg hook; `.gitignore`, a committed `.env.local`, gitleaks, `.gitleaks.toml`, a secret in the history; `CODEOWNERS`, `.gitattributes`, `linguist-generated`. Not here: the body of a script that a hook calls (`references/lint-format-and-scripts.md`), the folder that a new file goes into (`references/directory-and-module-boundaries.md`), the `NEXT_PUBLIC_` prefix (`references/app-router-structure.md`), whether a package is malicious (domain 17), the CI workflow and the deploy (domain 22), the server-side secret storage (sibling skill `secure-code-auditor`). | `references/dependencies-and-git-workflow.md` |
+| The schema that the types come from — drf-spectacular, `SPECTACULAR_SETTINGS`, `COMPONENT_SPLIT_REQUEST`, `COMPONENT_SPLIT_PATCH`, `OAS_VERSION`, `@extend_schema`, `@extend_schema_field`, `@extend_schema_serializer`, `OpenApiExample`, `OpenApiParameter`, `ENUM_NAME_OVERRIDES`, `ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE`, `schema.yml`, `openapi.json`, `/api/schema/`, `drf-yasg` and Swagger 2.0, django-ninja and OpenAPI 3.1; `openapi-typescript`, `openapi-fetch`, Orval, `@hey-api/openapi-ts`, `@kubb/*`, `swagger-typescript-api`, `openapi-generator`, `operationId`, the `paths` type, `components["schemas"]`; `api:generate`, a client generated from a live URL, a stale schema in production, `oasdiff`, `openapi-diff`, a breaking change on an enum, an enum emitted as a TypeScript `enum`; a `SerializerMethodField` typed `any`, `XRequest` against `X`, a response field that became optional, upstream issue #810; camelCase against snake_case, `djangorestframework-camel-case`, `camelize_serializer_fields`, `humps`, `ts-case-convert`. Not here: the types that a DRF construct produces and the parse over them (`references/boundary-validation-and-api-types.md`), the output folder and its `.gitignore` entry (`references/directory-and-module-boundaries.md`), the `package.json` script surface (`references/lint-format-and-scripts.md`), the client that sends a request (`references/api-client-and-request-safety.md`), the serializer, the viewset, and the deprecation of a field (sibling skill `django-api-contract`). | `references/openapi-schema-and-codegen.md` |
+| The request itself, and the failure that comes back — `apiClient`, `createClient`, `endpoints.ts`, a base URL, a `fetch("/api/...")` literal in a component, `DJANGO_URL` against `NEXT_PUBLIC_API_BASE_URL`, an ECONNREFUSED from a server fetch inside Docker; a trailing slash, `APPEND_SLASH`, a 301 that drops a POST body, "you called this URL via POST"; `AbortController`, `AbortSignal.timeout`, `AbortSignal.any`, a request that never ends, a `DOMException` against a `TypeError`; a retry, an exponential backoff, `Idempotency-Key`, `Retry-After`, a 429 loop, a throttle, a duplicate row from a retried POST; `normalizeApiError`, `ApiError`, `fieldErrors`, `retryable`, `ErrorDetail`, `non_field_errors`, `detail`, `[object Object]` in a toast; a 204 with no body, "Unexpected end of JSON input", a 500 that returns HTML; the `next` and `previous` URLs, a computed page offset, `CursorPagination` with no `count`; `FormData`, a multipart boundary, an empty `request.FILES`. Not here: which module holds the call and the order inside a Server Action (`references/data-access-and-mutations.md`), the `Paginated<T>` type and the parse (`references/boundary-validation-and-api-types.md`), the schema and the generator (`references/openapi-schema-and-codegen.md`), CORS and the CSRF header (`references/cross-origin-and-bff-proxy.md`), `queryKey` and `staleTime` (domain 06), the token refresh loop (domain 07), the upload progress bar (domain 13). | `references/api-client-and-request-safety.md` |
+| The origin boundary that the browser enforces — `django-cors-headers`, `CORS_ALLOWED_ORIGINS`, `CORS_ALLOW_CREDENTIALS`, `CORS_ALLOW_HEADERS`, a preflight, an `OPTIONS` request, "No 'Access-Control-Allow-Origin' header is present", a wildcard beside `credentials: "include"`, two `Access-Control-Allow-Origin` values, a request that never reaches the Django log; `X-CSRFToken`, the `csrftoken` cookie, `ensure_csrf_cookie`, `CSRF_HEADER_NAME`, `CSRF_TRUSTED_ORIGINS` and its scheme, "CSRF Failed: CSRF token missing", `SESSION_COOKIE_SAMESITE`, `httpOnly`, `Secure`, a cookie that the browser drops on a cross-site call; a BFF, a rewrite in front of Django, a Route Handler proxy, a fixed upstream host, SSRF, `169.254.169.254`, a `?target=` parameter, a body size cap on a proxy. Not here: `proxy.ts`, its permitted work, and CVE-2025-29927 (`references/app-router-structure.md`), the choice between a Server Component fetch, a Route Handler, and a browser call (`references/data-access-and-mutations.md`), the timeout and the error shape (`references/api-client-and-request-safety.md`), the session strategy and the redirect after a 401 (domain 07), the CSP and the response headers (domain 17), the DRF permission class and the server settings (sibling skill `secure-code-auditor`). | `references/cross-origin-and-bff-proxy.md` |
 
 The operating doctrine is integrated but has no row, because it is always in
 effect and lives in this file rather than in `references/`. Each release
@@ -113,7 +116,15 @@ that run over the code, and the commands that run them.
 change leaves it. A rule about a barrel file lives in the first file only, and
 a rule about a lockfile lives in the third.
 
-Four seams cross the domains. Where domain 01 and domain 02 meet, domain 01
+The three files of `django-drf-api-contract` split on the life of one request.
+`openapi-schema-and-codegen` owns the schema that produces the types, and the
+generator that reads it. `api-client-and-request-safety` owns the one client
+that sends the request, and the normalizer that gives every failure one shape.
+`cross-origin-and-bff-proxy` owns what the browser does when the two origins
+differ. A rule about a generator lives in the first file only, and a rule about
+a timeout lives in the second.
+
+Six seams cross the domains. Where domain 01 and domain 02 meet, domain 01
 owns the route file and the awaited request data. Domain 02 owns the types that
 the route file uses. Where domain 01 and domain 03 meet, domain 03 decides
 which component holds the state. Domain 01 states the boundary.
@@ -122,6 +133,12 @@ Where domain 04 and domain 01 meet, domain 01 owns the folder tokens inside
 `app/`. Domain 04 owns every folder outside `app/`. Where domain 04 and domain
 02 meet, domain 02 owns `tsconfig.json` and the type-aware lint rules. Domain
 04 owns the config array that holds them, and the scripts that run them.
+
+Where domain 05 and domain 01 meet, domain 01 owns the module that holds a
+call, and it owns `proxy.ts`. Domain 05 owns the client that the module calls,
+and the proxy Route Handler in front of Django. Where domain 05 and domain 02
+meet, domain 02 owns the type of a value and the parse that proves it. Domain
+05 owns the schema that produces the type, and the command that generates it.
 
 ## Mode selection
 
@@ -174,10 +191,10 @@ go and how they are typed. The backend contract comes before any code that
 touches Django. The domain files that match the feature come after it. The
 non-functional domains come last, as a review pass before done.
 
-At 1.3.0 the integrated material is the standing rules,
+At 1.4.0 the integrated material is the standing rules,
 `nextjs-app-router-architecture`, `typescript-type-system-discipline`,
-`react-component-architecture`, and `project-structure-and-tooling`. The rest
-of the order applies as the router grows.
+`react-component-architecture`, `project-structure-and-tooling`, and
+`django-drf-api-contract`. The rest of the order applies as the router grows.
 
 Work is not done because it renders. It is done when all of the following
 hold. Run the command for each one, and never establish it by inspection:
@@ -289,6 +306,29 @@ task only where a blocking domain fails with it. Report each of these:
 - A pre-commit, pre-push, or commit-msg hook that a fresh clone does not
   install, or a tracked `.env` file.
 - A file move that the request did not ask for.
+
+**`django-drf-api-contract` — integrated, blocking.** The task fails when any
+one of these holds:
+
+- The schema is absent, and the code proceeds on a guessed response shape.
+- `COMPONENT_SPLIT_REQUEST` is `False`, so one component describes both a
+  request and a response.
+- CI does not run `api:generate` and then the typecheck, so a renamed
+  serializer field reaches production.
+- A URL literal for the backend sits outside the client module.
+- A trailing slash on a write does not match the backend.
+- A request carries no timeout, or no abort signal.
+- A POST or a PATCH is retried with no idempotency key.
+- A failure reaches a component in the shape the server sent, rather than as
+  an `ApiError`.
+- A 400 field dictionary renders in a toast rather than beside the field.
+- One base URL serves both the server and the browser.
+- An API token, or the internal address of Django, sits in a `NEXT_PUBLIC_`
+  variable.
+- A proxy Route Handler takes its destination host from the request.
+- A write under session auth carries no `X-CSRFToken`, or a credentialed
+  response carries a wildcard origin.
+- Two modules disagree on the case convention.
 
 **Conflict rule.** security > accessibility > correctness > performance >
 developer convenience. No level trades down to satisfy a level above it. When

@@ -61,7 +61,7 @@ Tier 1 is the foundations: where files go and how they are typed.
 Tier 2 is the backend contract and the state built on it.
 
 - `05 django-drf-api-contract` — OpenAPI codegen, DRF error and pagination
-  shapes, CSRF and CORS. Pending.
+  shapes, CSRF and CORS. Integrated.
 - `06 data-fetching-and-state` — TanStack Query, cache design, client state,
   URL state. Pending.
 - `07 authentication-and-authorization` — session and token strategy, route
@@ -128,7 +128,9 @@ Tailwind CSS v4 supplies the styling, with the CSS-first `@theme` config, and
 shadcn/ui sits on Base UI. TanStack Query 5.101 or later holds the server
 state, and Zod 4 validates the values. React Hook Form binds the forms. Vitest,
 React Testing Library, MSW, and Playwright run the tests. The backend is Django
-and DRF, and it publishes OpenAPI 3.0.3 through drf-spectacular.
+and DRF 3.17, and it publishes OpenAPI 3.0.3 through drf-spectacular 0.30.
+`openapi-typescript` 7.13 generates the types, `openapi-fetch` 0.17 sends the
+request, and `oasdiff` gates a breaking change in the schema.
 
 pnpm manages the packages, on the 10.x line while the Node floor is 20.9.
 ESLint 9 with the flat config and Prettier 3 run the checks. lefthook holds the
@@ -241,10 +243,10 @@ run.
 
 ## Example output
 
-At 1.3.0 the integrated material is the operating doctrine, the App Router
-foundation, the type system, the React component tree, and the project
-structure. The worked example is the shape of a task and the facts that gate
-it:
+At 1.4.0 the integrated material is the operating doctrine, the App Router
+foundation, the type system, the React component tree, the project structure,
+and the backend contract. The worked example is the shape of a task and the
+facts that gate it:
 
 ```
 Plan
@@ -259,8 +261,8 @@ Versions verified (package.json)
 - Async params apply; proxy.ts, not middleware.ts.
 
 Unconfirmed
-- No generated client in the repo. The response shape is taken from the
-  drf-spectacular schema at /api/schema/, not assumed.
+- No generated client in the repo. Step 1 runs api:generate against the
+  committed schema.yml. No response shape is assumed.
 
 Route facts (/orders)
 - Render mode: dynamic. Data source: the DAL, server-side.
@@ -281,6 +283,13 @@ Structure facts
 - Route at src/app/(app)/orders; the table in src/features/orders.
 - Types from src/api/generated, which is gitignored and regenerated.
 - No new dependency; the sort control uses the existing ui primitive.
+
+Contract facts
+- Schema from the committed schema.yml; COMPONENT_SPLIT_REQUEST is True.
+- One openapi-fetch client; /api/orders/ keeps the trailing slash.
+- Timeout of 10 s, combined with the caller signal on every request.
+- Page 2 follows the next URL; no offset is computed.
+- A 400 becomes ApiError.fieldErrors; the GET retries, a POST never does.
 
 Done
 - pnpm lint              clean, at --max-warnings=0
@@ -318,14 +327,17 @@ frontend-production-engineer/
 │   └── rules/
 │       └── frontend-production-engineer.mdc   # Cursor reinforcement rule
 ├── references/                                # domain depth, one release each
+│   ├── api-client-and-request-safety.md
 │   ├── app-router-structure.md
 │   ├── boundary-validation-and-api-types.md
 │   ├── caching-and-revalidation.md
 │   ├── component-composition.md
+│   ├── cross-origin-and-bff-proxy.md
 │   ├── data-access-and-mutations.md
 │   ├── dependencies-and-git-workflow.md
 │   ├── directory-and-module-boundaries.md
 │   ├── lint-format-and-scripts.md
+│   ├── openapi-schema-and-codegen.md
 │   ├── server-and-client-components.md
 │   ├── state-and-effects.md
 │   ├── suspense-and-actions.md
@@ -336,7 +348,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds four domains at 1.3.0 and fills one domain at a time.
+`references/` holds five domains at 1.4.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 

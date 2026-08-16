@@ -19,11 +19,13 @@ group is anything under `app/`, a route handler, a layout or page, `proxy.ts`,
 `next.config.ts`, `tsconfig.json`, and `package.json`. The second group is a
 `"use client"` or `"use server"` boundary, a React hook, and a React 19 API.
 The third group is a compiler flag, a cast, an `any`, a union, a branded id, or
-a Zod schema. The fourth group is a response type from a DRF endpoint, an
-interactive control, a form, or a focus order. The fifth group is the project
-setup — a folder move, a barrel file, `eslint.config.ts`, the lockfile, a git
-hook, or a new dependency. The last group is any change to the bundle, the
-headers, or the build.
+a Zod schema. The fourth group is the DRF contract — an OpenAPI schema,
+`api:generate`, a generated client, a pagination or error envelope, a CORS or
+CSRF failure, or a proxy in front of Django. The fifth group is an interactive
+control, a form, or a focus order. The sixth group is the project setup — a
+folder move, a barrel file, `eslint.config.ts`, the lockfile, a git hook, or a
+new dependency. The last group is any change to the bundle, the headers, or the
+build.
 
 Verify the installed versions from `package.json` before you generate code.
 Never mix Next 15 and Next 16 idioms in one file. Report an API you cannot
