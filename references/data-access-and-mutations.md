@@ -1,10 +1,12 @@
 # Data access and mutations
 
-Next.js 16.3 baseline, React 19.2, against a Django and DRF backend. This file
-owns the place where data enters the frontend and the place where a mutation
-leaves it: the data access layer, the choice between a Server Component fetch,
-a Route Handler, and a browser fetch, and the shape of a Server Action. The
-route tree is `references/app-router-structure.md`. The server and client
+Next.js 16.3 baseline, React 19.2.1 or later, against a Django and DRF backend.
+This file owns the place where data enters the frontend and the place where a
+mutation leaves it. The subjects are the data access layer and the shape of a
+Server Action. They also include the choice between a Server Component fetch, a
+Route Handler, and a browser fetch.
+
+The route tree is `references/app-router-structure.md`. The server and client
 split is `references/server-and-client-components.md`. Whether a response is
 cacheable is `references/caching-and-revalidation.md`.
 
@@ -84,8 +86,8 @@ generated type covers and which one needs a schema as well.
 
 ### The DRF seam
 
-The path is fixed: DRF views produce an OpenAPI 3.0.3 document through
-drf-spectacular, `openapi-typescript` turns that document into TypeScript, and
+The path is fixed. DRF views produce an OpenAPI 3.0.3 document through
+drf-spectacular. `openapi-typescript` turns that document into TypeScript, and
 the data access layer imports the result. Domain 05
 `django-drf-api-contract` owns the generation config. The sibling skill
 `django-api-contract` owns the server side of the contract.
@@ -218,9 +220,9 @@ receives the dispatcher and never the action itself. The pending state, the
 errors that the Action returns, and the optimistic value are
 `references/suspense-and-actions.md`.
 
-Keep a Route Handler for the cases that a Server Action cannot serve: an
-external consumer, a webhook from a payment provider, a file upload, and a
-stream.
+Keep a Route Handler for the cases that a Server Action cannot serve. The cases
+are an external consumer, a webhook from a payment provider, a file upload, and
+a stream.
 
 ### The prefetch and hydration seam
 
@@ -264,7 +266,7 @@ rg -n "from ['\"].*action" -g '**/route.ts' .
 rg -n -B4 'redirect\(' -g '**/actions.ts' .
 
 # 4. Confirm that every Server Action verifies the session.
-rg -l '"use server"' -g '*.ts' . | xargs rg -L 'getSession|auth\('
+rg -l '"use server"' -g '*.ts' . | xargs rg --files-without-match 'getSession|auth\('
 
 # 5. Regenerate the typed client with the project command, then diff.
 git diff --exit-code -- lib/api

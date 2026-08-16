@@ -4,9 +4,10 @@ React 19.2.1 or later, Next.js 16.3, against a Django and DRF backend. This
 file owns the boundary that renders while a value is absent, and the Action
 that changes a value. The subjects are the granularity of a `<Suspense>`
 boundary, the error boundary inside the tree, `use()` on a promise,
-`useActionState`, `useFormStatus`, `useOptimistic`, and `<Activity>`. The shape
-of the component is `references/component-composition.md`. Where the state of a
-component lives is `references/state-and-effects.md`. The route files
+`useActionState`, `useFormStatus`, `useOptimistic`, and `<Activity>`.
+
+The shape of the component is `references/component-composition.md`. Where the
+state of a component lives is `references/state-and-effects.md`. The route files
 `loading.tsx` and `error.tsx` are `references/app-router-structure.md`. The body
 of the Server Action is `references/data-access-and-mutations.md`.
 

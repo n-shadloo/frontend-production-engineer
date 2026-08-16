@@ -4,11 +4,12 @@ React 19.2.1 or later, React Compiler 1.0, `eslint-plugin-react-hooks` 7.1.1,
 Next.js 16.3. This file owns where a value lives and when an effect is correct.
 The subjects are state placement, `useState` against `useReducer`, the derived
 value, and the context. They also include the rules for an effect, the Rules of
-React, and the compiler that depends on them. The shape of the component is
-`references/component-composition.md`. The boundary that renders while a value
-is absent is `references/suspense-and-actions.md`. The `"use client"` directive
-that state forces onto a component is
-`references/server-and-client-components.md`.
+React, and the compiler that depends on them.
+
+The shape of the component is `references/component-composition.md`. The
+boundary that renders while a value is absent is
+`references/suspense-and-actions.md`. The `"use client"` directive that state
+forces onto a component is `references/server-and-client-components.md`.
 
 ## Principle
 
@@ -303,11 +304,11 @@ export default nextConfig;
 in one step where the lint gate is already clean. Where it is not, set
 `compilationMode: 'annotation'`, then mark a file or a component with
 `"use memo"`, and opt a file out with `"use no memo"`. Measure the build time
-in CI before the change and after it, because React publishes no figure for the
-build cost.
+in CI before the change and after it. React publishes no figure for the build
+cost.
 
-```js
-// eslint.config.js — the flat config of eslint-plugin-react-hooks v7.
+```ts
+// eslint.config.ts — the flat config of eslint-plugin-react-hooks v7.
 import reactHooks from "eslint-plugin-react-hooks";
 import { defineConfig } from "eslint/config";
 

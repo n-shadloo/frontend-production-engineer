@@ -135,8 +135,8 @@ The symptom is a run-time crash on a field that TypeScript called non-null.
 Detect it by a comparison of the generated type against a live payload. Fix it
 on the frontend with a `.nullable()` in the boundary schema, and raise the
 emission with domain 05 `django-drf-api-contract`. The `blank` and `null`
-choice setting on the enum generator is the other toggle that domain owns;
-name it and hand it over rather than change it here.
+choice setting on the enum generator is the other toggle that domain owns.
+Name it and hand it over rather than change it here.
 
 ### Zod 4
 
@@ -161,10 +161,11 @@ and the deprecation was reverted. Prefer it for a cross-field rule. Reach for
 `.check()`, which is the lower-level and faster call, only on a
 performance-critical path.
 
-### The Zod 3 calls that Zod 4 removed
+### The Zod 3 calls that Zod 4 replaced
 
-Each one of these ships clean and fails at run time, or throws when the module
-loads. Search for them after any upgrade.
+Each one of these ships clean. The removed calls throw when the module loads,
+or read `undefined` at run time. The deprecated calls still run, and the next
+major version removes them. Search for all of them after any upgrade.
 
 | Zod 3 | Zod 4 | What happens if it stays |
 | --- | --- | --- |
@@ -192,7 +193,8 @@ adopt either.
 // Wrong: the search parameter is read as a typed value.
 // Failure: ?page=abc gives NaN, the query asks Django for page NaN, and the
 // route renders an error the user cannot act on.
-const page = Number(searchParams.page);
+const { page: raw } = await props.searchParams;
+const page = Number(raw);
 ```
 
 ```ts
@@ -217,11 +219,11 @@ of the application, and the user all write to them.
 
 ```bash
 # 1. Find a cast on a parsed response. This must print nothing.
-rg -nE '\.json\(\)\)? as ' src/
+rg -n '\.json\(\)\)? as ' src/
 
 # 2. Find a module that reads an external value and never parses one.
 rg -l 'fetch\(|localStorage|sessionStorage|process\.env' src/ \
-  | xargs rg -L 'safeParse|\.parse\('
+  | xargs rg --files-without-match 'safeParse|\.parse\('
 
 # 3. Find the Zod 3 calls. This must print nothing.
 rg -n '\.errors\b|\.format\(\)|\.flatten\(\)|z\.string\(\)\.email\(\)' src/

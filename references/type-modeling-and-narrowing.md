@@ -1,9 +1,11 @@
 # Type modeling and narrowing
 
-TypeScript 5.9 baseline, React 19.2, `@types/react` 19. This file owns the
-vocabulary that models a value inside the program. The subjects are unions,
-brands, generics, inference, the rules for a cast, and the component types
-that follow from them. The compiler flags that enforce it are
+TypeScript 5.9 baseline, React 19.2.1 or later, `@types/react` 19. This file
+owns the vocabulary that models a value inside the program. The subjects are
+unions, brands, generics, inference, the rules for a cast, and the component
+types that follow from them.
+
+The compiler flags that enforce it are
 `references/typescript-config-and-enforcement.md`. The proof that an external
 value has the shape it claims is
 `references/boundary-validation-and-api-types.md`.
@@ -86,6 +88,8 @@ permits to be absent.
 
 ```ts
 // Wrong: optional everything, "to be safe".
+// Failure: every reader tests for undefined on a field that the contract
+// always sends, and no reader can tell which fields the contract guarantees.
 type Order = { id?: string; total?: number; status?: string };
 ```
 
@@ -336,7 +340,7 @@ rg -nw 'any' src/
 rg -n '!\.\w|!\)|!;' src/
 
 # 3. Find a cast. Each hit is a const assertion, or it carries a comment.
-rg -nE ' as [A-Z]' src/
+rg -n ' as [A-Z]' src/
 
 # 4. The lint gate reports a union switch with no exhaustive default, and
 #    every unsafe read of an `any`.

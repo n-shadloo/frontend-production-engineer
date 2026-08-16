@@ -1,13 +1,14 @@
 # App Router structure
 
-Next.js 16.3 baseline, React 19.2, Node 20.9 or later. This file owns the
-route tree. It rules on which file the App Router loads for a URL, and on how
-a route reads request data. It also rules on `proxy.ts`, which runs before the
-route, and on the `next.config.ts` keys that decide route behavior.
-The server and client split
-inside a route is `references/server-and-client-components.md`. Where a route
-gets its data is `references/data-access-and-mutations.md`. How long that data
-lives is `references/caching-and-revalidation.md`.
+Next.js 16.3 baseline, React 19.2.1 or later, Node 20.9 or later. This file
+owns the route tree. It rules on which file the App Router loads for a URL,
+and on how a route reads request data. It also rules on `proxy.ts`, which runs
+before the route, and on the `next.config.ts` keys that decide route behavior.
+
+The server and client split inside a route is
+`references/server-and-client-components.md`. Where a route gets its data is
+`references/data-access-and-mutations.md`. How long that data lives is
+`references/caching-and-revalidation.md`.
 
 ## Principle
 
@@ -214,10 +215,11 @@ CI, or the check disappears.
 
 Next 16 also changed the `next/image` defaults. `minimumCacheTTL` moved from
 60 seconds to 14400 seconds. `imageSizes` no longer includes `16`. `qualities`
-moved from the full range to `[75]`. `dangerouslyAllowLocalIP` is blocked.
-`maximumRedirects` defaults to 3. A local `src` that carries a query string
-needs an `images.localPatterns` entry. Read each default before you assume the
-Next 15 behavior.
+moved from the full range to `[75]`.
+
+`dangerouslyAllowLocalIP` is blocked. `maximumRedirects` defaults to 3. A local
+`src` that carries a query string needs an `images.localPatterns` entry. Read
+each default before you assume the Next 15 behavior.
 
 ### Environment variables
 
@@ -251,7 +253,8 @@ pnpm build
 pnpm build --debug
 
 # 3. Find a synchronous read of request data. This must print nothing.
-rg '(?<!await )\b(params|searchParams)\.[a-zA-Z]' -g '*.tsx' -g '*.ts' .
+#    The look-behind needs the PCRE2 engine, which -P selects.
+rg -P '(?<!await )\b(params|searchParams)\.[a-zA-Z]' -g '*.tsx' -g '*.ts' .
 rg '@next-codemod-error|UnsafeUnwrapped' .
 
 # 4. Find a legacy middleware file. This must print nothing.
@@ -265,6 +268,13 @@ done
 
 # 6. Confirm that proxy.ts holds no data call and no session check.
 rg -n 'fetch\(|verifySession|getSession|DJANGO_URL' proxy.ts src/proxy.ts
+
+# 7. Find a segment with no loading.tsx. Each hit needs a <Suspense> in the
+#    page instead.
+fd -t d . app | while read d; do
+  test -f "$d/page.tsx" || continue
+  test -f "$d/loading.tsx" || echo "no loading.tsx: $d"
+done
 ```
 
 ## Review checklist

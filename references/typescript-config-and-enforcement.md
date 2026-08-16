@@ -1,10 +1,12 @@
 # TypeScript config and enforcement
 
-TypeScript 5.9 baseline, Next.js 16.3, React 19.2, typescript-eslint v8, Node
-20.9 or later. This file owns the compiler configuration and the checks that
-prove it. The subjects are `tsconfig.json`, the generated type files, the
-type-aware lint config, and the gates that run in CI. The vocabulary that
-models a value is
+TypeScript 5.9 baseline, Next.js 16.3, React 19.2.1 or later,
+typescript-eslint v8, Node 20.9 or later. This file owns the compiler
+configuration and the checks that prove it. The subjects are `tsconfig.json`,
+the generated type files, the type-aware lint config, and the gates that run in
+CI.
+
+The vocabulary that models a value is
 `references/type-modeling-and-narrowing.md`. The proof that an external value
 has the shape it claims is `references/boundary-validation-and-api-types.md`.
 The route files that the compiler checks are
@@ -76,8 +78,8 @@ when the problem goes away is temporary.
 | `skipLibCheck` | A slow build caused by errors inside `node_modules` types. |
 
 Two flags depend on the project. Turn `exactOptionalPropertyTypes` on when the
-backend distinguishes an absent field from a `null` field, because the flag
-keeps `?` and `| undefined` apart. It has a known rough edge with a compound
+backend distinguishes an absent field from a `null` field. The flag keeps `?`
+and `| undefined` apart. It has a known rough edge with a compound
 assignment such as `??=` on an optional property. Where you turn it on, assign
 with an explicit `if (x === undefined)` test instead. Set `moduleDetection` to
 `"force"` when a file with no import or export is read as a script.
@@ -98,13 +100,17 @@ awaited, are `references/app-router-structure.md`.
 
 ### `next build` is not the typecheck
 
-```jsonc
+```ts
 // Wrong: next.config.ts turns the type error into a warning nobody reads.
 // Failure: the build is green, the editor is red, and the error reaches
 // production. The flag also hides every future error on the same code.
-{
-  "typescript": { "ignoreBuildErrors": true }
-}
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  typescript: { ignoreBuildErrors: true },
+};
+
+export default nextConfig;
 ```
 
 ```jsonc

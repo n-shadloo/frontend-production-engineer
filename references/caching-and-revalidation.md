@@ -1,12 +1,13 @@
 # Caching and revalidation
 
 Next.js 16.3 baseline. This file owns how long a response lives and what makes
-it fresh again: the caching model that the project runs, the `"use cache"`
-directive, the four revalidation APIs, and the render mode that the build
-reports for each route. The route tree is
-`references/app-router-structure.md`. The server and client split is
-`references/server-and-client-components.md`. The place where the data enters
-is `references/data-access-and-mutations.md`.
+it fresh again. The subjects are the caching model that the project runs and
+the `"use cache"` directive. They also include the four revalidation APIs, and
+the render mode that the build reports for each route.
+
+The route tree is `references/app-router-structure.md`. The server and client
+split is `references/server-and-client-components.md`. The place where the data
+enters is `references/data-access-and-mutations.md`.
 
 ## Principle
 
@@ -133,7 +134,7 @@ read-your-writes, or call `router.refresh()` on the client.
 
 ### A dynamic route without a request API
 
-```ts
+```tsx
 // Wrong: the non-deterministic value runs at build time.
 // Failure: the route prerenders once, so every visitor receives the same
 // "random" pick and the same timestamp until the next deploy.
@@ -143,7 +144,7 @@ export default async function Page() {
 }
 ```
 
-```ts
+```tsx
 // Correct: connection() makes the route wait for a real request.
 import { connection } from "next/server";
 
@@ -175,9 +176,9 @@ its declared render mode. Two results are always findings. A route that reads
 `cookies()`, `headers()`, or `searchParams` must never appear as static. A
 route that the team declared static must not appear as dynamic.
 
-A route that is unexpectedly dynamic has one of three causes: a stray
-`runtime` export, a `searchParams` read at the page level, or an uncached data
-call. Run `next build --debug` for the detail.
+A route that is unexpectedly dynamic has one of three causes. The causes are a
+stray `runtime` export, a `searchParams` read at the page level, and an
+uncached data call. Run `next build --debug` for the detail.
 
 ## Verification
 

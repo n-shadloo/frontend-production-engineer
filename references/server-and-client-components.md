@@ -1,12 +1,13 @@
 # Server and Client Components
 
-Next.js 16.3 baseline, React 19.2. This file owns the boundary between the
-server tree and the client tree: where `"use client"` goes, what crosses the
-boundary, how the server streams a value to the client, and why a hydration
-error happens. The route tree around the boundary is
-`references/app-router-structure.md`. The source of the data is
-`references/data-access-and-mutations.md`. The cache of that data is
-`references/caching-and-revalidation.md`.
+Next.js 16.3 baseline, React 19.2.1 or later. This file owns the boundary
+between the server tree and the client tree. The subjects are the placement of
+`"use client"` and what crosses the boundary. They also include the way the
+server streams a value to the client, and the cause of a hydration error.
+
+The route tree around the boundary is `references/app-router-structure.md`. The
+source of the data is `references/data-access-and-mutations.md`. The cache of
+that data is `references/caching-and-revalidation.md`.
 
 ## Principle
 
@@ -221,32 +222,13 @@ the browser failing at run time.
 import "server-only";
 ```
 
-### Suspense, loading, and error
+### An error boundary sits on the client side of the boundary
 
-Each dynamic boundary ships a skeleton in the shape of the route. A full-page
-spinner at the root makes every navigation flash. Put the `loading.tsx` or the
-`<Suspense>` on the segment that actually waits.
-
-```tsx
-// Wrong: the root loading file blanks the application.
-// Failure: every navigation, including a fast one, replaces the whole page
-// with a spinner. The layout that should persist disappears with it.
-// app/loading.tsx
-export default function Loading() {
-  return <FullPageSpinner />;
-}
-```
+An error boundary holds state, so it is always a Client Component. The segment
+file therefore carries the directive, and a `<Suspense>` fallback does not.
 
 ```tsx
-// Correct: the fallback is scoped, and it has the shape of the content.
-// app/dashboard/orders/loading.tsx
-export default function Loading() {
-  return <OrdersTableSkeleton rows={10} />;
-}
-```
-
-```tsx
-// Correct: every fallible segment ships an error boundary that recovers.
+// Correct: the segment error file carries the directive.
 // app/dashboard/orders/error.tsx
 "use client"; // reason: an error boundary needs client state
 
@@ -266,8 +248,10 @@ export default function Error({
 }
 ```
 
-Confirm that `reset()` retries the segment. An error boundary with a dead
-button is a dead end for the user.
+`loading.tsx` and `error.tsx` as route files are
+`references/app-router-structure.md`. Where a boundary belongs, the shape that
+a fallback needs, and the retry that `reset()` must perform are
+`references/suspense-and-actions.md`.
 
 ### Hydration errors
 
@@ -323,12 +307,6 @@ rg --files-without-match 'server-only' lib/dal
 
 # 4. Build, then load each route and read the console for a hydration error.
 pnpm build && pnpm start
-
-# 5. Confirm that every dynamic segment has a fallback and a boundary.
-fd -t d . app | while read d; do
-  test -f "$d/page.tsx" || continue
-  test -f "$d/loading.tsx" || echo "no loading.tsx: $d"
-done
 ```
 
 ## Review checklist
@@ -339,13 +317,13 @@ done
       than import it?
 - [ ] Does every prop that crosses the boundary serialize?
 - [ ] Does the server start each slow fetch, so the client unwraps a promise
-      instead of starting a new request?
+      and never starts a new request?
 - [ ] Is every `useEffect` fetch justified by a need to refetch after the
       mount?
 - [ ] Does every module that reads a secret or a session import
       `server-only`?
-- [ ] Is every fallback a skeleton in the shape of the route?
-- [ ] Does every `error.tsx` export a `reset()` that retries the segment?
+- [ ] Does every `error.tsx`, and every error boundary in the tree, carry
+      `"use client"`?
 - [ ] Does the console report no hydration error on any route?
 - [ ] Is `suppressHydrationWarning` limited to a single unavoidable leaf?
 

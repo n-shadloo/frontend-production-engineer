@@ -4,7 +4,9 @@ React 19.2.1 or later, `@types/react` 19, shadcn/ui on Base UI. This file owns
 the shape of a component and the way that components compose. The subjects are
 decomposition, `children` and slots, and the compound component. They also
 include the controlled and uncontrolled choice, `ref` as a prop, the list key,
-and the custom hook. Where a value lives, and when an effect is correct, is
+and the custom hook.
+
+Where a value lives, and when an effect is correct, is
 `references/state-and-effects.md`. The boundary that renders while a value is
 absent is `references/suspense-and-actions.md`. The types of the props are
 `references/type-modeling-and-narrowing.md`.
