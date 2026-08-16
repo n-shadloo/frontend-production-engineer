@@ -16,10 +16,10 @@ realtime), interface craft (design system, accessibility, forms, tables,
 media, motion, UX writing), and the non-functional guarantees (Web Vitals,
 frontend security, SEO, internationalization and RTL, testing, observability,
 build and deploy, analytics and consent) — over a Tier 0 operating doctrine
-that is always in effect. At 1.0.0 the integrated material is that doctrine
-plus the App Router foundation in `references/`; `SKILL.md` is the
-authoritative list of what is loadable. The Django backend itself is out of
-scope.
+that is always in effect. At 1.1.0 the integrated material is that doctrine
+plus the App Router foundation and the type system in `references/`;
+`SKILL.md` is the authoritative list of what is loadable. The Django backend
+itself is out of scope.
 
 Two standing rules govern everything. Verify the installed versions from
 `package.json` before generating code, never mix Next 15 and Next 16 idioms in

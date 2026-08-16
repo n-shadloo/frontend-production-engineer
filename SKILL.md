@@ -3,24 +3,23 @@ name: frontend-production-engineer
 description: >-
   Production-grade frontend engineering for Next.js and TypeScript against a
   Django and Django REST Framework backend. Use whenever frontend work is
-  planned, written, or reviewed in a Next.js repository and the task touches
-  App Router files (app/, layout.tsx, page.tsx, route.ts, proxy.ts,
-  next.config.ts, tsconfig.json, package.json), the "use client" or
-  "use server" boundary, await params, searchParams, or cookies(),
+  planned, written, or reviewed and the task touches App Router files (app/,
+  layout.tsx, page.tsx, proxy.ts, next.config.ts, tsconfig.json), the
+  "use client" or "use server" boundary, await params or cookies(),
   "use cache" and revalidateTag, a Server Action, a Route Handler, a
-  hydration error, React components, or a DRF endpoint being consumed, and
-  the agent has to establish the installed versions, plan before editing,
-  keep the diff minimal, and hold the result to a stated definition of done
-  rather than guessing at an API, even if "frontend" is never used.
-  Review-time audits existing code and reports what fails; write-time applies
-  the defaults while generating code. Next.js 16 and React 19 are the pinned
-  baseline; the router below lists the integrated material and grows one
-  domain per release.
+  hydration error, a React component, a type or a cast (any, unknown,
+  satisfies, as const, a branded id, a discriminated union, assertNever,
+  tsc --noEmit, React.FC), a Zod schema (safeParse, z.infer), or a DRF
+  response being typed or parsed, and the agent has to verify the installed
+  versions, plan first, and hold the result to a definition of done rather
+  than guess at an API, even if "frontend" is never used. Review-time reports
+  what fails; write-time applies the defaults as it writes code. Next.js 16,
+  React 19, and TypeScript 5.9 are the pinned baseline.
 license: MIT
 allowed-tools: Read, Grep, Glob, Bash, Edit, Write
 metadata:
   author: n-shadloo
-  version: 1.0.0
+  version: 1.1.0
 ---
 
 # frontend-production-engineer
@@ -58,6 +57,9 @@ Load only the file(s) relevant to the concern in front of you.
 | The boundary inside a route — `"use client"`, `"use server"`, a Server Component, a Client Component, a directive on a layout or a page, a provider that needs the client, a client leaf, `server-only`, `client-only`; a prop that fails to serialize, a class instance or a callback across the boundary, "Only plain objects can be passed"; `<Suspense>`, a streamed promise, `use()`, a skeleton, `reset()`, an error boundary, `useSearchParams()`; a fetch in `useEffect` that belongs on the server; a hydration error, "Text content does not match server-rendered HTML", `suppressHydrationWarning`, `typeof window`, `localStorage` in a render. Not here: hook composition and the React 19 API surface (domain 03), the client cache (domain 06), bundle bytes and INP (domain 16), the accessible name of a control (domain 10). | `references/server-and-client-components.md` |
 | The call to the backend — a data access layer, a DAL module, where a fetch belongs, a Server Component fetch, a Route Handler, a BFF or a proxy in front of Django, a browser call to Django, CORS on a session cookie; a Server Action, `<form action>`, an action that must authorize, validate, mutate, invalidate, and redirect in that order, a `redirect()` swallowed by a catch; a generated client, `openapi-typescript`, a drf-spectacular schema, a renamed serializer field, the DRF pagination envelope `{count, next, previous, results}`, a DRF error envelope; `prefetchQuery`, `dehydrate`, `HydrationBoundary`, a client that refetches after a prefetch; two sources for one resource. Not here: the schema generation config and the contract itself (domain 05), the query keys and the mutation state (domain 06), the field-level error mapping in a form (domain 11), the Django query behind a slow endpoint (sibling skill `django-performance-optimizer`). | `references/data-access-and-mutations.md` |
 | The lifetime of a response — `cacheComponents`, Cache Components, the previous caching model, `"use cache"`, `cacheLife`, `cacheTag`, `unstable_cache`, `fetch` `cache` and `next.revalidate` and `next.tags`, route segment `revalidate` and `dynamic`; `revalidateTag`, `updateTag`, `refresh()`, `revalidatePath`, `router.refresh()`, the Router Cache, read-your-writes, stale data after a mutation; Partial Prerendering, a static shell with a dynamic hole, a route that is unexpectedly dynamic or unexpectedly static, the build report symbols, `connection()`, `unstable_noStore`, `Math.random()` or `new Date()` on a route; one user seeing another user's data. Not here: `staleTime` and the client query cache (domain 06), the `Cache-Control` header and the CDN (domain 22), whether the data may be cached at all (domain 17), the Django-side cache (sibling skill `django-performance-optimizer`). | `references/caching-and-revalidation.md` |
+| The compiler and the gates that prove it — `tsconfig.json`, `compilerOptions`, `strict`, `strictNullChecks`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `verbatimModuleSyntax`, `isolatedModules`, `moduleResolution`, `moduleDetection`, `noImplicitOverride`, `noPropertyAccessFromIndexSignature`, `skipLibCheck`, `baseUrl`, `paths`, the `next` plugin; `next-env.d.ts`, a `*.d.ts` file, a generated type that someone edited by hand; `tsc --noEmit`, a typecheck that CI runs and the build does not, `typescript.ignoreBuildErrors`, `useTypeScriptCli`, a green build with a red editor; `eslint.config.ts`, typescript-eslint, `strictTypeChecked`, `stylisticTypeChecked`, `projectService`, `disableTypeChecked`, `no-explicit-any`, `no-unsafe-assignment`, `no-floating-promises`, `no-misused-promises`, `switch-exhaustiveness-check`, `ban-ts-comment`; `@ts-ignore`, `@ts-expect-error`, a suppression with no reason; `vitest --typecheck`, `expectTypeOf`, a `*.test-d.ts` file, `type-coverage`; a slow editor, a slow compiler, `--extendedDiagnostics`, `--generateTrace`, the errors `TS2589` and `TS1484`; TypeScript 5.9, 6.0, or 7.0. Not here: the folder layout and the Prettier config (domain 04), the test runner and the contract test (domain 20), the CI pipeline and the Docker build (domain 22). | `references/typescript-config-and-enforcement.md` |
+| The vocabulary that models a value — `any`, `unknown`, `never`, a cast, `as`, a non-null `!`, a value that is possibly undefined, the errors `TS2322`, `TS2345`, `TS2532`, `TS18048`, `TS7053`, `TS2366`; a discriminated union, a status flag beside a data field, an optional-everything model of a serializer, `assertNever`, an exhaustive `switch`, a `Result` type, "make illegal states unrepresentable"; a branded id, `.brand()`, a `UserId` passed where an `OrderId` belongs; `satisfies`, `as const`, `as const satisfies`, a config object that loses its literal type; `enum` against a const object and a derived union; `keyof`, `typeof`, `infer`, a mapped type, a conditional type, `Prettify`, `NoInfer`, a type predicate, `asserts`; `type` against `interface`, `declare module`, a package with wrong types; `React.FC`, `PropsWithChildren`, `ComponentProps`, `forwardRef`, `Ref`, `RefObject`, `MutableRefObject`, `useRef` with no argument, a context read through a `!`, `React.JSX`. Not here: hook composition and the render rules (domain 03), the theme object behind a `satisfies` (domain 09), the form state type and the field error map (domain 11). | `references/type-modeling-and-narrowing.md` |
+| A value that enters the program — `res.json()` cast to a type, a `fetch` response, `searchParams` read as data, `localStorage`, `sessionStorage`, `process.env`, a webhook body, `FormData`; "parse at the boundary", "type the response", a run-time crash on data that TypeScript called typed; Zod 4 — `z.object`, `safeParse`, `z.infer`, `z.input`, `z.output`, `z.email`, `z.discriminatedUnion`, `.brand()`, `.superRefine()`, `.check()`, `z.prettifyError`, `z.treeifyError`, `z.flattenError`, `error.issues`; the Zod 3 calls that Zod 4 removed — `error.errors`, `.format()`, `.flatten()`, `z.string().email()`, `z.nativeEnum()`, `.merge()`, `.ip()`, `.cidr()`; the generated `paths` and `components` types, `openapi-typescript`, a type hand-copied from the OpenAPI schema, two sources for one shape; a DRF field that is `required=False`, `allow_null=True`, or `blank=True`, a `nullable: true` that the generated type does not carry, `null` at run time where the type promised a value, the pagination envelope typed as an array, the DRF error body `{field: [msg]}`, `drf-standardized-errors` and its `type` and `attr` fields; `@t3-oss/env-nextjs`, an environment variable that is `undefined` in the browser. Not here: the drf-spectacular config and the codegen command (domain 05), the query keys and the mutation state (domain 06), the resolver and the field array in a form (domain 11), the MSW handler and the contract test (domain 20), the server-side serializer (sibling skill `django-api-contract`). | `references/boundary-validation-and-api-types.md` |
 
 The operating doctrine is integrated but has no row, because it is always in
 effect and lives in this file rather than in `references/`. Each release
@@ -77,6 +79,16 @@ defer to it rather than repeating it. The four files of
 `caching-and-revalidation` owns the lifetime of the response. A rule about a
 route file lives in the first file only. A rule about a `"use client"` leaf
 lives in the second file only.
+
+The three files of `typescript-type-system-discipline` split the same way.
+`typescript-config-and-enforcement` owns the compiler flags and the gates.
+`type-modeling-and-narrowing` owns the vocabulary that models a value inside
+the program. `boundary-validation-and-api-types` owns every value that enters
+from outside the program, and the types that a DRF response produces. A rule
+about a `tsconfig.json` flag lives in the first file only. A rule about a
+schema lives in the third file only. Where the two domains meet, domain 01
+owns the route file and the awaited request data. Domain 02 owns the types
+that the route file uses.
 
 ## Mode selection
 
@@ -125,9 +137,9 @@ Resolve domains in this order on any feature task: the standing rules above,
 always; then the foundations, for where files go and how they are typed; then
 the backend contract, before any code that touches Django; then whichever
 domain files match the feature; then the non-functional domains, as a review
-pass before done. At 1.0.0 the standing rules and
-`nextjs-app-router-architecture` are integrated, so the rest of the order
-fills in as the router grows.
+pass before done. At 1.1.0 the standing rules,
+`nextjs-app-router-architecture`, and `typescript-type-system-discipline` are
+integrated, so the rest of the order fills in as the router grows.
 
 Work is not done because it renders. It is done when all of the following
 hold, each established by running the command rather than by inspection:
@@ -171,6 +183,26 @@ when any one of these holds:
   skeleton, or a fallible segment has no `error.tsx` with a working `reset()`.
 - A parallel route slot has no `default.tsx`.
 - The build report contradicts the declared render mode of a route.
+
+**`typescript-type-system-discipline` — integrated, blocking.** The task fails
+when any one of these holds:
+
+- `tsc --noEmit` does not exit 0, or a suppression was added to make it do so.
+- `tsconfig.json` is missing `strict`, `noUncheckedIndexedAccess`,
+  `isolatedModules`, or `verbatimModuleSyntax`.
+- The code holds an `any`, an `@ts-ignore`, or an `@ts-expect-error` with no
+  description.
+- A value from the network, the URL, storage, the environment, a form, or a
+  webhook reaches the program without a parse.
+- A cast is present that is neither a const assertion nor a narrow with a
+  comment that proves it.
+- A non-null `!` stands on a value that can be absent.
+- A union `switch` has no `default` that calls `assertNever`.
+- An id, a token, or a money amount carries a bare `string` or `number` type.
+- A response shape is hand-copied from the OpenAPI schema rather than
+  generated, or a paginated endpoint is typed as an array.
+- The lint gate does not run with type information.
+- A component is typed as `React.FC`, or a new component uses `forwardRef`.
 
 **Conflict rule.** security > accessibility > correctness > performance >
 developer convenience. No level trades down to satisfy a level above it. When

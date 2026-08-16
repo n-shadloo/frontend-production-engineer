@@ -16,7 +16,8 @@ the defaults from the integrated domains while generating code.
 Treat these as first-class triggers regardless of the wording of the task:
 anything under `app/`, a route handler, a layout or page, `proxy.ts`,
 `next.config.ts`, `tsconfig.json`, or `package.json`; a `"use client"` or
-`"use server"` boundary; a React hook or a React 19 API; a response type that
+`"use server"` boundary; a React hook or a React 19 API; a compiler flag, a
+cast, an `any`, a union, a branded id, or a Zod schema; a response type that
 came from a DRF endpoint; an interactive control, a form, or a focus order;
 and any change to the bundle, the headers, or the build. Verify the installed
 versions from `package.json` before generating code — never mix Next 15 and
