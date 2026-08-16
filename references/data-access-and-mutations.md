@@ -1,0 +1,288 @@
+# Data access and mutations
+
+Next.js 16.3 baseline, React 19.2, against a Django and DRF backend. This file
+owns the place where data enters the frontend and the place where a mutation
+leaves it: the data access layer, the choice between a Server Component fetch,
+a Route Handler, and a browser fetch, and the shape of a Server Action. The
+route tree is `references/app-router-structure.md`. The server and client
+split is `references/server-and-client-components.md`. Whether a response is
+cacheable is `references/caching-and-revalidation.md`.
+
+## Principle
+
+One resource has one source per view. Either the server fetches it and passes
+it down, or the client queries it. Two sources for one resource produce two
+answers, and the user sees the difference.
+
+A data access layer is the one module that talks to the backend. It holds the
+base URL, the credentials, the types, and the error mapping. Code above it
+calls a function, not an endpoint.
+
+A secret that the browser can read is not a secret. A request that carries a
+secret therefore starts on the server.
+
+A mutation belongs to the code that owns the form, not to a separate endpoint
+that the form must find.
+
+## Pinned-stack depth
+
+### Where the call goes
+
+| Condition | Action |
+| --- | --- |
+| Read data for the first render | Fetch in a Server Component through the data access layer, and pass the result down |
+| A mutation from a form or a button in your own application | A Server Action, invoked by `<form action>`, so the form works without JavaScript |
+| A public API for an external consumer, a webhook, a file upload, or a stream | A Route Handler in `route.ts` |
+| A Client Component needs to refetch after the mount | Prefetch on the server, hydrate the client cache, then query on the client |
+| Never | A Route Handler that calls your own Server Action |
+
+### The data access layer
+
+```ts
+// lib/dal/orders.ts
+import "server-only";
+import { cookies } from "next/headers";
+import type { components } from "@/lib/api/schema"; // generated from the DRF schema
+
+type OrderPage = components["schemas"]["PaginatedOrderList"];
+
+export async function getOrders(page: number): Promise<OrderPage> {
+  const session = (await cookies()).get("sessionid")?.value;
+  const response = await fetch(
+    `${process.env.DJANGO_URL}/api/orders/?page=${page}`,
+    {
+      headers: session ? { Cookie: `sessionid=${session}` } : {},
+      cache: "no-store", // per-user data: state the intent, never inherit it
+    },
+  );
+  if (!response.ok) {
+    throw new Error(`orders: ${response.status}`);
+  }
+  return (await response.json()) as OrderPage;
+}
+```
+
+Four rules hold for every module in the layer. Import `server-only`, so the
+build fails when a client module imports it. Take the types from the generated
+schema, never from a hand-written interface. State the cache intent on every
+`fetch`, because the default depends on the caching model. Throw on a
+non-`ok` response, so the segment `error.tsx` renders instead of a `.map` on
+`undefined`.
+
+### The DRF seam
+
+The path is fixed: DRF views produce an OpenAPI 3.0.3 document through
+drf-spectacular, `openapi-typescript` turns that document into TypeScript, and
+the data access layer imports the result. Domain 05
+`django-drf-api-contract` owns the generation config. The sibling skill
+`django-api-contract` owns the server side of the contract.
+
+Four kinds of drift break the frontend. Each one is silent until run time.
+
+| Drift on the server | What the frontend sees |
+| --- | --- |
+| A serializer field is renamed and the types are not regenerated | `undefined` where TypeScript promised a value |
+| The pagination envelope is not modeled | `.map` runs on an object, because the response is `{count, next, previous, results}` |
+| The error envelope changes shape | `error.tsx` shows a generic message, and the action returns an unparsed error |
+| A cookie `SameSite` or domain attribute changes | The browser drops the cookie on a direct call, and a 401 looks like a frontend bug |
+
+Regenerate the types in CI, and fail the build on a diff. The types are an
+artifact, never an edit.
+
+### Proxy Django through Next, or call it from the browser
+
+| Condition | Action | Reason |
+| --- | --- | --- |
+| The browser must send an httpOnly session cookie to Django | Proxy through a Route Handler or a rewrite | The request stays same-origin, so no CORS preflight and no dropped cookie |
+| A secret or an API key must go on the request | Proxy on the server | The secret never reaches the browser bundle |
+| A public GET, no secret, latency-sensitive, CORS already configured | Call Django from the client | It removes a network hop |
+| The response streams | Either. Measure. | Both support a stream; the hop adds latency |
+| Data for the first render | Fetch in the data access layer, server to server | No browser round trip, no CORS, and the secret stays safe |
+
+### A Server Action
+
+```ts
+// app/posts/actions.ts
+"use server";
+
+import { z } from "zod";
+import { updateTag } from "next/cache";
+import { redirect } from "next/navigation";
+import { getSession } from "@/lib/dal/session";
+import { createPost } from "@/lib/dal/posts";
+
+const Schema = z.object({ title: z.string().min(1) });
+
+export type State = { error?: string };
+
+export async function createPostAction(
+  _prev: State,
+  formData: FormData,
+): Promise<State> {
+  const session = await getSession();          // 1. authorize inside the action
+  if (!session) return { error: "unauthorized" };
+
+  const parsed = Schema.safeParse({ title: formData.get("title") });
+  if (!parsed.success) return { error: "The title is required." };
+
+  const post = await createPost(session, parsed.data); // 2. mutate
+  updateTag(`user-${session.userId}-posts`);           // 3. invalidate
+  redirect(`/posts/${post.id}`);                       // 4. redirect, last
+}
+```
+
+The order is fixed: authorize, validate, mutate, invalidate, redirect.
+
+```ts
+// Wrong: the redirect sits inside a try/catch.
+// Failure: redirect() signals by throwing. The catch swallows the signal,
+// the user stays on the form, and the action reports a false error.
+try {
+  const post = await createPost(session, parsed.data);
+  redirect(`/posts/${post.id}`);
+} catch (error) {
+  return { error: "Could not create the post." };
+}
+```
+
+```ts
+// Correct: the redirect runs after the try block, outside every catch.
+let post;
+try {
+  post = await createPost(session, parsed.data);
+} catch {
+  return { error: "Could not create the post." };
+}
+updateTag(`user-${session.userId}-posts`);
+redirect(`/posts/${post.id}`);
+```
+
+A Server Action is a public HTTP endpoint. Verify the session inside it every
+time. NEVER treat a `proxy.ts` redirect, or a hidden form field, as the
+authorization.
+
+### A Route Handler
+
+```ts
+// Wrong: the Route Handler calls your own Server Action.
+// Failure: an extra network hop, a second serialization of the same data,
+// and the form loses its progressive enhancement, because it now needs
+// JavaScript to reach the endpoint.
+// app/api/posts/route.ts
+import { createPostAction } from "@/app/posts/actions";
+
+export async function POST(request: Request) {
+  const formData = await request.formData();
+  return Response.json(await createPostAction({}, formData));
+}
+```
+
+```tsx
+// Correct: the form calls the Server Action directly.
+// app/posts/new/page.tsx
+import { createPostAction } from "../actions";
+
+export default function Page() {
+  return (
+    <form action={createPostAction}>
+      <label htmlFor="title">Title</label>
+      <input id="title" name="title" required />
+      <button type="submit">Create</button>
+    </form>
+  );
+}
+```
+
+Keep a Route Handler for the cases that a Server Action cannot serve: an
+external consumer, a webhook from a payment provider, a file upload, and a
+stream.
+
+### The prefetch and hydration seam
+
+```tsx
+// Correct: the server prefetches, and the client cache starts warm.
+// app/orders/page.tsx
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { OrdersTable } from "./orders-table";
+import { getOrders } from "@/lib/dal/orders";
+
+export default async function Page() {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery({
+    queryKey: ["orders", 1],
+    queryFn: () => getOrders(1),
+  });
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <OrdersTable />
+    </HydrationBoundary>
+  );
+}
+```
+
+Await the critical prefetch, and wrap the client subtree in the
+`HydrationBoundary`. A client component that still refetches on mount has one
+of the two missing. The `staleTime`, the query key design, and the mutation
+state belong to domain 06 `data-fetching-and-state`.
+
+## Verification
+
+```bash
+# 1. Every data access module is server-only. Each file printed here is not.
+rg --files-without-match 'server-only' lib/dal
+
+# 2. Find a Route Handler that imports a Server Action. This must print
+#    nothing.
+rg -n "from ['\"].*action" -g '**/route.ts' .
+
+# 3. Find a redirect inside a catch block. Read each hit.
+rg -n -B4 'redirect\(' -g '**/actions.ts' .
+
+# 4. Confirm that every Server Action verifies the session.
+rg -l '"use server"' -g '*.ts' . | xargs rg -L 'getSession|auth\('
+
+# 5. Regenerate the typed client with the project command, then diff.
+git diff --exit-code -- lib/api
+
+# 6. Confirm that no secret reaches the browser bundle.
+rg -n 'NEXT_PUBLIC_[A-Z_]*(KEY|SECRET|TOKEN|PASSWORD)' .
+```
+
+## Review checklist
+
+- [ ] Does each resource have exactly one source per view?
+- [ ] Does every backend call go through the data access layer?
+- [ ] Does every data access module import `server-only`?
+- [ ] Do the response types come from the generated schema rather than a
+      hand-written interface?
+- [ ] Does the code model the DRF pagination envelope, not a bare array?
+- [ ] Does every `fetch` state its cache intent?
+- [ ] Does every non-`ok` response throw or return a mapped error?
+- [ ] Does every Server Action verify the session inside the action?
+- [ ] Does every Server Action validate the input with a schema?
+- [ ] Does every `redirect()` run last, outside every try and catch?
+- [ ] Is every Route Handler justified by an external consumer, a webhook, an
+      upload, or a stream?
+- [ ] Does no Route Handler call a Server Action?
+- [ ] Does every prefetched query sit inside a `HydrationBoundary`?
+
+## Handoffs
+
+- The types of the generated client, and the generics over a paginated
+  response → domain 02 `typescript-type-system-discipline`. Not integrated
+  yet.
+- The drf-spectacular config, the schema artifact, the error envelope, and the
+  CSRF and CORS rules → domain 05 `django-drf-api-contract`. Not integrated
+  yet. The server side belongs to the sibling skill `django-api-contract`.
+- The client cache config, the query keys, the mutations, and the optimistic
+  state → domain 06 `data-fetching-and-state`. Not integrated yet.
+- The session strategy, the token storage, and the role checks → domain 07
+  `authentication-and-authorization`. Not integrated yet. The DRF permission
+  classes belong to the sibling skill `secure-code-auditor`.
+- The form binding, the field-level error mapping, and the multi-step flow →
+  domain 11 `forms-and-validation`. Not integrated yet.
+- The N+1 query and the endpoint latency behind a slow call → the sibling
+  skill `django-performance-optimizer`. This file owns only the number of
+  frontend requests and the place where each one starts.
+- MSW handlers and the contract test against the schema → domain 20
+  `testing-and-quality`. Not integrated yet.
