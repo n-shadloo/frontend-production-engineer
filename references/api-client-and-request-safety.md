@@ -365,7 +365,8 @@ rg -n 'DJANGO_URL|NEXT_PUBLIC_API_BASE_URL' src/lib/api
 - The validation error that returns as state, and the 5xx that throws →
   `references/suspense-and-actions.md`.
 - The `queryFn`, the query keys, the `staleTime`, and the mutation state built
-  on this client → domain 06 `data-fetching-and-state`. Not integrated yet.
+  on this client → `references/server-state-and-query-cache.md`. That file
+  applies `ApiError.retryable` to the retry option of a query.
 - The refresh loop, the token store, and the redirect after a 401 → domain 07
   `authentication-and-authorization`. Not integrated yet. This file owns only
   the 401 as an `ApiError`.

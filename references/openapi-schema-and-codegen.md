@@ -259,8 +259,8 @@ rg -n 'camelcase|humps|ts-case-convert' package.json
 - The serializer, the viewset, the status code, and the deprecation of a field
   → the sibling skill `django-api-contract`. That skill owns the server side of
   this contract. This file owns what the frontend generates from it.
-- The query keys and the cache built on the generated types → domain 06
-  `data-fetching-and-state`. Not integrated yet.
+- The query keys and the cache built on the generated types →
+  `references/server-state-and-query-cache.md`.
 - The MSW handlers and the contract test against the schema → domain 20
   `testing-and-quality`. Not integrated yet.
 - The CI job that downloads the schema artifact → domain 22

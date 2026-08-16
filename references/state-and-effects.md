@@ -38,7 +38,7 @@ the component tree, and it goes stale on its own schedule.
 | Exactly one component reads the value | Keep it in that component. |
 | Two or more sibling components read the value | Lift it to the lowest common ancestor, and pass it down. |
 | A deep subtree reads it, and it changes rarely | A context. Split the value and the dispatch into two contexts. |
-| The value came from the backend | Domain 06 `data-fetching-and-state` owns it. NEVER hold it in `useState`, and never in a context. |
+| The value came from the backend | `references/server-state-and-query-cache.md` owns it. NEVER hold it in `useState`, and never in a context. |
 | One component holds more than five `useState` calls | Consolidate into one object, or into a `useReducer`. Then decompose the component. |
 | A global store | Write the reason first. A store that no written reason supports is a finding. |
 
@@ -140,7 +140,7 @@ const ThemeDispatchContext = createContext<React.Dispatch<ThemeAction> | null>(n
 
 A component that reads only the dispatch context does not re-render when the
 value changes. Data from the backend goes through the query layer, which is
-domain 06 `data-fetching-and-state`. The rule that a fetch in `useEffect`
+`references/server-state-and-query-cache.md`. The rule that a fetch in `useEffect`
 belongs on the server is
 `references/server-and-client-components.md`.
 
@@ -435,10 +435,10 @@ pnpm build && pnpm start
 - The `next.config.ts` keys other than `reactCompiler` →
   `references/app-router-structure.md`.
 - The query cache, the query keys, `staleTime`, and the mutation state →
-  domain 06 `data-fetching-and-state`. Not integrated yet. That domain owns
-  every value that the backend produces.
-- The URL as a store for state that must survive a reload → domain 06
-  `data-fetching-and-state`. Not integrated yet.
+  `references/server-state-and-query-cache.md`. That file owns every value that
+  the backend produces.
+- The URL as a store for state that must survive a reload, and the client store
+  → `references/client-and-url-state.md`.
 - The socket and the event stream behind a subscription → domain 08
   `realtime-and-streaming`. Not integrated yet.
 - The render cost that a state change produces, and the INP that it costs →

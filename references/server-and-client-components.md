@@ -340,8 +340,9 @@ pnpm build && pnpm start
 - The granularity of a `<Suspense>` boundary inside a route, the React 19
   Actions, and the promise that `use()` reads →
   `references/suspense-and-actions.md`.
-- The client cache, `useQuery`, and the mutation state → domain 06
-  `data-fetching-and-state`. Not integrated yet.
+- The client cache, `useQuery`, and the mutation state →
+  `references/server-state-and-query-cache.md`. The store and the URL value that
+  a provider carries are `references/client-and-url-state.md`.
 - The accessible name, the focus order, and the live region on a skeleton or
   an error boundary → domain 10 `accessibility-wcag`. Not integrated yet. That
   domain holds a veto.

@@ -285,7 +285,8 @@ rg -n 'createEnv|EnvSchema' src/env.ts
 - The CSRF token, the CORS symptoms, and the proxy Route Handler →
   `references/cross-origin-and-bff-proxy.md`.
 - The query keys, the cache, and the mutation state built on these types →
-  domain 06 `data-fetching-and-state`. Not integrated yet.
+  `references/server-state-and-query-cache.md`. The parse over a value that the
+  URL carries is `references/client-and-url-state.md`.
 - The resolver, the field array, and the map from `attr` to a form field →
   domain 11 `forms-and-validation`. Not integrated yet.
 - The words in a validation message that a user reads → domain 15

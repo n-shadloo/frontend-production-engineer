@@ -358,7 +358,8 @@ rg -n 'action=\{' -g '*.tsx' src/
 - Where the state of a component lives, and the memoisation rule →
   `references/state-and-effects.md`.
 - The mutation state, the retry, and the query that a client refetches →
-  domain 06 `data-fetching-and-state`. Not integrated yet.
+  `references/server-state-and-query-cache.md`. That file holds the rule that
+  divides `useOptimistic` from an optimistic write to the query cache.
 - The live region that announces a pending state, and the focus that moves to
   an error message → domain 10 `accessibility-wcag`. Not integrated yet. That
   domain holds a veto.

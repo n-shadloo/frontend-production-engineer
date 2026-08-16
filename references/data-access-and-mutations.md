@@ -234,16 +234,14 @@ a stream.
 ```tsx
 // Correct: the server prefetches, and the client cache starts warm.
 // app/orders/page.tsx
-import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { getQueryClient } from "@/lib/query/client";
+import { ordersListOptions } from "@/features/orders/api/orders";
 import { OrdersTable } from "./orders-table";
-import { getOrders } from "@/lib/dal/orders";
 
 export default async function Page() {
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery({
-    queryKey: ["orders", 1],
-    queryFn: () => getOrders(1),
-  });
+  const queryClient = getQueryClient(); // a new client for each server request
+  await queryClient.prefetchQuery(ordersListOptions({ search: "", page: 1 }));
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <OrdersTable />
@@ -254,8 +252,9 @@ export default async function Page() {
 
 Await the critical prefetch, and wrap the client subtree in the
 `HydrationBoundary`. A client component that still refetches on mount has one
-of the two missing. The `staleTime`, the query key design, and the mutation
-state belong to domain 06 `data-fetching-and-state`.
+of the two missing. The server and the client call the same `queryOptions`
+function, so both use one key. The `staleTime`, the key factory, and the
+mutation state are `references/server-state-and-query-cache.md`.
 
 ## Verification
 
@@ -313,7 +312,8 @@ rg -n 'NEXT_PUBLIC_[A-Z_]*(KEY|SECRET|TOKEN|PASSWORD)' .
 - The CSRF token, the CORS symptoms, and the proxy Route Handler that hides the
   internal address → `references/cross-origin-and-bff-proxy.md`.
 - The client cache config, the query keys, the mutations, and the optimistic
-  state → domain 06 `data-fetching-and-state`. Not integrated yet.
+  state → `references/server-state-and-query-cache.md`. The filter that the URL
+  holds is `references/client-and-url-state.md`.
 - The session strategy, the token storage, and the role checks → domain 07
   `authentication-and-authorization`. Not integrated yet. The DRF permission
   classes belong to the sibling skill `secure-code-auditor`.

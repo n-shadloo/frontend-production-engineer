@@ -227,8 +227,8 @@ pnpm build --debug
 ## Handoffs
 
 - The `staleTime`, the garbage collection time, and the client query cache →
-  domain 06 `data-fetching-and-state`. Not integrated yet. This file stops at
-  the server cache and the Router Cache.
+  `references/server-state-and-query-cache.md`. This file stops at the server
+  cache and the Router Cache.
 - Whether a cached response may hold the data at all, and what a leaked
   response exposes → domain 17 `frontend-security`. Not integrated yet. That
   domain holds a veto.
