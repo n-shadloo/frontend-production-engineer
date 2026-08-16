@@ -45,7 +45,7 @@ in decline, and alive only in legacy code.
 | It is UI only, and one component reads it — an open menu, a hover, a step index | `useState` or `useReducer`, in that component | A second component reads the value, so the value lifts to the common ancestor. | The value is lost on an unmount, and no link restores it. |
 | It is UI only, it changes rarely, and a deep subtree reads it — a theme, a collapsed sidebar | A context, with the value and the dispatch split | The value changes many times each second, which the next row covers. | Each change re-renders every consumer of the value context. |
 | It changes many times each second, or code outside React must read it, or it must survive a route change | A client store | One component reads the value, or the backend owns it. | A module, a provider for a request-specific value, and a selector at each read. |
-| The program can derive it from a value that already exists | Nothing. Compute it during the render. | The computation is measured and it fails the render budget. | The computation runs on each render. |
+| The program can derive it from a value that already exists | Nothing. Compute it during the render. | A measurement shows that the computation fails the render budget. | The computation runs on each render. |
 | It is the value of a form field, before the submit | The form library. Domain 11 `forms-and-validation` | The field value must also appear in a link, which the URL row covers. | A dependency, and one more model of the same value. |
 
 Read the table from the top. The first row that matches decides the owner, and

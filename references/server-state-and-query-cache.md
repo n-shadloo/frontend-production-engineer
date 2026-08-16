@@ -441,7 +441,7 @@ then renders the error body as if it were a record.
 | The status | What the view does | It reverses when | The cost |
 | --- | --- | --- | --- |
 | 400 with field errors | Render each message beside its field. Do not retry. | Never. The answer is deterministic, so a second request returns it again. | The view needs a map from a field name to a control. |
-| 401 or 403 | Render the state that the route needs. Domain 07 owns the refresh and the redirect. | The session can be refreshed, so the request repeats once after the refresh. | Each route states its own answer, so two routes can answer one status in two ways. |
+| 401 or 403 | Render the state that the route needs. Domain 07 owns the refresh and the redirect. | The application can refresh the session, so the request repeats once after it. | Each route states its own answer, so two routes can answer one status in two ways. |
 | 404 | Render the empty or missing state of that view. | The 404 means a deleted record that the cache still lists, so the list also needs the write. | The view needs a designed empty state beside its error state. |
 | 429, 502, 503, and 504 | Retry under the rule above, and obey `Retry-After`. | The endpoint is not idempotent, so a repeat changes data. | The user waits for the backoff periods, and the backend takes more load. |
 | A `TypeError` or a `DOMException` | Let it reach the error boundary. Neither carries a status. | The abort was deliberate, so the view discards it and renders nothing. | The whole boundary renders its fallback, not one part of the view. |

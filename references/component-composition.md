@@ -202,7 +202,7 @@ two libraries do not use one name for this.
 | --- | --- | --- | --- |
 | The parent must read the value, or drive it | Controlled. Take `value` and `onChange`. | The parent only reads the final value, which the next row covers. | Every keystroke re-renders the parent, and the parent must hold the state. |
 | The component owns the value, and the parent needs only the final one | Uncontrolled. Take `defaultValue`, and read the value from the form. | The parent must reset or preset the value while the component is mounted. | No code outside the component can read the value before the submit. |
-| A library component must serve both callers | Take `value`, `defaultValue`, and `onChange`, and choose between them at run time. | The component is application code with one caller, so one mode serves it. | One more hook, and a run-time branch that both modes must be tested against. |
+| A library component must serve both callers | Take `value`, `defaultValue`, and `onChange`, and choose between them at run time. | The component is application code with one caller, so one mode serves it. | One more hook, and a run-time branch that needs a test for each mode. |
 
 NEVER move a component from uncontrolled to controlled while it is mounted.
 React reports "A component is changing an uncontrolled input to be controlled",

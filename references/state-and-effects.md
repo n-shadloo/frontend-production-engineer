@@ -38,7 +38,7 @@ in decline, and alive only in legacy code.
 
 | Condition | Action | It reverses when | The cost |
 | --- | --- | --- | --- |
-| The program can derive the value from props or state that already exist | Compute it during the render. Add no `useState`, and add no effect. | The computation is measured and it fails the render budget. | The computation runs on each render. |
+| The program can derive the value from props or state that already exist | Compute it during the render. Add no `useState`, and add no effect. | A measurement shows that the computation fails the render budget. | The computation runs on each render. |
 | Exactly one component reads the value | Keep it in that component. | A second component reads it, which the next row covers. | The value is lost when the component unmounts. |
 | Two or more sibling components read the value | Lift it to the lowest common ancestor, and pass it down. | The ancestor is far above the readers, so the prop crosses components that ignore it. | Each change re-renders the ancestor and its whole subtree. |
 | A deep subtree reads it, and it changes rarely | A context. Split the value and the dispatch into two contexts. | The value changes many times each second, so a store with a selector serves better. | Two providers in the tree, and a re-render of every consumer of the value context. |
@@ -53,7 +53,7 @@ in decline, and alive only in legacy code.
 | Independent primitive values | One `useState` for each value. | The count passes five, or two of the values start to change together. | Each new value adds a setter, and a reset must name every one of them. |
 | The next value depends on the previous one, across several actions | `useReducer`, with a discriminated union for the action type. | One action is left, so the reducer states one transition. | An action type, a reducer, and a dispatch for a value that one setter held. |
 | Several values change together | `useReducer`, so one dispatch moves all of them. | The values become independent, which the first row covers. | The same. A single field update goes through an action. |
-| The transitions need a unit test on their own | `useReducer`. The reducer is a pure function, so a test calls it directly. | The transitions are covered where the component is tested. | A test file for the reducer, beside the test of the component. |
+| The transitions need a unit test on their own | `useReducer`. The reducer is a pure function, so a test calls it directly. | The test of the component covers the transitions. | A test file for the reducer, beside the test of the component. |
 
 `references/type-modeling-and-narrowing.md` holds the rules for the
 discriminated union and for the exhaustive `switch` that reads it.
@@ -152,7 +152,7 @@ belongs on the server is
 
 | Condition | Action | It reverses when | The cost |
 | --- | --- | --- | --- |
-| Transform a value for the render | Do it in the render. No effect. | The transform is measured and it fails the render budget. | The transform runs on each render. |
+| Transform a value for the render | Do it in the render. No effect. | A measurement shows that the transform fails the render budget. | The transform runs on each render. |
 | Respond to a click, a submit, or a key | An event handler. No effect. | The system outside React starts the work, so no event exists to attach to. | The work runs only where the user acts, so a programmatic change does not start it. |
 | Reset state when a prop changes | A `key` on the component, or a value computed in the render. No effect. | Part of the state must survive the reset, which a remount discards. | The `key` change remounts the component, so every value inside it is lost. |
 | Read a browser API or an external store | `useSyncExternalStore`. | The store is inside React, so state or a context holds it. | A subscribe function, a client snapshot, and a server snapshot for each value. |

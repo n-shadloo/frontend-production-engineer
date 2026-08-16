@@ -246,7 +246,7 @@ A cast is the last rung, not the first. Work down the ladder in order.
 | Does the value come from outside the program? | Parse it. `references/boundary-validation-and-api-types.md` | Never. Nothing else proves a value from outside the program. | A schema for each boundary, and a parse on each value that crosses it. |
 | Does a package ship a wrong or a missing type? | Write a module augmentation or a `.d.ts` shim, and a typed wrapper. | The package ships correct types, so the shim then hides them. | A declaration that a package upgrade can make wrong with no report. |
 | Can a test prove the narrow? | Write a type predicate: `function isOrder(v: unknown): v is Order`. | The value comes from outside the program, so the first row applies. | The compiler trusts the predicate, so a wrong body gives an unsound narrow. |
-| Is it a literal that must not widen? | `as const`. | The value must be changed after it is declared. | Every property becomes readonly, and a mutable copy needs a spread. |
+| Is it a literal that must not widen? | `as const`. | The code must change the value after it declares it. | Every property becomes readonly, and a mutable copy needs a spread. |
 | Is it a narrow that the compiler cannot see? | `as`, with a comment that proves the soundness. | A predicate can prove the narrow, which the third row covers. | The comment is the only proof, and no check reports it when the code changes. |
 
 Every remaining `as` in the codebase is a const assertion, or it carries that

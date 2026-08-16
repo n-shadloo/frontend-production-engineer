@@ -103,7 +103,7 @@ and it states why the folder stays out of version control.
 
 | Condition | Choice | It reverses when | The cost |
 | --- | --- | --- | --- |
-| The default for this stack | `openapi-typescript` for the types, and `openapi-fetch` for the runtime | The project needs generated hooks or handlers, which the next row covers. | Each query hook and each mock is written by hand. |
+| The default for this stack | `openapi-typescript` for the types, and `openapi-fetch` for the runtime | The project needs generated hooks or handlers, which the next row covers. | A person writes each query hook and each mock. |
 | The project wants generated TanStack Query hooks, MSW handlers, and one file for each tag | Orval | The Node floor stays at 20.9, because Orval needs Node 22.18 or later. | A large generated surface, and a config that decides the shape of application code. |
 | The project wants an SDK and many plugins from one config | `@hey-api/openapi-ts` | The package reaches 1.0 with a stable config, or the project cannot accept a below-1.0 pin. | The package is below 1.0, so the exact version is pinned and each bump is read. |
 | The schema is very large, and the output must tree-shake for each tag | The scoped `@kubb/*` packages | The schema is small enough that one file costs nothing. | Several scoped packages to pin, and a version report that the plain package does not confirm. |
@@ -178,7 +178,7 @@ const total = z.string().parse(order.total_display);
 | Condition | Action | It reverses when | The cost |
 | --- | --- | --- | --- |
 | The team wants camelCase in TypeScript | Convert at the client boundary with `humps` or `ts-case-convert`, OR take `djangorestframework-camel-case` on the backend with the drf-spectacular `camelize_serializer_fields` hook. | The backend team refuses the hook, and the run-time conversion fails the payload budget. | A conversion on every response, or a backend dependency that every serializer passes through. |
-| The backend is snake_case, and the team is small | Keep snake_case from end to end. The generated types carry it, and nothing converts. | The team grows, or a style rule rejects a snake_case identifier in TypeScript. | The TypeScript code holds two naming styles, one for the API and one for the application. |
+| The backend is snake_case, and the team is small | Keep snake_case from end to end. The generated types carry it, and nothing converts. | The team grows, or a style rule rejects a snake_case identifier in TypeScript. | The TypeScript code holds two conventions, one for the API and one for the application. |
 | Some files convert, and some do not | FORBIDDEN. Take one convention, and convert at one place. | Never. Two conventions in one codebase produce a field that no reader can name. | The move to one convention touches every file that reads a response. |
 
 The backend option gives camelCase in the schema, so the generated types are
