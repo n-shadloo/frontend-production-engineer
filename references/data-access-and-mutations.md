@@ -41,7 +41,7 @@ that the form must find.
 ### The data access layer
 
 ```ts
-// lib/dal/orders.ts
+// src/lib/dal/orders.ts
 import "server-only";
 import { cookies } from "next/headers";
 import { z } from "zod";
@@ -256,7 +256,7 @@ state belong to domain 06 `data-fetching-and-state`.
 
 ```bash
 # 1. Every data access module is server-only. Each file printed here is not.
-rg --files-without-match 'server-only' lib/dal
+rg --files-without-match 'server-only' src/lib/dal
 
 # 2. Find a Route Handler that imports a Server Action. This must print
 #    nothing.
@@ -268,8 +268,9 @@ rg -n -B4 'redirect\(' -g '**/actions.ts' .
 # 4. Confirm that every Server Action verifies the session.
 rg -l '"use server"' -g '*.ts' . | xargs rg --files-without-match 'getSession|auth\('
 
-# 5. Regenerate the typed client with the project command, then diff.
-git diff --exit-code -- lib/api
+# 5. Regenerate the typed client, then typecheck. An error is drift. The
+#    generated folder is gitignored, so a diff on it proves nothing.
+pnpm api:generate && pnpm typecheck
 
 # 6. Confirm that no secret reaches the browser bundle.
 rg -n 'NEXT_PUBLIC_[A-Z_]*(KEY|SECRET|TOKEN|PASSWORD)' .

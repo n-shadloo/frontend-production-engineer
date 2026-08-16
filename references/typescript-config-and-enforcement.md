@@ -206,7 +206,7 @@ Vitest runs `tsc` over `*.test-d.ts` files under the `--typecheck` flag. Use
 fails the run.
 
 ```ts
-// lib/api/paginated.test-d.ts
+// src/lib/api/paginated.test-d.ts
 import { expectTypeOf, test } from "vitest";
 import type { Paginated } from "./paginated";
 
@@ -299,9 +299,12 @@ pnpm exec tsc --noEmit --extendedDiagnostics
   `references/boundary-validation-and-api-types.md`.
 - The route files, `next typegen` as a build step, and the awaited request
   data → `references/app-router-structure.md`.
-- The folder layout, the Prettier config, the package manager, and the
-  monorepo project references → domain 04 `project-structure-and-tooling`.
-  Not integrated yet.
+- The folder layout, the path alias in practice, and the monorepo decision →
+  `references/directory-and-module-boundaries.md`.
+- The lint config array around the type-aware block, the Prettier config, and
+  the `typecheck` script → `references/lint-format-and-scripts.md`.
+- The package manager, the Node pin, and the lockfile →
+  `references/dependencies-and-git-workflow.md`.
 - The Vitest setup, the test file layout, and the contract test against the
   schema → domain 20 `testing-and-quality`. Not integrated yet.
 - The CI pipeline that runs these gates, and the Docker build → domain 22

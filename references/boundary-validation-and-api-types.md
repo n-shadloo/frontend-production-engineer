@@ -229,14 +229,15 @@ rg -l 'fetch\(|localStorage|sessionStorage|process\.env' src/ \
 rg -n '\.errors\b|\.format\(\)|\.flatten\(\)|z\.string\(\)\.email\(\)' src/
 rg -n 'z\.nativeEnum|\.merge\(|z\.string\(\)\.ip\(|z\.string\(\)\.cidr\(' src/
 
-# 4. Regenerate the types from the DRF schema, then diff. A diff is drift.
-git diff --exit-code -- lib/api
+# 4. Regenerate the types from the DRF schema, then typecheck. An error is
+#    drift. The generated folder is gitignored, so a diff on it proves nothing.
+pnpm api:generate && pnpm typecheck
 
 # 5. Compare a generated nullable field against a live payload.
 curl -s "$DJANGO_URL/api/orders/1/" | jq .
 
 # 6. Confirm that a paginated endpoint is typed as the envelope.
-rg -n 'Paginated<|results' lib/api lib/dal
+rg -n 'Paginated<|results' src/api/generated src/lib/dal
 
 # 7. Confirm that the environment is validated at boot.
 rg -n 'createEnv|EnvSchema' src/env.ts

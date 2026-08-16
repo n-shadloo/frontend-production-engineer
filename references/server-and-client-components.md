@@ -218,7 +218,7 @@ session, or the database. Import `client-only` in a module that touches
 the browser failing at run time.
 
 ```ts
-// lib/dal/session.ts
+// src/lib/dal/session.ts
 import "server-only";
 ```
 
@@ -303,7 +303,7 @@ rg -n '^\s*["'"'"']use client["'"'"']' -g '*.tsx' -g '*.ts' .
 rg -l 'use client' -g 'app/**/layout.tsx' -g 'app/**/page.tsx' .
 
 # 3. Confirm that every secret-reading module is server-only.
-rg --files-without-match 'server-only' lib/dal
+rg --files-without-match 'server-only' src/lib/dal
 
 # 4. Build, then load each route and read the console for a hydration error.
 pnpm build && pnpm start
