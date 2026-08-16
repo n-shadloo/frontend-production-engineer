@@ -244,7 +244,7 @@ run.
 
 ## Example output
 
-At 1.5.0 the integrated material is the operating doctrine, the App Router
+At 1.5.1 the integrated material is the operating doctrine, the App Router
 foundation, the type system, the React component tree, the project structure,
 the backend contract, and the client cache and state. The worked example is the
 shape of a task and the facts that gate it:
@@ -357,7 +357,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds six domains at 1.5.0 and fills one domain at a time.
+`references/` holds six domains at 1.5.1 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 

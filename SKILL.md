@@ -20,7 +20,7 @@ license: MIT
 allowed-tools: Read, Grep, Glob, Bash, Edit, Write
 metadata:
   author: n-shadloo
-  version: 1.5.0
+  version: 1.5.1
 ---
 
 # frontend-production-engineer
@@ -146,7 +146,7 @@ go and how they are typed. The backend contract comes before any code that
 touches Django. The domain files that match the feature come after it. The
 non-functional domains come last, as a review pass before done.
 
-The router table above is the integrated material at 1.5.0, and it is the
+The router table above is the integrated material at 1.5.1, and it is the
 authoritative list. The rest of the order applies as the router grows.
 
 Work is not done because it renders. It is done when all of the following
