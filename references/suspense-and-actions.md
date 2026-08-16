@@ -30,13 +30,17 @@ that reads it waits forever.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### Choose the granularity
 
-| Condition | Action |
-| --- | --- |
-| The whole route waits for one value | One `<Suspense>` at the page, plus the `error.tsx` of the segment. |
-| Independent sections finish at different times | One boundary for each section, so the fast content paints first. |
-| One widget can fail, and the rest of the page stays useful | A local `<Suspense>` and a local error boundary around that widget. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| The whole route waits for one value | One `<Suspense>` at the page, plus the `error.tsx` of the segment. | A second value arrives on its own schedule, which the next row covers. | The slowest value decides the first paint of the whole route. |
+| Independent sections finish at different times | One boundary for each section, so the fast content paints first. | The sections resolve together, so the extra boundaries do not change the first paint. | Each boundary needs a fallback that holds the box of its content. |
+| One widget can fail, and the rest of the page stays useful | A local `<Suspense>` and a local error boundary around that widget. | The widget is the reason for the page, so its failure makes the page useless. | A client component, a fallback, and a retry that a test must prove. |
 
 ```tsx
 // Wrong: one boundary holds the whole route.
@@ -190,12 +194,12 @@ invalidate, redirect, is `references/data-access-and-mutations.md`.
 
 ### An expected error is state, an unexpected error throws
 
-| The response from DRF | What the Action does | Where the user reads it |
-| --- | --- | --- |
-| 400, a validation error on a field | Return it in the state | Beside the field, in the form |
-| 400 or 409, a rule of the business, such as a quantity that is not available | Return it in the state | Beside the control that the user can change |
-| 401 or 403 | Return it in the state, and redirect where the route requires a session | The form, or the sign-in route |
-| 5xx, or a network failure | Throw | The nearest error boundary |
+| The response from DRF | What the Action does | Where the user reads it | It reverses when | The cost |
+| --- | --- | --- | --- | --- |
+| 400, a validation error on a field | Return it in the state | Beside the field, in the form | Never. A throw takes the typed values away from the user. | The state type must carry a field error map, and the form must render it. |
+| 400 or 409, a rule of the business, such as a quantity that is not available | Return it in the state | Beside the control that the user can change | The user can change nothing, so the message belongs at the page level. | The state type grows one more shape for each such rule. |
+| 401 or 403 | Return it in the state, and redirect where the route requires a session | The form, or the sign-in route | The route is public, so no redirect applies and the state alone serves. | The action holds a route decision, so two routes can answer one status in two ways. |
+| 5xx, or a network failure | Throw | The nearest error boundary | The failure is expected often enough that the user must keep the form. | The form is replaced, so the user loses every value that they typed. |
 
 ```ts
 // Correct: the known error is a value, and the unknown error is a throw.

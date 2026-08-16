@@ -30,26 +30,30 @@ the component tree, and it goes stale on its own schedule.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### Where the value lives
 
-| Condition | Action |
-| --- | --- |
-| The program can derive the value from props or state that already exist | Compute it during the render. Add no `useState`, and add no effect. |
-| Exactly one component reads the value | Keep it in that component. |
-| Two or more sibling components read the value | Lift it to the lowest common ancestor, and pass it down. |
-| A deep subtree reads it, and it changes rarely | A context. Split the value and the dispatch into two contexts. |
-| The value came from the backend | `references/server-state-and-query-cache.md` owns it. NEVER hold it in `useState`, and never in a context. |
-| One component holds more than five `useState` calls | Consolidate into one object, or into a `useReducer`. Then decompose the component. |
-| A global store | Write the reason first. A store that no written reason supports is a finding. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| The program can derive the value from props or state that already exist | Compute it during the render. Add no `useState`, and add no effect. | The computation is measured and it fails the render budget. | The computation runs on each render. |
+| Exactly one component reads the value | Keep it in that component. | A second component reads it, which the next row covers. | The value is lost when the component unmounts. |
+| Two or more sibling components read the value | Lift it to the lowest common ancestor, and pass it down. | The ancestor is far above the readers, so the prop crosses components that ignore it. | Each change re-renders the ancestor and its whole subtree. |
+| A deep subtree reads it, and it changes rarely | A context. Split the value and the dispatch into two contexts. | The value changes many times each second, so a store with a selector serves better. | Two providers in the tree, and a re-render of every consumer of the value context. |
+| The value came from the backend | `references/server-state-and-query-cache.md` owns it. NEVER hold it in `useState`, and never in a context. | Never. Nothing in `useState` or a context revalidates. | The view must render a loading state, an error state, and an empty state. |
+| One component holds more than five `useState` calls | Consolidate into one object, or into a `useReducer`. Then decompose the component. | The five values are independent, and no action changes two of them together. | One dispatch and one action type replace five setters, so a single field update is longer to write. |
+| A global store | Write the reason first. A store that no written reason supports is a finding. | Never. The reason is the gate on the store. | A written reason precedes every store, and the review reads it. |
 
 ### `useState` or `useReducer`
 
-| Condition | Action |
-| --- | --- |
-| Independent primitive values | One `useState` for each value. |
-| The next value depends on the previous one, across several actions | `useReducer`, with a discriminated union for the action type. |
-| Several values change together | `useReducer`, so one dispatch moves all of them. |
-| The transitions need a unit test on their own | `useReducer`. The reducer is a pure function, so a test calls it directly. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| Independent primitive values | One `useState` for each value. | The count passes five, or two of the values start to change together. | Each new value adds a setter, and a reset must name every one of them. |
+| The next value depends on the previous one, across several actions | `useReducer`, with a discriminated union for the action type. | One action is left, so the reducer states one transition. | An action type, a reducer, and a dispatch for a value that one setter held. |
+| Several values change together | `useReducer`, so one dispatch moves all of them. | The values become independent, which the first row covers. | The same. A single field update goes through an action. |
+| The transitions need a unit test on their own | `useReducer`. The reducer is a pure function, so a test calls it directly. | The transitions are covered where the component is tested. | A test file for the reducer, beside the test of the component. |
 
 `references/type-modeling-and-narrowing.md` holds the rules for the
 discriminated union and for the exhaustive `switch` that reads it.
@@ -146,15 +150,15 @@ belongs on the server is
 
 ### An effect needs a system outside React
 
-| Condition | Action |
-| --- | --- |
-| Transform a value for the render | Do it in the render. No effect. |
-| Respond to a click, a submit, or a key | An event handler. No effect. |
-| Reset state when a prop changes | A `key` on the component, or a value computed in the render. No effect. |
-| Read a browser API or an external store | `useSyncExternalStore`. |
-| Talk to a non-React widget, a socket, a timer, or an analytics endpoint | `useEffect`. |
-| Measure the DOM before the browser paints | `useLayoutEffect`. |
-| Read a value inside an effect that must not re-trigger it | Wrap that code in `useEffectEvent`. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| Transform a value for the render | Do it in the render. No effect. | The transform is measured and it fails the render budget. | The transform runs on each render. |
+| Respond to a click, a submit, or a key | An event handler. No effect. | The system outside React starts the work, so no event exists to attach to. | The work runs only where the user acts, so a programmatic change does not start it. |
+| Reset state when a prop changes | A `key` on the component, or a value computed in the render. No effect. | Part of the state must survive the reset, which a remount discards. | The `key` change remounts the component, so every value inside it is lost. |
+| Read a browser API or an external store | `useSyncExternalStore`. | The store is inside React, so state or a context holds it. | A subscribe function, a client snapshot, and a server snapshot for each value. |
+| Talk to a non-React widget, a socket, a timer, or an analytics endpoint | `useEffect`. | The work is a pure transform, which the first row covers. | A cleanup for each setup, and a second run of both under Strict Mode. |
+| Measure the DOM before the browser paints | `useLayoutEffect`. | The measurement may appear one frame late, so `useEffect` serves. | The browser waits for the code before it paints, so the work is on the paint path. |
+| Read a value inside an effect that must not re-trigger it | Wrap that code in `useEffectEvent`. | The effect must in fact re-run when that value changes. | One more function in the component, which no dependency array and no child may hold. |
 
 Every effect has a cleanup that undoes its setup. The two are symmetric: a
 subscribe pairs with an unsubscribe, and an open pairs with a close.
@@ -324,14 +328,17 @@ The type-aware TypeScript rules that run beside it are
 
 ### Do not hand-memoise
 
-| Condition | Action |
-| --- | --- |
-| Every ordinary case | Add nothing. The compiler memoises. |
-| A value that an effect lists as a dependency, and that must keep one identity | Keep `useMemo` or `useCallback`. State the reason in a comment. |
-| A promise that `use()` reads | Keep `useMemo`, so the render does not create a second promise. `references/suspense-and-actions.md` |
-| A context provider value, in a project without the compiler | `useMemo` on the value. Delete it when the project enables the compiler. |
-| The compiler skipped a component that is hot | Correct the rule violation first. Measure again before you add a memo. |
-| A manual memo in code that already exists | Leave it. Its removal can change what the compiler emits. |
+A hand-written `useMemo`, `useCallback`, or `memo` is current but in decline.
+The React Compiler replaces it in every ordinary case.
+
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| Every ordinary case | Add nothing. The compiler memoises. | The project does not enable the compiler, and a measurement proves a cascade. | Nothing memoises until the compiler is on, so a project without it re-renders more. |
+| A value that an effect lists as a dependency, and that must keep one identity | Keep `useMemo` or `useCallback`. State the reason in a comment. | The value leaves the dependency array, such as through `useEffectEvent`. | A dependency array that a later reader must keep correct by hand. |
+| A promise that `use()` reads | Keep `useMemo`, so the render does not create a second promise. `references/suspense-and-actions.md` | A Server Component starts the promise and passes it as a prop. | One memo for each promise, and a client request that the server could have made. |
+| A context provider value, in a project without the compiler | `useMemo` on the value. Delete it when the project enables the compiler. | The project enables the compiler, and the line is then deleted. | One memo for each provider, which stays after it is no longer needed. |
+| The compiler skipped a component that is hot | Correct the rule violation first. Measure again before you add a memo. | The violation is in third-party code that this repository cannot change. | The correction is a rewrite of the component, not one added line. |
+| A manual memo in code that already exists | Leave it. Its removal can change what the compiler emits. | The memo is provably wrong, such as a dependency array that lies. | The file holds a memo that the compiler makes unnecessary. |
 
 NEVER add `useMemo`, `useCallback`, or `memo` without a measurement. Use the
 React Profiler, or the Performance Tracks of React 19.2, to prove the cascade
@@ -353,9 +360,11 @@ ESLint 10, and its peer range accepts Zod 3.25 and Zod 4.
 
 `babel-plugin-react-compiler` 1.0 is the pin. Remove
 `eslint-plugin-react-compiler` where a project still has it, because its rules
-moved into `eslint-plugin-react-hooks`.
+moved into `eslint-plugin-react-hooks`. That plugin is alive only in legacy
+code.
 
-Rewrite the stale idioms that a generator produces. `forwardRef(` becomes a
+The five idioms in the next paragraph are alive only in legacy code. Rewrite
+the stale idioms that a generator produces. `forwardRef(` becomes a
 `ref` prop. `ReactDOM.render(` becomes `createRoot`. A `propTypes` or a
 `defaultProps` assignment on a function component becomes a type and a default
 parameter. `experimental_useEffectEvent` becomes `useEffectEvent`. A `next lint`

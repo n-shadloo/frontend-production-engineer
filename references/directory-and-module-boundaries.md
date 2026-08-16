@@ -30,6 +30,10 @@ A generated folder is an output. No file inside it is a source file.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### `src/` holds the application, and the root holds the config
 
 Put the application under `src/`. Keep `package.json`, `next.config.ts`,
@@ -80,14 +84,14 @@ each folder token. The tokens are `(group)`, `_folder`, `[param]`, and `@slot`.
 
 ### Colocate until a second consumer exists
 
-| Condition | Where the file goes |
-| --- | --- |
-| One feature uses it | Inside that feature |
-| A second feature needs it, and it renders | `src/components/common` |
-| A second feature needs it, and it renders nothing | `src/lib` |
-| It is an unbranded primitive | `src/components/ui` |
-| It reads a secret, a session, or the database | `src/server` or `src/lib/dal` |
-| It is a route file | `src/app/`, under the segment that serves the URL |
+| Condition | Where the file goes | It reverses when | The cost |
+| --- | --- | --- | --- |
+| One feature uses it | Inside that feature | A second feature needs it, which the next two rows cover. | A later move to a shared layer changes every import of the file. |
+| A second feature needs it, and it renders | `src/components/common` | The second consumer is removed, so one feature is left. | The file now serves two callers, so a change to it must suit both. |
+| A second feature needs it, and it renders nothing | `src/lib` | The module starts to render, which the row above covers. | The same. The module is shared, and no feature owns it. |
+| It is an unbranded primitive | `src/components/ui` | The part takes a brand decision, so it moves to `common`. | The generator that writes this folder overwrites a hand edit. |
+| It reads a secret, a session, or the database | `src/server` or `src/lib/dal` | Never. A client import of the module must fail the build. | No client component can import it, so the value must arrive as a prop. |
+| It is a route file | `src/app/`, under the segment that serves the URL | Never. The path in this folder is the URL. | A move of the file is a change of the URL. |
 
 NEVER move a file to a shared folder before the second consumer exists. A
 shared folder that holds a file with one consumer is a folder with no rule.
@@ -204,12 +208,12 @@ own.
 The boundaries rule reads one import at a time. It cannot see a cycle across
 three files, and it cannot see a file that nothing imports.
 
-| Condition | Tool |
-| --- | --- |
-| Import direction and the public API, one Next application | `eslint-plugin-boundaries`, in the config above |
-| A path-level rule beside the element rule | `no-restricted-paths`, from `eslint-plugin-import` or `import-x` |
-| A cycle, an orphan, or a graph of the whole tree | `dependency-cruiser`, run in CI |
-| A TypeScript monorepo that needs the `index.ts` public API rule, and little config | `sheriff`, which has no dependencies |
+| Condition | Tool | It reverses when | The cost |
+| --- | --- | --- | --- |
+| Import direction and the public API, one Next application | `eslint-plugin-boundaries`, in the config above | The repository holds two or more applications, so the graph crosses packages. | One more plugin in the lint array, and a settings block that each new folder must join. |
+| A path-level rule beside the element rule | `no-restricted-paths`, from `eslint-plugin-import` or `import-x` | The element rule already covers the path, so the second rule repeats it. | Two rules state one boundary, and a later reader must read both. |
+| A cycle, an orphan, or a graph of the whole tree | `dependency-cruiser`, run in CI | The tree is small enough that the lint rule alone reports every cycle. | One more CI step, one more config file, and a run over the whole tree. |
+| A TypeScript monorepo that needs the `index.ts` public API rule, and little config | `sheriff`, which has no dependencies | The project needs a rule that `sheriff` does not hold. | Less control over each rule than the plugin above gives. |
 
 Run `dependency-cruiser` as a gate, not as a report. It exits non-zero on a
 planted violation, and that exit is the check.
@@ -255,11 +259,11 @@ overwrites the edit, and the fix disappears with no report.
 
 ### One Next application and one Django repository is not a monorepo
 
-| Condition | Decision |
-| --- | --- |
-| One Next application, and one Django repository | No monorepo. Django publishes `schema.yml`, and the frontend runs `api:generate` |
-| Two or more JS or TS applications, with shared UI, config, or client packages | pnpm workspaces and Turborepo |
-| Enterprise scale that needs generators, an affected graph, and more than one language | Nx |
+| Condition | Decision | It reverses when | The cost |
+| --- | --- | --- | --- |
+| One Next application, and one Django repository | No monorepo. Django publishes `schema.yml`, and the frontend runs `api:generate` | A second JS or TS application appears, which the next row covers. | A shared change crosses two repositories, so it needs two pull requests. |
+| Two or more JS or TS applications, with shared UI, config, or client packages | pnpm workspaces and Turborepo | One application is left, or the tasks need an affected graph across languages. | A workspace file, a `turbo.json`, a second install mode, and a slower first install. |
+| Enterprise scale that needs generators, an affected graph, and more than one language | Nx | The graph fits Turborepo, so the extra tooling returns nothing. | A large configuration surface, and a tool that each contributor must learn. |
 
 A monorepo tool for a single application is a build system with no work to do.
 It costs a `turbo.json`, a workspace file, and a second install mode, and it

@@ -25,6 +25,10 @@ cache you mean.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### First, read the model
 
 The default behavior of `fetch` depends on one flag. Read `next.config.ts`
@@ -34,6 +38,9 @@ before you write any cache code.
 | --- | --- | --- |
 | `cacheComponents: true` | Cache Components | Everything is dynamic. Nothing caches until you add `"use cache"`, a `cacheLife`, and a `cacheTag`. Partial Prerendering is automatic. The segment `revalidate` and `dynamic` exports and `experimental.ppr` are superseded. |
 | No `cacheComponents` key | The previous model | Use the `fetch` options `cache`, `next.revalidate`, and `next.tags`, plus `unstable_cache` and the route segment config. |
+
+Cache Components is current practice. The previous model is current but in
+decline, because Next 16 supersedes it.
 
 NEVER depend on a default. State the intent on every `fetch`, so the code
 means the same thing under either model.
@@ -100,13 +107,15 @@ scope. Read them outside it, and put the result behind `<Suspense>`.
 
 ### Choose the revalidation API
 
-| Condition | Action |
-| --- | --- |
-| Static content, and eventual consistency is acceptable | `revalidateTag(tag, 'max')`. It serves the stale value and revalidates in the background. |
-| The user just changed their own data and must see it now | `updateTag(tag)`. Server Actions only. It gives read-your-writes. |
-| Uncached data elsewhere on the page must refresh after an action | `refresh()`. Server Actions only. It does not touch the cache. |
-| Invalidation by path | `revalidatePath('/path')` |
-| A Client Component must reflect a server mutation | `router.refresh()`. The last resort. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| Static content, and eventual consistency is acceptable | `revalidateTag(tag, 'max')`. It serves the stale value and revalidates in the background. | One reader must see their own write at once, which is the next row. | The first reader after the write receives the stale value, and only the reader after that receives the fresh one. |
+| The user just changed their own data and must see it now | `updateTag(tag)`. Server Actions only. It gives read-your-writes. | The call site is not a Server Action, or the tag covers content that every user shares. | The entry is dropped rather than refreshed in the background, so the next read pays the full data cost. |
+| Uncached data elsewhere on the page must refresh after an action | `refresh()`. Server Actions only. It does not touch the cache. | The stale data is in fact cached, so a tag covers it. | The route runs its uncached work again for one action. |
+| Invalidation by path | `revalidatePath('/path')` | The same content is served at two or more paths. | Every cache entry under that path is dropped, including the entries that the write did not change. |
+| A Client Component must reflect a server mutation | `router.refresh()`. The last resort. | A tag covers the change, which every row above states. | The whole route refetches on each call, and the stale-cache defect behind it stays hidden. |
+
+The single-argument call below is alive only in legacy code.
 
 ```ts
 // Wrong: the single-argument call.
@@ -155,13 +164,15 @@ export default async function Page() {
 }
 ```
 
-`connection()` replaces `unstable_noStore`. Under the previous model, a route
+`connection()` replaces `unstable_noStore`, which is alive only in legacy code.
+Under the previous model, a route
 that must be fresh but tolerates a short cache uses `revalidate = 1`, not `0`.
 A `revalidate` of `0` reclassifies the route as dynamic.
 
 ### `unstable_cache`
 
-`unstable_cache` is audit-only. Migrate it to a `"use cache"` function: drop
+`unstable_cache` is alive only in legacy code, and it is audit-only. Migrate it
+to a `"use cache"` function: drop
 the key-parts array, because the key is derived, and map the options to
 `cacheLife` and `cacheTag`. One reason to keep it exists. `unstable_cache`
 persists across deployments and across serverless instances, and `"use cache"`

@@ -33,6 +33,10 @@ needs a way back.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### One `queryOptions` object for one query
 
 ```tsx
@@ -273,23 +277,23 @@ goes and what shape the fallback takes.
 
 ### `initialData` or `placeholderData`
 
-| Condition | Action |
-| --- | --- |
-| Real data is available to seed the entry, such as a record from the list that the detail page opens | `initialData`. Query writes it to the cache, and `staleTime` applies to it. |
-| A stand-in is needed while the request runs, such as the previous page of a table | `placeholderData`. Query does not write it to the cache, and `isPlaceholderData` is true. |
-| A page change must not empty the table | `placeholderData: keepPreviousData`, imported from the package. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| Real data is available to seed the entry, such as a record from the list that the detail page opens | `initialData`. Query writes it to the cache, and `staleTime` applies to it. | The seed is partial, so it does not hold every field that the view reads. | The seed enters the cache, so `staleTime` can hold a partial record on the screen. |
+| A stand-in is needed while the request runs, such as the previous page of a table | `placeholderData`. Query does not write it to the cache, and `isPlaceholderData` is true. | The stand-in is real data that the cache should keep, which the row above covers. | The view must read `isPlaceholderData` and mark the stand-in, or the user acts on it. |
+| A page change must not empty the table | `placeholderData: keepPreviousData`, imported from the package. | The two pages hold unrelated rows, so the previous page misleads the reader. | The table shows the previous page while the next one loads. |
 
 In v5 `keepPreviousData` is a function that `placeholderData` takes. The v4
 boolean option of the same name no longer exists.
 
 ### Every mutation states what it makes stale
 
-| Condition | Action |
-| --- | --- |
-| The response carries the whole new record | `setQueryData` on the detail key. No request. |
-| The write changes a list whose order or totals the server computes | `invalidateQueries` on the list prefix. |
-| Only the queries that are on the screen must refetch now | `refetchQueries`. |
-| Nothing on the screen shows the changed data | State that in a comment. Add no reconciliation. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| The response carries the whole new record | `setQueryData` on the detail key. No request. | The server computes a field that the response omits. | The cache holds a record that no request proved, until the entry goes stale. |
+| The write changes a list whose order or totals the server computes | `invalidateQueries` on the list prefix. | The response already carries the computed values, which the row above covers. | Every active query under that prefix sends a request. |
+| Only the queries that are on the screen must refetch now | `refetchQueries`. | An inactive entry must also be correct on the next mount. | The inactive entries keep the old value, and one of them can reach the screen first. |
+| Nothing on the screen shows the changed data | State that in a comment. Add no reconciliation. | A view starts to read the changed data. | The comment is the only record, so a later reader must trust it. |
 
 ```ts
 // Wrong: the mutation invalidates the whole cache.
@@ -371,11 +375,11 @@ two idioms in one hook.
 
 ### `useOptimistic` or the query cache
 
-| Condition | Action |
-| --- | --- |
-| A `<form action>` submits to a Server Action, and one component shows the result | `useOptimistic`. Its value is local to the component and to the transition. |
-| Two or more views read the value from the client cache | The Query cache, through `onMutate` and `setQueryData`. |
-| The value must survive the unmount of the component that changed it | The Query cache. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| A `<form action>` submits to a Server Action, and one component shows the result | `useOptimistic`. Its value is local to the component and to the transition. | A second view reads the value, which the next row covers. | The value is lost on an unmount, and no other view sees it. |
+| Two or more views read the value from the client cache | The Query cache, through `onMutate` and `setQueryData`. | One view reads the value, and the write goes through a Server Action. | The hook must cancel, snapshot, restore, and reconcile, which is four steps rather than one. |
+| The value must survive the unmount of the component that changed it | The Query cache. | Never. `useOptimistic` holds no value past the transition. | The same four steps, and a cache entry that a failure must put back. |
 
 `references/suspense-and-actions.md` owns `useOptimistic` and the transition
 that it needs. The rule that divides them is the owner of the value, and not the
@@ -434,13 +438,13 @@ The `queryFn` throws, so `error` holds an `ApiError` and `isError` is true.
 A `queryFn` that returns a failed response puts the failure in `data`. The view
 then renders the error body as if it were a record.
 
-| The status | What the view does |
-| --- | --- |
-| 400 with field errors | Render each message beside its field. Do not retry. |
-| 401 or 403 | Render the state that the route needs. Domain 07 owns the refresh and the redirect. |
-| 404 | Render the empty or missing state of that view. |
-| 429, 502, 503, and 504 | Retry under the rule above, and obey `Retry-After`. |
-| A `TypeError` or a `DOMException` | Let it reach the error boundary. Neither carries a status. |
+| The status | What the view does | It reverses when | The cost |
+| --- | --- | --- | --- |
+| 400 with field errors | Render each message beside its field. Do not retry. | Never. The answer is deterministic, so a second request returns it again. | The view needs a map from a field name to a control. |
+| 401 or 403 | Render the state that the route needs. Domain 07 owns the refresh and the redirect. | The session can be refreshed, so the request repeats once after the refresh. | Each route states its own answer, so two routes can answer one status in two ways. |
+| 404 | Render the empty or missing state of that view. | The 404 means a deleted record that the cache still lists, so the list also needs the write. | The view needs a designed empty state beside its error state. |
+| 429, 502, 503, and 504 | Retry under the rule above, and obey `Retry-After`. | The endpoint is not idempotent, so a repeat changes data. | The user waits for the backoff periods, and the backend takes more load. |
+| A `TypeError` or a `DOMException` | Let it reach the error boundary. Neither carries a status. | The abort was deliberate, so the view discards it and renders nothing. | The whole boundary renders its fallback, not one part of the view. |
 
 `references/api-client-and-request-safety.md` owns the shapes and the
 normalizer. `references/suspense-and-actions.md` owns the rule that a validation
@@ -449,12 +453,12 @@ control is domain 11 `forms-and-validation`.
 
 ### Polling needs a reason and a stop condition
 
-| Condition | Action |
-| --- | --- |
-| A push transport is available | Use it, and write the message into the cache with `setQueryData`. Domain 08 owns the transport. |
-| A job settles, such as an export or a build | `refetchInterval` as a function that returns `false` when the job is done. |
-| The resource changes on the server, and no push transport exists | `refetchInterval`, with a comment that states the period and the reason. |
-| The tab is in the background | Keep the default `refetchIntervalInBackground` of `false`. Query then stops the poll. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| A push transport is available | Use it, and write the message into the cache with `setQueryData`. Domain 08 owns the transport. | The transport drops often enough that the view falls behind the server. | A connection for each client, and code that reconciles a missed message. |
+| A job settles, such as an export or a build | `refetchInterval` as a function that returns `false` when the job is done. | The job never reports a terminal state, so the function has no stop condition. | One request for each period, for each client that watches the job. |
+| The resource changes on the server, and no push transport exists | `refetchInterval`, with a comment that states the period and the reason. | A push transport lands, which the first row covers. | One request for each period for the life of the tab, and the battery that it costs. |
+| The tab is in the background | Keep the default `refetchIntervalInBackground` of `false`. Query then stops the poll. | The value must stay fresh while the tab is hidden, such as a live alert. | The data is stale when the user returns, so the first paint shows the old value. |
 
 ```ts
 // Correct: the poll stops itself.
@@ -484,7 +488,8 @@ Read the installed version before you write code. TanStack Query 5.101 is the
 floor of this stack. Version 5 needs React 18 or later and TypeScript 4.7 or
 later, and it takes one object argument for every hook.
 
-Rewrite each v4 idiom that a generator or an older file produces.
+Every idiom in the left column below is alive only in legacy code. Rewrite each
+v4 idiom that a generator or an older file produces.
 
 | Version 4 | Version 5 |
 | --- | --- |

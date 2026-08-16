@@ -29,6 +29,10 @@ not designed yet.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### The route files
 
 | File | The router uses it for | The rule |
@@ -48,7 +52,8 @@ not designed yet.
 | `instrumentation.ts` | The server start hook | The content is domain 21 `observability-and-resilience`. |
 | `instrumentation-client.ts` | The browser start hook | The content is domain 21 `observability-and-resilience`. |
 
-`middleware.ts` is not on this list. Next 16 renamed it to `proxy.ts`.
+`middleware.ts` is not on this list. Next 16 renamed it to `proxy.ts`, so
+`middleware.ts` is alive only in legacy code.
 
 ### The folder tokens
 
@@ -209,6 +214,8 @@ export default nextConfig;
 | AMP, `useAmp`, `amp: true` | — |
 | `next/legacy/image` | `next/image` |
 | `next lint` | ESLint or Biome, run directly. Codemod: `next-lint-to-eslint-cli` |
+
+Every key in the left column is alive only in legacy code.
 
 `next build` no longer lints. Add the lint command to the build script, or to
 CI, or the check disappears.

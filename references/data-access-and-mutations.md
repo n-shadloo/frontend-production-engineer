@@ -28,15 +28,19 @@ that the form must find.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### Where the call goes
 
-| Condition | Action |
-| --- | --- |
-| Read data for the first render | Fetch in a Server Component through the data access layer, and pass the result down |
-| A mutation from a form or a button in your own application | A Server Action, invoked by `<form action>`, so the form works without JavaScript |
-| A public API for an external consumer, a webhook, a file upload, or a stream | A Route Handler in `route.ts` |
-| A Client Component needs to refetch after the mount | Prefetch on the server, hydrate the client cache, then query on the client |
-| Never | A Route Handler that calls your own Server Action |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| Read data for the first render | Fetch in a Server Component through the data access layer, and pass the result down | The value changes after the mount, and the client must hold the newer value. | The value is fixed at the render, so a refresh of it needs a new request for the route. |
+| A mutation from a form or a button in your own application | A Server Action, invoked by `<form action>`, so the form works without JavaScript | The caller is outside the application, which the third row covers. | Each action is a public endpoint that must verify the session again. |
+| A public API for an external consumer, a webhook, a file upload, or a stream | A Route Handler in `route.ts` | The caller is a form inside the application, which the second row covers. | The route needs its own authorization, its own validation, and its own error shape. |
+| A Client Component needs to refetch after the mount | Prefetch on the server, hydrate the client cache, then query on the client | Nothing on the screen needs the value again after the first render. | The payload carries the dehydrated cache, and the client bundle carries the query library. |
+| Never | A Route Handler that calls your own Server Action | Never. The two are one code path with a network hop between them. | A second hop, a second serialization, and a form that now needs JavaScript. |
 
 ### The data access layer
 
@@ -111,13 +115,13 @@ artifact, never an edit.
 
 ### Proxy Django through Next, or call it from the browser
 
-| Condition | Action | Reason |
-| --- | --- | --- |
-| The browser must send an httpOnly session cookie to Django | Proxy through a Route Handler or a rewrite | The request stays same-origin, so no CORS preflight and no dropped cookie |
-| A secret or an API key must go on the request | Proxy on the server | The secret never reaches the browser bundle |
-| A public GET, no secret, latency-sensitive, CORS already configured | Call Django from the client | It removes a network hop |
-| The response streams | Either. Measure. | Both support a stream; the hop adds latency |
-| Data for the first render | Fetch in the data access layer, server to server | No browser round trip, no CORS, and the secret stays safe |
+| Condition | Action | Reason | It reverses when | The cost |
+| --- | --- | --- | --- | --- |
+| The browser must send an httpOnly session cookie to Django | Proxy through a Route Handler or a rewrite | The request stays same-origin, so no CORS preflight and no dropped cookie | The auth strategy moves to a token in an `Authorization` header. | Every request pays a hop through the Node process, and that process carries the traffic of the API. |
+| A secret or an API key must go on the request | Proxy on the server | The secret never reaches the browser bundle | Never, while the request needs the secret. | The same hop, plus a route to maintain for each endpoint that the browser reaches. |
+| A public GET, no secret, latency-sensitive, CORS already configured | Call Django from the client | It removes a network hop | The endpoint starts to need a cookie or a secret, which the two rows above cover. | The internal address is public, and the CORS rules become a permanent maintenance item. |
+| The response streams | Either. Measure. | Both support a stream; the hop adds latency | The measurement states one of the two, and the record of it decides later calls. | The measurement itself, once for each stream endpoint. |
+| Data for the first render | Fetch in the data access layer, server to server | No browser round trip, no CORS, and the secret stays safe | The value must change after the mount, which the client cache then owns. | The first byte waits for the backend, so a slow endpoint holds the whole render. |
 
 ### A Server Action
 

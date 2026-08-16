@@ -29,6 +29,10 @@ something. `any` deletes every check that follows it.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### `unknown`, never `any`
 
 ```ts
@@ -196,8 +200,8 @@ const Role = { Admin: "admin", User: "user" } as const;
 type Role = (typeof Role)[keyof typeof Role]; // "admin" | "user"
 ```
 
-Use `enum` only where an external interface demands the runtime object. Audit
-the ones already present; add none.
+`enum` is current but in decline. Use `enum` only where an external interface
+demands the runtime object. Audit the ones already present; add none.
 
 ### `type` by default, `interface` to merge
 
@@ -237,13 +241,13 @@ a checked accessor. NEVER reach for `!`.
 
 A cast is the last rung, not the first. Work down the ladder in order.
 
-| Question | If yes |
-| --- | --- |
-| Does the value come from outside the program? | Parse it. `references/boundary-validation-and-api-types.md` |
-| Does a package ship a wrong or a missing type? | Write a module augmentation or a `.d.ts` shim, and a typed wrapper. |
-| Can a test prove the narrow? | Write a type predicate: `function isOrder(v: unknown): v is Order`. |
-| Is it a literal that must not widen? | `as const`. |
-| Is it a narrow that the compiler cannot see? | `as`, with a comment that proves the soundness. |
+| Question | If yes | It reverses when | The cost |
+| --- | --- | --- | --- |
+| Does the value come from outside the program? | Parse it. `references/boundary-validation-and-api-types.md` | Never. Nothing else proves a value from outside the program. | A schema for each boundary, and a parse on each value that crosses it. |
+| Does a package ship a wrong or a missing type? | Write a module augmentation or a `.d.ts` shim, and a typed wrapper. | The package ships correct types, so the shim then hides them. | A declaration that a package upgrade can make wrong with no report. |
+| Can a test prove the narrow? | Write a type predicate: `function isOrder(v: unknown): v is Order`. | The value comes from outside the program, so the first row applies. | The compiler trusts the predicate, so a wrong body gives an unsound narrow. |
+| Is it a literal that must not widen? | `as const`. | The value must be changed after it is declared. | Every property becomes readonly, and a mutable copy needs a spread. |
+| Is it a narrow that the compiler cannot see? | `as`, with a comment that proves the soundness. | A predicate can prove the narrow, which the third row covers. | The comment is the only proof, and no check reports it when the code changes. |
 
 Every remaining `as` in the codebase is a const assertion, or it carries that
 comment. There is no third case.
@@ -262,6 +266,9 @@ Use a function overload only where the return type genuinely differs per
 argument shape. Prefer one union parameter everywhere else.
 
 ### Component types
+
+`React.FC` is current but in decline. `forwardRef`, `MutableRefObject`, and the
+global `JSX` namespace are alive only in legacy code.
 
 ```tsx
 // Wrong: React.FC.

@@ -27,14 +27,18 @@ network. Fix the destination in code.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### Choose the topology first
 
-| Condition | Topology |
-| --- | --- |
-| Session-cookie auth, and the two origins differ | Same origin, through a Next rewrite or a Route Handler proxy |
-| Token auth in an `Authorization` header, and CORS is configured | The browser calls Django directly |
-| The internal address must stay hidden, or a secret header must be added | A Route Handler proxy, which runs on the server only |
-| A mutation from a server context | A Server Action that calls Django with the server base URL |
+| Condition | Topology | It reverses when | The cost |
+| --- | --- | --- | --- |
+| Session-cookie auth, and the two origins differ | Same origin, through a Next rewrite or a Route Handler proxy | The auth strategy moves to a token in a header, which the next row covers. | Every browser request passes through the Node process, so that process must carry the traffic of the API. |
+| Token auth in an `Authorization` header, and CORS is configured | The browser calls Django directly | The token moves into a cookie, or a request starts to need a secret header. | The CORS settings become a permanent maintenance item, and the Django address is public. |
+| The internal address must stay hidden, or a secret header must be added | A Route Handler proxy, which runs on the server only | Never, while the address or the header must stay on the server. | One route to write and maintain for each endpoint that the browser reaches. |
+| A mutation from a server context | A Server Action that calls Django with the server base URL | The caller is outside the application, so a Route Handler serves it. | The action is a public endpoint, and it must verify the session inside itself. |
 
 `references/data-access-and-mutations.md` holds the table that decides where a
 call lives, and that table stays the authority. This section decides the

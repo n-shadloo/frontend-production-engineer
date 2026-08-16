@@ -25,6 +25,10 @@ like a type and behaves like a comment.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### The boundaries
 
 Every one of these is outside the program. Each needs a parse.
@@ -75,12 +79,12 @@ transform, a `.default()`, or a coercion makes the two differ.
 
 ### The generated type and the schema divide the work
 
-| Condition | Action |
-| --- | --- |
-| The DRF schema is generated and the endpoint is not trust-sensitive | Take the shape from the generated `paths` and `components` types. Add no schema. |
-| The endpoint carries authentication, money, or input echoed to another system | Take the shape from the generated types, and prove the value with a thin schema as well. |
-| The call is a hand-written `fetch` | Parse. `res.json()` has type `any`, so nothing else proves the value. |
-| No generated schema exists yet | Parse, and open the codegen task. A hand-written schema is the temporary state, never the target. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| The DRF schema is generated and the endpoint is not trust-sensitive | Take the shape from the generated `paths` and `components` types. Add no schema. | The schema is proven wrong for that endpoint, or the endpoint becomes trust-sensitive. | A drift between the schema and the response becomes a run-time crash, because nothing proves the value. |
+| The endpoint carries authentication, money, or input echoed to another system | Take the shape from the generated types, and prove the value with a thin schema as well. | The parse cost is measured against the payload size and it fails the budget. | A second declaration of the shape must follow every contract change, and the parse runs on every response. |
+| The call is a hand-written `fetch` | Parse. `res.json()` has type `any`, so nothing else proves the value. | Never, while the call stays hand-written. | The schema is a second model of one endpoint until the call moves to the generated client. |
+| No generated schema exists yet | Parse, and open the codegen task. A hand-written schema is the temporary state, never the target. | The generated schema lands, and the first row then applies. | Every boundary that the task touches carries a schema that a later change deletes. |
 
 NEVER hand-copy the OpenAPI model into TypeScript or into Zod for every
 endpoint. Two sources for one shape drift in silence, and the drift surfaces
@@ -167,7 +171,8 @@ performance-critical path.
 
 ### The Zod 3 calls that Zod 4 replaced
 
-Each one of these ships clean. The removed calls throw when the module loads,
+Every call in the left column is alive only in legacy code. Each one of these
+ships clean. The removed calls throw when the module loads,
 or read `undefined` at run time. The deprecated calls still run, and the next
 major version removes them. Search for all of them after any upgrade.
 

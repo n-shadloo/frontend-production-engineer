@@ -32,17 +32,21 @@ match.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### The taxonomy decides the owner
 
-| The value | Where it lives |
-| --- | --- |
-| It came from Django or DRF | The query cache, or an RSC prop. `references/server-state-and-query-cache.md` |
-| The user expects a link, a bookmark, or the back button to restore it — a filter, a sort, a page, a tab, a search term, an open record | The URL, as a search param |
-| It is UI only, and one component reads it — an open menu, a hover, a step index | `useState` or `useReducer`, in that component |
-| It is UI only, it changes rarely, and a deep subtree reads it — a theme, a collapsed sidebar | A context, with the value and the dispatch split |
-| It changes many times each second, or code outside React must read it, or it must survive a route change | A client store |
-| The program can derive it from a value that already exists | Nothing. Compute it during the render. |
-| It is the value of a form field, before the submit | The form library. Domain 11 `forms-and-validation` |
+| The value | Where it lives | It reverses when | The cost |
+| --- | --- | --- | --- |
+| It came from Django or DRF | The query cache, or an RSC prop. `references/server-state-and-query-cache.md` | Never. A second owner of a backend value gives the user two answers. | The view must render a loading state, an error state, and an empty state. |
+| The user expects a link, a bookmark, or the back button to restore it — a filter, a sort, a page, a tab, a search term, an open record | The URL, as a search param | The value is a secret, or it is too large for an address bar. | Every change writes a history entry, and every read passes through a parser. |
+| It is UI only, and one component reads it — an open menu, a hover, a step index | `useState` or `useReducer`, in that component | A second component reads the value, so the value lifts to the common ancestor. | The value is lost on an unmount, and no link restores it. |
+| It is UI only, it changes rarely, and a deep subtree reads it — a theme, a collapsed sidebar | A context, with the value and the dispatch split | The value changes many times each second, which the next row covers. | Each change re-renders every consumer of the value context. |
+| It changes many times each second, or code outside React must read it, or it must survive a route change | A client store | One component reads the value, or the backend owns it. | A module, a provider for a request-specific value, and a selector at each read. |
+| The program can derive it from a value that already exists | Nothing. Compute it during the render. | The computation is measured and it fails the render budget. | The computation runs on each render. |
+| It is the value of a form field, before the submit | The form library. Domain 11 `forms-and-validation` | The field value must also appear in a link, which the URL row covers. | A dependency, and one more model of the same value. |
 
 Read the table from the top. The first row that matches decides the owner, and
 no value takes two rows.
@@ -116,7 +120,8 @@ with nuqs in the client component that changes it.
 Take the parser from the parser exports. Version 1 of nuqs held one
 `queryTypes` object. Version 2 replaced it with one export for each parser, so
 the bundle carries only the parsers that the code names. An import of
-`queryTypes` is a version 1 file that no longer compiles.
+`queryTypes` is a version 1 file that no longer compiles, so `queryTypes` is
+alive only in legacy code.
 
 nuqs 2 ships as ESM only. A build that needs CommonJS needs a different package.
 
@@ -127,14 +132,14 @@ what a page number of `abc` costs without one.
 
 ### When a store is justified
 
-| Condition | Decision |
-| --- | --- |
-| Two sibling components read the value, and no natural parent holds it | A context first. A store where the value changes many times each second. |
-| The value crosses a route change, such as a wizard that spans pages | A store. |
-| A context re-renders a large subtree on each change | A store, read through a selector. |
-| Code outside React reads the value, such as an event handler or a socket callback | A store, read through `getState()`. |
-| The value came from the backend | NEVER a store. The query cache owns it. |
-| One component reads the value | NEVER a store. `useState` owns it. |
+| Condition | Decision | It reverses when | The cost |
+| --- | --- | --- | --- |
+| Two sibling components read the value, and no natural parent holds it | A context first. A store where the value changes many times each second. | A natural parent appears in the tree, so the value lifts into it. | A provider in the tree, and a re-render of every consumer on each change. |
+| The value crosses a route change, such as a wizard that spans pages | A store. | The steps move into one route, so one component holds the value. | The value survives a route that no longer needs it, until code clears it. |
+| A context re-renders a large subtree on each change | A store, read through a selector. | The measurement states that the re-render is inside the budget. | A store module and a selector at each read site. |
+| Code outside React reads the value, such as an event handler or a socket callback | A store, read through `getState()`. | The code moves inside React, so a hook reads the value. | A read through `getState()` does not re-render, so a stale read is possible. |
+| The value came from the backend | NEVER a store. The query cache owns it. | Never. Nothing in a store revalidates. | The view must render the four states that a query produces. |
+| One component reads the value | NEVER a store. `useState` owns it. | A second component reads the value, which the first row covers. | The value is lost when the component unmounts. |
 
 Zustand is the default store of this stack. Reach for Jotai where the state is
 many small independent values. Reach for Valtio where the model is a deep
@@ -218,28 +223,32 @@ The `persist` middleware reads `localStorage`. The server has no
 render uses the stored value. React reports a hydration error, and the theme
 flashes.
 
-| Condition | Action |
-| --- | --- |
-| The value is a preference that the server must render correctly, such as a theme | Store it in a cookie, read the cookie on the server, and pass the value into the provider. |
-| The value may appear one frame late | Read the stored value after the mount, and render the default before it. |
-| The value is a draft that only the browser needs | `persist`, with no server render of the value. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| The value is a preference that the server must render correctly, such as a theme | Store it in a cookie, read the cookie on the server, and pass the value into the provider. | The value is larger than a cookie permits, or a request must not carry it. | The cookie travels on every request, and the route that reads it becomes dynamic. |
+| The value may appear one frame late | Read the stored value after the mount, and render the default before it. | The frame is visible enough that a user reads it as a fault. | The user sees the default value for one frame. |
+| The value is a draft that only the browser needs | `persist`, with no server render of the value. | The server starts to render the value, which the first row then covers. | The value is bound to one browser, and it does not follow the user to a second device. |
 
 `references/server-and-client-components.md` owns the hydration error and the
 rest of its causes.
 
 ### The libraries
 
-| Tier | Package | The rule |
-| --- | --- | --- |
-| Recommend | `nuqs` 2.9 | Typed URL state. It supplements `useSearchParams`, and it does not replace it. |
-| Recommend | `zustand` 5.0 | The default store. Use `createStore` and a provider for any request-specific value. |
-| Conditional | `jotai` 2.20 | Many small independent values, each with its own subscribers. |
-| Conditional | `valtio` 2.3 | A deep mutable model that a proxy tracks. |
-| Conditional | `immer` 11.1 | The Zustand middleware for a nested update. Add it only where the spread is unreadable. |
-| Conditional | `@reduxjs/toolkit` 2.12 | Only where Redux is already installed. RTK Query then holds the server state, and TanStack Query does not. |
-| Conditional | `use-debounce` 10.1 | A debounce that nuqs `throttleMs` and a transition do not cover. |
-| Audit-only | `swr` 2.5 | An existing install. TanStack Query is the default of this stack. |
-| Reject | `@apollo/client` | It serves GraphQL. This stack talks to DRF over REST. |
+The table gives each package its latest version, its last release date, its
+maintenance status, and its open advisories. The package registry and the
+advisory database supplied those four facts on 16 August 2026.
+
+| Tier | Package | The rule | Latest version | Last release | Maintenance | Open advisories |
+| --- | --- | --- | --- | --- | --- | --- |
+| Recommend | `nuqs` 2.9 | Typed URL state. It supplements `useSearchParams`, and it does not replace it. | 2.9.5 | 5 Aug 2026 | Active. The repository takes commits each week. | None |
+| Recommend | `zustand` 5.0 | The default store. Use `createStore` and a provider for any request-specific value. | 5.0.15 | 13 Aug 2026 | Active. Three open issues on the repository. | None |
+| Conditional | `jotai` 2.20 | Many small independent values, each with its own subscribers. | 2.20.2 | 14 Jul 2026 | Active. A 3.0 alpha line runs beside it. | None |
+| Conditional | `valtio` 2.3 | A deep mutable model that a proxy tracks. | 2.3.2 | 1 May 2026 | Active, at a slower release rate than its two siblings. | None |
+| Conditional | `immer` 11.1 | The Zustand middleware for a nested update. Add it only where the spread is unreadable. | 11.1.17 | 16 Aug 2026 | Active. | None. Version 9.0.6 patched the three advisories from 2021. |
+| Conditional | `@reduxjs/toolkit` 2.12 | Only where Redux is already installed. RTK Query then holds the server state, and TanStack Query does not. | 2.12.0 | 15 May 2026 | Active. | None |
+| Conditional | `use-debounce` 10.1 | A debounce that nuqs `throttleMs` and a transition do not cover. | 10.1.1 | 29 Mar 2026 | Active. The repository takes commits, and the release rate is low. | None |
+| Audit-only | `swr` 2.5 | An existing install. TanStack Query is the default of this stack. | 2.5.1 | 12 Aug 2026 | Active. | None |
+| Reject | `@apollo/client` | It serves GraphQL. This stack talks to DRF over REST. | 4.2.12 | 14 Aug 2026 | Active. | None |
 
 `references/dependencies-and-git-workflow.md` owns the rule that a new
 dependency states its replacement, its size, and its maintenance status.
@@ -250,7 +259,8 @@ Read the installed versions before you write code.
 
 Zustand 5 is the pin. The `create` call takes the curried form
 `create<T>()(...)` under `strict`. A module-level `create` that holds a
-request-specific value is the version 4 idiom that the App Router breaks.
+request-specific value is the version 4 idiom that the App Router breaks, and
+it is alive only in legacy code.
 
 nuqs 2 is the pin. Rewrite `import { queryTypes } from "nuqs"` to the parser
 exports. `createLoader` and `createSearchParamsCache` need nuqs 2.3 or later.

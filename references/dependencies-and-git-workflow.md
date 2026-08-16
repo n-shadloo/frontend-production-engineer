@@ -28,6 +28,10 @@ A secret that reached the history stays in the history. The fix is a rotation.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### pnpm, at the version that the Node floor allows
 
 Use pnpm. Choose npm only where a tool needs it, and choose yarn only for a
@@ -99,13 +103,13 @@ and the judgment of whether a package is malicious.
 
 ### The update bot waits as well
 
-| Condition | Bot |
-| --- | --- |
-| The project wants grouped updates, presets, and one cooldown setting | Renovate |
-| The project prefers a GitHub-native tool with no extra app | Dependabot |
+| Condition | Bot | It reverses when | The cost |
+| --- | --- | --- | --- |
+| The project wants grouped updates, presets, and one cooldown setting | Renovate | The team cannot install a third-party GitHub application. | A configuration file to maintain, and one more application with write access to the repository. |
+| The project prefers a GitHub-native tool with no extra app | Dependabot | The project needs grouped updates or a preset that Dependabot does not hold. | One pull request for each update, so a large dependency set produces a large queue. |
 
-Renovate calls the setting `minimumReleaseAge`, and the earlier name was
-`stabilityDays`. Its best-practice preset sets `"14 days"` where a rule
+Renovate calls the setting `minimumReleaseAge`. The earlier name was
+`stabilityDays`, which is alive only in legacy code. Its best-practice preset sets `"14 days"` where a rule
 automerges. Dependabot now waits three days by default on a version update,
 with no configuration, and a security update still opens at once.
 
@@ -134,7 +138,8 @@ or call it from a `prepare` script. A contributor who clones and commits must
 get the hooks with no extra step.
 
 `gitleaks` reads `.gitleaks.toml` from the target path. The `detect` and
-`protect` commands are deprecated in favor of `gitleaks git`. The project is
+`protect` commands are deprecated in favor of `gitleaks git`, so those two
+commands are alive only in legacy code. The project is
 feature-complete and takes security patches only, which is a stable state and
 not an abandoned one.
 

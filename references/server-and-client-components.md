@@ -27,15 +27,19 @@ differs between the two breaks the hydration.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### The decision
 
-| Condition | Action |
-| --- | --- |
-| Needs `useState`, `useEffect`, `useReducer`, `useContext`, an event handler, or a browser API | Client Component. Put `"use client"` on that leaf. |
-| Only reads data, reads a secret, or renders markup | Server Component. Add no directive. |
-| An interactive shell around mostly static content | Keep the parent on the server. Pass the static subtree as `children`. |
-| Needs a package that touches `window` | Client Component. Isolate it in the smallest wrapper. |
-| Reads the query string for display only | Client Component with `useSearchParams()`. The server `searchParams` prop makes the whole route dynamic. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| Needs `useState`, `useEffect`, `useReducer`, `useContext`, an event handler, or a browser API | Client Component. Put `"use client"` on that leaf. | The state can move to the URL or to the server, so no hook is left. | The component, its imports, and their imports all ship to the browser. |
+| Only reads data, reads a secret, or renders markup | Server Component. Add no directive. | The markup needs one event handler, which the first row then covers. | No part of it can hold state, so an interaction needs a new client leaf around it. |
+| An interactive shell around mostly static content | Keep the parent on the server. Pass the static subtree as `children`. | The shell must read a value out of the subtree, which a prop cannot carry. | The call site holds the composition, so the shell no longer states its own structure. |
+| Needs a package that touches `window` | Client Component. Isolate it in the smallest wrapper. | The package ships a server-safe entry point. | One more file for each such package, and the bytes of the package itself. |
+| Reads the query string for display only | Client Component with `useSearchParams()`. The server `searchParams` prop makes the whole route dynamic. | The route is dynamic for another reason, so the prop costs nothing more. | The consumer needs a `<Suspense>` boundary above it, or the build stops. |
 
 Every `"use client"` carries a one-line reason comment directly above it. A
 directive with no reason is a finding.

@@ -34,6 +34,10 @@ identity.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### Two thresholds start a decomposition
 
 A component file of more than 200 lines is over the threshold. A component with
@@ -194,11 +198,11 @@ two libraries do not use one name for this.
 
 ### Controlled or uncontrolled
 
-| Condition | Action |
-| --- | --- |
-| The parent must read the value, or drive it | Controlled. Take `value` and `onChange`. |
-| The component owns the value, and the parent needs only the final one | Uncontrolled. Take `defaultValue`, and read the value from the form. |
-| A library component must serve both callers | Take `value`, `defaultValue`, and `onChange`, and choose between them at run time. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| The parent must read the value, or drive it | Controlled. Take `value` and `onChange`. | The parent only reads the final value, which the next row covers. | Every keystroke re-renders the parent, and the parent must hold the state. |
+| The component owns the value, and the parent needs only the final one | Uncontrolled. Take `defaultValue`, and read the value from the form. | The parent must reset or preset the value while the component is mounted. | No code outside the component can read the value before the submit. |
+| A library component must serve both callers | Take `value`, `defaultValue`, and `onChange`, and choose between them at run time. | The component is application code with one caller, so one mode serves it. | One more hook, and a run-time branch that both modes must be tested against. |
 
 NEVER move a component from uncontrolled to controlled while it is mounted.
 React reports "A component is changing an uncontrolled input to be controlled",
@@ -234,8 +238,8 @@ export function useControllableState<T>({
 
 ### `ref` is a prop, and a child is not a remote control
 
-React 19 makes `ref` an ordinary prop on a function component. NEVER write
-`forwardRef` in new code. `references/type-modeling-and-narrowing.md` holds the
+React 19 makes `ref` an ordinary prop on a function component. `forwardRef` is
+alive only in legacy code. NEVER write `forwardRef` in new code. `references/type-modeling-and-narrowing.md` holds the
 pair and the types.
 
 ```tsx
@@ -305,12 +309,16 @@ intersection observer.
 
 ### The component libraries
 
-| Tier | Library | The rule |
-| --- | --- | --- |
-| Recommend | shadcn/ui on Base UI | Base UI is the default since July 2026. It supplies the headless primitives, the `render` prop, and `data-slot`. The Radix path is the `-b radix` flag. The classes and the tokens are domain 09 `design-system-and-styling`. |
-| Conditional | Radix Primitives | Use it where a Radix codebase exists, or where you need Context Menu, Hover Card, or Toast. It supplies `asChild` and `Slot`. Radix development has less focus now. |
-| Conditional | `usehooks-ts`, `react-use` | Prefer a copy into the repository. `react-use` gets less maintenance. |
-| Reject | `prop-types` | React 19 ignores the checks, and it reports nothing. Use TypeScript. |
+The table gives each library its latest version, its last release date, its
+maintenance status, and its open advisories. The package registry and the
+advisory database supplied those four facts on 16 August 2026.
+
+| Tier | Library | The rule | Latest version | Last release | Maintenance | Open advisories |
+| --- | --- | --- | --- | --- | --- | --- |
+| Recommend | shadcn/ui on Base UI | Base UI is the default since July 2026. It supplies the headless primitives, the `render` prop, and `data-slot`. The Radix path is the `-b radix` flag. The classes and the tokens are domain 09 `design-system-and-styling`. | `shadcn` 4.18.0, and `@base-ui/react` 1.7.0 | 13 Aug 2026, and 4 Aug 2026 | Both active. The Base UI package name `@base-ui-components/react` is deprecated, and it is alive only in legacy code. | None on either package |
+| Conditional | Radix Primitives | Use it where a Radix codebase exists, or where you need Context Menu, Hover Card, or Toast. It supplies `asChild` and `Slot`. Radix development has less focus now. Current but in decline. | `radix-ui` 1.6.7 | 24 Jul 2026 | Active. The repository takes commits, and it holds a large open-issue count. | None |
+| Conditional | `usehooks-ts`, `react-use` | Prefer a copy into the repository. `react-use` gets less maintenance. Both are current but in decline. | `usehooks-ts` 3.1.1, and `react-use` 17.6.1 | 5 Feb 2025, and 10 Jun 2026 | `usehooks-ts` has taken no release for 18 months. `react-use` releases rarely, and it holds over 600 open issues. | None on either package |
+| Reject | `prop-types` | React 19 ignores the checks, and it reports nothing. Use TypeScript. Alive only in legacy code. | 15.8.1 | 5 Jan 2022 | Unmaintained. The repository is archived. | None |
 
 ## Verification
 

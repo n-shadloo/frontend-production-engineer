@@ -26,15 +26,21 @@ the build repeats.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### What the backend publishes
 
-| The backend runs | Action |
-| --- | --- |
-| DRF with drf-spectacular | Consume the document. Require `COMPONENT_SPLIT_REQUEST: True`. |
-| DRF with `drf-yasg` | The document is Swagger 2.0. Convert it to OpenAPI 3.0 in the pipeline, or ask for a move to drf-spectacular. |
-| django-ninja | The document is OpenAPI 3.1.0. Take a generator that reads 3.1. |
-| A schema that a person wrote | Treat it as untrusted. Lint it, and parse every response that it describes. |
-| No schema, or a schema that is provably wrong | STOP, and open the task with the backend team. |
+`drf-yasg` and its Swagger 2.0 output are alive only in legacy code.
+
+| The backend runs | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| DRF with drf-spectacular | Consume the document. Require `COMPONENT_SPLIT_REQUEST: True`. | The backend team refuses the setting, so the request and the response share one component. | Two components for each endpoint, so the generated file is larger and each read names the correct one. |
+| DRF with `drf-yasg` | The document is Swagger 2.0. Convert it to OpenAPI 3.0 in the pipeline, or ask for a move to drf-spectacular. | The backend moves to drf-spectacular, and the first row then applies. | A conversion step in the pipeline, and every conversion defect reaches the types. |
+| django-ninja | The document is OpenAPI 3.1.0. Take a generator that reads 3.1. | The chosen generator drops 3.1 support. | The generator choice is narrower than the table below states. |
+| A schema that a person wrote | Treat it as untrusted. Lint it, and parse every response that it describes. | The backend starts to generate the document. | A parse at every boundary that the document describes. |
+| No schema, or a schema that is provably wrong | STOP, and open the task with the backend team. | Never, while no correct document exists. | The frontend task waits for the backend team. |
 
 Where no schema exists, write a Zod schema at the one boundary that the current
 task needs. Mark it `// TEMP: no schema — remove when the schema lands`. NEVER
@@ -66,11 +72,11 @@ chain that `noUncheckedIndexedAccess` already forces.
 
 ### How the schema reaches the frontend
 
-| Condition | Action |
-| --- | --- |
-| One CI pipeline, or one repository, holds both sides | Commit `schema.yml`, and let `api:generate` read the committed file. |
-| Two repositories | Django CI publishes a versioned `schema.yml` artifact. The frontend pins the URL and the hash. |
-| A developer machine | The live path `/api/schema/` is acceptable. Commit the snapshot that CI reads. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| One CI pipeline, or one repository, holds both sides | Commit `schema.yml`, and let `api:generate` read the committed file. | The two sides split into two repositories, which the next row covers. | Every contract change adds a schema diff to the pull request. |
+| Two repositories | Django CI publishes a versioned `schema.yml` artifact. The frontend pins the URL and the hash. | The two repositories merge, and the row above then applies. | An artifact store, a publish step on the backend, and a pinned hash that a human must move. |
+| A developer machine | The live path `/api/schema/` is acceptable. Commit the snapshot that CI reads. | The command runs in CI or in a build, where a live URL makes the build unrepeatable. | The types follow whatever the local server serves, so two machines can disagree. |
 
 ```jsonc
 // Wrong: package.json generates from a live URL.
@@ -93,14 +99,16 @@ and it states why the folder stays out of version control.
 
 ### Choose the generator
 
-| Condition | Choice |
-| --- | --- |
-| The default for this stack | `openapi-typescript` for the types, and `openapi-fetch` for the runtime |
-| The project wants generated TanStack Query hooks, MSW handlers, and one file for each tag | Orval |
-| The project wants an SDK and many plugins from one config | `@hey-api/openapi-ts` |
-| The schema is very large, and the output must tree-shake for each tag | The scoped `@kubb/*` packages |
-| `openapi-generator` is already installed and working | Audit only. Add no new install of it. |
-| `swagger-typescript-api` is already installed | Audit only. Plan the move. |
+`openapi-generator` and `swagger-typescript-api` are alive only in legacy code.
+
+| Condition | Choice | It reverses when | The cost |
+| --- | --- | --- | --- |
+| The default for this stack | `openapi-typescript` for the types, and `openapi-fetch` for the runtime | The project needs generated hooks or handlers, which the next row covers. | Each query hook and each mock is written by hand. |
+| The project wants generated TanStack Query hooks, MSW handlers, and one file for each tag | Orval | The Node floor stays at 20.9, because Orval needs Node 22.18 or later. | A large generated surface, and a config that decides the shape of application code. |
+| The project wants an SDK and many plugins from one config | `@hey-api/openapi-ts` | The package reaches 1.0 with a stable config, or the project cannot accept a below-1.0 pin. | The package is below 1.0, so the exact version is pinned and each bump is read. |
+| The schema is very large, and the output must tree-shake for each tag | The scoped `@kubb/*` packages | The schema is small enough that one file costs nothing. | Several scoped packages to pin, and a version report that the plain package does not confirm. |
+| `openapi-generator` is already installed and working | Audit only. Add no new install of it. | Never. The next row of the table below states the reason. | A Java toolchain in the build, and a 401 that does not reach `onError`. |
+| `swagger-typescript-api` is already installed | Audit only. Plan the move. | Never. The move goes to the first row of this table. | The move rewrites every call site that the generated client serves. |
 
 `openapi-typescript` emits types and no runtime. `openapi-fetch` is the
 companion at about 6 kB, it calls the platform `fetch`, and it assumes no
@@ -167,11 +175,11 @@ const total = z.string().parse(order.total_display);
 
 ### The case convention is decided once
 
-| Condition | Action |
-| --- | --- |
-| The team wants camelCase in TypeScript | Convert at the client boundary with `humps` or `ts-case-convert`, OR take `djangorestframework-camel-case` on the backend with the drf-spectacular `camelize_serializer_fields` hook. |
-| The backend is snake_case, and the team is small | Keep snake_case from end to end. The generated types carry it, and nothing converts. |
-| Some files convert, and some do not | FORBIDDEN. Take one convention, and convert at one place. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| The team wants camelCase in TypeScript | Convert at the client boundary with `humps` or `ts-case-convert`, OR take `djangorestframework-camel-case` on the backend with the drf-spectacular `camelize_serializer_fields` hook. | The backend team refuses the hook, and the run-time conversion fails the payload budget. | A conversion on every response, or a backend dependency that every serializer passes through. |
+| The backend is snake_case, and the team is small | Keep snake_case from end to end. The generated types carry it, and nothing converts. | The team grows, or a style rule rejects a snake_case identifier in TypeScript. | The TypeScript code holds two naming styles, one for the API and one for the application. |
+| Some files convert, and some do not | FORBIDDEN. Take one convention, and convert at one place. | Never. Two conventions in one codebase produce a field that no reader can name. | The move to one convention touches every file that reads a response. |
 
 The backend option gives camelCase in the schema, so the generated types are
 camelCase and no run-time conversion exists. The frontend option leaves the

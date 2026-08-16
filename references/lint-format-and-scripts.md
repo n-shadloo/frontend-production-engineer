@@ -29,6 +29,10 @@ the code.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### One command for one job
 
 ```jsonc
@@ -118,6 +122,8 @@ person can fix.
 
 ### Next 16 removed `next lint`, so CI runs the lint step
 
+`next lint` is alive only in legacy code.
+
 WARNING: a pipeline that called `next lint` still exits 0 after the upgrade,
 and it lints nothing. The build stays green and unlinted code ships. This is
 the failure mode of the whole domain, because nothing reports it.
@@ -132,11 +138,11 @@ it. `references/app-router-structure.md` owns that file.
 
 ### Prettier is the default, and Biome has a condition
 
-| Condition | Choice |
-| --- | --- |
-| The project needs `eslint-plugin-react-hooks`, `jsx-a11y`, `eslint-config-next`, or type-aware rules | ESLint 9 and Prettier. This stack needs all four |
-| None of those are needed, and the CI lint time is a measured bottleneck | Biome, as one binary for the format and the lint |
-| The lint time is the problem, and the rules above are still needed | Biome for the format, and a reduced ESLint for the rules that Biome lacks |
+| Condition | Choice | It reverses when | The cost |
+| --- | --- | --- | --- |
+| The project needs `eslint-plugin-react-hooks`, `jsx-a11y`, `eslint-config-next`, or type-aware rules | ESLint 9 and Prettier. This stack needs all four | Biome ships every one of the four rule sets. | The lint run reads type information, so it is the slowest gate in the set. |
+| None of those are needed, and the CI lint time is a measured bottleneck | Biome, as one binary for the format and the lint | Any one of the four rule sets becomes a requirement. | The React Compiler rules and the type-aware rules report nothing. |
+| The lint time is the problem, and the rules above are still needed | Biome for the format, and a reduced ESLint for the rules that Biome lacks | The measurement states that one tool is inside the budget. | Two tools decide the format and the rules, so a contributor must configure both. |
 
 Biome covers a large part of the ESLint and typescript-eslint rule set, and it
 is close to Prettier on output. Its type-aware coverage is partial, and it
@@ -161,7 +167,7 @@ holds `@theme`.
 ```
 
 Add no Tailwind lint plugin for class validation. The `eslint-plugin-tailwindcss`
-package has partial v4 support. Where a project already has it, confirm that it
+package has partial v4 support, so it is current but in decline. Where a project already has it, confirm that it
 resolves the v4 CSS entry, or replace it with `eslint-plugin-better-tailwindcss`.
 Domain 09 `design-system-and-styling` owns the tokens and the theme.
 
@@ -212,7 +218,8 @@ The paths that nobody edits by hand are `src/api/generated/`, the lockfile, and
 `next-env.d.ts`. `AGENTS.md` is plain Markdown with no schema. The file closest
 to the edited file wins, and a direct instruction in the chat wins over both.
 
-A single `.cursorrules` file is deprecated. Use `.cursor/rules/*.mdc`, or
+A single `.cursorrules` file is deprecated, and it is alive only in legacy
+code. Use `.cursor/rules/*.mdc`, or
 prefer `AGENTS.md` where more than one agent reads the repository. Commit
 `.vscode/settings.json` and `.vscode/extensions.json` so every contributor gets
 the same editor setup.

@@ -27,6 +27,10 @@ shape.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### One client, and the path comes from the schema
 
 ```ts
@@ -127,12 +131,12 @@ reach the error boundary.
 
 ### Retry only what is safe to repeat
 
-| Condition | Action |
-| --- | --- |
-| GET, HEAD, PUT, or DELETE fails with 429, 503, or a network error | Retry with an exponential backoff and jitter. Obey `Retry-After`. Cap the attempts at 3. |
-| POST or PATCH, with no idempotency key | NEVER retry. |
-| POST with an `Idempotency-Key` header that the backend accepts | Retry is allowed. |
-| Any 4xx other than 429 | NEVER retry. The result is deterministic. |
+| Condition | Action | It reverses when | The cost |
+| --- | --- | --- | --- |
+| GET, HEAD, PUT, or DELETE fails with 429, 503, or a network error | Retry with an exponential backoff and jitter. Obey `Retry-After`. Cap the attempts at 3. | The endpoint is not idempotent, and the method name does not show it. A DELETE that decrements a counter is one such endpoint. | The user waits for the sum of the backoff periods. Each retry adds load to a backend that is already at its limit. |
+| POST or PATCH, with no idempotency key | NEVER retry. | The backend accepts an idempotency key, which is the next row. | The user reads a failure on a write that may have succeeded, and the user repeats it by hand. |
+| POST with an `Idempotency-Key` header that the backend accepts | Retry is allowed. | The backend stops honoring the key, or one key carries two different bodies. | The client must make a key for each write and hold it across the attempts. |
+| Any 4xx other than 429 | NEVER retry. The result is deterministic. | Never. A deterministic answer does not change on a second request. | The user reads the failure at once, which is the correct result. |
 
 A generic retry wrapper over every method is the common failure. It creates a
 second order, a second charge, or a second row, and the user sees one of them.

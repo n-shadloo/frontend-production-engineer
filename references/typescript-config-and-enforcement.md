@@ -31,6 +31,10 @@ when the problem goes away is temporary.
 
 ## Pinned-stack depth
 
+Each recommendation in this file is current practice at the versions above,
+unless the text gives it a different mark. The two other marks are current but
+in decline, and alive only in legacy code.
+
 ### `tsconfig.json`
 
 ```jsonc
@@ -163,8 +167,8 @@ export default tseslint.config(
 
 Take the type-checked presets, never the plain `strict` and `stylistic`
 presets. A rule without type information cannot see a promise or a union.
-`projectService: true` is the stable form in v8; the v7 name was
-`EXPERIMENTAL_useProjectService`.
+`projectService: true` is the stable form in v8. The v7 name was
+`EXPERIMENTAL_useProjectService`, which is alive only in legacy code.
 
 | Rule | The failure it catches |
 | --- | --- |
@@ -175,8 +179,9 @@ presets. A rule without type information cannot see a promise or a union.
 | `switch-exhaustiveness-check` | A union `switch` that a new variant walks past. |
 | `ban-ts-comment` | A suppression with no reason. |
 
-Next 16 removed `next lint`. Run ESLint or Biome directly, from the `lint`
-script and from CI. The codemod is `next-lint-to-eslint-cli`.
+Next 16 removed `next lint`, which is alive only in legacy code. Run ESLint or
+Biome directly, from the `lint` script and from CI. The codemod is
+`next-lint-to-eslint-cli`.
 
 ### A suppression states its reason and expires
 
@@ -196,8 +201,9 @@ legacy.render(node);
 legacy.render(node);
 ```
 
-`@ts-ignore` is rejected. `@ts-expect-error` with a description is the only
-permitted suppression, and a count of them is a number that must go down.
+`@ts-ignore` is rejected, and it is alive only in legacy code.
+`@ts-expect-error` with a description is the only permitted suppression, and a
+count of them is a number that must go down.
 
 ### Type-level tests
 
