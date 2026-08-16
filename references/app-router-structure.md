@@ -292,7 +292,10 @@ rg -n 'fetch\(|verifySession|getSession|DJANGO_URL' proxy.ts src/proxy.ts
 ## Handoffs
 
 - The types of a fetched value, and the generics that carry it → domain 02
-  `typescript-type-system-discipline`. Not integrated yet.
+  `typescript-type-system-discipline`, in
+  `references/type-modeling-and-narrowing.md`. The rule that a generated route
+  type is never edited by hand is
+  `references/typescript-config-and-enforcement.md`.
 - The DRF schema, the error envelope, and the generated client → domain 05
   `django-drf-api-contract`. Not integrated yet. The server side of that
   contract belongs to the sibling skill `django-api-contract`.

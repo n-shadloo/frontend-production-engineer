@@ -42,11 +42,18 @@ that the form must find.
 // lib/dal/orders.ts
 import "server-only";
 import { cookies } from "next/headers";
-import type { components } from "@/lib/api/schema"; // generated from the DRF schema
+import { z } from "zod";
 
-type OrderPage = components["schemas"]["PaginatedOrderList"];
+// This response carries money, so the value is proven at the boundary
+// rather than taken on trust.
+const OrderPage = z.object({
+  count: z.number(),
+  next: z.string().nullable(),
+  previous: z.string().nullable(),
+  results: z.array(z.object({ id: z.string(), total: z.string() })),
+});
 
-export async function getOrders(page: number): Promise<OrderPage> {
+export async function getOrders(page: number): Promise<z.infer<typeof OrderPage>> {
   const session = (await cookies()).get("sessionid")?.value;
   const response = await fetch(
     `${process.env.DJANGO_URL}/api/orders/?page=${page}`,
@@ -58,16 +65,22 @@ export async function getOrders(page: number): Promise<OrderPage> {
   if (!response.ok) {
     throw new Error(`orders: ${response.status}`);
   }
-  return (await response.json()) as OrderPage;
+  const parsed = OrderPage.safeParse(await response.json());
+  if (!parsed.success) {
+    throw new Error(`orders: ${z.prettifyError(parsed.error)}`);
+  }
+  return parsed.data;
 }
 ```
 
 Four rules hold for every module in the layer. Import `server-only`, so the
-build fails when a client module imports it. Take the types from the generated
-schema, never from a hand-written interface. State the cache intent on every
-`fetch`, because the default depends on the caching model. Throw on a
-non-`ok` response, so the segment `error.tsx` renders instead of a `.map` on
-`undefined`.
+build fails when a client module imports it. Take the shape from the generated
+schema, never from a hand-written interface, and never cast `response.json()`
+to it. State the cache intent on every `fetch`, because the default depends on
+the caching model. Throw on a non-`ok` response, so the segment `error.tsx`
+renders instead of a `.map` on `undefined`.
+`references/boundary-validation-and-api-types.md` rules on which boundary the
+generated type covers and which one needs a schema as well.
 
 ### The DRF seam
 
@@ -268,9 +281,10 @@ rg -n 'NEXT_PUBLIC_[A-Z_]*(KEY|SECRET|TOKEN|PASSWORD)' .
 
 ## Handoffs
 
-- The types of the generated client, and the generics over a paginated
-  response → domain 02 `typescript-type-system-discipline`. Not integrated
-  yet.
+- The types of the generated client, the generics over a paginated response,
+  and the parse at the boundary → domain 02
+  `typescript-type-system-discipline`, in
+  `references/boundary-validation-and-api-types.md`.
 - The drf-spectacular config, the schema artifact, the error envelope, and the
   CSRF and CORS rules → domain 05 `django-drf-api-contract`. Not integrated
   yet. The server side belongs to the sibling skill `django-api-contract`.

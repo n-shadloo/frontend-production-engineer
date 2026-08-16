@@ -42,15 +42,13 @@ means the same thing under either model.
 ```ts
 // Correct: a cache scope with both declarations.
 import { cacheLife, cacheTag } from "next/cache";
-import type { components } from "@/lib/api/schema";
+import { getProducts } from "@/lib/dal/products";
 
 export async function getPublishedProducts() {
   "use cache";
   cacheLife("max");
   cacheTag("products");
-  const response = await fetch(`${process.env.DJANGO_URL}/api/products/`);
-  if (!response.ok) throw new Error(`products: ${response.status}`);
-  return (await response.json()) as components["schemas"]["PaginatedProductList"];
+  return getProducts(); // the data access layer types and parses the response
 }
 ```
 

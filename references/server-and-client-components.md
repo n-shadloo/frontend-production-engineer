@@ -352,7 +352,8 @@ done
 ## Handoffs
 
 - The props types, the generics, and the discriminated unions on a component →
-  domain 02 `typescript-type-system-discipline`. Not integrated yet.
+  domain 02 `typescript-type-system-discipline`, in
+  `references/type-modeling-and-narrowing.md`.
 - Composition, the hook rules, and the React 19 APIs beyond the boundary →
   domain 03 `react-component-architecture`. Not integrated yet.
 - The client cache, `useQuery`, and the mutation state → domain 06
