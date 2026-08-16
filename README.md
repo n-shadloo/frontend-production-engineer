@@ -48,7 +48,7 @@ Tier 0 is the operating discipline, in effect on every task.
 Tier 1 is the foundations: where files go and how they are typed.
 
 - `01 nextjs-app-router-architecture` — routing, rendering, caching, the
-  server/client boundary, `proxy.ts`. Pending.
+  server/client boundary, `proxy.ts`. Integrated.
 - `02 typescript-type-system-discipline` — type safety, generics, `tsconfig`,
   the no-`any` doctrine. Pending.
 - `03 react-component-architecture` — composition, hooks, the React 19 APIs,
@@ -228,8 +228,9 @@ been run.
 
 ## Example output
 
-At 1.0.0 the integrated domain is the operating doctrine, so the worked
-example is the shape every task takes before and after the domain work:
+At 1.0.0 the integrated material is the operating doctrine and the App Router
+foundation. The worked example is the shape of a task and the route facts that
+gate it:
 
 ```
 Plan
@@ -246,6 +247,11 @@ Versions verified (package.json)
 Unconfirmed
 - No generated client in the repo. The response shape is taken from the
   drf-spectacular schema at /api/schema/, not assumed.
+
+Route facts (/orders)
+- Render mode: dynamic. Data source: the DAL, server-side.
+- Cache strategy: none, the rows are per-user. Invalidation: updateTag.
+- "use client" on the sort control only, with the reason above it.
 
 Done
 - tsc --noEmit           clean
@@ -280,14 +286,18 @@ frontend-production-engineer/
 │   └── rules/
 │       └── frontend-production-engineer.mdc   # Cursor reinforcement rule
 ├── references/                                # domain depth, one release each
+│   ├── app-router-structure.md
+│   ├── caching-and-revalidation.md
+│   ├── data-access-and-mutations.md
+│   └── server-and-client-components.md
 ├── README.md
 ├── LICENSE
 └── .gitignore
 ```
 
-`references/` is empty at 1.0.0 and fills one domain at a time. `scripts/` and
-`assets/` are not present; they are added when a domain ships something
-executable or a template worth copying.
+`references/` holds the first domain at 1.0.0 and fills one domain at a time.
+`scripts/` and `assets/` are not present; they are added when a domain ships
+something executable or a template worth copying.
 
 ## License
 
