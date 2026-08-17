@@ -20,10 +20,15 @@ jobs:
           # The router is the only reason the correct reference file loads, so
           # its trigger vocabulary never trades down for bytes. Raised at 1.5.0,
           # after the duplicated split paragraphs came out and the remaining
-          # content was all triggers. This is a repository gate, not a platform
-          # limit; the platform limit is the frontmatter description, which the
+          # content was all triggers. Raised again at 1.7.0, where two router
+          # rows and one gate block for domain 08 passed the old number. Each
+          # domain adds about 6 kB of rows, seams, and gate conditions, and 16
+          # domains remain, so this number moves on that schedule. It is a
+          # tripwire against depth that belongs in references/, and not a
+          # budget. This is a repository gate, not a platform limit; the
+          # platform limit is the frontmatter description, which the
           # validate-skill workflow checks at 1024 characters.
-          MAX_SKILL_BYTES = 49152
+          MAX_SKILL_BYTES = 65536
           REFERENCE_LINK = re.compile(r"references/([A-Za-z0-9._-]+\.md)")
 
           root = pathlib.Path(".")

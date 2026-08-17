@@ -26,8 +26,10 @@ and the state that the backend does not own — `useQuery`, `useMutation`, a que
 key, `staleTime`, an optimistic update, a search param, or a store. The sixth
 group is identity — a login, a logout, a session, an `httpOnly` cookie, a token
 refresh, a protected route, a Server Action gate, a 401 or a 403, or a role.
-The seventh group is an interactive control, a form, or a focus order. The
-eighth group is the project setup — a
+
+The seventh group is live data — a `WebSocket`, an `EventSource`, a streamed
+response, a reconnect, a close code, or a pushed event. The eighth group is an
+interactive control, a form, or a focus order. The ninth group is the project setup — a
 folder move, a barrel file, `eslint.config.ts`, the lockfile, a git hook, or a
 new dependency. The last group is any change to the bundle, the headers, or the
 build.

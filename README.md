@@ -67,7 +67,7 @@ Tier 2 is the backend contract and the state built on it.
 - `07 authentication-and-authorization` — session and token strategy, route
   protection, RBAC in the UI. Integrated.
 - `08 realtime-and-streaming` — WebSockets and Channels, server-sent events,
-  optimistic concurrency. Pending.
+  optimistic concurrency. Integrated.
 
 Tier 3 is interface craft.
 
@@ -128,12 +128,16 @@ Tailwind CSS v4 supplies the styling, with the CSS-first `@theme` config, and
 shadcn/ui sits on Base UI. TanStack Query 5.101 or later holds the server
 state, nuqs 2.9 holds the URL state, and Zustand 5 holds the client store. Zod
 4 validates the values. React Hook Form binds the forms. Vitest,
-React Testing Library, MSW, and Playwright run the tests. The backend is Django
+React Testing Library, MSW, and Playwright run the tests.
+
+The backend is Django
 and DRF 3.17, and it publishes OpenAPI 3.0.3 through drf-spectacular 0.30.
 `openapi-typescript` 7.13 generates the types, `openapi-fetch` 0.17 sends the
 request, and `oasdiff` gates a breaking change in the schema.
 `djangorestframework-simplejwt` 5.5.1 issues and rotates the tokens, and
 `django-allauth` in headless mode covers registration, social login, and MFA.
+Django Channels 4.3 carries a WebSocket, and `partysocket` 1.3 wraps it in the
+browser.
 
 pnpm manages the packages, on the 10.x line while the Node floor is 20.9.
 ESLint 9 with the flat config and Prettier 3 run the checks. lefthook holds the
@@ -246,11 +250,12 @@ run.
 
 ## Example output
 
-At 1.6.0 the integrated material is the operating doctrine, the App Router
-foundation, the type system, the React component tree, the project structure,
-the backend contract, the client cache and state, and the session with the
-gates over it. The worked example is the shape of a task and the facts that
-gate it:
+At 1.7.0 the integrated material is the operating doctrine, the App Router
+foundation, the type system, and the React component tree. It also holds the
+project structure, the backend contract, and the client cache and state. The
+two newest parts are the session with the gates over it, and the push transport
+with the events on it. The worked example is the shape of a task and the facts
+that gate it:
 
 ```
 Plan
@@ -307,6 +312,11 @@ Auth facts
 - Route stays dynamic; no order row enters a "use cache" scope.
 - The export action re-authenticates itself and takes no userId argument.
 
+Live facts
+- No connection opens. Nobody watches one order change second by second.
+- A 30 s refetchInterval with a stop condition covers the totals.
+- The pull request carries that reason in one line.
+
 Done
 - pnpm lint              clean, at --max-warnings=0
 - pnpm typecheck         clean
@@ -354,7 +364,9 @@ frontend-production-engineer/
 │   ├── dependencies-and-git-workflow.md
 │   ├── directory-and-module-boundaries.md
 │   ├── lint-format-and-scripts.md
+│   ├── live-events-and-cache-merge.md
 │   ├── openapi-schema-and-codegen.md
+│   ├── push-transport-and-connection.md
 │   ├── route-protection-and-permissions.md
 │   ├── server-and-client-components.md
 │   ├── server-state-and-query-cache.md
@@ -368,7 +380,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds seven domains at 1.6.0 and fills one domain at a time.
+`references/` holds eight domains at 1.7.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 
