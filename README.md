@@ -65,7 +65,7 @@ Tier 2 is the backend contract and the state built on it.
 - `06 data-fetching-and-state` — TanStack Query, cache design, client state,
   URL state. Integrated.
 - `07 authentication-and-authorization` — session and token strategy, route
-  protection, RBAC in the UI. Pending.
+  protection, RBAC in the UI. Integrated.
 - `08 realtime-and-streaming` — WebSockets and Channels, server-sent events,
   optimistic concurrency. Pending.
 
@@ -120,8 +120,8 @@ The stack baseline is pinned, and it was verified in August 2026. The framework
 is Next.js 16.3, with Turbopack by default and `proxy.ts` in place of
 `middleware.ts` on the Node runtime. That release also makes `params` and
 `searchParams` async only, adds Cache Components, and removes `next lint`. The
-runtime is Node.js 20.9 or later. The UI layer is React 19.2.1 or later, with
-React Compiler 1.0. The language is TypeScript 5.9, with `strict` and
+runtime is Node.js 20.9 or later. The UI layer is React 19.2.4 or later, which
+is the security floor of the 19.2 line, with React Compiler 1.0. The language is TypeScript 5.9, with `strict` and
 `noUncheckedIndexedAccess`.
 
 Tailwind CSS v4 supplies the styling, with the CSS-first `@theme` config, and
@@ -132,6 +132,8 @@ React Testing Library, MSW, and Playwright run the tests. The backend is Django
 and DRF 3.17, and it publishes OpenAPI 3.0.3 through drf-spectacular 0.30.
 `openapi-typescript` 7.13 generates the types, `openapi-fetch` 0.17 sends the
 request, and `oasdiff` gates a breaking change in the schema.
+`djangorestframework-simplejwt` 5.5.1 issues and rotates the tokens, and
+`django-allauth` in headless mode covers registration, social login, and MFA.
 
 pnpm manages the packages, on the 10.x line while the Node floor is 20.9.
 ESLint 9 with the flat config and Prettier 3 run the checks. lefthook holds the
@@ -244,10 +246,11 @@ run.
 
 ## Example output
 
-At 1.5.1 the integrated material is the operating doctrine, the App Router
+At 1.6.0 the integrated material is the operating doctrine, the App Router
 foundation, the type system, the React component tree, the project structure,
-the backend contract, and the client cache and state. The worked example is the
-shape of a task and the facts that gate it:
+the backend contract, the client cache and state, and the session with the
+gates over it. The worked example is the shape of a task and the facts that
+gate it:
 
 ```
 Plan
@@ -298,6 +301,12 @@ State facts
 - Prefetch on the server, one HydrationBoundary, and no refetch on mount.
 - q and page live in the URL through nuqs; the cache key derives from them.
 
+Auth facts
+- verifySession() in the DAL, memoised with cache(); the page calls it.
+- proxy.ts redirects on the cookie alone; /orders verifies on the server.
+- Route stays dynamic; no order row enters a "use cache" scope.
+- The export action re-authenticates itself and takes no userId argument.
+
 Done
 - pnpm lint              clean, at --max-warnings=0
 - pnpm typecheck         clean
@@ -346,8 +355,10 @@ frontend-production-engineer/
 │   ├── directory-and-module-boundaries.md
 │   ├── lint-format-and-scripts.md
 │   ├── openapi-schema-and-codegen.md
+│   ├── route-protection-and-permissions.md
 │   ├── server-and-client-components.md
 │   ├── server-state-and-query-cache.md
+│   ├── session-and-token-lifecycle.md
 │   ├── state-and-effects.md
 │   ├── suspense-and-actions.md
 │   ├── type-modeling-and-narrowing.md
@@ -357,7 +368,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds six domains at 1.5.1 and fills one domain at a time.
+`references/` holds seven domains at 1.6.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 
