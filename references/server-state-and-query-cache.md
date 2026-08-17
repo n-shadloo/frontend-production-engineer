@@ -455,7 +455,7 @@ control is domain 11 `forms-and-validation`.
 
 | Condition | Action | It reverses when | The cost |
 | --- | --- | --- | --- |
-| A push transport is available | Use it, and write the message into the cache with `setQueryData`. Domain 08 owns the transport. | The transport drops often enough that the view falls behind the server. | A connection for each client, and code that reconciles a missed message. |
+| A push transport is available | Use it, and write the message into the cache with `setQueryData`. `references/push-transport-and-connection.md` owns the transport. | The transport drops often enough that the view falls behind the server. | A connection for each client, and code that reconciles a missed message. |
 | A job settles, such as an export or a build | `refetchInterval` as a function that returns `false` when the job is done. | The job never reports a terminal state, so the function has no stop condition. | One request for each period, for each client that watches the job. |
 | The resource changes on the server, and no push transport exists | `refetchInterval`, with a comment that states the period and the reason. | A push transport lands, which the first row covers. | One request for each period for the life of the tab, and the battery that it costs. |
 | The tab is in the background | Keep the default `refetchIntervalInBackground` of `false`. Query then stops the poll. | The value must stay fresh while the tab is hidden, such as a live alert. | The data is stale when the user returns, so the first paint shows the old value. |
@@ -610,8 +610,10 @@ pnpm exec eslint . --max-warnings=0
   an error state, and the retry rule here never repeats a refresh. The
   redirect after a 401, and the tenant that a key carries, are
   `references/route-protection-and-permissions.md`.
-- The socket and the event stream that write into this cache → domain 08
-  `realtime-and-streaming`. Not integrated yet.
+- The connection that pushes data, its reconnect, and its close code →
+  `references/push-transport-and-connection.md`. The event that writes into
+  this cache, and the order of that write against the invalidation, are
+  `references/live-events-and-cache-merge.md`.
 - The field-level map from a DRF 400 to a form control → domain 11
   `forms-and-validation`. Not integrated yet.
 - The column model, the row model, and the virtualiser over an infinite query →

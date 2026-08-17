@@ -376,9 +376,11 @@ rg -n 'DJANGO_URL|NEXT_PUBLIC_API_BASE_URL' src/lib/api
   the 401 as an `ApiError`, and no retry rule here may repeat a refresh. The
   redirect after a 401 is
   `references/route-protection-and-permissions.md`.
-- The WebSocket and the server-sent event lifecycle → domain 08
-  `realtime-and-streaming`. Not integrated yet. This file owns NDJSON and the
-  long poll over HTTP.
+- The push transport, the connection that holds it open, and the streamed
+  response in NDJSON → `references/push-transport-and-connection.md`. This
+  file owns the deadline on an ordinary request, and a streamed response has
+  no single deadline. The parse over each frame is
+  `references/live-events-and-cache-merge.md`.
 - The map from a field name to a form control → domain 11
   `forms-and-validation`. Not integrated yet.
 - The file picker, the progress bar, and the upload UI → domain 13

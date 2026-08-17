@@ -292,6 +292,9 @@ rg -n 'createEnv|EnvSchema' src/env.ts
 - The query keys, the cache, and the mutation state built on these types →
   `references/server-state-and-query-cache.md`. The parse over a value that the
   URL carries is `references/client-and-url-state.md`.
+- The envelope of a pushed message, and the parse that a frame from a
+  connection needs → `references/live-events-and-cache-merge.md`. This file
+  owns the doctrine, and that file owns the discriminated union over an event.
 - The resolver, the field array, and the map from `attr` to a form field →
   domain 11 `forms-and-validation`. Not integrated yet.
 - The words in a validation message that a user reads → domain 15

@@ -449,8 +449,9 @@ pnpm build && pnpm start
   the backend produces.
 - The URL as a store for state that must survive a reload, and the client store
   → `references/client-and-url-state.md`.
-- The socket and the event stream behind a subscription → domain 08
-  `realtime-and-streaming`. Not integrated yet.
+- The connection behind a subscription, the provider that holds it, and the
+  reconnect → `references/push-transport-and-connection.md`. This file owns the
+  rules for an effect, and that file owns the connection inside one.
 - The render cost that a state change produces, and the INP that it costs →
   domain 16 `performance-and-web-vitals`. Not integrated yet.
 - The test for a reducer and for a custom hook → domain 20

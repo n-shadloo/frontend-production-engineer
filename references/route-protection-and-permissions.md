@@ -423,9 +423,10 @@ pnpm build
   `references/suspense-and-actions.md`.
 - The CSRF token that a session write carries →
   `references/cross-origin-and-bff-proxy.md`.
-- The socket handshake that must authenticate from the same session → domain 08
-  `realtime-and-streaming`. Not integrated yet. This file states that the
-  socket never trusts an identity that the client sends.
+- The handshake that must authenticate from the same session, and the close
+  codes 4001 and 4003 → `references/push-transport-and-connection.md`. This
+  file states that the connection never trusts an identity that the client
+  sends.
 - The Server Action supply chain, the CSP, and the judgment of an injection
   sink → domain 17 `frontend-security`. Not integrated yet. That domain holds
   a veto.

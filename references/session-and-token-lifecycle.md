@@ -430,8 +430,10 @@ curl -sI -X POST "$NEXT_PUBLIC_API_BASE_URL/api/auth/login/" | rg -i 'set-cookie
   `references/app-router-structure.md`.
 - The Router Cache that a full load clears →
   `references/caching-and-revalidation.md`.
-- The socket that must authenticate from this same cookie or token → domain 08
-  `realtime-and-streaming`. Not integrated yet.
+- The carrier that a handshake takes for this same credential, and the close
+  code that ends a connection → `references/push-transport-and-connection.md`.
+  This file owns where the credential lives, and that file owns how it travels
+  on a handshake.
 - The login form, the field errors of a credential failure, and the multi-step
   flow of an MFA challenge → domain 11 `forms-and-validation`. Not integrated
   yet. This file owns the error taxonomy that the form maps.
