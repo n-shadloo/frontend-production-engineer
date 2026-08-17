@@ -93,11 +93,12 @@ export function ordersListOptions(filters: OrderFilters) {
 Four rules bind every module of this kind. Put it at
 `src/features/<feature>/api/`, which
 `references/directory-and-module-boundaries.md` owns. NEVER import
-`server-only` here. The browser imports this module too. That guard belongs to
-a data access module, and `references/data-access-and-mutations.md` states
-which modules carry it. Take the `signal` that Query supplies, and combine it
-with a timeout. Throw on a failure, so the error reaches the `error` state of
-the hook.
+`server-only` here. The browser imports this module too. Take the `signal` that
+Query supplies, and combine it with a timeout. Throw on a failure, so the error
+reaches the `error` state of the hook.
+
+That `server-only` guard belongs to a data access module, and
+`references/data-access-and-mutations.md` states which modules carry it.
 
 ### The key factory
 
@@ -314,8 +315,8 @@ backend fault.
 
 A Server Action that mutates on the server uses `updateTag` instead, and
 `references/caching-and-revalidation.md` owns that call. Use the Query cache for
-a write that a client component sends, and use a Server Action for a write that
-a `<form action>` sends.
+a write that a client component sends. Use a Server Action for a write that a
+`<form action>` sends.
 
 ### The optimistic update needs a rollback
 
@@ -370,8 +371,8 @@ correction is visible. A write that fails often shows the user two answers.
 
 The `useQueryClient()` closure above is the form to write. Recent v5 releases
 also pass a context object with `context.client` to the callbacks. Read the
-signature of the installed version before you use that form, and NEVER mix the
-two idioms in one hook.
+signature of the installed version before you use that form. NEVER mix the two
+idioms in one hook.
 
 ### `useOptimistic` or the query cache
 

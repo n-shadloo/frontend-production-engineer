@@ -150,8 +150,8 @@ That attribute is the style hook for a parent that must change one part.
 ```
 
 Prefer a variant over a selector like this one. Use the selector where the
-change belongs to one call site, and where a new variant would serve no second
-caller.
+change belongs to one call site. Take that selector only where a new variant
+would serve no second caller.
 
 ### The focus ring is a token, and it never disappears
 
@@ -159,7 +159,7 @@ caller.
 // Wrong: the outline is removed, and nothing replaces it.
 // Failure: a keyboard user cannot tell which control has focus. Every
 // keyboard path through the surface becomes guesswork, and the task fails
-// domain 10, which holds a veto.
+// domain 10 `accessibility-wcag`, which holds a veto.
 <button className="outline-none" />
 ```
 
@@ -246,7 +246,7 @@ file does not state an exact release date for it.
 | Conditional | Storybook 9 | A shared primitive library that needs documented states, and interaction and visual tests. The overhead does not pay for a small application. | 9.x | 2025 | Active | None |
 | Audit-only | `class-variance-authority` 0.7.1 | It works, and it has no advisory. Keep it in the files that hold it, and never add it to new code. | 0.7.1 | 26 November 2024 | No release for over 12 months | None |
 | Reject | Emotion, `styled-components` | Run-time cost, and a forced client boundary on a Server Component. | — | — | — | — |
-| Reject | `@axe-core/react` | It does not support React 18 or later, so it cannot run on React 19.2. Domain 10 owns the replacement. | — | — | — | — |
+| Reject | `@axe-core/react` | It does not support React 18 or later, so it cannot run on React 19.2. Domain 10 `accessibility-wcag` owns the replacement. | — | — | — | — |
 
 ### Version discipline
 

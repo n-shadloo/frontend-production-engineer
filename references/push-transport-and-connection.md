@@ -203,9 +203,9 @@ export function SocketProvider({
   }, [url]);
 
   return (
-    <StatusContext.Provider value={status}>
-      <SocketContext.Provider value={api}>{children}</SocketContext.Provider>
-    </StatusContext.Provider>
+    <StatusContext value={status}>
+      <SocketContext value={api}>{children}</SocketContext>
+    </StatusContext>
   );
 }
 
@@ -362,7 +362,7 @@ document.addEventListener("visibilitychange", onVisibilityChange);
 a background tab, because `refetchIntervalInBackground` defaults to `false`. A
 connection has no such default, so this rule is the equivalent for a transport
 that pushes. Keep the connection open only where the user must see the change
-on the return to the tab, and state that reason in a comment.
+on the return to the tab. State that reason in a comment.
 
 ### A dropped connection is visible
 

@@ -70,13 +70,18 @@ export default async function DashboardPage() {
 import "server-only";
 import { cache } from "react";
 import { cookies } from "next/headers";
+import { z } from "zod";
 
-export interface Session {
-  id: number;
-  email: string;
-  role: string;
-  permissions: string[];
-}
+// This response decides every later gate, so the value is proven at the
+// boundary rather than taken on trust.
+const SessionSchema = z.object({
+  id: z.number(),
+  email: z.email(),
+  role: z.string(),
+  permissions: z.array(z.string()),
+});
+
+export type Session = z.infer<typeof SessionSchema>;
 
 export const verifySession = cache(async (): Promise<Session | null> => {
   const store = await cookies(); // async in Next 16
@@ -88,7 +93,9 @@ export const verifySession = cache(async (): Promise<Session | null> => {
     signal: AbortSignal.timeout(10_000),
   });
   if (!response.ok) return null;
-  return (await response.json()) as Session;
+
+  const parsed = SessionSchema.safeParse(await response.json());
+  return parsed.success ? parsed.data : null;
 });
 ```
 
@@ -109,10 +116,11 @@ React `cache()` gives one read for each request. Ten server components that
 call `verifySession()` in one render produce one call to Django. Without it,
 each component sends its own request, and the render pays for all of them.
 
-Three rules bind the module. It imports `server-only`, so a client import
+Four rules bind the module. It imports `server-only`, so a client import
 fails the build. It states the cache intent on the `fetch`, because a session
-read must never enter a shared cache. It returns `null` rather than throwing,
-so each caller decides its own answer.
+read must never enter a shared cache. It parses the response, because the
+session is the most trust-sensitive value that the frontend reads. It returns
+`null` rather than throwing, so each caller decides its own answer.
 `references/data-access-and-mutations.md` owns the rest of the rules for a
 data access module, and
 `references/boundary-validation-and-api-types.md` rules on the parse that a
@@ -341,7 +349,7 @@ input. A switch of the tenant also clears the entries of the previous one, and
 
 ```bash
 # 1. Find a protected page with no session check. Read every hit.
-rg -L --files-without-match 'verifySession|getSession' -g 'page.tsx' src/app
+rg --files-without-match 'verifySession|getSession' -g 'page.tsx' src/app
 
 # 2. Confirm that proxy.ts holds no authorization. This must print nothing.
 rg -nE 'jwtVerify|jsonwebtoken|decode\(|\.role|verifySession|DJANGO_URL' proxy.ts src/proxy.ts

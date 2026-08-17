@@ -86,7 +86,7 @@ decides the cache key, and the two never disagree.
 
 A search box that writes on every keystroke produces one history entry for each
 letter. Give that input the `throttleMs` option, or wrap the write in a
-transition, so the address bar follows the typing rather than records it.
+transition. The address bar then follows the typing rather than records it.
 
 ### `useSearchParams` needs a `<Suspense>` boundary
 
@@ -103,7 +103,7 @@ fallback.
 
 The server `searchParams` prop is a different value, and
 `references/app-router-structure.md` states that a page which reads it is
-dynamic. Read the query string on the server for the first render, and read it
+dynamic. Read the query string on the server for the first render. Read it
 with nuqs in the client component that changes it.
 
 ### nuqs
@@ -259,8 +259,8 @@ Read the installed versions before you write code.
 
 Zustand 5 is the pin. The `create` call takes the curried form
 `create<T>()(...)` under `strict`. A module-level `create` that holds a
-request-specific value is the version 4 idiom that the App Router breaks, and
-it is alive only in legacy code.
+request-specific value is the version 4 idiom that the App Router breaks. That
+idiom is alive only in legacy code.
 
 nuqs 2 is the pin. Rewrite `import { queryTypes } from "nuqs"` to the parser
 exports. `createLoader` and `createSearchParamsCache` need nuqs 2.3 or later.

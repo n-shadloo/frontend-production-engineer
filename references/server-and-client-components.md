@@ -296,8 +296,8 @@ export function Stamp({ iso }: { iso: string }) {
 `suppressHydrationWarning` is an escape hatch. It works one level deep, React
 does not patch the mismatched text, and it hides the next real mismatch in the
 same element. Use it on a single unavoidable leaf, and never on a subtree. The
-one exception is the `<html>` element under a theme script, where the attribute
-alone differs and the one-level behavior is the behavior that the case needs.
+one exception is the `<html>` element under a theme script. The attribute alone
+differs there, so the one-level behavior is the behavior that the case needs.
 `references/design-tokens-and-theming.md` holds that rule.
 
 ## Verification

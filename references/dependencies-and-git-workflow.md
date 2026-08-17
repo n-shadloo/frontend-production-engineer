@@ -123,8 +123,8 @@ gate `gh pr merge --auto` on the same two types.
 
 Use lefthook. It is one Go binary, it runs jobs in parallel, and it re-stages a
 file that the formatter changed under `stage_fixed: true`. Choose Husky only
-where the team wants the most-adopted Node tool and needs no parallel run; its
-`prepare` script re-runs on every install.
+where the team wants the most-adopted Node tool and needs no parallel run. The
+Husky `prepare` script re-runs on every install.
 
 | Hook | What it runs | Why there |
 | --- | --- | --- |

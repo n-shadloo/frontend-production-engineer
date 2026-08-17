@@ -118,7 +118,7 @@ person can fix.
 | --- | --- | --- |
 | `Parsing error: ESLint was configured to run on ... however that TSConfig does not include this file` | A type-aware rule met a file outside the `tsconfig.json` include, such as a root config file | Put that file in a glob override with the type-aware rules off. `references/typescript-config-and-enforcement.md` holds the override |
 | A TypeScript rule reports nothing | The array holds `core-web-vitals` and not `typescript` | Add the second export. Plant an unused variable and confirm the report |
-| `It looks like you're trying to use tailwindcss directly as a PostCSS plugin` | Tailwind v4 moved the plugin | Use `@tailwindcss/postcss`. The CSS entry is domain 09 |
+| `It looks like you're trying to use tailwindcss directly as a PostCSS plugin` | Tailwind v4 moved the plugin | Use `@tailwindcss/postcss`. The CSS entry is `references/design-tokens-and-theming.md` |
 
 ### Next 16 removed `next lint`, so CI runs the lint step
 

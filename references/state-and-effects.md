@@ -365,11 +365,12 @@ moved into `eslint-plugin-react-hooks`. That plugin is alive only in legacy
 code.
 
 The five idioms in the next paragraph are alive only in legacy code. Rewrite
-the stale idioms that a generator produces. `forwardRef(` becomes a
-`ref` prop. `ReactDOM.render(` becomes `createRoot`. A `propTypes` or a
-`defaultProps` assignment on a function component becomes a type and a default
-parameter. `experimental_useEffectEvent` becomes `useEffectEvent`. A `next lint`
-script becomes a direct call to ESLint.
+the stale idioms that a generator produces.
+
+`forwardRef(` becomes a `ref` prop. `ReactDOM.render(` becomes `createRoot`. A
+`propTypes` or a `defaultProps` assignment on a function component becomes a
+type and a default parameter. `experimental_useEffectEvent` becomes
+`useEffectEvent`. A `next lint` script becomes a direct call to ESLint.
 
 ## Verification
 

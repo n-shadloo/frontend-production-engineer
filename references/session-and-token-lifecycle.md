@@ -274,8 +274,8 @@ server invalidation does not reach the Router Cache.
 | `/_allauth/{client}/v1/...`, from `django-allauth` headless | The flow of that endpoint | The session state, with `X-Session-Token` for an application client |
 | The `dj-rest-auth` routes | Login, logout, password, and registration | The wrapper over `django-allauth` |
 
-Take the request and the response types from the generated client, so a
-change to a serializer becomes a compile error.
+Take the request and the response types from the generated client. A change to
+a serializer then becomes a compile error.
 `references/openapi-schema-and-codegen.md` owns the generator, and
 `references/boundary-validation-and-api-types.md` owns the parse over the
 result.
@@ -327,11 +327,8 @@ dependency states its replacement, its size, and its maintenance status.
 
 Read the installed versions before you write code.
 
-React 19.2.4 is the security floor. The advisories of December 2025 and
-January 2026 describe a family of remote code execution and denial of service
-defects in React Server Components. CVE-2025-55182 is the first of them, with
-a CVSS score of 10.0. Every release below 19.2.4 on the 19.2 line carries at
-least one of them.
+React 19.2.4 is the security floor, for the reason that
+`references/state-and-effects.md` states.
 
 Next.js 16.2.11 and 15.5.21 are the patched releases of 21 July 2026. Two of
 the defects in that release bear on this domain. CVE-2026-64642 is a bypass of
