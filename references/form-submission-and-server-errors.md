@@ -409,8 +409,8 @@ curl -sSi -X POST "$ORDERS_URL"
   holds the rule that a disabled submit button hides a refusal.
 - The upload that a submit carries, and its progress →
   `references/file-upload-and-transport.md`.
-- The words in an error message and in a confirmation → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words in an error message → `references/error-and-empty-state-copy.md`.
+  The words in a confirmation → `references/interface-copy-and-voice.md`.
 - The Content Security Policy over the page that holds the form, and the
   Server Action surface → domain 17 `frontend-security`. Not integrated yet.
 - The MSW handler that returns a DRF 400, and the test that proves the message

@@ -355,5 +355,5 @@ pnpm build && pnpm start
   `references/keyboard-focus-and-live-regions.md`. That domain holds a veto.
 - The bundle bytes that a client leaf adds, and the INP that it costs →
   domain 16 `performance-and-web-vitals`. Not integrated yet.
-- The words in an error state and an empty state → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words in an error state, and the three cases behind an empty state →
+  `references/error-and-empty-state-copy.md`.

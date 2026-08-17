@@ -425,8 +425,8 @@ rg -n 'presign|createPresignedPost|putWithProgress' -g '*.ts*' src/
   `references/dependencies-and-git-workflow.md`.
 - The Content Security Policy over the page that holds the upload → domain 17
   `frontend-security`. Not integrated yet.
-- The words in an upload message and in a refusal → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words in an upload message and in a refusal →
+  `references/error-and-empty-state-copy.md`.
 - The bytes that an upload costs, and the budget over them → domain 16
   `performance-and-web-vitals`. Not integrated yet.
 - The bucket, the storage credential, and the reverse-proxy body limit → domain

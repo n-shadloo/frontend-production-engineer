@@ -281,8 +281,8 @@ control that performs the action.
 Give the user a way back. An action that destroys data needs a confirmation, an
 undo, or both.
 
-Domain 15 `ux-writing-and-content-design` owns the plain language of the
-content itself. It is not integrated yet.
+`references/interface-copy-and-voice.md` owns the plain language of the content
+itself, and the words of the confirmation that a destructive action needs.
 
 ### What breaks, and how it looks
 
@@ -403,7 +403,7 @@ rg -n 'draggable|onDragStart|onPointerMove' -g '*.tsx' src/
   tokens → `references/motion-primitives-and-reduced-motion.md`.
 - The drag library, its sensors, and the scroll that a gesture drives →
   `references/gesture-and-scroll-interaction.md`.
-- The plain language of the content → domain 15 `ux-writing-and-content-design`.
-  Not integrated yet.
+- The plain language of the content, and the instruction that names a control
+  rather than a color → `references/interface-copy-and-voice.md`.
 - The layout cost of a zoom, and the bytes of a large surface → domain 16
   `performance-and-web-vitals`. Not integrated yet.

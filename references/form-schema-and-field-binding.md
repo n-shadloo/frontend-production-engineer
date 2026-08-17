@@ -418,10 +418,12 @@ pnpm typecheck
 - The file picker, the upload transport, and the progress →
   `references/file-upload-and-transport.md`. This file owns only the schema rule
   over a file.
-- The words inside a label, a hint, and a validation message → domain 15
-  `ux-writing-and-content-design`. This file owns the key, and that domain owns
-  the text. Not integrated yet.
-- The message catalog and the plural rule behind a translated message → domain
-  19 `internationalization-and-rtl`. Not integrated yet.
+- The words inside a label, a hint, and a validation message →
+  `references/interface-copy-and-voice.md`. This file owns the key, and that
+  file owns the text.
+- The catalog key and the plural rule behind a translated message →
+  `references/message-catalog-and-plurals.md`. The file that holds the catalog
+  and the locale route → domain 19 `internationalization-and-rtl`. Not
+  integrated yet.
 - The test that fills a form by its accessible label, and the schema test →
   domain 20 `testing-and-quality`. Not integrated yet.

@@ -420,8 +420,8 @@ pnpm typecheck
   `references/file-upload-and-transport.md`.
 - The politeness of an announcement when a row arrives →
   `references/keyboard-focus-and-live-regions.md`. That domain holds a veto.
-- The words of a live notification → domain 15 `ux-writing-and-content-design`.
-  Not integrated yet.
+- The words of a live notification, and the channel that carries it →
+  `references/error-and-empty-state-copy.md`.
 - The render cost of a high-frequency feed, and the budget over it → domain 16
   `performance-and-web-vitals`. Not integrated yet.
 - The metric behind the counter, and the alarm on it → domain 21

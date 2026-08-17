@@ -221,7 +221,7 @@ before you write the code.
 
 Render an explanation on a 403, whichever call produces it. A blank page after
 a permission failure is a support request, and the user cannot act on it.
-Domain 15 `ux-writing-and-content-design` owns the words.
+`references/error-and-empty-state-copy.md` owns the words.
 
 ### The redirect target is validated
 
@@ -441,8 +441,8 @@ pnpm build
 - The focus that moves to a 403 message, and the keyboard path to a gated
   control → `references/keyboard-focus-and-live-regions.md`. That domain holds
   a veto.
-- The words of a 403 explanation and of a disabled control → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words of a 403 explanation → `references/error-and-empty-state-copy.md`.
+  The words on a disabled control → `references/interface-copy-and-voice.md`.
 - The test that posts to a Server Action with no session → domain 20
   `testing-and-quality`. Not integrated yet.
 - The DRF permission class, the object-level check, the impersonation

@@ -622,8 +622,8 @@ pnpm exec eslint . --max-warnings=0
   `references/data-table-and-server-driven-state.md`.
 - The upload progress of a mutation that carries a file →
   `references/file-upload-and-transport.md`.
-- The words in an empty state and an error state → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The three cases behind an empty state, and the words in an error state →
+  `references/error-and-empty-state-copy.md`.
 - The request count and the payload cost of a cache decision → domain 16
   `performance-and-web-vitals`. Not integrated yet.
 - The MSW handlers and the test harness → domain 20 `testing-and-quality`. Not

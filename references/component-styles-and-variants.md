@@ -358,8 +358,8 @@ pnpm typecheck
   `references/data-table-and-server-driven-state.md`.
 - The transition and the animation that a variant change triggers →
   `references/motion-primitives-and-reduced-motion.md`.
-- The words inside a control, and the message beside it → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words inside a control → `references/interface-copy-and-voice.md`. The
+  message beside it → `references/error-and-empty-state-copy.md`.
 - The CSS bytes and the icon bytes that a surface adds → domain 16
   `performance-and-web-vitals`. Not integrated yet.
 - The supply chain of a style dependency, and its advisories → domain 17

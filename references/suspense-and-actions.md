@@ -382,7 +382,8 @@ rg -n 'action=\{' -g '*.tsx' src/
   `references/view-transitions-and-animation-libraries.md`. The duration of an
   animation, and the delay before an indicator appears →
   `references/motion-primitives-and-reduced-motion.md`.
-- The words in an error message, an empty state, and a pending label →
-  domain 15 `ux-writing-and-content-design`. Not integrated yet.
+- The words in an error message and in an empty state →
+  `references/error-and-empty-state-copy.md`. The words in a pending label →
+  `references/interface-copy-and-voice.md`.
 - The content of the document metadata → domain 18 `seo-and-metadata`. Not
   integrated yet.

@@ -692,8 +692,8 @@ npx wscat -c "wss://staging.example.com/ws/feed/"
   `references/served-content-and-downloads.md`.
 - The row that a live table adds while the user reads it →
   `references/data-table-and-server-driven-state.md`.
-- The words of a degraded message and of a reconnect message → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words of a degraded message and of a reconnect message →
+  `references/error-and-empty-state-copy.md`.
 - The connection uptime, the reconnect count, and the alarm over them → domain
   21 `observability-and-resilience`. Not integrated yet. This file emits the
   status, and that domain wires it to Sentry and to real-user monitoring.

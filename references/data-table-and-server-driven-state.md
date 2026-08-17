@@ -575,8 +575,9 @@ test("a sort updates the address and fires one request", async ({ page }) => {
   `references/push-transport-and-connection.md`.
 - The map from a DRF 400 onto a control inside an editable cell →
   `references/form-submission-and-server-errors.md`.
-- The words in an empty state, a column header, and a bulk-action confirmation →
-  domain 15 `ux-writing-and-content-design`. Not integrated yet.
+- The words in a column header and in a bulk-action confirmation →
+  `references/interface-copy-and-voice.md`. The three cases behind an empty
+  table → `references/error-and-empty-state-copy.md`.
 - The INP of a sort and of a filter, and the budget over the row payload →
   domain 16 `performance-and-web-vitals`. Not integrated yet.
 - The direction of a table under `dir="rtl"`, and the locale that a sort assumes

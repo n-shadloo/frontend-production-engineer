@@ -541,5 +541,6 @@ rg -n 'onMouseEnter|onMouseOver' -g '*.tsx' src/
 - The moment at which a focus move happens, after an entrance ends →
   `references/motion-primitives-and-reduced-motion.md`. The view transition
   itself → `references/view-transitions-and-animation-libraries.md`.
-- The words of an announcement and of an error message → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words of an announcement and of an error message, and the choice of
+  channel → `references/error-and-empty-state-copy.md`. The words on a control
+  → `references/interface-copy-and-voice.md`.

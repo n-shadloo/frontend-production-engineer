@@ -78,9 +78,11 @@ column. Take `roundingMode` and `roundingIncrement` for a money column, and
 Right-align a numeric column, and give it `tabular-nums`, so the digits form a
 column that the eye can compare.
 
-The locale itself, the message catalog, and the direction of the document are
-domain 19 `internationalization-and-rtl`. Until that domain lands, take the
-locale from one constant in the application, and never from the browser. The
+`references/message-catalog-and-plurals.md` owns the catalog key and the ICU
+message. The locale itself, the file that holds the catalog, and the direction
+of the document are domain 19 `internationalization-and-rtl`. Until that domain
+lands, take the locale from one constant in the application, and never from the
+browser. The
 server and the browser then always agree.
 
 ### The export covers the current query
@@ -283,8 +285,8 @@ head -c 3 export.csv | xxd | grep -q "efbb bf" && echo "the BOM is present"
 - The locale that the application chooses, the currency for each locale, and the
   direction of the document → domain 19 `internationalization-and-rtl`. Not
   integrated yet.
-- The words in a download message and in an expiry warning → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words in a download message and in an expiry warning →
+  `references/error-and-empty-state-copy.md`.
 - The test that opens an export and reads its rows → domain 20
   `testing-and-quality`. Not integrated yet.
 - The worker that builds a large export, its retries, and its idempotency → the

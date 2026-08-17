@@ -506,7 +506,10 @@ pnpm lint
   `references/data-table-and-server-driven-state.md`.
 - The bytes of an image, and the video player →
   `references/image-and-video-delivery.md`.
-- The words inside a label, a hint, and an error message → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
-- The locale route, the message catalog, and the direction of the document →
-  domain 19 `internationalization-and-rtl`. Not integrated yet.
+- The words inside a label and a hint, and the rule that an accessible name
+  holds the visible label → `references/interface-copy-and-voice.md`. The
+  words in an error message → `references/error-and-empty-state-copy.md`.
+- The catalog key behind a name and a hint →
+  `references/message-catalog-and-plurals.md`.
+- The locale route, the file that holds the catalog, and the direction of the
+  document → domain 19 `internationalization-and-rtl`. Not integrated yet.

@@ -288,8 +288,8 @@ curl -sSI "$MEDIA_ORIGIN/media/avatars/42.svg"
   integrated yet.
 - The interaction cost of a build on the main thread → domain 16
   `performance-and-web-vitals`. Not integrated yet.
-- The words in a download message and in an expiry warning → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words in a download message and in an expiry warning →
+  `references/error-and-empty-state-copy.md`.
 - The reverse proxy, the storage bucket, and the header that it sends → domain
   22 `build-deploy-and-runtime-ops`. Not integrated yet.
 - The test that follows a download and reads the file → domain 20

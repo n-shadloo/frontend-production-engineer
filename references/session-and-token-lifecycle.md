@@ -444,8 +444,8 @@ curl -sI -X POST "$NEXT_PUBLIC_API_BASE_URL/api/auth/login/" | rg -i 'set-cookie
   CAPTCHA → `references/semantics-and-accessible-names.md`. The focus order
   over those controls → `references/keyboard-focus-and-live-regions.md`. That
   domain holds a veto.
-- The words in a session-expiry message → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words in a session-expiry message →
+  `references/error-and-empty-state-copy.md`.
 - The MSW handler for each auth state, the Playwright storage state, and the
   expired-token fixture → domain 20 `testing-and-quality`. Not integrated yet.
 - The reverse proxy in front of Node that must forward `Set-Cookie` → domain 22

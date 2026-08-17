@@ -318,8 +318,9 @@ rg -ln 'aria:\s*\{' -g '*.ts*' src/ | \
   `references/server-state-and-query-cache.md`.
 - The classes on the chart container →
   `references/component-styles-and-variants.md`.
-- The words in a caption, a legend, and an empty chart → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words in a caption and in a legend →
+  `references/interface-copy-and-voice.md`. The copy of an empty chart →
+  `references/error-and-empty-state-copy.md`.
 - The bundle bytes of a chart library, and the main-thread cost of a paint →
   domain 16 `performance-and-web-vitals`. Not integrated yet.
 - The direction of an axis under `dir="rtl"`, and the locale of a label →

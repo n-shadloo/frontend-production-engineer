@@ -427,7 +427,7 @@ rg -n -B3 '\.focus\(\)' -g '*.tsx' src/
   `references/server-and-client-components.md`.
 - The optimistic value that a mutation writes back →
   `references/server-state-and-query-cache.md`.
-- The words of a label that reports a state change → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words of a label that reports a state change →
+  `references/interface-copy-and-voice.md`.
 - The INP threshold, the long-task budget, and the device matrix → domain 16
   `performance-and-web-vitals`. Not integrated yet.

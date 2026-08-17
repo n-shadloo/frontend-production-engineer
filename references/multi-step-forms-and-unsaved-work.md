@@ -234,8 +234,8 @@ rg -n 'useQueryState\(.*(password|token|card|ssn)' -g '*.ts*' src/
   `references/keyboard-focus-and-live-regions.md`. That domain holds a veto.
 - The criterion that forbids a second request for the same answer →
   `references/semantics-and-accessible-names.md`. That domain holds a veto.
-- The words in a warning dialog and in a step label → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words in a warning dialog and in a step label →
+  `references/interface-copy-and-voice.md`.
 - The test that reloads the page in the middle of the flow, and the test that
   presses the back button → domain 20 `testing-and-quality`. Not integrated
   yet.

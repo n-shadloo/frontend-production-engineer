@@ -329,8 +329,9 @@ rg -n 'next/font' src/
   `references/image-and-video-delivery.md`.
 - The transition between two layouts, and the reduced variant behind it →
   `references/motion-primitives-and-reduced-motion.md`.
-- The words in a heading, and the length that the design assumes → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words in a heading → `references/interface-copy-and-voice.md`. The
+  pseudo-locale that proves the length →
+  `references/message-catalog-and-plurals.md`.
 - The layout shift budget, the font byte budget, and the LCP element → domain
   16 `performance-and-web-vitals`. Not integrated yet.
 - The locale route, the `dir` attribute, and the subset for a non-Latin script

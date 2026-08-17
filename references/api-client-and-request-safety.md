@@ -418,7 +418,8 @@ rg -n 'DJANGO_URL|NEXT_PUBLIC_API_BASE_URL' src/lib/api
   `references/form-submission-and-server-errors.md`.
 - The file picker, the progress bar, and the upload interface →
   `references/file-upload-and-transport.md`.
-- The words that a person reads in an error message → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The map from the `code` of an `ApiError` onto the message that a person
+  reads → `references/error-and-empty-state-copy.md`. This file owns the
+  normalizer, and that file owns the words.
 - The throttle rate, the N+1 query, and the latency behind a slow endpoint →
   the sibling skill `django-performance-optimizer`.

@@ -361,8 +361,9 @@ rg -n 'youtube\.com/embed|player\.vimeo\.com' -g '*.tsx' src/
   player → domain 16 `performance-and-web-vitals`. Not integrated yet.
 - The transition between two pictures, and the reduced variant behind it →
   `references/motion-primitives-and-reduced-motion.md`.
-- The words of a caption, a transcript, and an empty media state → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words of a caption and of a transcript →
+  `references/interface-copy-and-voice.md`. The copy of an empty media state →
+  `references/error-and-empty-state-copy.md`.
 - The Open Graph image and the metadata around it → domain 18
   `seo-and-metadata`. Not integrated yet.
 - The bucket, the CDN, and the infrastructure behind the optimizer → domain 22

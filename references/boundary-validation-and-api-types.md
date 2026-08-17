@@ -298,7 +298,7 @@ rg -n 'createEnv|EnvSchema' src/env.ts
 - The resolver, the field array, and the schema that one form stands on →
   `references/form-schema-and-field-binding.md`. The map from `attr` to a form
   field is `references/form-submission-and-server-errors.md`.
-- The words in a validation message that a user reads → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words in a validation message that a user reads, and the map from an
+  error `code` onto them → `references/error-and-empty-state-copy.md`.
 - The MSW handlers and the contract test against the schema → domain 20
   `testing-and-quality`. Not integrated yet.

@@ -309,5 +309,5 @@ rg -n -B6 'parallax' -g '*.css' -g '*.tsx' src/
   `references/dependencies-and-git-workflow.md`.
 - The long task, the INP threshold, and the budget over a scroll effect →
   domain 16 `performance-and-web-vitals`. Not integrated yet.
-- The words on a move control and on a drag announcement → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words on a move control and on a drag announcement →
+  `references/interface-copy-and-voice.md`.

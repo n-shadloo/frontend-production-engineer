@@ -393,5 +393,5 @@ pnpm test:e2e
   `build-deploy-and-runtime-ops`. Not integrated yet.
 - The supply chain of a test dependency → domain 17 `frontend-security`. Not
   integrated yet. That domain holds a veto.
-- The words of the accessibility statement → domain 15
-  `ux-writing-and-content-design`. Not integrated yet.
+- The words of the accessibility statement →
+  `references/interface-copy-and-voice.md`.
