@@ -198,7 +198,7 @@ state an exact release date for it.
 
 | Symptom | Cause | Detection | Fix |
 | --- | --- | --- | --- |
-| A list that only a drag reorders | No pointer path beside the drag | Reorder the list with one pointer and no drag | Add the move controls that domain 10 states |
+| A list that only a drag reorders | No pointer path beside the drag | Reorder the list with one pointer and no drag | Add the move controls that `references/visual-and-motor-criteria.md` states |
 | A handle that the keyboard reaches and cannot use | No keyboard sensor | Tab to the handle, and press the arrow keys | Add `KeyboardSensor` to the sensor list |
 | A drag that fires on a click | No activation constraint | Click a row without moving the pointer | Set a distance constraint on the pointer sensor |
 | The scroll stutters on a phone | A scroll listener reads a layout value | Long task bars in the Performance recording | Take a scroll timeline, and delete the listener |

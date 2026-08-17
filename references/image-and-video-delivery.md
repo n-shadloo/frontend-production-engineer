@@ -192,6 +192,8 @@ ask for.
 // Correct: a picture and a button first, and the real player after a click.
 "use client"; // it swaps the picture for an iframe on a click
 
+import { useState } from "react";
+
 type FacadeProps = { embedSrc: string; posterSrc: string; title: string };
 
 function PlayerFacade({ embedSrc, posterSrc, title }: FacadeProps) {
@@ -273,8 +275,9 @@ rg -n '"next"|"hls.js"|"shaka-player"|"sharp"' package.json
 # 2. Find a raw img tag. Each hit needs a written reason.
 rg -n '<img' -g '*.tsx' src/
 
-# 3. Find a fill image. Each one needs a sizes prop within a few lines.
-rg -n -A6 '\bfill\b' -g '*.tsx' src/ | rg -B6 -v 'sizes'
+# 3. Find a fill image. Read every hit, and confirm a sizes prop within a few
+#    lines.
+rg -n -A6 '\bfill\b' -g '*.tsx' src/
 
 # 4. Find a lazy attribute. No hit is the element that paints the largest area.
 rg -n 'loading="lazy"' -g '*.tsx' src/

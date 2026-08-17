@@ -89,9 +89,10 @@ channels of React. React 19.2 shipped `<Activity>`, and it did not ship
 `<ViewTransition>`. Recommend the component only with that condition stated.
 
 ```tsx
-// Correct, with the condition stated: the App Router bundles a React canary,
-// so the unprefixed name resolves there. A stable React release exports the
-// same component under an unstable_ prefix.
+// Correct, with the condition stated: the component is experimental, so the
+// installed React build decides between the prefixed name and the unprefixed
+// one. This sample takes the prefixed name, and the verification block below
+// reads the exports of the build.
 import { unstable_ViewTransition as ViewTransition } from "react";
 
 export function Thumbnail({ id, children }: { id: string; children: React.ReactNode }) {
@@ -234,8 +235,9 @@ Motion publishes two entry points with very different weights. The full
 `motion` component is about 34 kilobytes, and no bundler splits it smaller. The
 `m` component with `LazyMotion` is under 4.6 kilobytes for the first render. A
 feature pack then adds its own bytes. `domAnimation` adds about 15, and
-`domMax` adds about 25. The `useAnimate` mini API is 2.3 kilobytes. Domain 16
-`performance-and-web-vitals` owns the budget that these numbers meet.
+`domMax` adds about 25. The `useAnimate` mini API is 2.3 kilobytes.
+
+Domain 16 `performance-and-web-vitals` owns the budget that these numbers meet.
 
 ### Version discipline
 

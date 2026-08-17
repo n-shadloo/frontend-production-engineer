@@ -58,6 +58,8 @@ in decline, and alive only in legacy code.
 
 import { useState } from "react";
 
+import { cn } from "@/lib/utils";
+
 function DropZone({ onFiles }: { onFiles: (files: FileList) => void }) {
   const [depth, setDepth] = useState(0);
 

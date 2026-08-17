@@ -91,9 +91,11 @@ file.
 The convention behind the scale is three bands. A micro-interaction takes about
 100 to 200 milliseconds. A change inside the page takes about 200 to 300. A
 surface that covers the screen takes about 300 to 500. An entrance takes an
-ease-out curve, and an exit takes an ease-in curve. These bands are conventions
-of Material Design and of the Apple Human Interface Guidelines. They are not a
-standard, and the design system fixes the exact values.
+ease-out curve, and an exit takes an ease-in curve.
+
+These bands are conventions of Material Design and of the Apple Human Interface
+Guidelines. They are not a standard, and the design system fixes the exact
+values.
 
 A transition above 300 milliseconds on a hover reads as a broken product.
 
@@ -383,7 +385,7 @@ rg -n -B3 '\.focus\(\)' -g '*.tsx' src/
 - [ ] Do the hot-path animations use `transform` and `opacity` alone?
 - [ ] Does every animation over a layout property carry a written reason?
 - [ ] Do the duration and the easing function come from tokens?
-- [ ] Does the entrance and the exit of a platform element use `@starting-style`
+- [ ] Do the entrance and the exit of a platform element use `@starting-style`
       and `transition-behavior: allow-discrete`?
 - [ ] Does a reveal of a height use `grid-template-rows` or `interpolate-size`?
 - [ ] Is `will-change` scoped to the element that is about to animate, and
