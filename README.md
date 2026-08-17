@@ -253,17 +253,18 @@ run.
 
 ## Example output
 
-At 1.11.0 the integrated material is the operating doctrine, the App Router
+At 1.11.1 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
 events on it. It holds the design system and accessibility — the tokens and the
 layout, the element and its name, the keyboard, and the measurable criteria. It
 holds forms — the schema and the bind, the submit and the server error, and the
-flow that spans screens. The newest part is the dense data surface. It holds the
-table with the server that drives it, the chart, and the value that a user reads
-or takes away. The worked example is the shape of a task and the facts that gate
-it:
+flow that spans screens.
+
+The newest part is the dense data surface. It holds the table with the server
+that drives it, the chart, and the value that a user reads or takes away. The
+worked example is the shape of a task and the facts that gate it:
 
 ```
 Plan
@@ -416,7 +417,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds twelve domains at 1.11.0 and fills one domain at a time.
+`references/` holds twelve domains at 1.11.1 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 
