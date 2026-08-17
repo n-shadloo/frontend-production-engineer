@@ -44,7 +44,9 @@ is media — a file input, a drop zone, an upload, a progress bar, a presigned
 URL, `next/image`, a `sizes` prop, a video, a captions track, or a download.
 The thirteenth group is motion — an animation, a transition, an
 easing token, `prefers-reduced-motion`, a view transition, Motion, a drag, or a
-scroll effect. The fourteenth group is the project setup — a folder move, a
+scroll effect. The fourteenth group is the copy — a button label, an accessible
+name, a hint, an error message, an empty state, a confirmation, a message key,
+or an ICU plural. The fifteenth group is the project setup — a folder move, a
 barrel file, `eslint.config.ts`, the lockfile, a git hook, or a new dependency.
 The last group is any change to the bundle, the headers, or the build.
 
