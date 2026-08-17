@@ -437,9 +437,10 @@ curl -sI -X POST "$NEXT_PUBLIC_API_BASE_URL/api/auth/login/" | rg -i 'set-cookie
 - The CSP that makes an injection unable to read a token, and the response
   headers → domain 17 `frontend-security`. Not integrated yet. That domain
   holds a veto.
-- The accessible name and the focus order of a sign-in control, and the
-  accessibility cost of a CAPTCHA → domain 10 `accessibility-wcag`. Not
-  integrated yet. That domain holds a veto.
+- The accessible name of a sign-in control, and the accessibility cost of a
+  CAPTCHA → `references/semantics-and-accessible-names.md`. The focus order
+  over those controls → `references/keyboard-focus-and-live-regions.md`. That
+  domain holds a veto.
 - The words in a session-expiry message → domain 15
   `ux-writing-and-content-design`. Not integrated yet.
 - The MSW handler for each auth state, the Playwright storage state, and the

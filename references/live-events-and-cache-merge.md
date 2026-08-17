@@ -418,8 +418,8 @@ pnpm typecheck
   `data-tables-and-visualization`. Not integrated yet.
 - The progress event of an upload or a download → domain 13
   `media-and-file-handling`. Not integrated yet.
-- The politeness of an announcement when a row arrives → domain 10
-  `accessibility-wcag`. Not integrated yet. That domain holds a veto.
+- The politeness of an announcement when a row arrives →
+  `references/keyboard-focus-and-live-regions.md`. That domain holds a veto.
 - The words of a live notification → domain 15 `ux-writing-and-content-design`.
   Not integrated yet.
 - The render cost of a high-frequency feed, and the budget over it → domain 16

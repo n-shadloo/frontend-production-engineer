@@ -365,7 +365,7 @@ rg -n 'action=\{' -g '*.tsx' src/
   `references/server-state-and-query-cache.md`. That file holds the rule that
   divides `useOptimistic` from an optimistic write to the query cache.
 - The live region that announces a pending state, and the focus that moves to
-  an error message → domain 10 `accessibility-wcag`. Not integrated yet. That
+  an error message → `references/keyboard-focus-and-live-regions.md`. That
   domain holds a veto.
 - The resolver, the field array, and the multi-step flow → domain 11
   `forms-and-validation`. Not integrated yet.

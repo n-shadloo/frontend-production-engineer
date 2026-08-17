@@ -161,8 +161,9 @@ throws when a part renders outside the parent, which is the rule that
 `useMemo` on the context value is an escape hatch for a project that does not
 enable the React Compiler; `references/state-and-effects.md` rules on it. The
 `role` and the `aria-selected` values above are the minimum that the pattern
-needs. The full keyboard behavior and the accessible names are domain 10
-`accessibility-wcag`, which holds a veto.
+needs. The accessible names are
+`references/semantics-and-accessible-names.md`, and the full keyboard behavior
+is `references/keyboard-focus-and-live-regions.md`. That domain holds a veto.
 
 ### Render the component as another element
 
@@ -381,9 +382,10 @@ rg -n -B1 -A8 '^\s*(type|interface) \w+Props' -g '*.tsx' src/ | rg '\?: boolean'
 - The classes on a part, `cn()`, and the variant API →
   `references/component-styles-and-variants.md`. The tokens behind them are
   `references/design-tokens-and-theming.md`.
-- The ARIA roles, the keyboard behavior, and the focus order of a compound
-  component → domain 10 `accessibility-wcag`. Not integrated yet. That domain
-  holds a veto.
+- The ARIA roles of a compound component →
+  `references/semantics-and-accessible-names.md`. Its keyboard behavior and
+  its focus order → `references/keyboard-focus-and-live-regions.md`. That
+  domain holds a veto.
 - The field binding and the resolver on a form control → domain 11
   `forms-and-validation`. Not integrated yet.
 - The virtualiser for a long list, and the column definitions → domain 12

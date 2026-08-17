@@ -439,8 +439,8 @@ pnpm build
   sink → domain 17 `frontend-security`. Not integrated yet. That domain holds
   a veto.
 - The focus that moves to a 403 message, and the keyboard path to a gated
-  control → domain 10 `accessibility-wcag`. Not integrated yet. That domain
-  holds a veto.
+  control → `references/keyboard-focus-and-live-regions.md`. That domain holds
+  a veto.
 - The words of a 403 explanation and of a disabled control → domain 15
   `ux-writing-and-content-design`. Not integrated yet.
 - The test that posts to a Server Action with no session → domain 20

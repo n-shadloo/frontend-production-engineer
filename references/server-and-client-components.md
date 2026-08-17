@@ -350,9 +350,9 @@ pnpm build && pnpm start
 - The client cache, `useQuery`, and the mutation state →
   `references/server-state-and-query-cache.md`. The store and the URL value that
   a provider carries are `references/client-and-url-state.md`.
-- The accessible name, the focus order, and the live region on a skeleton or
-  an error boundary → domain 10 `accessibility-wcag`. Not integrated yet. That
-  domain holds a veto.
+- The accessible name → `references/semantics-and-accessible-names.md`. The
+  focus order, and the live region on a skeleton or an error boundary →
+  `references/keyboard-focus-and-live-regions.md`. That domain holds a veto.
 - The bundle bytes that a client leaf adds, and the INP that it costs →
   domain 16 `performance-and-web-vitals`. Not integrated yet.
 - The words in an error state and an empty state → domain 15

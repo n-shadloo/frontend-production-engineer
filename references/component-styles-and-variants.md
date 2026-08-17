@@ -159,7 +159,8 @@ would serve no second caller.
 // Wrong: the outline is removed, and nothing replaces it.
 // Failure: a keyboard user cannot tell which control has focus. Every
 // keyboard path through the surface becomes guesswork, and the task fails
-// domain 10 `accessibility-wcag`, which holds a veto.
+// domain 10 `accessibility-wcag`, which holds a veto. The criteria are in
+// references/keyboard-focus-and-live-regions.md.
 <button className="outline-none" />
 ```
 
@@ -170,9 +171,10 @@ would serve no second caller.
 
 Write `outline-none` only beside a visible replacement in the same class list.
 Confirm the indicator at 200 percent zoom before you ship the control.
-Domain 10 `accessibility-wcag` owns the authoritative criterion for the size,
-the contrast, and the zoom behavior of that indicator. It is not integrated
-yet, and it holds a veto.
+`references/keyboard-focus-and-live-regions.md` owns the authoritative criteria
+for the size, the contrast, and the visibility of that indicator, and
+`references/visual-and-motor-criteria.md` owns the measurement of the ratio.
+That domain holds a veto.
 
 The Tailwind v4 ring default is 1px and `currentColor`. A project that upgraded
 from v3 and kept `ring` alone now draws a thin ring in the text color. Set
@@ -246,7 +248,7 @@ file does not state an exact release date for it.
 | Conditional | Storybook 9 | A shared primitive library that needs documented states, and interaction and visual tests. The overhead does not pay for a small application. | 9.x | 2025 | Active | None |
 | Audit-only | `class-variance-authority` 0.7.1 | It works, and it has no advisory. Keep it in the files that hold it, and never add it to new code. | 0.7.1 | 26 November 2024 | No release for over 12 months | None |
 | Reject | Emotion, `styled-components` | Run-time cost, and a forced client boundary on a Server Component. | — | — | — | — |
-| Reject | `@axe-core/react` | It does not support React 18 or later, so it cannot run on React 19.2. Domain 10 `accessibility-wcag` owns the replacement. | — | — | — | — |
+| Reject | `@axe-core/react` | It does not support React 18 or later, so it cannot run on React 19.2. `references/wcag-conformance-and-verification.md` owns the replacement. | — | — | — | — |
 
 ### Version discipline
 
@@ -280,7 +282,9 @@ rg -n 'className=\{`[^`]*\$\{' src/
 rg -n 'export function cn' src/lib/
 rg -c 'from "@/lib/utils"' -g '*.tsx' src/ | head
 
-# 4. Find an !important in a feature file. This must print nothing.
+# 4. Find an !important in a feature file. Only the global reduced-motion
+#    block of the stylesheet may hold one, and
+#    references/visual-and-motor-criteria.md owns that block.
 rg -n '!important|![a-z-]+-\[' src/
 
 # 5. Find outline-none with no replacement ring. Read every hit.
@@ -343,9 +347,10 @@ pnpm typecheck
   → `references/lint-format-and-scripts.md`.
 - The `satisfies` operator behind a typed variant map →
   `references/type-modeling-and-narrowing.md`.
-- The accessible name, the role, the keyboard path, and the authoritative focus
-  indicator criterion → domain 10 `accessibility-wcag`. Not integrated yet.
-  That domain holds a veto.
+- The accessible name and the role →
+  `references/semantics-and-accessible-names.md`. The keyboard path and the
+  authoritative focus indicator criteria →
+  `references/keyboard-focus-and-live-regions.md`. That domain holds a veto.
 - The field control, the error state on it, and the resolver behind it → domain
   11 `forms-and-validation`. Not integrated yet.
 - The cell, the column, and the row of a table → domain 12

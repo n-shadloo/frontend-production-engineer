@@ -316,9 +316,10 @@ rg -n 'next/font' src/
   `references/component-composition.md`.
 - The route file that renders the page shell →
   `references/app-router-structure.md`.
-- The keyboard path, the reflow criterion, the zoom criterion, and the
-  authoritative focus indicator rule → domain 10 `accessibility-wcag`. Not
-  integrated yet. That domain holds a veto.
+- The reflow criterion and the zoom criterion →
+  `references/visual-and-motor-criteria.md`. The keyboard path and the
+  authoritative focus indicator rule →
+  `references/keyboard-focus-and-live-regions.md`. That domain holds a veto.
 - The multi-step layout of a form, and the error state beside a field → domain
   11 `forms-and-validation`. Not integrated yet.
 - The column widths, the sticky header, and the virtualiser of a long list →

@@ -295,8 +295,8 @@ pnpm check
   `references/app-router-structure.md`.
 - The Tailwind theme, the tokens, and the CSS entry that `@theme` lives in →
   `references/design-tokens-and-theming.md`.
-- The `jsx-a11y` rule set and the accessibility gate → domain 10
-  `accessibility-wcag`. Not integrated yet. That domain holds a veto.
+- The `jsx-a11y` rule set and the accessibility gate →
+  `references/wcag-conformance-and-verification.md`. That domain holds a veto.
 - The test layout, the fixtures, the coverage threshold, and the lint plugins
   for tests → domain 20 `testing-and-quality`. Not integrated yet.
 - The CI workflow that calls these scripts, the runners, and the cache →

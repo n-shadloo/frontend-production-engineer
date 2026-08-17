@@ -191,9 +191,9 @@ scrollbar, the caret, and the default form controls to match the theme.
 }
 ```
 
-Domain 10 `accessibility-wcag` owns the contrast ratio of every pair that this
-file defines, and it holds a veto. It is not integrated yet. Verify each new
-pair against that domain when it lands.
+`references/visual-and-motor-criteria.md` owns the contrast ratio of every pair
+that this file defines, and that domain holds a veto. Measure each new pair
+against it.
 
 ### The first paint carries the theme
 
@@ -410,8 +410,8 @@ rg -n 'color-scheme' src/styles/globals.css
   `references/directory-and-module-boundaries.md`.
 - `prettier-plugin-tailwindcss`, `tailwindStylesheet`, and the class order →
   `references/lint-format-and-scripts.md`.
-- The contrast ratio of every token pair, and the forced-colors mode → domain
-  10 `accessibility-wcag`. Not integrated yet. That domain holds a veto.
+- The contrast ratio of every token pair, and the forced-colors mode →
+  `references/visual-and-motor-criteria.md`. That domain holds a veto.
 - The animation that consumes the motion tokens → domain 14
   `motion-and-interaction`. Not integrated yet.
 - The chart series tokens in use, and the color of a data series → domain 12

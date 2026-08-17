@@ -407,8 +407,9 @@ export function Feed({ events, isPending, isError }: FeedProps) {
 `references/server-state-and-query-cache.md` owns the four states of a data
 view. This file adds the fifth, and the fifth changes the empty state: an empty
 list under a broken connection is not an empty list. Announce the change of
-status without a move of the focus. Domain 10 `accessibility-wcag` owns the
-politeness level and the screen-reader semantics of that announcement.
+status without a move of the focus.
+`references/keyboard-focus-and-live-regions.md` owns the politeness level and
+the screen-reader semantics of that announcement.
 
 ### One long response, read in parts
 
@@ -683,8 +684,7 @@ npx wscat -c "wss://staging.example.com/ws/feed/"
 - The store that code outside React reads through `getState()` →
   `references/client-and-url-state.md`.
 - The politeness level of a live announcement, and the focus that must not move
-  → domain 10 `accessibility-wcag`. Not integrated yet. That domain holds a
-  veto.
+  → `references/keyboard-focus-and-live-regions.md`. That domain holds a veto.
 - The progress feed of an upload, and the download that a stream produces →
   domain 13 `media-and-file-handling`. Not integrated yet. This file owns the
   transport under it.
