@@ -24,17 +24,17 @@ foundations, backend contract and state, interface craft, and non-functional
 guarantees. A Tier 0 operating doctrine sits under them, and it is always in
 effect.
 
-At 1.11.1 the integrated material in `references/` is that doctrine, the
+At 1.12.0 the integrated material in `references/` is that doctrine, the
 App Router foundation, the type system, and the React component tree. It also
 holds the project structure, the DRF contract, and the client cache and state.
 It holds the session with the gates over it, and the push transport with the
 events on it. It holds the design system and accessibility — the tokens and the
 layout, the element and its name, the keyboard, and the measurable criteria.
-It holds forms — the schema and the bind, the submit and the server error, and
-the flow that spans screens.
+It holds forms and the dense data surface — the schema and the bind, the table
+with the server that drives it, the chart, and the export.
 
-The newest part is the dense data surface. It holds the table with the server
-that drives it, the chart, and the value that a user reads or takes away.
+The newest part is media. It holds the upload with its transport and its
+progress, the picture and the player, and the file that leaves for a user.
 `SKILL.md` is the authoritative list of what is loadable.
 
 ## Two modes

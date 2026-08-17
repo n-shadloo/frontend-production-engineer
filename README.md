@@ -80,7 +80,7 @@ Tier 3 is interface craft.
 - `12 data-tables-and-visualization` — TanStack Table, server-driven tables,
   charts. Integrated.
 - `13 media-and-file-handling` — uploads, images, video, downloads, progress.
-  Pending.
+  Integrated.
 - `14 motion-and-interaction` — Motion and View Transitions, gestures, the
   performance cost of animation. Pending.
 - `15 ux-writing-and-content-design` — microcopy, error and empty states,
@@ -120,7 +120,7 @@ The stack baseline is pinned, and it was verified in August 2026. The framework
 is Next.js 16.3, with Turbopack by default and `proxy.ts` in place of
 `middleware.ts` on the Node runtime. That release also makes `params` and
 `searchParams` async only, adds Cache Components, and removes `next lint`. The
-runtime is Node.js 20.9 or later. The UI layer is React 19.2.4 or later, which
+runtime is Node.js 20.9 or later. The UI layer is React 19.2.6 or later, which
 is the security floor of the 19.2 line, with React Compiler 1.0. The language is TypeScript 5.9, with `strict` and
 `noUncheckedIndexedAccess`.
 
@@ -253,17 +253,17 @@ run.
 
 ## Example output
 
-At 1.11.1 the integrated material is the operating doctrine, the App Router
+At 1.12.0 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
 events on it. It holds the design system and accessibility — the tokens and the
 layout, the element and its name, the keyboard, and the measurable criteria. It
-holds forms — the schema and the bind, the submit and the server error, and the
-flow that spans screens.
+holds forms and the dense data surface — the schema and the bind, the table
+with the server that drives it, the chart, and the export.
 
-The newest part is the dense data surface. It holds the table with the server
-that drives it, the chart, and the value that a user reads or takes away. The
+The newest part is media. It holds the upload with its transport and its
+progress, the picture and the player, and the file that leaves for a user. The
 worked example is the shape of a task and the facts that gate it:
 
 ```
@@ -392,8 +392,10 @@ frontend-production-engineer/
 │   ├── dependencies-and-git-workflow.md
 │   ├── design-tokens-and-theming.md
 │   ├── directory-and-module-boundaries.md
+│   ├── file-upload-and-transport.md
 │   ├── form-schema-and-field-binding.md
 │   ├── form-submission-and-server-errors.md
+│   ├── image-and-video-delivery.md
 │   ├── keyboard-focus-and-live-regions.md
 │   ├── layout-and-typography.md
 │   ├── lint-format-and-scripts.md
@@ -402,6 +404,7 @@ frontend-production-engineer/
 │   ├── openapi-schema-and-codegen.md
 │   ├── push-transport-and-connection.md
 │   ├── route-protection-and-permissions.md
+│   ├── served-content-and-downloads.md
 │   ├── semantics-and-accessible-names.md
 │   ├── server-and-client-components.md
 │   ├── server-state-and-query-cache.md
@@ -417,7 +420,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds twelve domains at 1.11.1 and fills one domain at a time.
+`references/` holds thirteen domains at 1.12.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 

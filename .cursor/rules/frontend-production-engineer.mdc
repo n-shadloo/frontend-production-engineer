@@ -40,9 +40,11 @@ the fields, a validation message, a field error from the server, a submit
 button, a wizard step, or unsaved changes. The eleventh group is a dense data
 surface — a data table, a column, a row, a sort, a page, a filter, a
 virtualiser, a bulk action, a chart, an axis, or an export. The twelfth group
-is the project setup — a folder move, a barrel file, `eslint.config.ts`, the
-lockfile, a git hook, or a new dependency. The last group is any change to the
-bundle, the headers, or the build.
+is media — a file input, a drop zone, an upload, a progress bar, a presigned
+URL, `next/image`, a `sizes` prop, a video, a captions track, or a download.
+The thirteenth group is the project setup — a folder move, a barrel file,
+`eslint.config.ts`, the lockfile, a git hook, or a new dependency. The last
+group is any change to the bundle, the headers, or the build.
 
 Verify the installed versions from `package.json` before you generate code.
 Never mix Next 15 and Next 16 idioms in one file. Report an API you cannot
