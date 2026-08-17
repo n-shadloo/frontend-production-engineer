@@ -1,6 +1,6 @@
 # Client state and URL state
 
-nuqs 2.9, Zustand 5.0, React 19.2.1 or later, Next.js 16.3. This file owns
+nuqs 2.9, Zustand 5.0, React 19.2.4 or later, Next.js 16.3. This file owns
 where a value lives when the backend does not own it. The subjects are the
 state taxonomy and the single-owner rule. They also include the URL as the
 store for shareable state, and the client store with its lifetime on the
@@ -343,8 +343,10 @@ pnpm build
   `references/directory-and-module-boundaries.md`.
 - The rule for a new dependency →
   `references/dependencies-and-git-workflow.md`.
-- The session value and the role flag that the UI reads → domain 07
-  `authentication-and-authorization`. Not integrated yet.
+- The session value, and the rule that a token and a permission list never
+  reach `localStorage` → `references/session-and-token-lifecycle.md`. The role
+  flag that the UI reads is
+  `references/route-protection-and-permissions.md`.
 - The form field value before the submit, and the multi-step flow → domain 11
   `forms-and-validation`. Not integrated yet.
 - The column visibility and the sort model of a table → domain 12

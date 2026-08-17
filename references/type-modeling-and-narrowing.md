@@ -1,6 +1,6 @@
 # Type modeling and narrowing
 
-TypeScript 5.9 baseline, React 19.2.1 or later, `@types/react` 19. This file
+TypeScript 5.9 baseline, React 19.2.4 or later, `@types/react` 19. This file
 owns the vocabulary that models a value inside the program. The subjects are
 unions, brands, generics, inference, the rules for a cast, and the component
 types that follow from them.

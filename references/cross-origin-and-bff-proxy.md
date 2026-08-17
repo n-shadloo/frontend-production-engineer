@@ -249,8 +249,13 @@ curl -si -X POST "$NEXT_PUBLIC_API_BASE_URL/api/auth/login/" | rg -i 'set-cookie
   call → `references/data-access-and-mutations.md`.
 - `proxy.ts`, its permitted work, CVE-2025-29927, and the `NEXT_PUBLIC_` prefix
   → `references/app-router-structure.md`.
-- The session strategy, the token store, and the redirect after a 401 → domain
-  07 `authentication-and-authorization`. Not integrated yet.
+- The session strategy, the token store, the cookie prefixes, the lifetime,
+  and the refresh after a 401 →
+  `references/session-and-token-lifecycle.md`. That file owns the whole
+  attribute set of the session cookie; the table above states the four
+  attributes that a cross-origin request depends on. The redirect after a 401,
+  and the gate on the route, are
+  `references/route-protection-and-permissions.md`.
 - The CSP, the response headers, and the judgment of an injection sink → domain
   17 `frontend-security`. Not integrated yet. That domain holds a veto.
 - The Nginx configuration in front of Node, and the TLS termination → domain 22

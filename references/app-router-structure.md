@@ -1,6 +1,6 @@
 # App Router structure
 
-Next.js 16.3 baseline, React 19.2.1 or later, Node 20.9 or later. This file
+Next.js 16.3 baseline, React 19.2.4 or later, Node 20.9 or later. This file
 owns the route tree. It rules on which file the App Router loads for a URL,
 and on how a route reads request data. It also rules on `proxy.ts`, which runs
 before the route, and on the `next.config.ts` keys that decide route behavior.
@@ -44,8 +44,8 @@ in decline, and alive only in legacy code.
 | `error.tsx` | The error boundary of the segment | Required for a fallible segment. It exports `reset()`. |
 | `global-error.tsx` | The error UI for the root layout | — |
 | `not-found.tsx` | The UI for `notFound()` | — |
-| `forbidden.tsx` | The UI for `forbidden()` | Confirm that the installed version supports the call. |
-| `unauthorized.tsx` | The UI for `unauthorized()` | Confirm that the installed version supports the call. |
+| `forbidden.tsx` | The UI for `forbidden()` | The call is EXPERIMENTAL in 16.3, and it needs `authInterrupts: true`. |
+| `unauthorized.tsx` | The UI for `unauthorized()` | The call is EXPERIMENTAL in 16.3, and it needs `authInterrupts: true`. |
 | `default.tsx` | The fallback UI of a parallel route slot | Next 16 fails the build when a slot has none. |
 | `route.ts` | An HTTP endpoint at that path | Use it for a public API, a webhook, a file upload, or a stream. |
 | `proxy.ts` | The code that runs before the route | It rewrites, redirects, and sets headers. It never authorizes. |
@@ -320,10 +320,13 @@ done
   proxy Route Handler are `references/cross-origin-and-bff-proxy.md`. The
   server side of that contract belongs to the sibling skill
   `django-api-contract`.
-- The session strategy, the token storage, and the role checks in the UI →
-  domain 07 `authentication-and-authorization`. Not integrated yet. The
-  server-side permission classes belong to the sibling skill
-  `secure-code-auditor`.
+- The four enforcement layers above `proxy.ts`, the page gate, the Server
+  Action gate, and the role checks in the UI →
+  `references/route-protection-and-permissions.md`. That file records
+  CVE-2026-64642, which is the second bypass of this file. The session, the
+  cookie attributes, and the refresh are
+  `references/session-and-token-lifecycle.md`. The server-side permission
+  classes belong to the sibling skill `secure-code-auditor`.
 - The values of the security headers, and the CSP that `next.config.ts`
   emits → domain 17 `frontend-security`. Not integrated yet.
 - The content of the metadata files, such as `opengraph-image.tsx` → domain 18

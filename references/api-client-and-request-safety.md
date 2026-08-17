@@ -371,9 +371,11 @@ rg -n 'DJANGO_URL|NEXT_PUBLIC_API_BASE_URL' src/lib/api
 - The `queryFn`, the query keys, the `staleTime`, and the mutation state built
   on this client → `references/server-state-and-query-cache.md`. That file
   applies `ApiError.retryable` to the retry option of a query.
-- The refresh loop, the token store, and the redirect after a 401 → domain 07
-  `authentication-and-authorization`. Not integrated yet. This file owns only
-  the 401 as an `ApiError`.
+- The single-flight refresh, the token store, and the status that ends a
+  session → `references/session-and-token-lifecycle.md`. This file owns only
+  the 401 as an `ApiError`, and no retry rule here may repeat a refresh. The
+  redirect after a 401 is
+  `references/route-protection-and-permissions.md`.
 - The WebSocket and the server-sent event lifecycle → domain 08
   `realtime-and-streaming`. Not integrated yet. This file owns NDJSON and the
   long poll over HTTP.

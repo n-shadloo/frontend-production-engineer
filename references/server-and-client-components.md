@@ -1,6 +1,6 @@
 # Server and Client Components
 
-Next.js 16.3 baseline, React 19.2.1 or later. This file owns the boundary
+Next.js 16.3 baseline, React 19.2.4 or later. This file owns the boundary
 between the server tree and the client tree. The subjects are the placement of
 `"use client"` and what crosses the boundary. They also include the way the
 server streams a value to the client, and the cause of a hydration error.

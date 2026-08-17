@@ -1,6 +1,6 @@
 # Data access and mutations
 
-Next.js 16.3 baseline, React 19.2.1 or later, against a Django and DRF backend.
+Next.js 16.3 baseline, React 19.2.4 or later, against a Django and DRF backend.
 This file owns the place where data enters the frontend and the place where a
 mutation leaves it. The subjects are the data access layer and the shape of a
 Server Action. They also include the choice between a Server Component fetch, a
@@ -318,9 +318,12 @@ rg -n 'NEXT_PUBLIC_[A-Z_]*(KEY|SECRET|TOKEN|PASSWORD)' .
 - The client cache config, the query keys, the mutations, and the optimistic
   state → `references/server-state-and-query-cache.md`. The filter that the URL
   holds is `references/client-and-url-state.md`.
-- The session strategy, the token storage, and the role checks → domain 07
-  `authentication-and-authorization`. Not integrated yet. The DRF permission
-  classes belong to the sibling skill `secure-code-auditor`.
+- The memoised `verifySession()` that a module in this layer holds, the page
+  gate, and the role checks →
+  `references/route-protection-and-permissions.md`. That file also states that
+  a Server Action never takes an identity as a parameter. The token storage
+  and the refresh are `references/session-and-token-lifecycle.md`. The DRF
+  permission classes belong to the sibling skill `secure-code-auditor`.
 - The pending state of a form, the error that the Action returns, and the
   optimistic value → `references/suspense-and-actions.md`.
 - The form binding, the field-level error mapping, and the multi-step flow →

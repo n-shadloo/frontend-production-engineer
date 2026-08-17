@@ -1,6 +1,6 @@
 # State and effects
 
-React 19.2.1 or later, React Compiler 1.0, `eslint-plugin-react-hooks` 7.1.1,
+React 19.2.4 or later, React Compiler 1.0, `eslint-plugin-react-hooks` 7.1.1,
 Next.js 16.3. This file owns where a value lives and when an effect is correct.
 The subjects are state placement, `useState` against `useReducer`, the derived
 value, and the context. They also include the rules for an effect, the Rules of
@@ -348,10 +348,11 @@ first.
 
 Read the installed versions before you write code.
 
-React 19.2.1 is the floor. CVE-2025-55182 is an unauthenticated remote code
-execution in React Server Components, with a CVSS score of 10.0. It affects
-19.0, 19.1.0, 19.1.1, and 19.2.0. The patched versions are 19.0.1, 19.1.2, and
-19.2.1. React 19.2.7 is the current patch.
+React 19.2.4 is the floor. The advisories of December 2025 and January 2026
+describe a family of remote code execution and denial of service defects in
+React Server Components. CVE-2025-55182 is the first of them, with a CVSS
+score of 10.0. Every release below 19.2.4 on the 19.2 line carries at least
+one of the family.
 
 `eslint-plugin-react-hooks` 7.1.1 is the pin. Version 6.1.0 holds two defects
 that this stack meets: its `recommended` preset fails inside a flat-config

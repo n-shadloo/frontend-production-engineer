@@ -1,6 +1,6 @@
 # Server state and the query cache
 
-TanStack Query 5.101 or later, React 19.2.1 or later, Next.js 16.3, against a
+TanStack Query 5.101 or later, React 19.2.4 or later, Next.js 16.3, against a
 Django and DRF backend. This file owns the cache that holds server state, and
 every read and every write that passes through it. The subjects are
 `queryOptions`, the key factory, the cache times, and the lifetime of a
@@ -441,7 +441,7 @@ then renders the error body as if it were a record.
 | The status | What the view does | It reverses when | The cost |
 | --- | --- | --- | --- |
 | 400 with field errors | Render each message beside its field. Do not retry. | Never. The answer is deterministic, so a second request returns it again. | The view needs a map from a field name to a control. |
-| 401 or 403 | Render the state that the route needs. Domain 07 owns the refresh and the redirect. | The application can refresh the session, so the request repeats once after it. | Each route states its own answer, so two routes can answer one status in two ways. |
+| 401 or 403 | Render the state that the route needs. `references/session-and-token-lifecycle.md` owns the refresh, and `references/route-protection-and-permissions.md` owns the redirect. | The application can refresh the session, so the request repeats once after it. | Each route states its own answer, so two routes can answer one status in two ways. |
 | 404 | Render the empty or missing state of that view. | The 404 means a deleted record that the cache still lists, so the list also needs the write. | The view needs a designed empty state beside its error state. |
 | 429, 502, 503, and 504 | Retry under the rule above, and obey `Retry-After`. | The endpoint is not idempotent, so a repeat changes data. | The user waits for the backoff periods, and the backend takes more load. |
 | A `TypeError` or a `DOMException` | Let it reach the error boundary. Neither carries a status. | The abort was deliberate, so the view discards it and renders nothing. | The whole boundary renders its fallback, not one part of the view. |
@@ -604,9 +604,12 @@ pnpm exec eslint . --max-warnings=0
   `references/lint-format-and-scripts.md`.
 - The state that no query owns, and the effect that reads a browser API →
   `references/state-and-effects.md`.
-- The 401 that triggers a token refresh, and the redirect after it → domain 07
-  `authentication-and-authorization`. Not integrated yet. This file owns only
-  the 401 as an error state.
+- The 401 that starts a token refresh, the `queryClient.clear()` on a logout,
+  and the status that ends a session →
+  `references/session-and-token-lifecycle.md`. This file owns only the 401 as
+  an error state, and the retry rule here never repeats a refresh. The
+  redirect after a 401, and the tenant that a key carries, are
+  `references/route-protection-and-permissions.md`.
 - The socket and the event stream that write into this cache → domain 08
   `realtime-and-streaming`. Not integrated yet.
 - The field-level map from a DRF 400 to a form control → domain 11
