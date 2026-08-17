@@ -46,9 +46,13 @@ The thirteenth group is motion — an animation, a transition, an
 easing token, `prefers-reduced-motion`, a view transition, Motion, a drag, or a
 scroll effect. The fourteenth group is the copy — a button label, an accessible
 name, a hint, an error message, an empty state, a confirmation, a message key,
-or an ICU plural. The fifteenth group is the project setup — a folder move, a
-barrel file, `eslint.config.ts`, the lockfile, a git hook, or a new dependency.
-The last group is any change to the bundle, the headers, or the build.
+or an ICU plural.
+
+The fifteenth group is performance — a slow page, LCP, INP, CLS, a bundle that
+grew, a third-party script, a prefetch, or a Lighthouse report. The sixteenth
+group is the project setup — a folder move, a barrel
+file, `eslint.config.ts`, the lockfile, a git hook, or a new dependency. The
+last group is any change to the headers or the build.
 
 Verify the installed versions from `package.json` before you generate code.
 Never mix Next 15 and Next 16 idioms in one file. Report an API you cannot

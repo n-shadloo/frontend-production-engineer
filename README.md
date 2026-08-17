@@ -89,7 +89,7 @@ Tier 3 is interface craft.
 Tier 4 is the non-functional guarantees, applied as a review pass before done.
 
 - `16 performance-and-web-vitals` — INP, LCP, CLS, bundles, budgets,
-  measurement. Pending.
+  measurement. Integrated.
 - `17 frontend-security` — XSS, CSP, response headers, server action safety,
   supply chain. Pending.
 - `18 seo-and-metadata` — the Metadata API, JSON-LD, sitemaps, canonical URLs,
@@ -132,6 +132,9 @@ state, nuqs 2.9 holds the URL state, and Zustand 5 holds the client store. Zod
 tables, over `@tanstack/react-virtual` 3.14 for a long list, and recharts 3.10
 draws the charts. Vitest, React Testing Library, MSW, and Playwright run the
 tests.
+
+`web-vitals` 6.1 reports the field metrics. `@lhci/cli` 0.15 and `size-limit`
+gate the budget in CI.
 
 The backend is Django
 and DRF 3.17, and it publishes OpenAPI 3.0.3 through drf-spectacular 0.30.
@@ -253,7 +256,7 @@ run.
 
 ## Example output
 
-At 1.14.1 the integrated material is the operating doctrine, the App Router
+At 1.15.0 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -264,9 +267,14 @@ It holds forms, the dense data surface, media, and motion. That part is the
 schema and the bind, and the table with the server that drives it. It also
 holds the file that leaves for a user, and the animation over all of them.
 
-The newest part is the copy. It holds the words on a control, the message that
-a failure produces, and the string as data behind a key. The worked example is
-the shape of a task and the facts that gate it:
+It holds the copy — the words on a control, the message that a failure
+produces, and the string as data behind a key.
+
+The newest part is speed as a measured property. It holds the thresholds, the
+budget, and the gate over them. It also holds the bytes of JavaScript, and
+the third-party script beside them. The last part is the largest paint, the
+layout shift, and the answer to a tap. The worked
+example is the shape of a task and the facts that gate it:
 
 ```
 Plan
@@ -386,6 +394,7 @@ frontend-production-engineer/
 │   ├── cell-formatting-and-export.md
 │   ├── charts-and-visual-encoding.md
 │   ├── client-and-url-state.md
+│   ├── client-bundle-and-third-party-scripts.md
 │   ├── component-composition.md
 │   ├── component-styles-and-variants.md
 │   ├── cross-origin-and-bff-proxy.md
@@ -409,6 +418,8 @@ frontend-production-engineer/
 │   ├── motion-primitives-and-reduced-motion.md
 │   ├── multi-step-forms-and-unsaved-work.md
 │   ├── openapi-schema-and-codegen.md
+│   ├── paint-and-interaction-cost.md
+│   ├── performance-budgets-and-measurement.md
 │   ├── push-transport-and-connection.md
 │   ├── route-protection-and-permissions.md
 │   ├── served-content-and-downloads.md
@@ -428,7 +439,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds fifteen domains at 1.14.1 and fills one domain at a time.
+`references/` holds sixteen domains at 1.15.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 
