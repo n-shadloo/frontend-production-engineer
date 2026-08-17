@@ -76,7 +76,7 @@ Tier 3 is interface craft.
 - `10 accessibility-wcag` — WCAG 2.2 AA, the ARIA authoring practices,
   keyboard, focus, screen readers. Integrated.
 - `11 forms-and-validation` — React Hook Form with Zod, React 19 Actions,
-  server-error mapping, multi-step flows. Pending.
+  server-error mapping, multi-step flows. Integrated.
 - `12 data-tables-and-visualization` — TanStack Table, server-driven tables,
   charts. Pending.
 - `13 media-and-file-handling` — uploads, images, video, downloads, progress.
@@ -127,8 +127,9 @@ is the security floor of the 19.2 line, with React Compiler 1.0. The language is
 Tailwind CSS v4.3 supplies the styling, with the CSS-first `@theme` config, and
 shadcn/ui sits on Base UI. TanStack Query 5.101 or later holds the server
 state, nuqs 2.9 holds the URL state, and Zustand 5 holds the client store. Zod
-4 validates the values. React Hook Form binds the forms. Vitest,
-React Testing Library, MSW, and Playwright run the tests.
+4.4 validates the values. React Hook Form 7.85 binds the forms, with
+`@hookform/resolvers` 5.9 between them. Vitest, React Testing Library, MSW, and
+Playwright run the tests.
 
 The backend is Django
 and DRF 3.17, and it publishes OpenAPI 3.0.3 through drf-spectacular 0.30.
@@ -250,15 +251,15 @@ run.
 
 ## Example output
 
-At 1.9.0 the integrated material is the operating doctrine, the App Router
+At 1.10.0 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
-events on it. It holds the design system — the tokens, the theme, the classes
-on a part, and the layout. The newest part is accessibility — the element and
-its name, the keyboard and the announcement, the measurable criteria, and the
-evidence. The worked example is the shape of a task and the facts that gate
-it:
+events on it. It holds the design system and accessibility — the tokens and the
+layout, the element and its name, the keyboard, and the measurable criteria.
+The newest part is forms — the schema and the bind, the submit and the server
+error, and the flow that spans screens. The worked example is the shape of a
+task and the facts that gate it:
 
 ```
 Plan
@@ -376,10 +377,13 @@ frontend-production-engineer/
 │   ├── dependencies-and-git-workflow.md
 │   ├── design-tokens-and-theming.md
 │   ├── directory-and-module-boundaries.md
+│   ├── form-schema-and-field-binding.md
+│   ├── form-submission-and-server-errors.md
 │   ├── keyboard-focus-and-live-regions.md
 │   ├── layout-and-typography.md
 │   ├── lint-format-and-scripts.md
 │   ├── live-events-and-cache-merge.md
+│   ├── multi-step-forms-and-unsaved-work.md
 │   ├── openapi-schema-and-codegen.md
 │   ├── push-transport-and-connection.md
 │   ├── route-protection-and-permissions.md
@@ -398,7 +402,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds ten domains at 1.9.0 and fills one domain at a time.
+`references/` holds eleven domains at 1.10.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 

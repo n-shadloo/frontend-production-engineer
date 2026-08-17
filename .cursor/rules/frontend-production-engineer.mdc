@@ -34,6 +34,9 @@ interface surface — a design token, a Tailwind class, `@theme`, a dark theme, 
 container query, or a font. The ninth group is accessibility — WCAG, ARIA, a
 role, an accessible name, `aria-label`, a keyboard path, a focus order, a live
 region, a contrast ratio, an alt text, a target size, or axe. The tenth group
+is a form — a `<form>`, `useForm`, a resolver, a schema over the fields, a
+validation message, a field error from the server, a submit button, a wizard
+step, or unsaved changes. The eleventh group
 is the project setup — a folder move, a barrel file, `eslint.config.ts`, the
 lockfile, a git hook, or a new dependency. The last group is any change to the
 bundle, the headers, or the build.

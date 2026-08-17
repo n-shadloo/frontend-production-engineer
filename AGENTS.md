@@ -24,14 +24,15 @@ foundations, backend contract and state, interface craft, and non-functional
 guarantees. A Tier 0 operating doctrine sits under them, and it is always in
 effect.
 
-At 1.9.0 the integrated material in `references/` is that doctrine, the
+At 1.10.0 the integrated material in `references/` is that doctrine, the
 App Router foundation, the type system, and the React component tree. It also
 holds the project structure, the DRF contract, and the client cache and state.
 It holds the session with the gates over it, and the push transport with the
-events on it. It holds the design system — the tokens, the theme, the classes
-on a part, and the layout. The newest part is accessibility — the element and
-its name, the keyboard and the announcement, the measurable criteria, and the
-evidence. `SKILL.md` is the authoritative list of what is loadable.
+events on it. It holds the design system and accessibility — the tokens and the
+layout, the element and its name, the keyboard, and the measurable criteria.
+The newest part is forms — the schema and the bind, the submit and the server
+error, and the flow that spans screens. `SKILL.md` is the authoritative list of
+what is loadable.
 
 ## Two modes
 - Review-time: audit existing frontend code, produce findings ordered by

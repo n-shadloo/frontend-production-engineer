@@ -4,23 +4,24 @@ description: >-
   Frontend engineering for Next.js and TypeScript against a Django and
   DRF backend. Use whenever frontend work is planned, written, or
   reviewed and the task touches App Router files (app/, layout.tsx,
-  page.tsx, proxy.ts, next.config.ts, tsconfig.json), the "use client"
-  or "use server" boundary, await params, a Server Action, a React
-  hook, a cast (any), a Zod schema (safeParse), the DRF contract (an
-  OpenAPI schema, a generated client, CORS, CSRF), the client cache and
-  state (TanStack Query, useQuery, staleTime), live data (a WebSocket, a
-  pushed event), auth (a session, an httpOnly cookie, a token refresh, a
-  protected route), styling (Tailwind, a design token, @theme, dark
-  mode, shadcn, cn()), accessibility (WCAG, ARIA, aria-label, a
-  keyboard, a focus order, a screen reader, contrast, alt text, axe), or
-  the project setup (package.json, eslint.config.ts), and the agent has
-  to verify the installed versions, plan first, and hold the work to a
-  definition of done, even if "frontend" is never used.
+  page.tsx, proxy.ts), the "use client" or "use server" boundary,
+  await params, a Server Action, a React hook, a cast (any), a Zod
+  schema, the DRF contract (an OpenAPI schema, a generated client,
+  CORS, CSRF), the client cache and state (TanStack Query, useQuery),
+  live data (a WebSocket, a pushed event), auth (a session, an
+  httpOnly cookie, a token refresh, a protected route), styling
+  (Tailwind, a design token, dark mode, shadcn), accessibility (WCAG,
+  ARIA, aria-label, a keyboard, a focus order, a screen reader,
+  contrast, axe), forms (a form, useForm, a resolver, a field error,
+  unsaved changes), or the project setup (package.json, tsconfig.json,
+  eslint.config.ts), and the agent has to verify the installed
+  versions, plan first, and hold the work to a definition of done,
+  even if "frontend" is never used.
 license: MIT
 allowed-tools: Read, Grep, Glob, Bash, Edit, Write
 metadata:
   author: n-shadloo
-  version: 1.9.0
+  version: 1.10.0
 ---
 
 # frontend-production-engineer
@@ -84,6 +85,9 @@ Load only the file(s) relevant to the concern in front of you.
 | The path that a keyboard takes, and the change that a screen reader hears — a tab order, `tabIndex`, a positive `tabindex`, `tabIndex={-1}`, a keyboard trap, a focus ring that a sticky header hides, criterion 2.4.11, `scroll-padding-top`; an APG pattern, a menu, a menubar, a listbox, a combobox, a tab list, an accordion, a dialog, an alert dialog, a tree, a grid, a slider, a toolbar, a disclosure, a carousel, a roving `tabindex`, `aria-activedescendant`; a modal, a focus trap, `showModal()`, `inert` on the background, focus lost to `<body>` after a close, an initial focus target; a route change that announces nothing, `usePathname`, a route announcer, a skip link, `#main-content`, a bypass block; a single-character shortcut, criterion 2.1.4, a shortcut help dialog; a tooltip that only a hover produces, criterion 1.4.13, dismissible, hoverable, persistent; `aria-live`, `role="status"`, `role="alert"`, `role="log"`, `aria-atomic`, `aria-relevant`, criterion 4.1.3, a live region that mounts with its message, a toast that announces nothing, a progress value that announces on every update, one announcer for the application; an error summary, focus on the first error after a submit, a toast as the only report of a validation error. Not here: the role, the name, and `inert` itself (`references/semantics-and-accessible-names.md`), the contrast of the indicator and the target size (`references/visual-and-motor-criteria.md`), the axe assertion (`references/wcag-conformance-and-verification.md`), the ring token and `outline-none` (`references/component-styles-and-variants.md`), the effect rules and the cleanup (`references/state-and-effects.md`), the Action state that holds the field errors (`references/suspense-and-actions.md`), the pushed event itself (`references/live-events-and-cache-merge.md`), the resolver and the multi-step flow (domain 11), the keyboard path through a data grid (domain 12), the View Transition (domain 14). | `references/keyboard-focus-and-live-regions.md` |
 | The measurable properties of a surface, and the input that operates it — a contrast ratio, 4.5:1, 3:1, a color pair, an opacity modifier on a text color, contrast in a dark theme, contrast on a gradient, criterion 1.4.1, a status that is a colored dot, a link with no underline in body text; a target size, 24 by 24 CSS pixels, 44 by 44, criterion 2.5.8, an icon button with no box; reflow, 320 CSS pixels, 400 percent zoom, criterion 1.4.10, a two-directional scroll, text spacing, criterion 1.4.12, a fixed height on a text container, `userScalable`, `maximumScale`, `user-scalable=no`, the `viewport` export, orientation; `prefers-reduced-motion`, `prefers-reduced-transparency`, `prefers-contrast`, `forced-colors`, `motion-reduce:`, `contrast-more:`, `forced-colors:`, a panel that disappears in the high-contrast mode; a drag with no second path, `draggable`, criterion 2.5.7, a pointer gesture, a motion actuation, a slider with no arrow keys; consistent navigation, consistent help, criterion 3.2.6, a context change that the user did not ask for, an action with no undo. Not here: the role, the name, and the alt text (`references/semantics-and-accessible-names.md`), the focus indicator itself and the announcement (`references/keyboard-focus-and-live-regions.md`), the axe run that measures a ratio (`references/wcag-conformance-and-verification.md`), the token pairs and the dark theme (`references/design-tokens-and-theming.md`), the container query and the fluid type scale (`references/layout-and-typography.md`), the chart series (domain 12), the video player and its captions (domain 13), the animation itself (domain 14), the LCP and CLS budget (domain 16). | `references/visual-and-motor-criteria.md` |
 | The conformance target, and the evidence for it — WCAG 2.2, Level AA, POUR, a success criterion, WCAG 2.1, WCAG 3.0, APCA, a conformance claim, an accessibility audit; the ADA, Section 508, the European Accessibility Act, EN 301 549, AODA, an accessibility statement, a VPAT, an Accessibility Conformance Report; axe, `axe-core`, `eslint-plugin-jsx-a11y`, `vitest-axe`, `jest-axe`, `toHaveNoViolations`, `@axe-core/playwright`, `AxeBuilder`, `withTags`, `wcag22aa`, Lighthouse, Pa11y, IBM Equal Access, the Storybook accessibility addon, `@axe-core/react` on React 19; the 30 to 40 percent that automation finds, the manual pass, an unplugged mouse, a screen-reader pair, Narrator, the forced-colors mode; an accessibility gate in CI, a baseline of known violations, a keyboard walkthrough in a pull request, accessibility criteria in a definition of done. Not here: the role, the name, and the field label (`references/semantics-and-accessible-names.md`), the tab path and the announcement (`references/keyboard-focus-and-live-regions.md`), the ratio and the target size (`references/visual-and-motor-criteria.md`), the flat config array and the `package.json` scripts (`references/lint-format-and-scripts.md`), the test runner and the Playwright project config (domain 20), the workflow file (domain 22). | `references/wcag-conformance-and-verification.md` |
+| The schema that one form stands on, and the control that binds to it — a form, `<form>`, `useForm`, React Hook Form, `register`, `Controller`, `useController`, `useFieldArray`, `useWatch`, `getValues`, `watch()`, `formState`, `defaultValues`, `trigger`, `shouldUnregister`; `zodResolver`, `standardSchemaResolver`, `@hookform/resolvers`, a resolver that disagrees with the generic, `useForm<z.infer<...>>` over a schema that carries a `.default()`, `z.input`, `z.output`, `.refine()` with no `path`, `z.discriminatedUnion` over a branch of a form, `valueAsNumber`, `z.coerce.number()`; `mode: "onChange"`, `onTouched`, `onBlur`, `reValidateMode`, a message at the first keystroke, a re-render on each keystroke, "A component is changing an uncontrolled input to be controlled" on a field, an index key on a field array row; an OTP or one-time-code field, `input-otp`, a phone field, `libphonenumber-js`, `react-phone-number-input`, E.164, a date picker, `react-day-picker`, `@internationalized/date`, a password strength meter, `@zxcvbn-ts/core`, `zxcvbn`, an input mask, `react-imask`, `cleave.js`; `next/form` and a search or filter form, `@tanstack/react-form`, `@conform-to/react`, `valibot`, `vest`, `formik`, the React Hook Form 8 pre-release and its `keyName` removal. Not here: the submit and the server rejection (`references/form-submission-and-server-errors.md`), the step and the exit guard (`references/multi-step-forms-and-unsaved-work.md`), the Zod 4 API surface and the DRF envelopes (`references/boundary-validation-and-api-types.md`), `useActionState` and `useFormStatus` (`references/suspense-and-actions.md`), the `<label>`, `aria-describedby`, and `aria-invalid` (`references/semantics-and-accessible-names.md`), the classes on a field control (`references/component-styles-and-variants.md`), one `useState` for each field (`references/state-and-effects.md`), the file picker and the upload (domain 13), the words in a label or a message (domain 15). | `references/form-schema-and-field-binding.md` |
+| The submit, and the failure that comes back to the form — `handleSubmit`, `setError`, `shouldFocus`, `shouldFocusError`, `formState.errors`, `isSubmitting`, `applyServerErrors`, a double submit, two POST requests from one click, a submit button that is inert, `disabled={!isValid}`, `isValid` that validates every field; a DRF 400 field dictionary, `non_field_errors`, a nested serializer error such as `address.city`, a list serializer error such as `items.1.sku`, `attr`, `drf-standardized-errors`, an error `code` against a translated message; a toast as the only report of a validation failure, a server error that reaches no field, a message that names no field, an error region with `role="alert"`; 409, 422, 429, `Retry-After`, `Idempotency-Key` on a retried submit, a 5xx that clears the form, `reset()` in a `catch` or a `finally`, values lost on a failed submit, a reset with the values the client sent; an Action state that returns no values, `z.flattenError`, `formErrors` and `fieldErrors`, `safeParse` over `FormData`; a password, a token, or a personal value in a console log after a failed submit. Not here: the schema, the resolver, and the bind of a control (`references/form-schema-and-field-binding.md`), the step and the exit guard (`references/multi-step-forms-and-unsaved-work.md`), `normalizeApiError`, the retry rule, and the deadline (`references/api-client-and-request-safety.md`), the envelope shapes themselves (`references/boundary-validation-and-api-types.md`), the Action hooks and the expected-error rule (`references/suspense-and-actions.md`), the order inside a Server Action (`references/data-access-and-mutations.md`), the key that a success invalidates (`references/server-state-and-query-cache.md`), the error summary, the focus, and the live region (`references/keyboard-focus-and-live-regions.md`), the words in the message (domain 15), the MSW handler and the test (domain 20). | `references/form-submission-and-server-errors.md` |
+| A form over more than one screen, and the work that a navigation destroys — a wizard, a stepper, a step index, a step in `useState`, a reload that returns the user to the first step, a back button in the middle of a flow, a schema for each step, `trigger` over the fields of one step, a step change that announces nothing; unsaved changes, a dirty form, `isDirty`, `beforeunload`, `onNavigate` on `<Link>`, `event.preventDefault()` on a navigation, the Navigation API `navigate` event and `intercept()`, a traverse that no API cancels, `router.push` that nothing intercepts, `next-navigation-guard`, a draft, an autosave, a guard that stays after a successful submit; a value that the flow requests twice, criterion 3.3.7, a password or a payment value in a query string or in a stored draft. Not here: the schema, the resolver, and the `shouldUnregister` default (`references/form-schema-and-field-binding.md`), the submit and the server error map (`references/form-submission-and-server-errors.md`), the `nuqs` parsers and the store (`references/client-and-url-state.md`), the `<Link>` component and the route files (`references/app-router-structure.md`), the context and the effect cleanup (`references/state-and-effects.md`), the focus that a step change moves (`references/keyboard-focus-and-live-regions.md`), the criterion that forbids a second request for one answer (`references/semantics-and-accessible-names.md`), the words in a warning (domain 15), the test that reloads mid-flow (domain 20). | `references/multi-step-forms-and-unsaved-work.md` |
 
 The operating doctrine is integrated but has no row, because it is always in
 effect and lives in this file rather than in `references/`. Each release
@@ -93,7 +97,7 @@ never as a summary. A vague row is a domain that never loads.
 A domain of more than one file splits on one line. The leading phrase of a row
 states what the file owns, and its `Not here` clause states what it does not.
 
-Twenty-four seams cross the domains, and this table settles each one.
+Twenty-nine seams cross the domains, and this table settles each one.
 
 | The seam | Who owns what |
 |---|---|
@@ -121,6 +125,11 @@ Twenty-four seams cross the domains, and this table settles each one.
 | 07 ↔ 10 | 07 owns the gate that refuses a request. 10 owns the focus and the message that the refusal produces. |
 | 08 ↔ 10 | 08 owns the event and the status of a connection. 10 owns the politeness of the announcement over them. |
 | 09 ↔ 10 | 09 owns the token, the class, and the ring. 10 owns the ratio that a pair must meet, and the criteria for the indicator. |
+| 03 ↔ 11 | 03 owns the shape of a field component, and where the state of a component lives. 11 owns the value of a field, and the bind that carries it. |
+| 05 ↔ 11 | 05 owns the envelope, the normalizer, and the dotted path that it produces. 11 owns the map from that path onto a control. |
+| 06 ↔ 11 | 06 owns the cache entry and the URL parser. 11 owns the submit that invalidates the entry, and the step that the parser carries. |
+| 09 ↔ 11 | 09 owns the classes on a field control. 11 owns the error state that selects them. |
+| 10 ↔ 11 | 10 owns the label, the description, the summary, and the focus. 11 owns the state that supplies each one. |
 
 ## Mode selection
 
@@ -173,7 +182,7 @@ go and how they are typed. The backend contract comes before any code that
 touches Django. The domain files that match the feature come after it. The
 non-functional domains come last, as a review pass before done.
 
-The router table above is the integrated material at 1.9.0, and it is the
+The router table above is the integrated material at 1.10.0, and it is the
 authoritative list. The rest of the order applies as the router grows.
 
 Work is not done because it renders. It is done when all of the following
@@ -441,6 +450,32 @@ these:
   reserved box.
 - A font that `next/font` does not self-host, or a fixed `px` height on a text
   container.
+
+**`forms-and-validation` — integrated, not blocking.** Report each of these:
+
+- A `useForm` call with no resolver, or a second model of the same rules beside
+  the schema.
+- A schema that carries a `.default()`, a `.transform()`, or a `.catch()`, and
+  a form generic that is not the `z.input` and `z.output` pair.
+- A field with no `defaultValues` entry, or a cross-field rule with no `path`.
+- A `Controller` around a native input, or a native input with no `register`.
+- A validation mode of `onChange` from the mount.
+- A `watch()` at the root of a form, or a field array row keyed by its index.
+- A server field error that reaches a toast rather than its control, or a
+  `non_field_errors` value that reaches no form-level region.
+- A submit button bound to `isValid` rather than to `isSubmitting`, or bound to
+  neither.
+- A `reset()` in a `catch` or a `finally`, or a 5xx on a submit that discards
+  the values.
+- A 429 that ignores `Retry-After`, or a retried POST with no idempotency key.
+- A failed submit that moves focus nowhere, or that reports through a toast
+  alone.
+- A log or a console call that carries a field value.
+- A step index that only memory holds, or a flow whose values a reload
+  destroys.
+- A form with a dirty state and no guard on a `<Link>` click and a reload.
+- A password, a payment value, or a personal identifier in a query string or in
+  a stored draft.
 
 **Conflict rule.** security > accessibility > correctness > performance >
 developer convenience. No level trades down to satisfy a level above it. When
