@@ -100,7 +100,7 @@ const rows = await fetchAllMatching({ ...view, pageSize: 1000 }); // it follows 
 
 | The condition | The decision | What forces the change |
 | --- | --- | --- |
-| About 10,000 rows or fewer, and the client can fetch them | Build the file in the browser, with `papaparse` for a CSV | It avoids a round trip and a job queue. The decision flips when the row count or the column count passes what the browser can hold, or when the export must carry a value that the client never loads. |
+| About 10,000 rows or fewer, and the client can fetch them | Build the file in the browser, with `papaparse` for a CSV | It avoids a round trip and a job queue. The decision flips when the row count or the column count passes what the browser can hold. It also flips when the export must carry a value that the client never loads. |
 | A large set, every matching record, or a set that spans many pages | A job on the backend. The client posts the filter, receives a task id, polls the status, and then downloads the file | The browser cannot hold the whole set. The worker itself belongs to the sibling skill `django-async-jobs`. |
 
 The job path needs four states in the interface, and each one needs a design.
@@ -209,7 +209,7 @@ rg -n '"xlsx"|"papaparse"' package.json
 rg -n 'toLocaleString\(\)|toLocaleDateString\(\)|toLocaleTimeString\(\)' src/
 
 # 3. Find a date format with no time zone. Read every hit.
-rg -n 'Intl\.DateTimeFormat' src/ | rg -L 'timeZone'
+rg -n -A4 'Intl\.DateTimeFormat' src/ | rg -v 'timeZone'
 
 # 4. Find an Intl constructor inside a render. Read every hit.
 rg -n 'new Intl\.' -g '*.tsx' src/

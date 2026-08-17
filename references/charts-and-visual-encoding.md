@@ -92,6 +92,10 @@ server. A library that paints on a canvas, such as ECharts or Chart.js, cannot.
 Give a canvas library `ssr: false`, and give every chart a skeleton of the final
 aspect ratio.
 
+The `ssr: false` option is valid only inside a Client Component. Put that
+`next/dynamic` call in the client island, and never in a Server Component. The
+call above holds no `ssr: false`, so the server page can make it.
+
 `references/server-and-client-components.md` owns the boundary and the
 hydration failure. `references/suspense-and-actions.md` owns the shape of a
 fallback.
@@ -241,20 +245,21 @@ node -p "require('recharts/package.json').version"
 # 2. Find a chart import in a file with no client directive. This prints
 #    nothing.
 rg -l 'from "recharts"|echarts|chart\.js|@visx' -g '*.tsx' src/ | \
-  xargs rg -L '"use client"'
+  xargs rg --files-without-match '"use client"'
 
 # 3. Find a canvas chart with no ssr:false. Read every hit.
 rg -n 'dynamic\(' -g '*.tsx' src/ | rg -i 'chart|echarts'
 
 # 4. Find a chart with no text alternative. Read every hit.
 rg -ln 'ResponsiveContainer|ReactECharts|<Chart' -g '*.tsx' src/ | \
-  xargs rg -L 'aria-label|<figure'
+  xargs rg --files-without-match 'aria-label|<figure'
 
 # 5. Find a hex color inside a chart component. This prints nothing.
 rg -n '#[0-9a-fA-F]{3,8}\b' -g '*chart*.tsx' src/
 
 # 6. Find an ECharts option with no aria component. This prints nothing.
-rg -ln 'aria:\s*\{' -g '*.ts*' src/ | xargs rg -L 'AriaComponent'
+rg -ln 'aria:\s*\{' -g '*.ts*' src/ | \
+  xargs rg --files-without-match 'AriaComponent'
 
 # 7. Apply filter: grayscale(1) to the page, and read every chart. Each series
 #    stays separable.
@@ -272,7 +277,8 @@ rg -ln 'aria:\s*\{' -g '*.ts*' src/ | xargs rg -L 'AriaComponent'
 - [ ] Does every bar chart start its baseline at zero?
 - [ ] Does every pie or donut hold five parts or fewer?
 - [ ] Does the chart file carry `"use client"`, with the reason above it?
-- [ ] Does a canvas library load through `next/dynamic` with `ssr: false`?
+- [ ] Does a canvas library load through `next/dynamic` with `ssr: false`,
+      inside a Client Component?
 - [ ] Does the skeleton hold the aspect ratio of the final chart?
 - [ ] Does the chart sit in a `<figure>` with a `<figcaption>`, or carry
       `role="img"` with an `aria-label`?

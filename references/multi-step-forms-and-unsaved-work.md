@@ -67,13 +67,17 @@ so a step that leaves the screen keeps what the user typed.
 
 ```ts
 // Correct: the step validates its own fields, and the flow advances after it.
-const stepFields = {
-  1: ["email", "name"],
-  2: ["street", "city"],
-} as const;
+// The array holds the literal field names, so the resolver types them, and
+// noUncheckedIndexedAccess forces the guard on a step that no entry covers.
+const stepFields = [
+  ["email", "name"],
+  ["street", "city"],
+] as const;
 
 async function next(): Promise<void> {
-  const valid = await form.trigger(stepFields[step]);
+  const fields = stepFields[step - 1];
+  if (fields === undefined) return;
+  const valid = await form.trigger(fields);
   if (valid) await setStep(step + 1);
 }
 ```
@@ -174,7 +178,8 @@ one store. Render it as a filled field, or offer it as a choice.
 rg -n 'useState\(0\)|useState<number>' -g '*.tsx' src/ | rg -i 'step|wizard'
 
 # 2. Find a form that tracks dirty state with no guard. Read every hit.
-rg -ln 'isDirty' -g '*.tsx' src/ | xargs rg -L 'beforeunload|onNavigate'
+rg -ln 'isDirty' -g '*.tsx' src/ | \
+  xargs rg --files-without-match 'beforeunload|onNavigate'
 
 # 3. Find a router.push in a form that can hold unsaved work. Read every hit.
 rg -n 'router\.push' -g '*.tsx' src/
@@ -208,7 +213,7 @@ rg -n 'useQueryState\(.*(password|token|card|ssn)' -g '*.ts*' src/
 - [ ] Does the code ask the user before every programmatic navigation away from
       unsaved work?
 - [ ] Does the guard stop after a successful submit?
-- [ ] Does the URL and any stored draft hold no password, no payment value, and
+- [ ] Do the URL and any stored draft hold no password, no payment value, and
       no personal identifier?
 - [ ] Does the flow ask for each answer once?
 

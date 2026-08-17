@@ -483,7 +483,8 @@ rg -n 'onMouseEnter|onMouseOver' -g '*.tsx' src/
 
 - [ ] Is every positive `tabIndex` value absent from the code?
 - [ ] Does every interactive element take focus, and show a visible indicator?
-- [ ] Does a sticky element ever hide the focused control?
+- [ ] Does every focused control stay visible under a sticky header, a sticky
+      footer, and a floating panel?
 - [ ] Does every composite control implement the keys of its APG pattern?
 - [ ] Is every composite control one stop in the tab sequence?
 - [ ] Does every modal set the initial focus, trap the focus, and return it on

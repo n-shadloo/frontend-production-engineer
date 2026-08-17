@@ -373,7 +373,7 @@ rg -n 'draggable|onDragStart|onPointerMove' -g '*.tsx' src/
 - [ ] Does every drag, path gesture, and multi-finger gesture carry a
       single-pointer alternative?
 - [ ] Does every device-movement feature carry a control and a switch?
-- [ ] Does the navigation and the help mechanism sit in the same place on
+- [ ] Do the navigation and the help mechanism sit in the same place on
       every page?
 - [ ] Is every destructive action reversible, or confirmed?
 

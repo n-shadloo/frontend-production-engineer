@@ -105,9 +105,10 @@ export const orderColumns = [
 ];
 ```
 
-React Compiler 1.0 memoises a value that a component body creates, so a column
-array declared in a render is memoised where the compiler is on. Module scope is
-stable whether the compiler is on or off, so module scope is the default.
+React Compiler 1.0 memoises a value that a component body creates. A column
+array declared in a render is therefore memoised where the compiler is on.
+Module scope is stable whether the compiler is on or off, so module scope is
+the default.
 `references/state-and-effects.md` owns the compiler and the bailout.
 
 `references/cell-formatting-and-export.md` owns the formatter and the reason
@@ -446,14 +447,16 @@ node -p "require('@tanstack/react-table/package.json').version"
 node -p "require('@tanstack/react-virtual/package.json').version"
 
 # 2. Find a table that sets one manual option and not the other two.
-rg -n 'manualPagination' -g '*.tsx' src/ | \
-  xargs -I{} sh -c 'rg -L "manualSorting" "$(echo {} | cut -d: -f1)"'
+rg -ln 'manualPagination' -g '*.tsx' src/ | \
+  xargs rg --files-without-match 'manualSorting'
 
 # 3. Find a manual table with no total. Each hit needs rowCount or pageCount.
-rg -ln 'manualPagination' -g '*.tsx' src/ | xargs rg -L 'rowCount|pageCount'
+rg -ln 'manualPagination' -g '*.tsx' src/ | \
+  xargs rg --files-without-match 'rowCount|pageCount'
 
 # 4. Find a table with no getRowId. Read every hit.
-rg -ln 'useReactTable' -g '*.tsx' src/ | xargs rg -L 'getRowId'
+rg -ln 'useReactTable' -g '*.tsx' src/ | \
+  xargs rg --files-without-match 'getRowId'
 
 # 5. Find a page, a sort, or a filter in component state. Read every hit.
 rg -n 'useState' -g '*.tsx' src/ | rg -i 'page|sort|filter|search'
@@ -465,7 +468,8 @@ rg -n 'role="grid"|role="treegrid"' -g '*.tsx' src/
 rg -n 'useVirtualizer' -g '*.tsx' src/
 
 # 8. Find a virtualised body with no absolute row index. This prints nothing.
-rg -ln 'useVirtualizer' -g '*.tsx' src/ | xargs rg -L 'aria-rowcount'
+rg -ln 'useVirtualizer' -g '*.tsx' src/ | \
+  xargs rg --files-without-match 'aria-rowcount'
 
 # 9. Type the table. A column definition that disagrees with the row fails here.
 npx tsc --noEmit
