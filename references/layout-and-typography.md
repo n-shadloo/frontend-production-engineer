@@ -320,8 +320,9 @@ rg -n 'next/font' src/
   `references/visual-and-motor-criteria.md`. The keyboard path and the
   authoritative focus indicator rule →
   `references/keyboard-focus-and-live-regions.md`. That domain holds a veto.
-- The multi-step layout of a form, and the error state beside a field → domain
-  11 `forms-and-validation`. Not integrated yet.
+- The step of a multi-step form →
+  `references/multi-step-forms-and-unsaved-work.md`. The error state that sits
+  beside a field is `references/form-submission-and-server-errors.md`.
 - The column widths, the sticky header, and the virtualiser of a long list →
   domain 12 `data-tables-and-visualization`. Not integrated yet.
 - `next/image`, the responsive source set, and the loading of the bytes →

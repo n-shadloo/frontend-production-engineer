@@ -128,8 +128,8 @@ owns that type, in `references/api-client-and-request-safety.md`.
 
 `attr` names the field. A nested field arrives as `shipping_address.zipcode`,
 with a separator the server configures. Split on that separator to reach the
-form field. The field-level map into a form is domain 11
-`forms-and-validation`.
+form field. The field-level map into a form is
+`references/form-submission-and-server-errors.md`.
 
 ### The nullable field that the generated type does not carry
 
@@ -295,8 +295,9 @@ rg -n 'createEnv|EnvSchema' src/env.ts
 - The envelope of a pushed message, and the parse that a frame from a
   connection needs → `references/live-events-and-cache-merge.md`. This file
   owns the doctrine, and that file owns the discriminated union over an event.
-- The resolver, the field array, and the map from `attr` to a form field →
-  domain 11 `forms-and-validation`. Not integrated yet.
+- The resolver, the field array, and the schema that one form stands on →
+  `references/form-schema-and-field-binding.md`. The map from `attr` to a form
+  field is `references/form-submission-and-server-errors.md`.
 - The words in a validation message that a user reads → domain 15
   `ux-writing-and-content-design`. Not integrated yet.
 - The MSW handlers and the contract test against the schema → domain 20

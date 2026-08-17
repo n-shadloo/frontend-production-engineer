@@ -431,9 +431,12 @@ curl -sI -X POST "$NEXT_PUBLIC_API_BASE_URL/api/auth/login/" | rg -i 'set-cookie
   code that ends a connection → `references/push-transport-and-connection.md`.
   This file owns where the credential lives, and that file owns how it travels
   on a handshake.
-- The login form, the field errors of a credential failure, and the multi-step
-  flow of an MFA challenge → domain 11 `forms-and-validation`. Not integrated
-  yet. This file owns the error taxonomy that the form maps.
+- The login form and its fields →
+  `references/form-schema-and-field-binding.md`. The field errors of a
+  credential failure are `references/form-submission-and-server-errors.md`, and
+  the multi-step flow of an MFA challenge is
+  `references/multi-step-forms-and-unsaved-work.md`. This file owns the error
+  taxonomy that the form maps.
 - The CSP that makes an injection unable to read a token, and the response
   headers → domain 17 `frontend-security`. Not integrated yet. That domain
   holds a veto.

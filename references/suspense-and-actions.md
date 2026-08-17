@@ -228,7 +228,10 @@ NEVER throw a validation error. A throw replaces the form with an error
 boundary, so the user loses every value that they typed and the message names
 no field. The shape of the DRF error body, and the `attr` field that names the
 form field, are `references/boundary-validation-and-api-types.md`. The map from
-a field name to a form control is domain 11 `forms-and-validation`.
+a field name to a form control is
+`references/form-submission-and-server-errors.md`. That file also states the
+one reversal of the last row. A submit holds values that the user typed, so a
+5xx there reports at the form level.
 
 ### `useOptimistic` rolls back on its own
 
@@ -367,8 +370,13 @@ rg -n 'action=\{' -g '*.tsx' src/
 - The live region that announces a pending state, and the focus that moves to
   an error message → `references/keyboard-focus-and-live-regions.md`. That
   domain holds a veto.
-- The resolver, the field array, and the multi-step flow → domain 11
-  `forms-and-validation`. Not integrated yet.
+- The resolver, the field array, and the bind of a control →
+  `references/form-schema-and-field-binding.md`.
+- The map from a DRF rejection onto a control, and the values that an Action
+  returns with its state →
+  `references/form-submission-and-server-errors.md`.
+- The step, and the guard over unsaved work →
+  `references/multi-step-forms-and-unsaved-work.md`.
 - The transition between two views, and the duration of an animation →
   domain 14 `motion-and-interaction`. Not integrated yet.
 - The words in an error message, an empty state, and a pending label →

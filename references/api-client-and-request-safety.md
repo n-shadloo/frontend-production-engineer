@@ -175,13 +175,8 @@ export function normalizeApiError(status: number, body: unknown): ApiError {
 
   // DRF 400: { field: ["msg"], non_field_errors: ["msg"] }
   if (status === 400 && isRecord) {
-    const dict = body as Record<string, unknown>;
     const fieldErrors: Record<string, string[]> = {};
-    for (const key of Object.keys(dict)) {
-      const value = dict[key];
-      if (Array.isArray(value)) fieldErrors[key] = value.map(String);
-      else if (typeof value === "string") fieldErrors[key] = [value];
-    }
+    collectFieldErrors(body, "", fieldErrors);
     return {
       status,
       code: "validation_error",
@@ -206,6 +201,36 @@ export function normalizeApiError(status: number, body: unknown): ApiError {
 
   return { status, code: String(status), message: "The request failed.", retryable, raw: body };
 }
+
+// A nested serializer produces { address: { city: ["msg"] } }, and a list
+// serializer produces one entry for each row. Both flatten to the dotted path
+// that names the form control, such as address.city and items.1.sku.
+function collectFieldErrors(
+  node: unknown,
+  path: string,
+  out: Record<string, string[]>,
+): void {
+  const join = (part: string): string => (path === "" ? part : `${path}.${part}`);
+
+  if (typeof node === "string") {
+    if (path !== "") out[path] = [node];
+    return;
+  }
+  if (Array.isArray(node)) {
+    const messages = node.filter((item): item is string => typeof item === "string");
+    if (messages.length === node.length) {
+      if (path !== "" && messages.length > 0) out[path] = messages;
+      return;
+    }
+    node.forEach((item, index) => collectFieldErrors(item, join(String(index)), out));
+    return;
+  }
+  if (node !== null && typeof node === "object") {
+    for (const [key, value] of Object.entries(node)) {
+      collectFieldErrors(value, join(key), out);
+    }
+  }
+}
 ```
 
 Prefer the DRF `code` over the message. A DRF `ErrorDetail` carries both, and
@@ -213,17 +238,24 @@ the message is translated, so a branch on the message breaks under a second
 locale.
 
 Three DRF shapes reach this function. A `ValidationError` detail is a
-dictionary, a list, or a nested structure, so the last return catches the list
-form and the non-JSON form. Where the backend runs `drf-standardized-errors`
-the envelope is different, and
+dictionary, a list, or a nested structure. `collectFieldErrors` walks all three
+into one flat map of dotted paths, and the last return catches the non-JSON
+form.
+
+The dotted path is what a form control carries. A nested field therefore
+arrives as `address.city`, and a row of a list arrives as `items.1.sku`.
+Confirm the list shape against the deployed DRF version, because 3.17 changed
+the error output of a list serializer. Where the backend runs
+`drf-standardized-errors` the envelope is different, and
 `references/boundary-validation-and-api-types.md` holds
 `StandardizedErrorBody`. Map that envelope in the same function, and keep one
 `ApiError` at the output.
 
 A 400 becomes `fieldErrors`, and those errors belong beside the input.
 `references/suspense-and-actions.md` states that a validation error returns as
-state and never throws. Domain 11 `forms-and-validation` owns the map from a
-field name to a form control.
+state and never throws. This file owns the dotted path, and
+`references/form-submission-and-server-errors.md` owns the map from that path
+to a form control.
 
 ### The empty body
 
@@ -381,8 +413,9 @@ rg -n 'DJANGO_URL|NEXT_PUBLIC_API_BASE_URL' src/lib/api
   file owns the deadline on an ordinary request, and a streamed response has
   no single deadline. The parse over each frame is
   `references/live-events-and-cache-merge.md`.
-- The map from a field name to a form control → domain 11
-  `forms-and-validation`. Not integrated yet.
+- The map from a dotted path to a form control, and the form-level region that
+  takes `non_field_errors` →
+  `references/form-submission-and-server-errors.md`.
 - The file picker, the progress bar, and the upload UI → domain 13
   `media-and-file-handling`. Not integrated yet.
 - The words that a person reads in an error message → domain 15

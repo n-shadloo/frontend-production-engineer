@@ -46,7 +46,7 @@ in decline, and alive only in legacy code.
 | It is UI only, it changes rarely, and a deep subtree reads it — a theme, a collapsed sidebar | A context, with the value and the dispatch split | The value changes many times each second, which the next row covers. | Each change re-renders every consumer of the value context. |
 | It changes many times each second, or code outside React must read it, or it must survive a route change | A client store | One component reads the value, or the backend owns it. | A module, a provider for a request-specific value, and a selector at each read. |
 | The program can derive it from a value that already exists | Nothing. Compute it during the render. | A measurement shows that the computation fails the render budget. | The computation runs on each render. |
-| It is the value of a form field, before the submit | The form library. Domain 11 `forms-and-validation` | The field value must also appear in a link, which the URL row covers. | A dependency, and one more model of the same value. |
+| It is the value of a form field, before the submit | The form library. `references/form-schema-and-field-binding.md` | The field value must also appear in a link, which the URL row covers. | A dependency, and one more model of the same value. |
 
 Read the table from the top. The first row that matches decides the owner, and
 no value takes two rows.
@@ -347,8 +347,10 @@ pnpm build
   reach `localStorage` → `references/session-and-token-lifecycle.md`. The role
   flag that the UI reads is
   `references/route-protection-and-permissions.md`.
-- The form field value before the submit, and the multi-step flow → domain 11
-  `forms-and-validation`. Not integrated yet.
+- The form field value before the submit →
+  `references/form-schema-and-field-binding.md`. The step that this file's
+  parsers carry, and the guard over unsaved work, are
+  `references/multi-step-forms-and-unsaved-work.md`.
 - The column visibility and the sort model of a table → domain 12
   `data-tables-and-visualization`. Not integrated yet.
 - The theme token behind a stored preference, and the class that must reach

@@ -413,6 +413,8 @@ far from the field, and a screen reader user cannot return to it.
 `references/boundary-validation-and-api-types.md` owns the DRF error envelope
 that produces the field list, and
 `references/suspense-and-actions.md` owns the Action state that holds it.
+`references/form-submission-and-server-errors.md` owns the map that puts each
+message on its control, and it states that this file owns the report.
 
 ### What breaks, and how it looks
 
@@ -528,8 +530,11 @@ rg -n 'onMouseEnter|onMouseOver' -g '*.tsx' src/
   `references/app-router-structure.md`.
 - The redirect on a refused request, and the message that replaces the page →
   `references/route-protection-and-permissions.md`.
-- The resolver and the multi-step flow behind an error summary → domain 11
-  `forms-and-validation`. Not integrated yet.
+- The resolver and the server rejection that produce the list behind an error
+  summary → `references/form-schema-and-field-binding.md` and
+  `references/form-submission-and-server-errors.md`.
+- The step change that must move focus →
+  `references/multi-step-forms-and-unsaved-work.md`.
 - The keyboard path through a data grid, and the virtualiser → domain 12
   `data-tables-and-visualization`. Not integrated yet.
 - The animation of a focus move, and the View Transition → domain 14

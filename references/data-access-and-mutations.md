@@ -326,8 +326,11 @@ rg -n 'NEXT_PUBLIC_[A-Z_]*(KEY|SECRET|TOKEN|PASSWORD)' .
   permission classes belong to the sibling skill `secure-code-auditor`.
 - The pending state of a form, the error that the Action returns, and the
   optimistic value → `references/suspense-and-actions.md`.
-- The form binding, the field-level error mapping, and the multi-step flow →
-  domain 11 `forms-and-validation`. Not integrated yet.
+- The form binding and the resolver →
+  `references/form-schema-and-field-binding.md`. The field-level error map, and
+  the values that an Action returns with its state, are
+  `references/form-submission-and-server-errors.md`. The multi-step flow is
+  `references/multi-step-forms-and-unsaved-work.md`.
 - The N+1 query and the endpoint latency behind a slow call → the sibling
   skill `django-performance-optimizer`. This file owns only the number of
   frontend requests and the place where each one starts.

@@ -403,5 +403,6 @@ rg -n '^\s*(export )?interface ' src/
   `references/design-tokens-and-theming.md`. The typed variant map of a
   primitive is `references/component-styles-and-variants.md`. The `satisfies`
   rule above covers only the type concern.
-- The form state type and the field-level error map → domain 11
-  `forms-and-validation`. Not integrated yet.
+- The form state type, and the `z.input` and `z.output` pair that a resolver
+  needs → `references/form-schema-and-field-binding.md`. The field-level error
+  map is `references/form-submission-and-server-errors.md`.

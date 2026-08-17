@@ -215,7 +215,10 @@ a `<dl>`.
 
 A form that disables its submit button hides the reason for the refusal. Keep
 the button operable, and report the errors on the submit.
-`references/keyboard-focus-and-live-regions.md` owns that report.
+`references/keyboard-focus-and-live-regions.md` owns that report. A submit that
+is already running is the one exception. It is the first row of the table
+above: the refusal lasts for one request, and the label of the button states
+the reason. `references/form-submission-and-server-errors.md` holds that case.
 
 ### The three ways to hide an element
 
@@ -373,14 +376,17 @@ field.
 
 A multi-step flow must not ask for the same value twice. Carry the value
 forward, or offer the earlier answer as a choice.
+`references/multi-step-forms-and-unsaved-work.md` holds the mechanism.
 
 Warn the user before a session ends, and let the user extend it.
 `references/session-and-token-lifecycle.md` owns the session that ends, and
 this file owns the warning that the user must be able to act on.
 
-Domain 11 `forms-and-validation` owns the resolver, the field array, and the
-multi-step mechanics. It is not integrated yet. This file owns the label, the
-description, and the state that each field reports.
+`references/form-schema-and-field-binding.md` owns the resolver and the field
+array, and `references/multi-step-forms-and-unsaved-work.md` owns the
+multi-step mechanics. This file owns the label, the description, and the state
+that each field reports. Those files supply the value that
+`aria-invalid` and `aria-describedby` carry, and this file states the wiring.
 
 ### What breaks, and how it looks
 
@@ -489,8 +495,11 @@ pnpm lint
   `references/session-and-token-lifecycle.md`.
 - The gate that refuses a request, and the permission that the UI reflects →
   `references/route-protection-and-permissions.md`.
-- The resolver, the field array, and the multi-step flow → domain 11
-  `forms-and-validation`. Not integrated yet.
+- The resolver, the field array, and the source of the error value →
+  `references/form-schema-and-field-binding.md` and
+  `references/form-submission-and-server-errors.md`.
+- The step, the guard over unsaved work, and the answer that the flow must not
+  request twice → `references/multi-step-forms-and-unsaved-work.md`.
 - The text alternative of a chart, and the header cells of a data table →
   domain 12 `data-tables-and-visualization`. Not integrated yet.
 - The bytes of an image and the video player → domain 13

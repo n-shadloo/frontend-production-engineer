@@ -351,8 +351,9 @@ pnpm typecheck
   `references/semantics-and-accessible-names.md`. The keyboard path and the
   authoritative focus indicator criteria →
   `references/keyboard-focus-and-live-regions.md`. That domain holds a veto.
-- The field control, the error state on it, and the resolver behind it → domain
-  11 `forms-and-validation`. Not integrated yet.
+- The error state that a field variant selects, and the resolver behind it →
+  `references/form-schema-and-field-binding.md`. This file owns the classes on
+  the control, and that file owns the state that selects them.
 - The cell, the column, and the row of a table → domain 12
   `data-tables-and-visualization`. Not integrated yet.
 - The transition and the animation that a variant change triggers → domain 14

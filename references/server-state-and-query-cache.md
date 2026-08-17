@@ -450,7 +450,7 @@ then renders the error body as if it were a record.
 `references/api-client-and-request-safety.md` owns the shapes and the
 normalizer. `references/suspense-and-actions.md` owns the rule that a validation
 error returns as state and never throws. The map from a field name to a form
-control is domain 11 `forms-and-validation`.
+control is `references/form-submission-and-server-errors.md`.
 
 ### Polling needs a reason and a stop condition
 
@@ -615,8 +615,9 @@ pnpm exec eslint . --max-warnings=0
   `references/push-transport-and-connection.md`. The event that writes into
   this cache, and the order of that write against the invalidation, are
   `references/live-events-and-cache-merge.md`.
-- The field-level map from a DRF 400 to a form control → domain 11
-  `forms-and-validation`. Not integrated yet.
+- The field-level map from a DRF 400 to a form control, and the submit that
+  invalidates a key here after a success →
+  `references/form-submission-and-server-errors.md`.
 - The column model, the row model, and the virtualiser over an infinite query →
   domain 12 `data-tables-and-visualization`. Not integrated yet.
 - The upload progress of a mutation that carries a file → domain 13
