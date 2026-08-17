@@ -82,7 +82,7 @@ Tier 3 is interface craft.
 - `13 media-and-file-handling` — uploads, images, video, downloads, progress.
   Integrated.
 - `14 motion-and-interaction` — Motion and View Transitions, gestures, the
-  performance cost of animation. Pending.
+  performance cost of animation. Integrated.
 - `15 ux-writing-and-content-design` — microcopy, error and empty states,
   voice, information architecture. Pending.
 
@@ -253,18 +253,20 @@ run.
 
 ## Example output
 
-At 1.12.0 the integrated material is the operating doctrine, the App Router
+At 1.13.0 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
 events on it. It holds the design system and accessibility — the tokens and the
 layout, the element and its name, the keyboard, and the measurable criteria. It
-holds forms and the dense data surface — the schema and the bind, the table
-with the server that drives it, the chart, and the export.
+holds forms, the dense data surface, and media — the schema and the bind, the
+table with the server that drives it, the chart, and the file that leaves for a
+user.
 
-The newest part is media. It holds the upload with its transport and its
-progress, the picture and the player, and the file that leaves for a user. The
-worked example is the shape of a task and the facts that gate it:
+The newest part is motion. It holds the animation with the properties that one
+frame can afford, the transition between two views, and the drag and the scroll
+that a reader drives. The worked example is the shape of a task and the facts
+that gate it:
 
 ```
 Plan
@@ -395,11 +397,13 @@ frontend-production-engineer/
 │   ├── file-upload-and-transport.md
 │   ├── form-schema-and-field-binding.md
 │   ├── form-submission-and-server-errors.md
+│   ├── gesture-and-scroll-interaction.md
 │   ├── image-and-video-delivery.md
 │   ├── keyboard-focus-and-live-regions.md
 │   ├── layout-and-typography.md
 │   ├── lint-format-and-scripts.md
 │   ├── live-events-and-cache-merge.md
+│   ├── motion-primitives-and-reduced-motion.md
 │   ├── multi-step-forms-and-unsaved-work.md
 │   ├── openapi-schema-and-codegen.md
 │   ├── push-transport-and-connection.md
@@ -413,6 +417,7 @@ frontend-production-engineer/
 │   ├── suspense-and-actions.md
 │   ├── type-modeling-and-narrowing.md
 │   ├── typescript-config-and-enforcement.md
+│   ├── view-transitions-and-animation-libraries.md
 │   ├── visual-and-motor-criteria.md
 │   └── wcag-conformance-and-verification.md
 ├── README.md
@@ -420,7 +425,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds thirteen domains at 1.12.0 and fills one domain at a time.
+`references/` holds fourteen domains at 1.13.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 

@@ -27,14 +27,15 @@ jobs:
           # at 1.11.0, where three router rows, six seam rows, and a gate
           # block for domain 12 passed it. Raised again at 1.12.0, where
           # three router rows, seven seam rows, and a gate block for domain
-          # 13 passed it. Each domain adds about 6 kB of rows, seams, and
-          # gate conditions, and 11 domains remain, so this number moves on
-          # that schedule. It is a tripwire against depth that belongs in
-          # references/, and not a budget. This is a repository gate, not a
-          # platform limit; the platform limit is the frontmatter
-          # description, which the validate-skill workflow checks at 1024
-          # characters.
-          MAX_SKILL_BYTES = 102400
+          # 13 passed it. Raised again at 1.13.0, where three router rows,
+          # seven seam rows, and a gate block for domain 14 passed it. Each
+          # domain adds about 6 kB of rows, seams, and gate conditions, and
+          # 10 domains remain, so this number moves on that schedule. It is
+          # a tripwire against depth that belongs in references/, and not a
+          # budget. This is a repository gate, not a platform limit; the
+          # platform limit is the frontmatter description, which the
+          # validate-skill workflow checks at 1024 characters.
+          MAX_SKILL_BYTES = 112640
           REFERENCE_LINK = re.compile(r"references/([A-Za-z0-9._-]+\.md)")
 
           root = pathlib.Path(".")

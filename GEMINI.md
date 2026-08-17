@@ -21,18 +21,19 @@ guarantees: Web Vitals, frontend security, SEO, internationalization and RTL,
 testing, observability, build and deploy, and analytics and consent. A Tier 0
 operating doctrine sits under all four, and it is always in effect.
 
-At 1.12.0 the integrated material in `references/` is that doctrine, the App
+At 1.13.0 the integrated material in `references/` is that doctrine, the App
 Router foundation, the type system, and the React component tree. It also holds
 the project structure, the DRF contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
 events on it. It holds the design system and accessibility — the tokens and the
 layout, the element and its name, the keyboard, and the measurable criteria.
-It holds forms and the dense data surface — the schema and the bind, the table
-with the server that drives it, the chart, and the export.
+It holds forms, the dense data surface, and media — the schema and the bind,
+the table with the server that drives it, the chart, and the file that leaves
+for a user.
 
-The newest part is media. It holds the upload with its transport and its
-progress, the picture and the player, and the file that leaves for a user.
-`SKILL.md` is the authoritative list of what is loadable.
+The newest part is motion. It holds the animation with the properties that one
+frame can afford, the transition between two views, and the drag and the scroll
+that a reader drives. `SKILL.md` is the authoritative list of what is loadable.
 
 Two standing rules govern everything. Verify the installed versions from
 `package.json` before you generate code. Never mix Next 15 and Next 16 idioms
