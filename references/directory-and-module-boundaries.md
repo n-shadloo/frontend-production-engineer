@@ -360,8 +360,9 @@ git log --oneline -- src/api/generated
 - The drf-spectacular config, the generator choice, the schema artifact, and
   the drift gate → `references/openapi-schema-and-codegen.md`. The server side
   belongs to the sibling skill `django-api-contract`.
-- The tokens that `src/components/ui` renders → domain 09
-  `design-system-and-styling`. Not integrated yet.
+- The tokens that `src/components/ui` renders, and the stylesheet in
+  `src/styles/` that publishes them →
+  `references/design-tokens-and-theming.md`.
 - The test file layout under a feature → domain 20 `testing-and-quality`. Not
   integrated yet.
 - The CI pipeline that downloads the schema artifact, and the Docker build →

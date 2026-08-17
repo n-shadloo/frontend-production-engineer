@@ -315,7 +315,7 @@ advisory database supplied those four facts on 16 August 2026.
 
 | Tier | Library | The rule | Latest version | Last release | Maintenance | Open advisories |
 | --- | --- | --- | --- | --- | --- | --- |
-| Recommend | shadcn/ui on Base UI | Base UI is the default since July 2026. It supplies the headless primitives, the `render` prop, and `data-slot`. The Radix path is the `-b radix` flag. The classes and the tokens are domain 09 `design-system-and-styling`. | `shadcn` 4.18.0, and `@base-ui/react` 1.7.0 | 13 Aug 2026, and 4 Aug 2026 | Both active. The Base UI package name `@base-ui-components/react` is deprecated, and it is alive only in legacy code. | None on either package |
+| Recommend | shadcn/ui on Base UI | Base UI is the default since July 2026. It supplies the headless primitives, the `render` prop, and `data-slot`. The Radix path is the `-b radix` flag. The classes and the tokens are `references/component-styles-and-variants.md` and `references/design-tokens-and-theming.md`. | `shadcn` 4.18.0, and `@base-ui/react` 1.7.0 | 13 Aug 2026, and 4 Aug 2026 | Both active. The Base UI package name `@base-ui-components/react` is deprecated, and it is alive only in legacy code. | None on either package |
 | Conditional | Radix Primitives | Use it where a Radix codebase exists, or where you need Context Menu, Hover Card, or Toast. It supplies `asChild` and `Slot`. Radix development has less focus now. Current but in decline. | `radix-ui` 1.6.7 | 24 Jul 2026 | Active. The repository takes commits, and it holds a large open-issue count. | None |
 | Conditional | `usehooks-ts`, `react-use` | Prefer a copy into the repository. `react-use` gets less maintenance. Both are current but in decline. | `usehooks-ts` 3.1.1, and `react-use` 17.6.1 | 5 Feb 2025, and 10 Jun 2026 | `usehooks-ts` has taken no release for 18 months. `react-use` releases rarely, and it holds over 600 open issues. | None on either package |
 | Reject | `prop-types` | React 19 ignores the checks, and it reports nothing. Use TypeScript. Alive only in legacy code. | 15.8.1 | 5 Jan 2022 | Unmaintained. The repository is archived. | None |
@@ -378,8 +378,9 @@ rg -n -B1 -A8 '^\s*(type|interface) \w+Props' -g '*.tsx' src/ | rg '\?: boolean'
   `ref` types → `references/type-modeling-and-narrowing.md`.
 - The `"use client"` directive on a leaf, and what a prop must serialize to
   cross the boundary → `references/server-and-client-components.md`.
-- The classes, the tokens, and the theme on a part →
-  domain 09 `design-system-and-styling`. Not integrated yet.
+- The classes on a part, `cn()`, and the variant API →
+  `references/component-styles-and-variants.md`. The tokens behind them are
+  `references/design-tokens-and-theming.md`.
 - The ARIA roles, the keyboard behavior, and the focus order of a compound
   component → domain 10 `accessibility-wcag`. Not integrated yet. That domain
   holds a veto.

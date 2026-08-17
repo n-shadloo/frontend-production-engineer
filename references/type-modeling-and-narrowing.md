@@ -399,8 +399,9 @@ rg -n '^\s*(export )?interface ' src/
   React → `references/state-and-effects.md`.
 - The React 19 Actions, and the boundary that renders while a value is absent →
   `references/suspense-and-actions.md`.
-- The theme object and the token types behind it → domain 09
-  `design-system-and-styling`. Not integrated yet. The `satisfies` rule above
-  covers only the type concern.
+- The theme, the tokens, and the CSS that publishes them →
+  `references/design-tokens-and-theming.md`. The typed variant map of a
+  primitive is `references/component-styles-and-variants.md`. The `satisfies`
+  rule above covers only the type concern.
 - The form state type and the field-level error map → domain 11
   `forms-and-validation`. Not integrated yet.

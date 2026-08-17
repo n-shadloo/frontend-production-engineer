@@ -351,8 +351,9 @@ pnpm build
   `forms-and-validation`. Not integrated yet.
 - The column visibility and the sort model of a table → domain 12
   `data-tables-and-visualization`. Not integrated yet.
-- The theme token behind a stored preference → domain 09
-  `design-system-and-styling`. Not integrated yet.
+- The theme token behind a stored preference, and the class that must reach
+  `<html>` before the first paint →
+  `references/design-tokens-and-theming.md`.
 - The locale segment in the address → domain 19
   `internationalization-and-rtl`. Not integrated yet.
 - The re-render cost of a store read, and the INP that it produces → domain 16

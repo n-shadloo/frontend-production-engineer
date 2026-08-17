@@ -118,7 +118,7 @@ person can fix.
 | --- | --- | --- |
 | `Parsing error: ESLint was configured to run on ... however that TSConfig does not include this file` | A type-aware rule met a file outside the `tsconfig.json` include, such as a root config file | Put that file in a glob override with the type-aware rules off. `references/typescript-config-and-enforcement.md` holds the override |
 | A TypeScript rule reports nothing | The array holds `core-web-vitals` and not `typescript` | Add the second export. Plant an unused variable and confirm the report |
-| `It looks like you're trying to use tailwindcss directly as a PostCSS plugin` | Tailwind v4 moved the plugin | Use `@tailwindcss/postcss`. Domain 09 owns the CSS |
+| `It looks like you're trying to use tailwindcss directly as a PostCSS plugin` | Tailwind v4 moved the plugin | Use `@tailwindcss/postcss`. The CSS entry is domain 09 |
 
 ### Next 16 removed `next lint`, so CI runs the lint step
 
@@ -169,7 +169,7 @@ holds `@theme`.
 Add no Tailwind lint plugin for class validation. The `eslint-plugin-tailwindcss`
 package has partial v4 support, so it is current but in decline. Where a project already has it, confirm that it
 resolves the v4 CSS entry, or replace it with `eslint-plugin-better-tailwindcss`.
-Domain 09 `design-system-and-styling` owns the tokens and the theme.
+`references/design-tokens-and-theming.md` owns the tokens and the theme.
 
 `.editorconfig` carries the indent and the line ending for editors that do not
 run Prettier. Prettier stays the authority on everything it formats.
@@ -293,8 +293,8 @@ pnpm check
   `references/state-and-effects.md`.
 - The `next.config.ts` keys other than `eslint` →
   `references/app-router-structure.md`.
-- The Tailwind theme, the tokens, and the PostCSS setup → domain 09
-  `design-system-and-styling`. Not integrated yet.
+- The Tailwind theme, the tokens, and the CSS entry that `@theme` lives in →
+  `references/design-tokens-and-theming.md`.
 - The `jsx-a11y` rule set and the accessibility gate → domain 10
   `accessibility-wcag`. Not integrated yet. That domain holds a veto.
 - The test layout, the fixtures, the coverage threshold, and the lint plugins
