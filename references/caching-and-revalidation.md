@@ -241,7 +241,7 @@ pnpm build --debug
   `references/server-state-and-query-cache.md`. This file stops at the server
   cache and the Router Cache.
 - Whether a cached response may hold the data at all, and what a leaked
-  response exposes → domain 17 `frontend-security`. Not integrated yet. That
+  response exposes → `references/exposed-endpoints-and-destinations.md`. That
   domain holds a veto.
 - The database query cost behind a cache miss, and the server-side cache in
   Django → the sibling skill `django-performance-optimizer`.

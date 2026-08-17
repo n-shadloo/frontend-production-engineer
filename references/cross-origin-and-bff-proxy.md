@@ -256,8 +256,10 @@ curl -si -X POST "$NEXT_PUBLIC_API_BASE_URL/api/auth/login/" | rg -i 'set-cookie
   attributes that a cross-origin request depends on. The redirect after a 401,
   and the gate on the route, are
   `references/route-protection-and-permissions.md`.
-- The CSP, the response headers, and the judgment of an injection sink → domain
-  17 `frontend-security`. Not integrated yet. That domain holds a veto.
+- The CSP that must name the Django origin and the `wss://` endpoint, and the
+  response headers → `references/security-headers-and-csp.md`. The judgment of
+  an injection sink is `references/untrusted-markup-and-injection.md`. That
+  domain holds a veto.
 - The Nginx configuration in front of Node, and the TLS termination → domain 22
   `build-deploy-and-runtime-ops`. Not integrated yet.
 - The DRF permission class, the server-side CSRF enforcement, the CORS

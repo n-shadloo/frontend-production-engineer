@@ -245,8 +245,9 @@ Next.js publishes security releases every month. The release of 2026-07-20
 fixed nine CVEs in 16.2.11, the Active LTS line, and in 15.5.21, the
 Maintenance LTS line. Four were HIGH, and two of those were server-side
 request forgery, one of them through `rewrites`. Upgrade to a patched version.
-Treat every `rewrites` destination as untrusted until domain 17
-`frontend-security` rules on it.
+NEVER build a `rewrites` destination from request input.
+`references/exposed-endpoints-and-destinations.md` states the rule that covers
+every destination.
 
 ## Verification
 
@@ -327,8 +328,10 @@ done
   cookie attributes, and the refresh are
   `references/session-and-token-lifecycle.md`. The server-side permission
   classes belong to the sibling skill `secure-code-auditor`.
-- The values of the security headers, and the CSP that `next.config.ts`
-  emits → domain 17 `frontend-security`. Not integrated yet.
+- The values of the security headers, and the CSP that `next.config.ts` and
+  `proxy.ts` emit → `references/security-headers-and-csp.md`. The destination of
+  a `rewrites()` or a `redirects()` entry is
+  `references/exposed-endpoints-and-destinations.md`. That domain holds a veto.
 - The content of the metadata files, such as `opengraph-image.tsx` → domain 18
   `seo-and-metadata`. Not integrated yet. This file owns only the existence of
   the file at the route.

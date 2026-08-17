@@ -438,8 +438,8 @@ curl -sI -X POST "$NEXT_PUBLIC_API_BASE_URL/api/auth/login/" | rg -i 'set-cookie
   `references/multi-step-forms-and-unsaved-work.md`. This file owns the error
   taxonomy that the form maps.
 - The CSP that makes an injection unable to read a token, and the response
-  headers → domain 17 `frontend-security`. Not integrated yet. That domain
-  holds a veto.
+  headers → `references/security-headers-and-csp.md`. The injection sink itself
+  is `references/untrusted-markup-and-injection.md`. That domain holds a veto.
 - The accessible name of a sign-in control, and the accessibility cost of a
   CAPTCHA → `references/semantics-and-accessible-names.md`. The focus order
   over those controls → `references/keyboard-focus-and-live-regions.md`. That

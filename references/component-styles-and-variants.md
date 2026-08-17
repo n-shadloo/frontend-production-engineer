@@ -362,5 +362,5 @@ pnpm typecheck
   message beside it → `references/error-and-empty-state-copy.md`.
 - The CSS bytes and the icon bytes that a surface adds →
   `references/client-bundle-and-third-party-scripts.md`.
-- The supply chain of a style dependency, and its advisories → domain 17
-  `frontend-security`. Not integrated yet. That domain holds a veto.
+- The supply chain of a style dependency, and its advisories →
+  `references/secret-boundary-and-supply-chain.md`. That domain holds a veto.

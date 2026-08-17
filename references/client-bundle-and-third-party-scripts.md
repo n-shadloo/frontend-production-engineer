@@ -376,8 +376,11 @@ rg -n 'prefetch' -g '*.tsx' src/
   `references/view-transitions-and-animation-libraries.md`.
 - The install size of a new dependency, and its maintenance status →
   `references/dependencies-and-git-workflow.md`.
-- The supply-chain surface of a third-party script, and the Content Security
-  Policy that admits it → domain 17 `frontend-security`. Not integrated yet.
+- The supply-chain surface of a third-party script, its `integrity`
+  attribute, and the self-hosting decision →
+  `references/secret-boundary-and-supply-chain.md`. The Content Security Policy
+  that admits it is `references/security-headers-and-csp.md`. That domain holds
+  a veto.
 - The consent gate over a script, the lawful basis, and the event schema →
   domain 23 `analytics-privacy-and-consent`. Not integrated yet.
 - The compression, the cache headers, and the CDN in front of `_next/static` →

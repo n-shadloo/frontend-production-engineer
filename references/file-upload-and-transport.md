@@ -425,8 +425,10 @@ rg -n 'presign|createPresignedPost|putWithProgress' -g '*.ts*' src/
   `references/served-content-and-downloads.md`.
 - The lockfile entry, the cooldown, and the justification for a new dependency →
   `references/dependencies-and-git-workflow.md`.
-- The Content Security Policy over the page that holds the upload → domain 17
-  `frontend-security`. Not integrated yet.
+- The Content Security Policy over the page that holds the upload →
+  `references/security-headers-and-csp.md`. The endpoint that receives the file
+  is `references/exposed-endpoints-and-destinations.md`. That domain holds a
+  veto.
 - The words in an upload message and in a refusal →
   `references/error-and-empty-state-copy.md`.
 - The bytes that an upload costs, and the budget over them →

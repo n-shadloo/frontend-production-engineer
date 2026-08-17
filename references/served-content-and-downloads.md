@@ -71,8 +71,8 @@ user-supplied SVG to a raster image on the server where the product allows it.
 Where it does not, the three rules above are the whole defence.
 
 The origins that the application may load media from belong in the Content
-Security Policy, which is domain 17 `frontend-security`. That domain owns the
-policy, and this file owns the origin that the policy must name. The sibling
+Security Policy, which is `references/security-headers-and-csp.md`. That file
+owns the policy, and this file owns the origin that the policy must name. The sibling
 skill `secure-code-auditor` owns the server-side check over the stored file, and
 the response headers that Django sends.
 
@@ -283,9 +283,10 @@ curl -sSI "$MEDIA_ORIGIN/media/avatars/42.svg"
 - The name of the download control, and the announcement when a file is ready →
   `references/semantics-and-accessible-names.md` and
   `references/keyboard-focus-and-live-regions.md`. Both domains hold a veto.
-- The Content Security Policy, the response headers of the application, and the
-  full threat model over user content → domain 17 `frontend-security`. Not
-  integrated yet.
+- The Content Security Policy and the response headers of the application →
+  `references/security-headers-and-csp.md`. The sink that a user file reaches
+  when the browser runs it is
+  `references/untrusted-markup-and-injection.md`. That domain holds a veto.
 - The interaction cost of a build on the main thread →
   `references/paint-and-interaction-cost.md`.
 - The words in a download message and in an expiry warning →

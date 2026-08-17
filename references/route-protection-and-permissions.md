@@ -240,14 +240,28 @@ export function safeNext(next: string | undefined): string {
   if (next === undefined) return "/";
   if (!next.startsWith("/")) return "/"; // an absolute URL to another host
   if (next.startsWith("//")) return "/"; // a protocol-relative URL
-  return next;
+
+  // The string tests above pass "/\evil.example". The URL parser reads the
+  // backslash as a second slash, so the value resolves to another origin.
+  const origin = process.env.APP_ORIGIN!;
+  let parsed: URL;
+  try {
+    parsed = new URL(next, origin);
+  } catch {
+    return "/";
+  }
+  return parsed.origin === new URL(origin).origin ? next : "/";
 }
 ```
 
 Every redirect target that a request supplies passes through this function.
-The `next` parameter is a value from outside the program, so
+Both halves are needed. The string tests refuse a value such as
+`https:evil.example`, which the parser resolves against the origin of the
+application. The parse refuses `/\evil.example`, which the string tests pass.
+The `next` parameter is a value from outside the program.
 `references/boundary-validation-and-api-types.md` states the general rule that
-covers it.
+covers it. `references/exposed-endpoints-and-destinations.md` states the rule
+that every destination is parsed rather than matched.
 
 ### Protected data never enters a shared payload
 
@@ -435,9 +449,14 @@ pnpm build
   codes 4001 and 4003 → `references/push-transport-and-connection.md`. This
   file states that the connection never trusts an identity that the client
   sends.
-- The Server Action supply chain, the CSP, and the judgment of an injection
-  sink → domain 17 `frontend-security`. Not integrated yet. That domain holds
-  a veto.
+- The Server Action as a public endpoint, the origin check over it, and the rule
+  that every destination is parsed →
+  `references/exposed-endpoints-and-destinations.md`. The Content Security
+  Policy and the header set are `references/security-headers-and-csp.md`. The
+  judgment of an injection sink is
+  `references/untrusted-markup-and-injection.md`. The supply chain of a
+  dependency is `references/secret-boundary-and-supply-chain.md`. That domain
+  holds a veto.
 - The focus that moves to a 403 message, and the keyboard path to a gated
   control → `references/keyboard-focus-and-live-regions.md`. That domain holds
   a veto.

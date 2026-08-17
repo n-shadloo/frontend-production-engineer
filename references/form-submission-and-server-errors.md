@@ -411,8 +411,10 @@ curl -sSi -X POST "$ORDERS_URL"
   `references/file-upload-and-transport.md`.
 - The words in an error message → `references/error-and-empty-state-copy.md`.
   The words in a confirmation → `references/interface-copy-and-voice.md`.
-- The Content Security Policy over the page that holds the form, and the
-  Server Action surface → domain 17 `frontend-security`. Not integrated yet.
+- The Content Security Policy over the page that holds the form →
+  `references/security-headers-and-csp.md`. The Server Action as a public
+  endpoint is `references/exposed-endpoints-and-destinations.md`. That domain
+  holds a veto.
 - The MSW handler that returns a DRF 400, and the test that proves the message
   lands on the field → domain 20 `testing-and-quality`. Not integrated yet.
 - The serializer, the status code, and the error envelope on the server → the

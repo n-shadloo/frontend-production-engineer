@@ -98,8 +98,8 @@ Keep the allowlist of packages that may run one explicit. The key is
 `onlyBuiltDependencies` on the 10.x line, and pnpm 11 replaces it with
 `allowBuilds`.
 
-This file owns the policy. Domain 17 `frontend-security` owns the threat model
-and the judgment of whether a package is malicious.
+This file owns the policy. `references/secret-boundary-and-supply-chain.md`
+owns the threat model and the judgment of whether a package is dangerous.
 
 ### The update bot waits as well
 
@@ -261,8 +261,8 @@ rg -n 'linguist-generated' .gitattributes
 - The parse that proves an environment variable at boot →
   `references/boundary-validation-and-api-types.md`.
 - The threat model of a dependency, the judgment on a malicious package, and
-  the audit of a lockfile advisory → domain 17 `frontend-security`. Not
-  integrated yet. That domain holds a veto.
+  the audit of a lockfile advisory →
+  `references/secret-boundary-and-supply-chain.md`. That domain holds a veto.
 - The test job that a pre-push hook runs → domain 20 `testing-and-quality`.
   Not integrated yet.
 - The CI workflow, the cache, the release pipeline, and the deploy → domain 22

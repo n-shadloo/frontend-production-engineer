@@ -353,5 +353,5 @@ rg -n 'MotionConfig|useReducedMotion' -g '*.tsx' src/
 - The bundle budget over an animation library →
   `references/performance-budgets-and-measurement.md`. The long task and the
   INP threshold → `references/paint-and-interaction-cost.md`.
-- The supply chain of an animation dependency, and its advisories → domain 17
-  `frontend-security`. Not integrated yet. That domain holds a veto.
+- The supply chain of an animation dependency, and its advisories →
+  `references/secret-boundary-and-supply-chain.md`. That domain holds a veto.

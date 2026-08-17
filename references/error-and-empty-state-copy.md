@@ -153,11 +153,12 @@ the one identifier that a support request can quote. Put it behind a
 disclosure, so it reaches support and never leads the message.
 
 `references/server-and-client-components.md` owns the directive on a boundary
-file, and `references/app-router-structure.md` owns the route files. Domain 17
-`frontend-security` owns the rule that exception text must not reach the client.
-Domain 21 `observability-and-resilience` owns the lookup from a digest into a
-log. Neither is integrated yet. The sibling skill `secure-code-auditor` owns the
-server-side guarantee that no response body carries a stack trace.
+file, and `references/app-router-structure.md` owns the route files.
+`references/exposed-endpoints-and-destinations.md` owns the rule that exception
+text must not reach the client. Domain 21 `observability-and-resilience` owns
+the lookup from a digest into a log, and it is not integrated yet. The sibling
+skill `secure-code-auditor` owns the server-side guarantee that no response body
+carries a stack trace.
 
 ### `global-error.tsx` runs with no provider above it
 
@@ -426,8 +427,8 @@ pnpm build && pnpm start
   `references/interface-copy-and-voice.md`.
 - The key, and the ICU body behind each message →
   `references/message-catalog-and-plurals.md`.
-- The rule that exception text must not reach the client → domain 17
-  `frontend-security`. Not integrated yet.
+- The rule that exception text must not reach the client →
+  `references/exposed-endpoints-and-destinations.md`. That domain holds a veto.
 - The capture of the error, and the lookup from a digest into a log → domain 21
   `observability-and-resilience`. Not integrated yet.
 - The guarantee that no response body carries exception text or a stack trace →

@@ -391,7 +391,7 @@ pnpm test:e2e
   config → domain 20 `testing-and-quality`. Not integrated yet.
 - The workflow file that runs these stages → domain 22
   `build-deploy-and-runtime-ops`. Not integrated yet.
-- The supply chain of a test dependency → domain 17 `frontend-security`. Not
-  integrated yet. That domain holds a veto.
+- The supply chain of a test dependency →
+  `references/secret-boundary-and-supply-chain.md`. That domain holds a veto.
 - The words of the accessibility statement →
   `references/interface-copy-and-voice.md`.

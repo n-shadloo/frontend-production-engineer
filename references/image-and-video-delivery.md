@@ -230,7 +230,7 @@ Build `embedSrc` against the `youtube-nocookie.com` host rather than the
 
 `lite-youtube-embed` ships this pattern as a component. The frame source of a
 facade and the origins that it needs belong in the Content Security Policy,
-which is domain 17 `frontend-security`.
+which is `references/security-headers-and-csp.md`.
 
 ### The libraries
 
@@ -359,7 +359,9 @@ rg -n 'youtube\.com/embed|player\.vimeo\.com' -g '*.tsx' src/
 - The origin, the `Content-Disposition` header, and the `nosniff` header over a
   stored image → `references/served-content-and-downloads.md`.
 - The Content Security Policy that names a frame source and a media source →
-  domain 17 `frontend-security`. Not integrated yet.
+  `references/security-headers-and-csp.md`. The reason that a wildcard host in
+  `remotePatterns` is a server-side request forgery is
+  `references/exposed-endpoints-and-destinations.md`. That domain holds a veto.
 - The largest paint and the layout shift →
   `references/paint-and-interaction-cost.md`. The budget over the bundle of a
   player → `references/client-bundle-and-third-party-scripts.md`.
