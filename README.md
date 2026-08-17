@@ -72,7 +72,7 @@ Tier 2 is the backend contract and the state built on it.
 Tier 3 is interface craft.
 
 - `09 design-system-and-styling` — tokens, Tailwind v4, shadcn/ui, theming,
-  layout. Pending.
+  layout. Integrated.
 - `10 accessibility-wcag` — WCAG 2.2 AA, the ARIA authoring practices,
   keyboard, focus, screen readers. Pending.
 - `11 forms-and-validation` — React Hook Form with Zod, React 19 Actions,
@@ -124,7 +124,7 @@ runtime is Node.js 20.9 or later. The UI layer is React 19.2.4 or later, which
 is the security floor of the 19.2 line, with React Compiler 1.0. The language is TypeScript 5.9, with `strict` and
 `noUncheckedIndexedAccess`.
 
-Tailwind CSS v4 supplies the styling, with the CSS-first `@theme` config, and
+Tailwind CSS v4.3 supplies the styling, with the CSS-first `@theme` config, and
 shadcn/ui sits on Base UI. TanStack Query 5.101 or later holds the server
 state, nuqs 2.9 holds the URL state, and Zustand 5 holds the client store. Zod
 4 validates the values. React Hook Form binds the forms. Vitest,
@@ -250,12 +250,13 @@ run.
 
 ## Example output
 
-At 1.7.0 the integrated material is the operating doctrine, the App Router
+At 1.8.0 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
-project structure, the backend contract, and the client cache and state. The
-two newest parts are the session with the gates over it, and the push transport
-with the events on it. The worked example is the shape of a task and the facts
-that gate it:
+project structure, the backend contract, and the client cache and state. It
+holds the session with the gates over it, and the push transport with the
+events on it. The newest part is the design system — the tokens, the theme, the
+classes on a part, and the layout. The worked example is the shape of a task
+and the facts that gate it:
 
 ```
 Plan
@@ -359,10 +360,13 @@ frontend-production-engineer/
 │   ├── caching-and-revalidation.md
 │   ├── client-and-url-state.md
 │   ├── component-composition.md
+│   ├── component-styles-and-variants.md
 │   ├── cross-origin-and-bff-proxy.md
 │   ├── data-access-and-mutations.md
 │   ├── dependencies-and-git-workflow.md
+│   ├── design-tokens-and-theming.md
 │   ├── directory-and-module-boundaries.md
+│   ├── layout-and-typography.md
 │   ├── lint-format-and-scripts.md
 │   ├── live-events-and-cache-merge.md
 │   ├── openapi-schema-and-codegen.md
@@ -380,7 +384,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds eight domains at 1.7.0 and fills one domain at a time.
+`references/` holds nine domains at 1.8.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 

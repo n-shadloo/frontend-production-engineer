@@ -5,23 +5,23 @@ description: >-
   DRF backend. Use whenever frontend work is planned, written, or
   reviewed and the task touches App Router files (app/, layout.tsx,
   page.tsx, proxy.ts, next.config.ts, tsconfig.json), the "use client"
-  or "use server" boundary, await params or cookies(), "use cache" and
-  revalidateTag, a Server Action, a React hook (useState, useEffect),
-  a cast (any), a Zod schema (safeParse), the DRF contract (an OpenAPI
-  schema, drf-spectacular, a generated client, a pagination envelope,
-  CORS, CSRF), the client cache and state (TanStack Query, useQuery,
-  staleTime, a search param), live data (a WebSocket, server-sent
-  events, a reconnect, a pushed event), auth (login, logout, a
-  session, an httpOnly cookie, a token refresh, a protected route, 401
-  or 403, a permission), or the project setup (package.json,
-  eslint.config.ts), and the agent has to verify the installed
-  versions, plan first, and hold the work to a definition of done,
-  even if "frontend" is never used.
+  or "use server" boundary, await params or cookies(), a Server
+  Action, a React hook, a cast (any), a Zod schema (safeParse), the
+  DRF contract (an OpenAPI schema, a generated client, CORS, CSRF),
+  the client cache and state (TanStack Query, useQuery, staleTime, a
+  search param), live data (a WebSocket, server-sent events, a pushed
+  event), auth (a session, an httpOnly cookie, a token refresh, a
+  protected route, 401 or 403), styling (Tailwind, a design token,
+  @theme, oklch, dark mode, shadcn, cn(), a CSS class, a container
+  query, next/font), or the project setup
+  (package.json, eslint.config.ts), and the agent has to verify the
+  installed versions, plan first, and hold the work to a definition of
+  done, even if "frontend" is never used.
 license: MIT
 allowed-tools: Read, Grep, Glob, Bash, Edit, Write
 metadata:
   author: n-shadloo
-  version: 1.7.0
+  version: 1.8.0
 ---
 
 # frontend-production-engineer
@@ -78,6 +78,9 @@ Load only the file(s) relevant to the concern in front of you.
 | Who may proceed, and what the interface shows them — `verifySession`, `getCurrentUser`, a data access layer, React `cache()` for one session read, a protected route, a page gate against a layout gate, a route group `(auth)` and `(app)`; an auth check in `proxy.ts` alone, CVE-2025-29927, CVE-2026-64642, a forged `x-middleware-subrequest` header; a Server Action that takes a `userId`, a `role`, a `tenantId`, or an `isAdmin` argument, `curl` against a Server Action with no cookie, CVE-2026-64643 and a Server Function endpoint that the client chunks disclose, "authenticate within the boundary"; `redirect('/login?next=')`, `unauthorized()`, `forbidden()`, `unauthorized.tsx`, `forbidden.tsx`, `authInterrupts`, an experimental auth interrupt, a 307 loop between `/login` and `/dashboard`, an open redirect through a `?next=` value that names another host, or `?next=//evil.example`; RBAC, a role, a group, a permission list, an object permission, a feature flag, `<Can>`, `usePermission`, a hidden button that is the whole gate, a blank page in place of a 403 explanation; a multi-tenant application, an active organization, cross-tenant cache bleed; a cached page that renders the name of a user, protected data in an RSC payload or a prefetch. Not here: the credential, the cookie attributes, and the refresh (`references/session-and-token-lifecycle.md`), the permitted work of `proxy.ts` and the route files themselves (`references/app-router-structure.md`), the rest of the data access module and the Server Action order (`references/data-access-and-mutations.md`), the `"use cache"` rules (`references/caching-and-revalidation.md`), the key factory (`references/server-state-and-query-cache.md`), the focus on a 403 message (domain 10), the Server Action supply chain (domain 17), the DRF permission class and the object-level check (sibling skill `secure-code-auditor`). | `references/route-protection-and-permissions.md` |
 | The connection that pushes data, and how long it lives — live, realtime, a notification feed, a chat, a progress feed, push, subscribe; `WebSocket`, `new WebSocket()`, `EventSource`, `ws://`, `wss://`, `Sec-WebSocket-Protocol`, a subprotocol that carries a token, a token in a socket URL, a single-use ticket, an `Origin` check on a handshake; `text/event-stream`, `Last-Event-ID`, the `data:` and `retry:` frame fields, `ReadableStream`, `TextDecoderStream`, NDJSON, one response read in parts, an `AbortController` over a stream; `StreamingHttpResponse`, an async iterator under ASGI, Django Channels, `ProtocolTypeRouter`, `URLRouter`, `AsyncJsonWebsocketConsumer`, a channel layer, `group_send`; a reconnect, a reconnect storm, an exponential backoff, jitter, a heartbeat, a ping and a pong, a zombie connection, a socket that dies every 60 seconds or every 100 seconds, a `readyState` that stays `OPEN` with nothing on it; close code 1000, 1001, 1006, 1008, 1011, 1012, 1013, 4001, 4003, a 1006 that logs the user out, the error "closed before the connection is established"; `document.hidden`, `visibilitychange`, a connection in a background tab; a socket in a component body, a socket for each list row, the six-connection limit of HTTP/1.1, `BroadcastChannel` for one connection over many tabs; `partysocket`, `reconnecting-websocket`, `@microsoft/fetch-event-source`, `socket.io`, WebTransport, `experimental_streamedQuery`; `proxy_http_version 1.1`, `Upgrade`, `Connection: upgrade`, `proxy_read_timeout`, `proxy_buffering off`, `X-Accel-Buffering`, a Cloudflare idle close, events that stream in development and batch in production. Not here: the frame that arrives and the cache that it writes into (`references/live-events-and-cache-merge.md`), `refetchInterval` and the poll (`references/server-state-and-query-cache.md`), where the credential lives and the refresh over it (`references/session-and-token-lifecycle.md`), the deadline and the `ApiError` of an ordinary request (`references/api-client-and-request-safety.md`), the effect rules and `useSyncExternalStore` (`references/state-and-effects.md`), the same-origin rewrite (`references/cross-origin-and-bff-proxy.md`), the politeness of a live announcement (domain 10), the upload progress bar (domain 13), the Nginx file itself (domain 22), the consumer and the queue (sibling skill `django-async-jobs`). | `references/push-transport-and-connection.md` |
 | The message that arrives, and what it changes — an event envelope, a `type` discriminator, an `origin` field, a `payload` from a serializer; `onmessage`, `JSON.parse(event.data)`, a malformed frame, a frame that is not JSON, an event type that the build cannot name, a feed that stops with the connection still open, a handler that threw; `z.discriminatedUnion` over an event, `safeParse` on a frame, a dropped-frame counter, `assertNever` in an event switch; `setQueryData` from a pushed event, `invalidateQueries` after a push, `removeQueries`, an invalidation that never refetches, an `isInvalidated` mark that a later write cleared, pushed rows held in `useState`; a ticker, a cursor feed, a render thrash, a coalesce into one animation frame, the React Profiler commit count; a duplicate row after your own edit, the echo of an optimistic write, `X-Origin-Id`; a resync after a reconnect, a gap in the feed, a `Last-Event-ID` replay; a renamed event type that stops the screen in silence, a channel layer that is down and a view that renders empty. Not here: the transport, the handshake, the reconnect, the heartbeat, and the close code (`references/push-transport-and-connection.md`), the key factory, the invalidation of a mutation, and the optimistic rollback (`references/server-state-and-query-cache.md`), the parse doctrine and the DRF envelopes (`references/boundary-validation-and-api-types.md`), `assertNever` itself (`references/type-modeling-and-narrowing.md`), the generated payload types (`references/openapi-schema-and-codegen.md`), the live row in a table (domain 12), the metric behind the counter (domain 21), the event as a versioned published surface (sibling skill `django-api-contract`). | `references/live-events-and-cache-merge.md` |
+| The value layer of the interface — a design token, a semantic color, `--primary`, `--background`, `--ring`, `--chart-1`, a raw hex in a component, `text-[13px]`, a magic spacing number, a named z-index scale, `z-[9999]`; Tailwind v4, `globals.css`, `@import "tailwindcss"`, `@theme`, `@theme inline`, `@custom-variant`, `@utility`, `@variant`, `@source`, `@plugin`, `@config`, a `tailwind.config.ts` in a v4 project, a `@tailwind` directive; `oklch(`, `color-mix(`, HSL variables in a v4 setup, the OKLCH support floor; dark mode, `.dark`, the removed `darkMode: 'class'` key, a toggle that changes no pixel, `filter: invert()`, `color-scheme`, elevation in a dark theme; a flash of the wrong theme, `suppressHydrationWarning` on `<html>`, `next-themes`, `ThemeProvider`, `@wrksz/themes`, a stale theme after a navigation; `tw-animate-css` against `tailwindcss-animate`, `bg-linear-*` against `bg-gradient-*`, `bg-opacity-*`, `shadow-xs`, the 1px ring default, the `currentColor` border default, stacked variants left to right. Not here: `cn()` and the variant API (`references/component-styles-and-variants.md`), the container query and the type scale (`references/layout-and-typography.md`), where a preference is stored (`references/client-and-url-state.md`), the class order and the Prettier plugin (`references/lint-format-and-scripts.md`), the contrast ratio of a pair (domain 10), the animation that reads a motion token (domain 14). | `references/design-tokens-and-theming.md` |
+| The classes on a part, and the API that selects them — `cn()`, `clsx`, `tailwind-merge`, `twMerge`, a template string of classes, a caller `className` that loses, `!important` against a primitive; `tailwind-variants`, `tv(`, `VariantProps`, `class-variance-authority`, `cva(`, a variant map, `defaultVariants`, a slot; `components.json`, the shadcn CLI, `data-slot`, a `div` with the appearance of a button, a hand-built control that a primitive already covers; `outline-none`, `ring-0`, `focus-visible:ring-ring`, a focus ring that somebody removed; a class name built from a run-time value, `` translate-y-${offset} ``, a `style` attribute that carries a color or a space; a CSS Module, `@layer`, `vanilla-extract`, Emotion, `styled-components`, runtime CSS-in-JS, `sonner`, `lucide-react`, Storybook, `@axe-core/react`. Not here: the tokens behind every class (`references/design-tokens-and-theming.md`), the decomposition and the `render` or `asChild` prop (`references/component-composition.md`), the layout classes (`references/layout-and-typography.md`), the accessible name and the authoritative focus criterion (domain 10), the field control and its error state (domain 11). | `references/component-styles-and-variants.md` |
+| The space that an element occupies, and the text inside it — `@container`, `@sm:`, `@md:`, `@max-*`, `container-type`, `@tailwindcss/container-queries`, a card that breaks in a sidebar, a viewport breakpoint in a reusable component; `ms-`, `me-`, `ps-`, `pe-`, `text-start`, `border-s`, a physical `ml-` or `text-left`, a layout that mirrors wrongly under `dir="rtl"`; `vh`, `dvh`, `svh`, `lvh`, `h-screen`, a section that the iOS toolbar clips, `safe-area-inset`, `viewport-fit=cover`, `scrollbar-gutter`; `aspect-ratio`, `aspect-video`, a reserved box, a skeleton whose geometry differs from the content, content that moves when an image arrives; `clamp()`, a fluid type scale, `text-wrap: balance`, `text-wrap: pretty`, the measure of a paragraph, `h-[40px]` on a text container, text that clips at 200 percent zoom; `next/font`, `next/font/google`, `next/font/local`, `subsets`, `display: 'swap'`, `preload`, `adjustFontFallback`, `variable`, `axes`, `declarations`, `size-adjust`, `ascent-override`, a variable font, a shift after a new weight; one signature idea, a screenshot critique, a design that could belong to any product. Not here: the tokens and the theme (`references/design-tokens-and-theming.md`), `cn()` and the variant API (`references/component-styles-and-variants.md`), the Suspense boundary itself (`references/suspense-and-actions.md`), `next/image` and the bytes behind it (domain 13), the reflow and the zoom criteria (domain 10), the LCP and CLS budget (domain 16), the locale route and the non-Latin subset (domain 19). | `references/layout-and-typography.md` |
 
 The operating doctrine is integrated but has no row, because it is always in
 effect and lives in this file rather than in `references/`. Each release
@@ -87,7 +90,7 @@ never as a summary. A vague row is a domain that never loads.
 A domain of more than one file splits on one line. The leading phrase of a row
 states what the file owns, and its `Not here` clause states what it does not.
 
-Fourteen seams cross the domains, and this table settles each one.
+Seventeen seams cross the domains, and this table settles each one.
 
 | The seam | Who owns what |
 |---|---|
@@ -105,6 +108,9 @@ Fourteen seams cross the domains, and this table settles each one.
 | 05 ↔ 08 | 05 owns the fields inside an event payload, and the schema that types them. 08 owns the envelope around them, and the parse over it. |
 | 06 ↔ 08 | 06 owns the key, the cache entry, and the poll. 08 owns the event that writes into that entry, and the reason not to poll. |
 | 07 ↔ 08 | 07 owns the credential and its whole lifetime. 08 owns the carrier that a handshake takes, and the close code that ends a connection. |
+| 03 ↔ 09 | 03 owns the shape of a component, its parts, and its props. 09 owns the classes on those parts, and the tokens behind the classes. |
+| 04 ↔ 09 | 04 owns the class order, the Prettier plugin, and the folder that the stylesheet sits in. 09 owns the theme inside that stylesheet. |
+| 06 ↔ 09 | 06 owns the store that holds a theme preference. 09 owns the class that the preference selects, and the first paint that carries it. |
 
 ## Mode selection
 
@@ -157,7 +163,7 @@ go and how they are typed. The backend contract comes before any code that
 touches Django. The domain files that match the feature come after it. The
 non-functional domains come last, as a review pass before done.
 
-The router table above is the integrated material at 1.7.0, and it is the
+The router table above is the integrated material at 1.8.0, and it is the
 authoritative list. The rest of the order applies as the router grows.
 
 Work is not done because it renders. It is done when all of the following
@@ -366,6 +372,30 @@ when any one of these holds:
 - A connection that stays open in a hidden tab with no stated reason.
 - Pushed rows in a `useState` beside the query cache, or an optimistic write
   whose own echo the client applies a second time.
+
+**`design-system-and-styling` — integrated, not blocking.** Report each of
+these:
+
+- A hex color, a `px` font size, or a spacing number in a feature file, rather
+  than in the theme.
+- A color token that `:root`, `.dark`, and `@theme inline` do not all carry.
+- A raw z-index number, rather than a name from one scale.
+- A conditional class list that `cn()` does not merge, or an `!important` that
+  defeats a primitive.
+- A new primitive whose variants are not one typed variant map, or
+  `class-variance-authority` in new code.
+- A UI element hand-built from a `div` where a primitive already exists.
+- An `outline-none` with no visible replacement in the same class list.
+- A dark theme from `filter: invert()`, or a `dark:` utility with no
+  `@custom-variant dark` behind it.
+- A theme class that reaches `<html>` after the first paint.
+- A reusable component whose only responsive behavior is a viewport
+  breakpoint.
+- A physical direction utility in new component code, with no stated reason.
+- A `vh` unit on a full-height section, or an image or a skeleton with no
+  reserved box.
+- A font that `next/font` does not self-host, or a fixed `px` height on a text
+  container.
 
 **Conflict rule.** security > accessibility > correctness > performance >
 developer convenience. No level trades down to satisfy a level above it. When
