@@ -1,6 +1,6 @@
 # Visual and motor criteria
 
-Tailwind CSS v4.3, Next.js 16.3, React 19.2.4 or later, WCAG 2.2 Level AA. This
+Tailwind CSS v4.3, Next.js 16.3, React 19.2.6 or later, WCAG 2.2 Level AA. This
 file owns the measurable properties of a rendered surface, and the input that
 operates it. The subjects are the contrast ratio, the second channel beside
 color, the size of a target, and the reflow at 400 percent zoom. They also
@@ -311,7 +311,7 @@ The `viewport` export of Next.js 16 replaces the viewport keys of the old
 `metadata` export. A project that still writes a viewport `<meta>` tag by hand
 has two sources for one value.
 
-React 19.2.4 is the security floor, for the reason that
+React 19.2.6 is the security floor, for the reason that
 `references/state-and-effects.md` states.
 
 ## Verification
@@ -396,8 +396,8 @@ rg -n 'draggable|onDragStart|onPointerMove' -g '*.tsx' src/
 - The second channel of a chart series → `references/charts-and-visual-encoding.md`.
 - The wide data table, and its alternative on a phone →
   `references/data-table-and-server-driven-state.md`.
-- The video player, its captions, and its controls → domain 13
-  `media-and-file-handling`. Not integrated yet.
+- The video player, its captions, and its controls →
+  `references/image-and-video-delivery.md`.
 - The animation itself, and the duration tokens behind it → domain 14
   `motion-and-interaction`. Not integrated yet.
 - The plain language of the content → domain 15 `ux-writing-and-content-design`.

@@ -1,7 +1,7 @@
 # Cell formatting and export
 
 The `Intl` API of ECMA-402, `papaparse`, SheetJS `xlsx` 0.20.3, Next.js 16.3,
-React 19.2.4 or later, against a Django and DRF backend. This file owns the
+React 19.2.6 or later, against a Django and DRF backend. This file owns the
 value that a user reads and the file that a user takes away. The subjects are
 the number and the date inside a cell or on an axis, and the locale and the time
 zone that they need. They also include the set that an export covers, and the
@@ -166,9 +166,10 @@ spreadsheet, it carries no library, and it holds no formula.
 
 ### The download itself
 
-The browser download, the object URL and its release, and the
-`Content-Disposition` header are domain 13 `media-and-file-handling`. This file
-owns what goes into the file. That domain owns how the file reaches the disk.
+The browser download and the `Content-Disposition` header are
+`references/served-content-and-downloads.md`. The object URL and its release are
+`references/image-and-video-delivery.md`. This file owns what goes into the
+file. Those files own how the file reaches the disk.
 
 Give the download control a state while the file is built, so a large export
 does not read as a dead button. Announce the finish through the polite region
@@ -276,8 +277,9 @@ head -c 3 export.csv | xxd | grep -q "efbb bf" && echo "the BOM is present"
   `references/semantics-and-accessible-names.md`. That domain holds a veto.
 - The lockfile entry, the cooldown, and the justification for a new dependency →
   `references/dependencies-and-git-workflow.md`.
-- The object URL, its release, and the `Content-Disposition` header → domain 13
-  `media-and-file-handling`. Not integrated yet.
+- The download trigger, and the `Content-Disposition` header →
+  `references/served-content-and-downloads.md`.
+- The object URL, and its release → `references/image-and-video-delivery.md`.
 - The locale that the application chooses, the currency for each locale, and the
   direction of the document → domain 19 `internationalization-and-rtl`. Not
   integrated yet.

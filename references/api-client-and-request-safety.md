@@ -332,8 +332,8 @@ form.append("caption", caption);
 await api.POST("/api/media/", { body: form }); // no Content-Type here
 ```
 
-Domain 13 `media-and-file-handling` owns the file picker, the progress bar, and
-the retry of a part. This file owns the request that carries the file.
+`references/file-upload-and-transport.md` owns the file picker, the progress
+bar, and the retry of a part. This file owns the request that carries the file.
 
 ## Verification
 
@@ -416,8 +416,8 @@ rg -n 'DJANGO_URL|NEXT_PUBLIC_API_BASE_URL' src/lib/api
 - The map from a dotted path to a form control, and the form-level region that
   takes `non_field_errors` →
   `references/form-submission-and-server-errors.md`.
-- The file picker, the progress bar, and the upload UI → domain 13
-  `media-and-file-handling`. Not integrated yet.
+- The file picker, the progress bar, and the upload interface →
+  `references/file-upload-and-transport.md`.
 - The words that a person reads in an error message → domain 15
   `ux-writing-and-content-design`. Not integrated yet.
 - The throttle rate, the N+1 query, and the latency behind a slow endpoint →

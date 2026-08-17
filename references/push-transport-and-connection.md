@@ -1,6 +1,6 @@
 # Push transport and the connection
 
-Next.js 16.3, React 19.2.4 or later, Django Channels 4.3, against a Django and
+Next.js 16.3, React 19.2.6 or later, Django Channels 4.3, against a Django and
 DRF backend. This file owns the decision to push data to the browser, and the
 connection that carries it. The subjects are the transport choice, the
 credential on the handshake, and the lifetime of the connection. They also
@@ -571,7 +571,7 @@ Read the installed versions before you write code.
 Django Channels 4.3 is the pin for the WebSocket seam. Django 4.2 is the floor
 for an SSE view, because the async iterator support arrived there.
 
-React 19.2.4 is the security floor, for the reason that
+React 19.2.6 is the security floor, for the reason that
 `references/state-and-effects.md` states. Next.js 16.3 is the framework pin.
 
 WebTransport reached Baseline newly available in March 2026, so the latest
@@ -685,9 +685,11 @@ npx wscat -c "wss://staging.example.com/ws/feed/"
   `references/client-and-url-state.md`.
 - The politeness level of a live announcement, and the focus that must not move
   → `references/keyboard-focus-and-live-regions.md`. That domain holds a veto.
-- The progress feed of an upload, and the download that a stream produces →
-  domain 13 `media-and-file-handling`. Not integrated yet. This file owns the
-  transport under it.
+- The progress feed of an upload →
+  `references/file-upload-and-transport.md`. This file owns the transport under
+  it.
+- The download that a stream produces →
+  `references/served-content-and-downloads.md`.
 - The row that a live table adds while the user reads it →
   `references/data-table-and-server-driven-state.md`.
 - The words of a degraded message and of a reconnect message → domain 15

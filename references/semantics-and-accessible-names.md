@@ -1,6 +1,6 @@
 # Semantics and accessible names
 
-React 19.2.4 or later, Next.js 16.3, WCAG 2.2 Level AA, WAI-ARIA 1.2, and the
+React 19.2.6 or later, Next.js 16.3, WCAG 2.2 Level AA, WAI-ARIA 1.2, and the
 ARIA Authoring Practices Guide. This file owns the element that a component
 renders, the role that the element reports, and the name that a screen reader
 reads. The subjects are the native element, the five rules of ARIA, the
@@ -406,7 +406,7 @@ that each field reports. Those files supply the value that
 
 Read the installed versions before you write code.
 
-React 19.2.4 is the security floor, for the reason that
+React 19.2.6 is the security floor, for the reason that
 `references/state-and-effects.md` states.
 
 shadcn/ui on Base UI supplies a primitive for most APG patterns, and the
@@ -504,8 +504,8 @@ pnpm lint
 - The text alternative of a chart → `references/charts-and-visual-encoding.md`.
 - The header cells and the caption of a data table →
   `references/data-table-and-server-driven-state.md`.
-- The bytes of an image and the video player → domain 13
-  `media-and-file-handling`. Not integrated yet.
+- The bytes of an image, and the video player →
+  `references/image-and-video-delivery.md`.
 - The words inside a label, a hint, and an error message → domain 15
   `ux-writing-and-content-design`. Not integrated yet.
 - The locale route, the message catalog, and the direction of the document →

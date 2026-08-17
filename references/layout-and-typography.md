@@ -1,6 +1,6 @@
 # Layout and typography
 
-Tailwind CSS v4.3, Next.js 16.3, React 19.2.4 or later. This file owns the
+Tailwind CSS v4.3, Next.js 16.3, React 19.2.6 or later. This file owns the
 space that an element occupies, and the text inside it. The subjects are the
 container query, the logical property, and the unit that survives a mobile
 browser. They also include the box that a loading value reserves, the type
@@ -120,9 +120,9 @@ A skeleton follows the same rule. Give it the geometry of the content that
 replaces it. `references/suspense-and-actions.md` owns the boundary and the
 rule that a fallback holds the same box. This file owns the CSS that holds it.
 
-Domain 13 `media-and-file-handling` owns the loading of the image itself, and
-domain 16 `performance-and-web-vitals` owns the layout shift budget. Neither is
-integrated yet.
+`references/image-and-video-delivery.md` owns the request for the image itself,
+and domain 16 `performance-and-web-vitals` owns the layout shift budget. That
+domain is not integrated yet.
 
 ### The type scale
 
@@ -325,8 +325,8 @@ rg -n 'next/font' src/
   beside a field is `references/form-submission-and-server-errors.md`.
 - The column widths, the sticky header, and the virtualiser of a long list →
   `references/data-table-and-server-driven-state.md`.
-- `next/image`, the responsive source set, and the loading of the bytes →
-  domain 13 `media-and-file-handling`. Not integrated yet.
+- `next/image`, the responsive source set, and the request for the bytes →
+  `references/image-and-video-delivery.md`.
 - The transition between two layouts, and the reduced-motion preference →
   domain 14 `motion-and-interaction`. Not integrated yet.
 - The words in a heading, and the length that the design assumes → domain 15

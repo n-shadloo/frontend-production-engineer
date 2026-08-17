@@ -1,6 +1,6 @@
 # Component composition
 
-React 19.2.4 or later, `@types/react` 19, shadcn/ui on Base UI. This file owns
+React 19.2.6 or later, `@types/react` 19, shadcn/ui on Base UI. This file owns
 the shape of a component and the way that components compose. The subjects are
 decomposition, `children` and slots, and the compound component. They also
 include the controlled and uncontrolled choice, `ref` as a prop, the list key,

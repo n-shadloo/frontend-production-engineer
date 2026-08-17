@@ -1,6 +1,6 @@
 # Client state and URL state
 
-nuqs 2.9, Zustand 5.0, React 19.2.4 or later, Next.js 16.3. This file owns
+nuqs 2.9, Zustand 5.0, React 19.2.6 or later, Next.js 16.3. This file owns
 where a value lives when the backend does not own it. The subjects are the
 state taxonomy and the single-owner rule. They also include the URL as the
 store for shareable state, and the client store with its lifetime on the

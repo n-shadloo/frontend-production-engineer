@@ -265,7 +265,7 @@ well.
 `class-variance-authority` never merges conflicts. A CVA primitive still needs
 `cn()` around its output and the caller's class.
 
-React 19.2.4 is the security floor, for the reason that
+React 19.2.6 is the security floor, for the reason that
 `references/state-and-effects.md` states.
 
 ## Verification

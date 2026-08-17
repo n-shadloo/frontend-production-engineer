@@ -1,6 +1,6 @@
 # Server state and the query cache
 
-TanStack Query 5.101 or later, React 19.2.4 or later, Next.js 16.3, against a
+TanStack Query 5.101 or later, React 19.2.6 or later, Next.js 16.3, against a
 Django and DRF backend. This file owns the cache that holds server state, and
 every read and every write that passes through it. The subjects are
 `queryOptions`, the key factory, the cache times, and the lifetime of a
@@ -620,8 +620,8 @@ pnpm exec eslint . --max-warnings=0
   `references/form-submission-and-server-errors.md`.
 - The column model, the row model, and the virtualiser over an infinite query →
   `references/data-table-and-server-driven-state.md`.
-- The upload progress of a mutation that carries a file → domain 13
-  `media-and-file-handling`. Not integrated yet.
+- The upload progress of a mutation that carries a file →
+  `references/file-upload-and-transport.md`.
 - The words in an empty state and an error state → domain 15
   `ux-writing-and-content-design`. Not integrated yet.
 - The request count and the payload cost of a cache decision → domain 16

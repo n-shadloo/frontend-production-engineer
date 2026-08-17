@@ -1,6 +1,6 @@
 # Suspense and Actions
 
-React 19.2.4 or later, Next.js 16.3, against a Django and DRF backend. This
+React 19.2.6 or later, Next.js 16.3, against a Django and DRF backend. This
 file owns the boundary that renders while a value is absent, and the Action
 that changes a value. The subjects are the granularity of a `<Suspense>`
 boundary, the error boundary inside the tree, `use()` on a promise,

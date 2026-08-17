@@ -1,7 +1,7 @@
 # Data table and server-driven state
 
 `@tanstack/react-table` 9.1.2 and 8.21.3, `@tanstack/react-virtual` 3.14.9,
-TanStack Query 5.101 or later, nuqs 2.9, Next.js 16.3, React 19.2.4 or later,
+TanStack Query 5.101 or later, nuqs 2.9, Next.js 16.3, React 19.2.6 or later,
 against a Django and DRF backend. This file owns a dense row surface. The
 subjects are the column model, the row model, and the identity of a row. They
 also include the server that drives the page, the sort, and the filter, and the

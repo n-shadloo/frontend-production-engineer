@@ -1,6 +1,6 @@
 # Multi-step forms and unsaved work
 
-React Hook Form 7.85, Zod 4.4, Next.js 16.3, `nuqs` 2.9, React 19.2.4 or later,
+React Hook Form 7.85, Zod 4.4, Next.js 16.3, `nuqs` 2.9, React 19.2.6 or later,
 against a Django and DRF backend. This file owns a form that crosses more than
 one screen, and the work that must survive a navigation. The subjects are the
 place that holds the step, and the schema for each step. They also include the

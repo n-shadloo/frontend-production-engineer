@@ -1,6 +1,6 @@
 # App Router structure
 
-Next.js 16.3 baseline, React 19.2.4 or later, Node 20.9 or later. This file
+Next.js 16.3 baseline, React 19.2.6 or later, Node 20.9 or later. This file
 owns the route tree. It rules on which file the App Router loads for a URL,
 and on how a route reads request data. It also rules on `proxy.ts`, which runs
 before the route, and on the `next.config.ts` keys that decide route behavior.

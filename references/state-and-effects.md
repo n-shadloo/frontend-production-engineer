@@ -1,6 +1,6 @@
 # State and effects
 
-React 19.2.4 or later, React Compiler 1.0, `eslint-plugin-react-hooks` 7.1.1,
+React 19.2.6 or later, React Compiler 1.0, `eslint-plugin-react-hooks` 7.1.1,
 Next.js 16.3. This file owns where a value lives and when an effect is correct.
 The subjects are state placement, `useState` against `useReducer`, the derived
 value, and the context. They also include the rules for an effect, the Rules of
@@ -348,11 +348,13 @@ first.
 
 Read the installed versions before you write code.
 
-React 19.2.4 is the floor. The advisories of December 2025 and January 2026
+React 19.2.6 is the floor. The advisories of December 2025 and January 2026
 describe a family of remote code execution and denial of service defects in
 React Server Components. CVE-2025-55182 is the first of them, with a CVSS
-score of 10.0. Every release below 19.2.4 on the 19.2 line carries at least
-one of the family.
+score of 10.0. Release 19.2.4 fixed CVE-2026-23864, and CVE-2026-23870 then
+marked 19.2.0 through 19.2.5 vulnerable, which moved the floor to 19.2.6. This
+family produces a new advisory often, so read the advisory database before each
+release rather than this line.
 
 `eslint-plugin-react-hooks` 7.1.1 is the pin. Version 6.1.0 holds two defects
 that this stack meets: its `recommended` preset fails inside a flat-config

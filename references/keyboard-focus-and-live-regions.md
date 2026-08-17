@@ -1,6 +1,6 @@
 # Keyboard, focus, and live regions
 
-React 19.2.4 or later, Next.js 16.3, WCAG 2.2 Level AA, WAI-ARIA 1.2, and the
+React 19.2.6 or later, Next.js 16.3, WCAG 2.2 Level AA, WAI-ARIA 1.2, and the
 ARIA Authoring Practices Guide. This file owns the path that a keyboard takes
 through a surface, the place that focus goes, and the change that a screen
 reader hears. The subjects are the tab order, the focus indicator, the keyboard
@@ -434,7 +434,7 @@ message on its control, and it states that this file owns the report.
 
 Read the installed versions before you write code.
 
-React 19.2.4 is the security floor, for the reason that
+React 19.2.6 is the security floor, for the reason that
 `references/state-and-effects.md` states.
 
 React 19 renders a context directly, as `<Context value={…}>`. The

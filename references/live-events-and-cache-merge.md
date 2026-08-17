@@ -1,6 +1,6 @@
 # Live events and the cache merge
 
-Zod 4, TanStack Query 5.101 or later, React 19.2.4 or later, against a Django
+Zod 4, TanStack Query 5.101 or later, React 19.2.6 or later, against a Django
 and DRF backend. This file owns the message that arrives on a push connection,
 and what that message changes on the screen. The subjects are the event
 envelope, the parse over it, and the type that this client cannot name. They
@@ -322,7 +322,7 @@ Zod 4 is the pin. `z.discriminatedUnion` and `safeParse` are the calls that
 this file needs. `references/boundary-validation-and-api-types.md` lists the
 Zod 3 calls that Zod 4 replaced, and every one of them fails at run time.
 
-React 19.2.4 is the security floor, for the reason that
+React 19.2.6 is the security floor, for the reason that
 `references/state-and-effects.md` states.
 
 ## Verification
@@ -416,8 +416,8 @@ pnpm typecheck
   `references/route-protection-and-permissions.md`.
 - The row that a live table adds or removes while the user reads it →
   `references/data-table-and-server-driven-state.md`.
-- The progress event of an upload or a download → domain 13
-  `media-and-file-handling`. Not integrated yet.
+- The progress event of an upload or a download →
+  `references/file-upload-and-transport.md`.
 - The politeness of an announcement when a row arrives →
   `references/keyboard-focus-and-live-regions.md`. That domain holds a veto.
 - The words of a live notification → domain 15 `ux-writing-and-content-design`.

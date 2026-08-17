@@ -1,6 +1,6 @@
 # Design tokens and theming
 
-Tailwind CSS v4.3, Next.js 16.3, React 19.2.4 or later, shadcn/ui on Base UI.
+Tailwind CSS v4.3, Next.js 16.3, React 19.2.6 or later, shadcn/ui on Base UI.
 This file owns the value layer of the interface. The subjects are the token,
 the CSS block that publishes it, and the color space that holds it. They also
 include the dark theme, the class that selects it, and the first paint that

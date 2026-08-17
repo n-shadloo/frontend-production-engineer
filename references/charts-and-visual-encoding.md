@@ -1,6 +1,6 @@
 # Charts and visual encoding
 
-recharts 3.10.1, Next.js 16.3, React 19.2.4 or later, Tailwind CSS v4.3. This
+recharts 3.10.1, Next.js 16.3, React 19.2.6 or later, Tailwind CSS v4.3. This
 file owns the chart. The subjects are the mark that answers the question, the
 library that draws it, and the boundary that it renders on. They also include
 the second channel beside the color, and the text that stands for the picture.

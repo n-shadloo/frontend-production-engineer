@@ -1,6 +1,6 @@
 # TypeScript config and enforcement
 
-TypeScript 5.9 baseline, Next.js 16.3, React 19.2.4 or later,
+TypeScript 5.9 baseline, Next.js 16.3, React 19.2.6 or later,
 typescript-eslint v8, Node 20.9 or later. This file owns the compiler
 configuration and the checks that prove it. The subjects are `tsconfig.json`,
 the generated type files, the type-aware lint config, and the gates that run in

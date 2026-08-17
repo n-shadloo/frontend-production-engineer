@@ -1,6 +1,6 @@
 # Session and token lifecycle
 
-Next.js 16.3, React 19.2.4 or later, `djangorestframework-simplejwt` 5.5.1,
+Next.js 16.3, React 19.2.6 or later, `djangorestframework-simplejwt` 5.5.1,
 against a Django and DRF backend. This file owns the life of a credential in
 the browser. The subjects are the auth model, the place that holds each value,
 and the cookie that carries the session. They also include the refresh, the
@@ -327,7 +327,7 @@ dependency states its replacement, its size, and its maintenance status.
 
 Read the installed versions before you write code.
 
-React 19.2.4 is the security floor, for the reason that
+React 19.2.6 is the security floor, for the reason that
 `references/state-and-effects.md` states.
 
 Next.js 16.2.11 and 15.5.21 are the patched releases of 21 July 2026. Two of

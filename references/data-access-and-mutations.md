@@ -1,6 +1,6 @@
 # Data access and mutations
 
-Next.js 16.3 baseline, React 19.2.4 or later, against a Django and DRF backend.
+Next.js 16.3 baseline, React 19.2.6 or later, against a Django and DRF backend.
 This file owns the place where data enters the frontend and the place where a
 mutation leaves it. The subjects are the data access layer and the shape of a
 Server Action. They also include the choice between a Server Component fetch, a

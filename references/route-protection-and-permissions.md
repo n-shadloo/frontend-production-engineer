@@ -1,6 +1,6 @@
 # Route protection and permissions
 
-Next.js 16.3, React 19.2.4 or later, against a Django and DRF backend. This
+Next.js 16.3, React 19.2.6 or later, against a Django and DRF backend. This
 file owns the code that decides whether a request may proceed. The subjects
 are the enforcement layers, the data access layer that reads the session, and
 the gate inside a Server Action. They also include the answer to a missing

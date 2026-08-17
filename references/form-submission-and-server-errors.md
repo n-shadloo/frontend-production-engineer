@@ -1,6 +1,6 @@
 # Form submission and server errors
 
-React Hook Form 7.85, Zod 4.4, React 19.2.4 or later, Next.js 16.3, against a
+React Hook Form 7.85, Zod 4.4, React 19.2.6 or later, Next.js 16.3, against a
 Django and DRF backend. This file owns what happens after the user submits. The
 subjects are the one submit path, the second click, and the pending state. They
 also include the map from a DRF rejection onto a control, the form-level
@@ -407,8 +407,8 @@ curl -sSi -X POST "$ORDERS_URL"
 - The `aria-invalid` attribute and the `aria-describedby` that reaches the
   message → `references/semantics-and-accessible-names.md`. That file also
   holds the rule that a disabled submit button hides a refusal.
-- The upload that a submit carries, and its progress → domain 13
-  `media-and-file-handling`. Not integrated yet.
+- The upload that a submit carries, and its progress →
+  `references/file-upload-and-transport.md`.
 - The words in an error message and in a confirmation → domain 15
   `ux-writing-and-content-design`. Not integrated yet.
 - The Content Security Policy over the page that holds the form, and the

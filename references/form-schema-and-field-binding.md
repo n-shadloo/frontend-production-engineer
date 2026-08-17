@@ -1,6 +1,6 @@
 # Form schema and field binding
 
-React Hook Form 7.85, Zod 4.4, `@hookform/resolvers` 5.9, React 19.2.4 or
+React Hook Form 7.85, Zod 4.4, `@hookform/resolvers` 5.9, React 19.2.6 or
 later, Next.js 16.3, against a Django and DRF backend. This file owns the
 schema that one form stands on, and the bind of a control to that schema. The
 subjects are the approach decision, `useForm` with `zodResolver`, and the
@@ -278,7 +278,7 @@ identical buttons.
 | A date | `react-day-picker`, with `@internationalized/date` for the arithmetic | A date is not a `Date`. A time zone changes the day, so the calculation belongs in the library. |
 | The strength of a password | `@zxcvbn-ts/core` | A meter is a hint for the user. The rule that refuses a password belongs to the server. |
 | A mask over a value | `react-imask` | Take a mask only where it helps. A mask that rejects a paste or blocks a valid form of the value costs more than it gives. |
-| A file | The schema states the type, the size, and the count | Domain 13 `media-and-file-handling` owns the picker, the transport, and the progress. It is not integrated yet. |
+| A file | The schema states the type, the size, and the count | `references/file-upload-and-transport.md` owns the picker, the transport, and the progress. |
 
 A masked field and a coerced field both hold two values: what the user sees and
 what the form submits. State which one the schema validates.
@@ -415,9 +415,9 @@ pnpm typecheck
   → `references/component-styles-and-variants.md`.
 - The URL parser behind a search form, and the store that a value crosses a
   route in → `references/client-and-url-state.md`.
-- The file picker, the upload transport, and the progress → domain 13
-  `media-and-file-handling`. This file owns only the schema rule over a file.
-  Not integrated yet.
+- The file picker, the upload transport, and the progress →
+  `references/file-upload-and-transport.md`. This file owns only the schema rule
+  over a file.
 - The words inside a label, a hint, and a validation message → domain 15
   `ux-writing-and-content-design`. This file owns the key, and that domain owns
   the text. Not integrated yet.
