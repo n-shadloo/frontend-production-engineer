@@ -21,7 +21,7 @@ guarantees: Web Vitals, frontend security, SEO, internationalization and RTL,
 testing, observability, build and deploy, and analytics and consent. A Tier 0
 operating doctrine sits under all four, and it is always in effect.
 
-At 1.8.0 the integrated material in `references/` is that doctrine, the App
+At 1.8.1 the integrated material in `references/` is that doctrine, the App
 Router foundation, the type system, and the React component tree. It also holds
 the project structure, the DRF contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the

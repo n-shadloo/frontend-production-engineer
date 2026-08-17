@@ -250,7 +250,7 @@ run.
 
 ## Example output
 
-At 1.8.0 the integrated material is the operating doctrine, the App Router
+At 1.8.1 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -384,7 +384,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds nine domains at 1.8.0 and fills one domain at a time.
+`references/` holds nine domains at 1.8.1 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 

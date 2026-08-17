@@ -23,11 +23,12 @@ a Zod schema. The fourth group is the DRF contract — an OpenAPI schema,
 `api:generate`, a generated client, a pagination or error envelope, a CORS or
 CSRF failure, or a proxy in front of Django. The fifth group is the client cache
 and the state that the backend does not own — `useQuery`, `useMutation`, a query
-key, `staleTime`, an optimistic update, a search param, or a store. The sixth
-group is identity — a login, a logout, a session, an `httpOnly` cookie, a token
-refresh, a protected route, a Server Action gate, a 401 or a 403, or a role.
+key, `staleTime`, an optimistic update, a search param, or a store.
 
-The seventh group is live data — a `WebSocket`, an `EventSource`, a streamed
+The sixth group is identity — a login, a logout, a session, an `httpOnly`
+cookie, a token refresh, a protected route, a Server Action gate, a 401 or a
+403, or a role. The seventh group is live data — a `WebSocket`, an
+`EventSource`, a streamed
 response, a reconnect, a close code, or a pushed event. The eighth group is the
 interface surface — a design token, a Tailwind class, `@theme`, a dark theme, a
 container query, a font, an interactive control, a form, or a focus order. The
