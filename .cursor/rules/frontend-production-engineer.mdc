@@ -31,11 +31,12 @@ cookie, a token refresh, a protected route, a Server Action gate, a 401 or a
 `EventSource`, a streamed
 response, a reconnect, a close code, or a pushed event. The eighth group is the
 interface surface — a design token, a Tailwind class, `@theme`, a dark theme, a
-container query, a font, an interactive control, a form, or a focus order. The
-ninth group is the project setup — a
-folder move, a barrel file, `eslint.config.ts`, the lockfile, a git hook, or a
-new dependency. The last group is any change to the bundle, the headers, or the
-build.
+container query, or a font. The ninth group is accessibility — WCAG, ARIA, a
+role, an accessible name, `aria-label`, a keyboard path, a focus order, a live
+region, a contrast ratio, an alt text, a target size, or axe. The tenth group
+is the project setup — a folder move, a barrel file, `eslint.config.ts`, the
+lockfile, a git hook, or a new dependency. The last group is any change to the
+bundle, the headers, or the build.
 
 Verify the installed versions from `package.json` before you generate code.
 Never mix Next 15 and Next 16 idioms in one file. Report an API you cannot

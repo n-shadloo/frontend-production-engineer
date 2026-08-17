@@ -74,7 +74,7 @@ Tier 3 is interface craft.
 - `09 design-system-and-styling` — tokens, Tailwind v4, shadcn/ui, theming,
   layout. Integrated.
 - `10 accessibility-wcag` — WCAG 2.2 AA, the ARIA authoring practices,
-  keyboard, focus, screen readers. Pending.
+  keyboard, focus, screen readers. Integrated.
 - `11 forms-and-validation` — React Hook Form with Zod, React 19 Actions,
   server-error mapping, multi-step flows. Pending.
 - `12 data-tables-and-visualization` — TanStack Table, server-driven tables,
@@ -250,13 +250,15 @@ run.
 
 ## Example output
 
-At 1.8.1 the integrated material is the operating doctrine, the App Router
+At 1.9.0 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
-events on it. The newest part is the design system — the tokens, the theme, the
-classes on a part, and the layout. The worked example is the shape of a task
-and the facts that gate it:
+events on it. It holds the design system — the tokens, the theme, the classes
+on a part, and the layout. The newest part is accessibility — the element and
+its name, the keyboard and the announcement, the measurable criteria, and the
+evidence. The worked example is the shape of a task and the facts that gate
+it:
 
 ```
 Plan
@@ -318,6 +320,14 @@ Live facts
 - A 30 s refetchInterval with a stop condition covers the totals.
 - The pull request carries that reason in one line.
 
+Accessibility facts
+- The sort control is a button; its icon is decorative, and a span names it.
+- The table carries a caption, and every th carries a scope.
+- Focus moves to the h1 after a navigation; the row count announces polite.
+- Contrast measured in both themes; the status column carries an icon and a word.
+- axe clean in the component test, and on /orders in Playwright.
+- Keyboard walkthrough recorded; NVDA with Firefox ran the primary flow.
+
 Done
 - pnpm lint              clean, at --max-warnings=0
 - pnpm typecheck         clean
@@ -366,25 +376,29 @@ frontend-production-engineer/
 │   ├── dependencies-and-git-workflow.md
 │   ├── design-tokens-and-theming.md
 │   ├── directory-and-module-boundaries.md
+│   ├── keyboard-focus-and-live-regions.md
 │   ├── layout-and-typography.md
 │   ├── lint-format-and-scripts.md
 │   ├── live-events-and-cache-merge.md
 │   ├── openapi-schema-and-codegen.md
 │   ├── push-transport-and-connection.md
 │   ├── route-protection-and-permissions.md
+│   ├── semantics-and-accessible-names.md
 │   ├── server-and-client-components.md
 │   ├── server-state-and-query-cache.md
 │   ├── session-and-token-lifecycle.md
 │   ├── state-and-effects.md
 │   ├── suspense-and-actions.md
 │   ├── type-modeling-and-narrowing.md
-│   └── typescript-config-and-enforcement.md
+│   ├── typescript-config-and-enforcement.md
+│   ├── visual-and-motor-criteria.md
+│   └── wcag-conformance-and-verification.md
 ├── README.md
 ├── LICENSE
 └── .gitignore
 ```
 
-`references/` holds nine domains at 1.8.1 and fills one domain at a time.
+`references/` holds ten domains at 1.9.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 
