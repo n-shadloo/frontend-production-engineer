@@ -360,7 +360,7 @@ pnpm typecheck
   `references/motion-primitives-and-reduced-motion.md`.
 - The words inside a control → `references/interface-copy-and-voice.md`. The
   message beside it → `references/error-and-empty-state-copy.md`.
-- The CSS bytes and the icon bytes that a surface adds → domain 16
-  `performance-and-web-vitals`. Not integrated yet.
+- The CSS bytes and the icon bytes that a surface adds →
+  `references/client-bundle-and-third-party-scripts.md`.
 - The supply chain of a style dependency, and its advisories → domain 17
   `frontend-security`. Not integrated yet. That domain holds a veto.

@@ -417,5 +417,5 @@ rg -n 'color-scheme' src/styles/globals.css
   over them → `references/motion-primitives-and-reduced-motion.md`.
 - The chart series tokens, and the color of a data series →
   `references/charts-and-visual-encoding.md`.
-- The CSS bytes that a theme costs, and the budget over them → domain 16
-  `performance-and-web-vitals`. Not integrated yet.
+- The CSS bytes that a theme costs, and the budget over them →
+  `references/performance-budgets-and-measurement.md`.

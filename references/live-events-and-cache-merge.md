@@ -422,8 +422,9 @@ pnpm typecheck
   `references/keyboard-focus-and-live-regions.md`. That domain holds a veto.
 - The words of a live notification, and the channel that carries it →
   `references/error-and-empty-state-copy.md`.
-- The render cost of a high-frequency feed, and the budget over it → domain 16
-  `performance-and-web-vitals`. Not integrated yet.
+- The render cost of a high-frequency feed →
+  `references/paint-and-interaction-cost.md`. The budget over it →
+  `references/performance-budgets-and-measurement.md`.
 - The metric behind the counter, and the alarm on it → domain 21
   `observability-and-resilience`. Not integrated yet.
 - The MSW `ws` handler, the malformed-frame test, and the unnamed-type test →

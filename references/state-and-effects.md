@@ -456,6 +456,6 @@ pnpm build && pnpm start
   reconnect → `references/push-transport-and-connection.md`. This file owns the
   rules for an effect, and that file owns the connection inside one.
 - The render cost that a state change produces, and the INP that it costs →
-  domain 16 `performance-and-web-vitals`. Not integrated yet.
+  `references/paint-and-interaction-cost.md`.
 - The test for a reducer and for a custom hook → domain 20
   `testing-and-quality`. Not integrated yet.

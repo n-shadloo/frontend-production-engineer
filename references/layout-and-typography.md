@@ -121,8 +121,7 @@ replaces it. `references/suspense-and-actions.md` owns the boundary and the
 rule that a fallback holds the same box. This file owns the CSS that holds it.
 
 `references/image-and-video-delivery.md` owns the request for the image itself,
-and domain 16 `performance-and-web-vitals` owns the layout shift budget. That
-domain is not integrated yet.
+and `references/paint-and-interaction-cost.md` owns the layout shift budget.
 
 ### The type scale
 
@@ -189,9 +188,10 @@ Prefer one variable font over several static weights. The module computes the
 fallback metrics from the first weight alone. A family of four static weights
 can therefore shift the layout when a heading in a second weight arrives.
 
-Domain 16 `performance-and-web-vitals` owns the byte budget and the layout
-shift budget over this setup. Domain 19 `internationalization-and-rtl` owns the
-subset for a non-Latin script. Neither is integrated yet.
+`references/performance-budgets-and-measurement.md` owns the byte budget over
+this setup, and `references/paint-and-interaction-cost.md` owns the layout
+shift budget. Domain 19 `internationalization-and-rtl` owns the subset for a
+non-Latin script, and it is not integrated yet.
 
 ### The surface as a whole
 
@@ -332,7 +332,8 @@ rg -n 'next/font' src/
 - The words in a heading → `references/interface-copy-and-voice.md`. The
   pseudo-locale that proves the length →
   `references/message-catalog-and-plurals.md`.
-- The layout shift budget, the font byte budget, and the LCP element → domain
-  16 `performance-and-web-vitals`. Not integrated yet.
+- The layout shift budget and the LCP element →
+  `references/paint-and-interaction-cost.md`. The font byte budget →
+  `references/performance-budgets-and-measurement.md`.
 - The locale route, the `dir` attribute, and the subset for a non-Latin script
   → domain 19 `internationalization-and-rtl`. Not integrated yet.

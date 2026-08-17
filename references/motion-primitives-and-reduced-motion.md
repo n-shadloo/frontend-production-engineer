@@ -308,9 +308,10 @@ paint flashing and the frame rate counter in the Rendering panel. Confirm that
 the work stays on the compositor.
 
 Repeat the recording at a 4× CPU throttle. This throttle is an engineering proxy
-for a mid-range phone, and it is not a published threshold. Domain 16
-`performance-and-web-vitals` owns the device matrix, the field measurement, and
-the INP threshold that passes or fails a task.
+for a mid-range phone, and it is not a published threshold.
+`references/performance-budgets-and-measurement.md` owns the device profile,
+the field measurement, and the INP threshold. That domain holds no veto, so a
+number above the threshold is a review finding.
 
 ### What breaks, and how it looks
 
@@ -431,5 +432,6 @@ rg -n -B3 '\.focus\(\)' -g '*.tsx' src/
   `references/server-state-and-query-cache.md`.
 - The words of a label that reports a state change →
   `references/interface-copy-and-voice.md`.
-- The INP threshold, the long-task budget, and the device matrix → domain 16
-  `performance-and-web-vitals`. Not integrated yet.
+- The INP threshold and the device profile →
+  `references/performance-budgets-and-measurement.md`. The long task and the
+  yield → `references/paint-and-interaction-cost.md`.

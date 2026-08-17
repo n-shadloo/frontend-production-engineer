@@ -578,8 +578,9 @@ test("a sort updates the address and fires one request", async ({ page }) => {
 - The words in a column header and in a bulk-action confirmation →
   `references/interface-copy-and-voice.md`. The three cases behind an empty
   table → `references/error-and-empty-state-copy.md`.
-- The INP of a sort and of a filter, and the budget over the row payload →
-  domain 16 `performance-and-web-vitals`. Not integrated yet.
+- The INP of a sort and of a filter →
+  `references/paint-and-interaction-cost.md`. The budget over the row payload
+  → `references/performance-budgets-and-measurement.md`.
 - The direction of a table under `dir="rtl"`, and the locale that a sort assumes
   → domain 19 `internationalization-and-rtl`. Not integrated yet.
 - The contract test over the pagination envelope, and the test that runs a sort

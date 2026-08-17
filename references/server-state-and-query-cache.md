@@ -624,8 +624,8 @@ pnpm exec eslint . --max-warnings=0
   `references/file-upload-and-transport.md`.
 - The three cases behind an empty state, and the words in an error state →
   `references/error-and-empty-state-copy.md`.
-- The request count and the payload cost of a cache decision → domain 16
-  `performance-and-web-vitals`. Not integrated yet.
+- The request count and the payload cost of a cache decision →
+  `references/performance-budgets-and-measurement.md`.
 - The MSW handlers and the test harness → domain 20 `testing-and-quality`. Not
   integrated yet. The assertions that prove this domain are the rollback after
   a failure, the empty state, and one `QueryClient` for each test.

@@ -321,8 +321,9 @@ rg -ln 'aria:\s*\{' -g '*.ts*' src/ | \
 - The words in a caption and in a legend →
   `references/interface-copy-and-voice.md`. The copy of an empty chart →
   `references/error-and-empty-state-copy.md`.
-- The bundle bytes of a chart library, and the main-thread cost of a paint →
-  domain 16 `performance-and-web-vitals`. Not integrated yet.
+- The bundle bytes of a chart library →
+  `references/client-bundle-and-third-party-scripts.md`. The main-thread cost
+  of a paint → `references/paint-and-interaction-cost.md`.
 - The direction of an axis under `dir="rtl"`, and the locale of a label →
   domain 19 `internationalization-and-rtl`. Not integrated yet.
 - The visual regression test over a chart → domain 20 `testing-and-quality`.

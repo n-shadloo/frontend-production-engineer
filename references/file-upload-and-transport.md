@@ -429,8 +429,8 @@ rg -n 'presign|createPresignedPost|putWithProgress' -g '*.ts*' src/
   `frontend-security`. Not integrated yet.
 - The words in an upload message and in a refusal →
   `references/error-and-empty-state-copy.md`.
-- The bytes that an upload costs, and the budget over them → domain 16
-  `performance-and-web-vitals`. Not integrated yet.
+- The bytes that an upload costs, and the budget over them →
+  `references/performance-budgets-and-measurement.md`.
 - The bucket, the storage credential, and the reverse-proxy body limit → domain
   22 `build-deploy-and-runtime-ops`. Not integrated yet.
 - The test that uploads a disguised file and reads the message → domain 20

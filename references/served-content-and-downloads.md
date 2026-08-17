@@ -178,8 +178,8 @@ size that the tab can hold. Above it, ask the backend for the file, which
 states.
 
 Move any build that takes more than a moment into a Web Worker. A frozen tab
-during an export is an interaction cost, and domain 16
-`performance-and-web-vitals` owns the budget for it.
+during an export is an interaction cost, and
+`references/paint-and-interaction-cost.md` owns the budget for it.
 
 `references/cell-formatting-and-export.md` owns what goes inside the file, which
 is the escape over a formula prefix and the byte order mark. This file owns how
@@ -286,8 +286,8 @@ curl -sSI "$MEDIA_ORIGIN/media/avatars/42.svg"
 - The Content Security Policy, the response headers of the application, and the
   full threat model over user content → domain 17 `frontend-security`. Not
   integrated yet.
-- The interaction cost of a build on the main thread → domain 16
-  `performance-and-web-vitals`. Not integrated yet.
+- The interaction cost of a build on the main thread →
+  `references/paint-and-interaction-cost.md`.
 - The words in a download message and in an expiry warning →
   `references/error-and-empty-state-copy.md`.
 - The reverse proxy, the storage bucket, and the header that it sends → domain

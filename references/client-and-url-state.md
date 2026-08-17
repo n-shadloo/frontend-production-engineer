@@ -363,5 +363,5 @@ pnpm build
   `references/design-tokens-and-theming.md`.
 - The locale segment in the address → domain 19
   `internationalization-and-rtl`. Not integrated yet.
-- The re-render cost of a store read, and the INP that it produces → domain 16
-  `performance-and-web-vitals`. Not integrated yet.
+- The re-render cost of a store read, and the INP that it produces →
+  `references/paint-and-interaction-cost.md`.

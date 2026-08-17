@@ -307,7 +307,8 @@ rg -n -B6 'parallax' -g '*.css' -g '*.tsx' src/
   `references/design-tokens-and-theming.md`.
 - A new dependency, its size, and its maintenance status →
   `references/dependencies-and-git-workflow.md`.
-- The long task, the INP threshold, and the budget over a scroll effect →
-  domain 16 `performance-and-web-vitals`. Not integrated yet.
+- The long task and the INP of a scroll effect →
+  `references/paint-and-interaction-cost.md`. The budget over it →
+  `references/performance-budgets-and-measurement.md`.
 - The words on a move control and on a drag announcement →
   `references/interface-copy-and-voice.md`.

@@ -237,7 +237,8 @@ Motion publishes two entry points with very different weights. The full
 feature pack then adds its own bytes. `domAnimation` adds about 15, and
 `domMax` adds about 25. The `useAnimate` mini API is 2.3 kilobytes.
 
-Domain 16 `performance-and-web-vitals` owns the budget that these numbers meet.
+`references/performance-budgets-and-measurement.md` owns the budget that
+these numbers meet.
 
 ### Version discipline
 
@@ -349,7 +350,8 @@ rg -n 'MotionConfig|useReducedMotion' -g '*.tsx' src/
   `references/visual-and-motor-criteria.md`. That domain holds a veto.
 - A new dependency, its size, and its maintenance status →
   `references/dependencies-and-git-workflow.md`.
-- The bundle budget over an animation library, the long task, and the INP
-  threshold → domain 16 `performance-and-web-vitals`. Not integrated yet.
+- The bundle budget over an animation library →
+  `references/performance-budgets-and-measurement.md`. The long task and the
+  INP threshold → `references/paint-and-interaction-cost.md`.
 - The supply chain of an animation dependency, and its advisories → domain 17
   `frontend-security`. Not integrated yet. That domain holds a veto.

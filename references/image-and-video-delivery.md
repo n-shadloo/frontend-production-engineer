@@ -360,8 +360,9 @@ rg -n 'youtube\.com/embed|player\.vimeo\.com' -g '*.tsx' src/
   stored image → `references/served-content-and-downloads.md`.
 - The Content Security Policy that names a frame source and a media source →
   domain 17 `frontend-security`. Not integrated yet.
-- The largest paint, the layout shift, and the budget over the bundle of a
-  player → domain 16 `performance-and-web-vitals`. Not integrated yet.
+- The largest paint and the layout shift →
+  `references/paint-and-interaction-cost.md`. The budget over the bundle of a
+  player → `references/client-bundle-and-third-party-scripts.md`.
 - The transition between two pictures, and the reduced variant behind it →
   `references/motion-primitives-and-reduced-motion.md`.
 - The words of a caption and of a transcript →

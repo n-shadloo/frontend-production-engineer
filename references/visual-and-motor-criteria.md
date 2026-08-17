@@ -405,5 +405,6 @@ rg -n 'draggable|onDragStart|onPointerMove' -g '*.tsx' src/
   `references/gesture-and-scroll-interaction.md`.
 - The plain language of the content, and the instruction that names a control
   rather than a color → `references/interface-copy-and-voice.md`.
-- The layout cost of a zoom, and the bytes of a large surface → domain 16
-  `performance-and-web-vitals`. Not integrated yet.
+- The layout cost of a zoom → `references/paint-and-interaction-cost.md`. The
+  bytes of a large surface →
+  `references/client-bundle-and-third-party-scripts.md`.

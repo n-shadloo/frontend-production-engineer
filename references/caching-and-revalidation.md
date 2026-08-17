@@ -247,5 +247,6 @@ pnpm build --debug
   Django → the sibling skill `django-performance-optimizer`.
 - The `Cache-Control` header, the CDN, and the edge → domain 22
   `build-deploy-and-runtime-ops`. Not integrated yet.
-- The LCP and the INP effect of a cache decision → domain 16
-  `performance-and-web-vitals`. Not integrated yet.
+- The LCP and the INP effect of a cache decision →
+  `references/paint-and-interaction-cost.md`. The first-byte budget over it
+  → `references/performance-budgets-and-measurement.md`.

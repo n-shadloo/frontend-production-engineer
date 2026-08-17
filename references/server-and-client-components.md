@@ -353,7 +353,8 @@ pnpm build && pnpm start
 - The accessible name → `references/semantics-and-accessible-names.md`. The
   focus order, and the live region on a skeleton or an error boundary →
   `references/keyboard-focus-and-live-regions.md`. That domain holds a veto.
-- The bundle bytes that a client leaf adds, and the INP that it costs →
-  domain 16 `performance-and-web-vitals`. Not integrated yet.
+- The bundle bytes that a client leaf adds →
+  `references/client-bundle-and-third-party-scripts.md`. The INP that it
+  costs → `references/paint-and-interaction-cost.md`.
 - The words in an error state, and the three cases behind an empty state →
   `references/error-and-empty-state-copy.md`.

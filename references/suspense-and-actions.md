@@ -288,8 +288,9 @@ React 19 supports `<title>`, `<meta>`, and `<link>` rendered from inside a
 component. It also makes `preload`, `preinit`, `prefetchDNS`, and `preconnect`
 stable. This file records that the APIs exist. The content of the metadata, and
 which mechanism a Next.js route uses for it, are domain 18 `seo-and-metadata`.
-Which resource to preload, and the cost of the wrong one, are domain 16
-`performance-and-web-vitals`.
+Which element to preload is `references/paint-and-interaction-cost.md`. The
+origin hint, and the cost of a wrong one, are
+`references/client-bundle-and-third-party-scripts.md`.
 
 ## Verification
 
