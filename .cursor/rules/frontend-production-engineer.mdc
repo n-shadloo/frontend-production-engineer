@@ -36,7 +36,9 @@ role, an accessible name, `aria-label`, a keyboard path, a focus order, a live
 region, a contrast ratio, an alt text, a target size, or axe. The tenth group
 is a form — a `<form>`, `useForm`, a resolver, a schema over the fields, a
 validation message, a field error from the server, a submit button, a wizard
-step, or unsaved changes. The eleventh group
+step, or unsaved changes. The eleventh group is a dense data surface — a data
+table, a column, a row, a sort, a page, a filter, a virtualiser, a bulk action,
+a chart, an axis, or an export. The twelfth group
 is the project setup — a folder move, a barrel file, `eslint.config.ts`, the
 lockfile, a git hook, or a new dependency. The last group is any change to the
 bundle, the headers, or the build.

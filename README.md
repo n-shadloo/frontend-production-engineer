@@ -78,7 +78,7 @@ Tier 3 is interface craft.
 - `11 forms-and-validation` — React Hook Form with Zod, React 19 Actions,
   server-error mapping, multi-step flows. Integrated.
 - `12 data-tables-and-visualization` — TanStack Table, server-driven tables,
-  charts. Pending.
+  charts. Integrated.
 - `13 media-and-file-handling` — uploads, images, video, downloads, progress.
   Pending.
 - `14 motion-and-interaction` — Motion and View Transitions, gestures, the
@@ -128,8 +128,10 @@ Tailwind CSS v4.3 supplies the styling, with the CSS-first `@theme` config, and
 shadcn/ui sits on Base UI. TanStack Query 5.101 or later holds the server
 state, nuqs 2.9 holds the URL state, and Zustand 5 holds the client store. Zod
 4.4 validates the values. React Hook Form 7.85 binds the forms, with
-`@hookform/resolvers` 5.9 between them. Vitest, React Testing Library, MSW, and
-Playwright run the tests.
+`@hookform/resolvers` 5.9 between them. TanStack Table 9.1 models the data
+tables, over `@tanstack/react-virtual` 3.14 for a long list, and recharts 3.10
+draws the charts. Vitest, React Testing Library, MSW, and Playwright run the
+tests.
 
 The backend is Django
 and DRF 3.17, and it publishes OpenAPI 3.0.3 through drf-spectacular 0.30.
@@ -251,15 +253,17 @@ run.
 
 ## Example output
 
-At 1.10.0 the integrated material is the operating doctrine, the App Router
+At 1.11.0 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
 events on it. It holds the design system and accessibility — the tokens and the
-layout, the element and its name, the keyboard, and the measurable criteria.
-The newest part is forms — the schema and the bind, the submit and the server
-error, and the flow that spans screens. The worked example is the shape of a
-task and the facts that gate it:
+layout, the element and its name, the keyboard, and the measurable criteria. It
+holds forms — the schema and the bind, the submit and the server error, and the
+flow that spans screens. The newest part is the dense data surface. It holds the
+table with the server that drives it, the chart, and the value that a user reads
+or takes away. The worked example is the shape of a task and the facts that gate
+it:
 
 ```
 Plan
@@ -329,6 +333,13 @@ Accessibility facts
 - axe clean in the component test, and on /orders in Playwright.
 - Keyboard walkthrough recorded; NVDA with Firefox ran the primary flow.
 
+Table facts
+- manualPagination, manualSorting, and manualFiltering are all set.
+- rowCount comes from the DRF count; a cursor endpoint would drop page numbers.
+- getRowId returns the order id, so a selection survives a sort.
+- Columns at module scope; the currency formatter is built once, with a locale.
+- 25 rows to a page, so no virtualiser. The export sends the filter, not the page.
+
 Done
 - pnpm lint              clean, at --max-warnings=0
 - pnpm typecheck         clean
@@ -369,11 +380,14 @@ frontend-production-engineer/
 │   ├── app-router-structure.md
 │   ├── boundary-validation-and-api-types.md
 │   ├── caching-and-revalidation.md
+│   ├── cell-formatting-and-export.md
+│   ├── charts-and-visual-encoding.md
 │   ├── client-and-url-state.md
 │   ├── component-composition.md
 │   ├── component-styles-and-variants.md
 │   ├── cross-origin-and-bff-proxy.md
 │   ├── data-access-and-mutations.md
+│   ├── data-table-and-server-driven-state.md
 │   ├── dependencies-and-git-workflow.md
 │   ├── design-tokens-and-theming.md
 │   ├── directory-and-module-boundaries.md
@@ -402,7 +416,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds eleven domains at 1.10.0 and fills one domain at a time.
+`references/` holds twelve domains at 1.11.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 
