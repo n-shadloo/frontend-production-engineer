@@ -279,7 +279,8 @@ common cases.
 Confirm the prop name and the mode values against the installed version before
 you write the code. The React team states that more modes are planned, so read
 the release notes of the installed version. The choreography of a transition
-between two views is domain 14 `motion-and-interaction`.
+between two views is
+`references/view-transitions-and-animation-libraries.md`.
 
 ### Document metadata and resource preloading
 
@@ -377,8 +378,10 @@ rg -n 'action=\{' -g '*.tsx' src/
   `references/form-submission-and-server-errors.md`.
 - The step, and the guard over unsaved work →
   `references/multi-step-forms-and-unsaved-work.md`.
-- The transition between two views, and the duration of an animation →
-  domain 14 `motion-and-interaction`. Not integrated yet.
+- The transition between two views →
+  `references/view-transitions-and-animation-libraries.md`. The duration of an
+  animation, and the delay before an indicator appears →
+  `references/motion-primitives-and-reduced-motion.md`.
 - The words in an error message, an empty state, and a pending label →
   domain 15 `ux-writing-and-content-design`. Not integrated yet.
 - The content of the document metadata → domain 18 `seo-and-metadata`. Not

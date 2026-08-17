@@ -538,7 +538,8 @@ rg -n 'onMouseEnter|onMouseOver' -g '*.tsx' src/
   `references/multi-step-forms-and-unsaved-work.md`.
 - The keyboard path through a data grid, and the virtualiser →
   `references/data-table-and-server-driven-state.md`.
-- The animation of a focus move, and the View Transition → domain 14
-  `motion-and-interaction`. Not integrated yet.
+- The moment at which a focus move happens, after an entrance ends →
+  `references/motion-primitives-and-reduced-motion.md`. The view transition
+  itself → `references/view-transitions-and-animation-libraries.md`.
 - The words of an announcement and of an error message → domain 15
   `ux-writing-and-content-design`. Not integrated yet.

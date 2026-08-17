@@ -356,8 +356,8 @@ pnpm typecheck
   the control, and that file owns the state that selects them.
 - The cell, the column, and the row of a table →
   `references/data-table-and-server-driven-state.md`.
-- The transition and the animation that a variant change triggers → domain 14
-  `motion-and-interaction`. Not integrated yet.
+- The transition and the animation that a variant change triggers →
+  `references/motion-primitives-and-reduced-motion.md`.
 - The words inside a control, and the message beside it → domain 15
   `ux-writing-and-content-design`. Not integrated yet.
 - The CSS bytes and the icon bytes that a surface adds → domain 16

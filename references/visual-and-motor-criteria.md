@@ -230,9 +230,10 @@ Forced colors mode removes every background image and every background color
 that the project set. A surface that separates itself by background alone
 disappears. Give each card, each panel, and each menu a border.
 
-Domain 14 `motion-and-interaction` owns the animation itself, and the tokens
-behind its duration. It is not integrated yet. This file owns the preference
-that the animation must obey.
+`references/motion-primitives-and-reduced-motion.md` owns the animation itself,
+and `references/design-tokens-and-theming.md` owns the duration tokens behind
+it. This file owns the preference that both must obey, and the global block
+above. That block is the floor, and the reduced variant is the design over it.
 
 ### Every drag has a second path
 
@@ -398,8 +399,10 @@ rg -n 'draggable|onDragStart|onPointerMove' -g '*.tsx' src/
   `references/data-table-and-server-driven-state.md`.
 - The video player, its captions, and its controls →
   `references/image-and-video-delivery.md`.
-- The animation itself, and the duration tokens behind it → domain 14
-  `motion-and-interaction`. Not integrated yet.
+- The animation itself, its purpose class, and the reduced variant over the
+  tokens → `references/motion-primitives-and-reduced-motion.md`.
+- The drag library, its sensors, and the scroll that a gesture drives →
+  `references/gesture-and-scroll-interaction.md`.
 - The plain language of the content → domain 15 `ux-writing-and-content-design`.
   Not integrated yet.
 - The layout cost of a zoom, and the bytes of a large surface → domain 16

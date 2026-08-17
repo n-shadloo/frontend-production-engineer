@@ -327,8 +327,8 @@ rg -n 'next/font' src/
   `references/data-table-and-server-driven-state.md`.
 - `next/image`, the responsive source set, and the request for the bytes →
   `references/image-and-video-delivery.md`.
-- The transition between two layouts, and the reduced-motion preference →
-  domain 14 `motion-and-interaction`. Not integrated yet.
+- The transition between two layouts, and the reduced variant behind it →
+  `references/motion-primitives-and-reduced-motion.md`.
 - The words in a heading, and the length that the design assumes → domain 15
   `ux-writing-and-content-design`. Not integrated yet.
 - The layout shift budget, the font byte budget, and the LCP element → domain

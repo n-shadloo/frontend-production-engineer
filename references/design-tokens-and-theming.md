@@ -152,8 +152,9 @@ Name the layers once, in the order that they stack, and consume the names.
 Spacing, radius, and shadow follow the same rule as color. Each one is a token
 in the theme, and no feature file states a number for it. The motion tokens are
 the durations, the easings, and the distances that an animation reads. This
-file owns those three values as tokens. Domain 14 `motion-and-interaction` owns
-the animation that consumes them, and it is not integrated yet.
+file owns those three values as tokens.
+`references/motion-primitives-and-reduced-motion.md` owns the animation that
+reads them, and the reduced-motion override over them.
 
 ### The dark theme is designed
 
@@ -412,8 +413,8 @@ rg -n 'color-scheme' src/styles/globals.css
   `references/lint-format-and-scripts.md`.
 - The contrast ratio of every token pair, and the forced-colors mode →
   `references/visual-and-motor-criteria.md`. That domain holds a veto.
-- The animation that consumes the motion tokens → domain 14
-  `motion-and-interaction`. Not integrated yet.
+- The animation that reads the motion tokens, and the reduced-motion override
+  over them → `references/motion-primitives-and-reduced-motion.md`.
 - The chart series tokens, and the color of a data series →
   `references/charts-and-visual-encoding.md`.
 - The CSS bytes that a theme costs, and the budget over them → domain 16

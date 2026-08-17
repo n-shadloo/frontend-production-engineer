@@ -359,8 +359,8 @@ rg -n 'youtube\.com/embed|player\.vimeo\.com' -g '*.tsx' src/
   domain 17 `frontend-security`. Not integrated yet.
 - The largest paint, the layout shift, and the budget over the bundle of a
   player → domain 16 `performance-and-web-vitals`. Not integrated yet.
-- The transition between two pictures, and the reduced-motion preference behind
-  it → domain 14 `motion-and-interaction`. Not integrated yet.
+- The transition between two pictures, and the reduced variant behind it →
+  `references/motion-primitives-and-reduced-motion.md`.
 - The words of a caption, a transcript, and an empty media state → domain 15
   `ux-writing-and-content-design`. Not integrated yet.
 - The Open Graph image and the metadata around it → domain 18
