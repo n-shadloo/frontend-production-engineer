@@ -389,7 +389,7 @@ rg -n -B1 -A8 '^\s*(type|interface) \w+Props' -g '*.tsx' src/ | rg '\?: boolean'
 - The field binding and the resolver on a form control →
   `references/form-schema-and-field-binding.md`. This file owns the shape of
   the field component, and that file owns the bind of its value.
-- The virtualiser for a long list, and the column definitions → domain 12
-  `data-tables-and-visualization`. Not integrated yet.
+- The virtualiser for a long list, and the column definitions →
+  `references/data-table-and-server-driven-state.md`.
 - The bundle bytes that a component adds → domain 16
   `performance-and-web-vitals`. Not integrated yet.

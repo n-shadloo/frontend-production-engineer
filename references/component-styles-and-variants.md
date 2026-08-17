@@ -354,8 +354,8 @@ pnpm typecheck
 - The error state that a field variant selects, and the resolver behind it →
   `references/form-schema-and-field-binding.md`. This file owns the classes on
   the control, and that file owns the state that selects them.
-- The cell, the column, and the row of a table → domain 12
-  `data-tables-and-visualization`. Not integrated yet.
+- The cell, the column, and the row of a table →
+  `references/data-table-and-server-driven-state.md`.
 - The transition and the animation that a variant change triggers → domain 14
   `motion-and-interaction`. Not integrated yet.
 - The words inside a control, and the message beside it → domain 15

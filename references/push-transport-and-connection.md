@@ -688,8 +688,8 @@ npx wscat -c "wss://staging.example.com/ws/feed/"
 - The progress feed of an upload, and the download that a stream produces →
   domain 13 `media-and-file-handling`. Not integrated yet. This file owns the
   transport under it.
-- The row that a live table adds while the user reads it → domain 12
-  `data-tables-and-visualization`. Not integrated yet.
+- The row that a live table adds while the user reads it →
+  `references/data-table-and-server-driven-state.md`.
 - The words of a degraded message and of a reconnect message → domain 15
   `ux-writing-and-content-design`. Not integrated yet.
 - The connection uptime, the reconnect count, and the alarm over them → domain

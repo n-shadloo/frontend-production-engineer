@@ -105,8 +105,8 @@ Four places break this rule most often. A status indicator, a validation state
 on a field, a series in a chart, and a link inside a paragraph of text. A link
 in body text needs an underline, or another difference that is not the color.
 
-Domain 12 `data-tables-and-visualization` owns the second channel of a chart
-series. It is not integrated yet.
+`references/charts-and-visual-encoding.md` owns the second channel of a chart
+series.
 
 ### The size of a target
 
@@ -393,8 +393,9 @@ rg -n 'draggable|onDragStart|onPointerMove' -g '*.tsx' src/
   → `references/component-styles-and-variants.md`.
 - The `viewport` export and the route files →
   `references/app-router-structure.md`.
-- The second channel of a chart series, and the wide data table → domain 12
-  `data-tables-and-visualization`. Not integrated yet.
+- The second channel of a chart series → `references/charts-and-visual-encoding.md`.
+- The wide data table, and its alternative on a phone →
+  `references/data-table-and-server-driven-state.md`.
 - The video player, its captions, and its controls → domain 13
   `media-and-file-handling`. Not integrated yet.
 - The animation itself, and the duration tokens behind it → domain 14

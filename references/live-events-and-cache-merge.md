@@ -414,8 +414,8 @@ pnpm typecheck
 - The identity that scopes a key, and the cache that a logout clears →
   `references/session-and-token-lifecycle.md` and
   `references/route-protection-and-permissions.md`.
-- The row that a live table adds or removes while the user reads it → domain 12
-  `data-tables-and-visualization`. Not integrated yet.
+- The row that a live table adds or removes while the user reads it →
+  `references/data-table-and-server-driven-state.md`.
 - The progress event of an upload or a download → domain 13
   `media-and-file-handling`. Not integrated yet.
 - The politeness of an announcement when a row arrives →

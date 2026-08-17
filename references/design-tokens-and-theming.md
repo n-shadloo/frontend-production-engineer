@@ -414,7 +414,7 @@ rg -n 'color-scheme' src/styles/globals.css
   `references/visual-and-motor-criteria.md`. That domain holds a veto.
 - The animation that consumes the motion tokens → domain 14
   `motion-and-interaction`. Not integrated yet.
-- The chart series tokens in use, and the color of a data series → domain 12
-  `data-tables-and-visualization`. Not integrated yet.
+- The chart series tokens, and the color of a data series →
+  `references/charts-and-visual-encoding.md`.
 - The CSS bytes that a theme costs, and the budget over them → domain 16
   `performance-and-web-vitals`. Not integrated yet.

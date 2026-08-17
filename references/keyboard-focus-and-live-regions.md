@@ -535,8 +535,8 @@ rg -n 'onMouseEnter|onMouseOver' -g '*.tsx' src/
   `references/form-submission-and-server-errors.md`.
 - The step change that must move focus →
   `references/multi-step-forms-and-unsaved-work.md`.
-- The keyboard path through a data grid, and the virtualiser → domain 12
-  `data-tables-and-visualization`. Not integrated yet.
+- The keyboard path through a data grid, and the virtualiser →
+  `references/data-table-and-server-driven-state.md`.
 - The animation of a focus move, and the View Transition → domain 14
   `motion-and-interaction`. Not integrated yet.
 - The words of an announcement and of an error message → domain 15

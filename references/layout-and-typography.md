@@ -324,7 +324,7 @@ rg -n 'next/font' src/
   `references/multi-step-forms-and-unsaved-work.md`. The error state that sits
   beside a field is `references/form-submission-and-server-errors.md`.
 - The column widths, the sticky header, and the virtualiser of a long list →
-  domain 12 `data-tables-and-visualization`. Not integrated yet.
+  `references/data-table-and-server-driven-state.md`.
 - `next/image`, the responsive source set, and the loading of the bytes →
   domain 13 `media-and-file-handling`. Not integrated yet.
 - The transition between two layouts, and the reduced-motion preference →

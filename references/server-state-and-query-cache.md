@@ -430,8 +430,8 @@ of `undefined` means that no further page exists, and it sets `hasNextPage` to
 false. `CursorPagination` sends no `count`, so give that endpoint no control
 that jumps to a numbered page.
 
-The column model, the row model, and the scroll container of a table are domain
-12 `data-tables-and-visualization`.
+The column model, the row model, and the scroll container of a table are
+`references/data-table-and-server-driven-state.md`.
 
 ### The failure reaches the error channel
 
@@ -619,7 +619,7 @@ pnpm exec eslint . --max-warnings=0
   invalidates a key here after a success →
   `references/form-submission-and-server-errors.md`.
 - The column model, the row model, and the virtualiser over an infinite query →
-  domain 12 `data-tables-and-visualization`. Not integrated yet.
+  `references/data-table-and-server-driven-state.md`.
 - The upload progress of a mutation that carries a file → domain 13
   `media-and-file-handling`. Not integrated yet.
 - The words in an empty state and an error state → domain 15

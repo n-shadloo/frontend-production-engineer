@@ -85,7 +85,7 @@ decides the cache key, and the two never disagree.
 `references/server-state-and-query-cache.md` owns the key.
 
 A search box that writes on every keystroke produces one history entry for each
-letter. Give that input the `throttleMs` option, or wrap the write in a
+letter. Give that input `limitUrlUpdates: debounce(ms)`, or wrap the write in a
 transition. The address bar then follows the typing rather than records it.
 
 ### `useSearchParams` needs a `<Suspense>` boundary
@@ -115,7 +115,7 @@ with nuqs in the client component that changes it.
 | A typed parser | `parseAsString`, `parseAsInteger`, `parseAsFloat`, `parseAsBoolean`, `parseAsIsoDate` |
 | A default that the URL omits | `.withDefault(value)` |
 | A read of the same params on the server | `createLoader`, or `createSearchParamsCache` |
-| A limit on the write rate | The `throttleMs` option |
+| A limit on the write rate | `limitUrlUpdates: throttle(ms)`, or `limitUrlUpdates: debounce(ms)` |
 
 Take the parser from the parser exports. Version 1 of nuqs held one
 `queryTypes` object. Version 2 replaced it with one export for each parser, so
@@ -246,7 +246,7 @@ advisory database supplied those four facts on 16 August 2026.
 | Conditional | `valtio` 2.3 | A deep mutable model that a proxy tracks. | 2.3.2 | 1 May 2026 | Active, at a slower release rate than its two siblings. | None |
 | Conditional | `immer` 11.1 | The Zustand middleware for a nested update. Add it only where the spread is unreadable. | 11.1.17 | 16 Aug 2026 | Active. | None. Version 9.0.6 patched the three advisories from 2021. |
 | Conditional | `@reduxjs/toolkit` 2.12 | Only where Redux is already installed. RTK Query then holds the server state, and TanStack Query does not. | 2.12.0 | 15 May 2026 | Active. | None |
-| Conditional | `use-debounce` 10.1 | A debounce that nuqs `throttleMs` and a transition do not cover. | 10.1.1 | 29 Mar 2026 | Active. The repository takes commits, and the release rate is low. | None |
+| Conditional | `use-debounce` 10.1 | A debounce that nuqs `limitUrlUpdates` and a transition do not cover. | 10.1.1 | 29 Mar 2026 | Active. The repository takes commits, and the release rate is low. | None |
 | Audit-only | `swr` 2.5 | An existing install. TanStack Query is the default of this stack. | 2.5.1 | 12 Aug 2026 | Active. | None |
 | Reject | `@apollo/client` | It serves GraphQL. This stack talks to DRF over REST. | 4.2.12 | 14 Aug 2026 | Active. | None |
 
@@ -264,6 +264,9 @@ idiom is alive only in legacy code.
 
 nuqs 2 is the pin. Rewrite `import { queryTypes } from "nuqs"` to the parser
 exports. `createLoader` and `createSearchParamsCache` need nuqs 2.3 or later.
+The `throttleMs` option is deprecated. Rewrite it to
+`limitUrlUpdates: throttle(ms)`, or to `limitUrlUpdates: debounce(ms)` where the
+value comes from a keystroke.
 
 ## Verification
 
@@ -282,8 +285,10 @@ rg -n 'create[A-Za-z]*\(' -g '*.ts' -g '*.tsx' src/ | rg 'zustand|createStore'
 # 4. Find a store that holds data from the backend. This must print nothing.
 rg -n -A10 'createStore|create<' src/ | rg 'api\.|fetch\(|results'
 
-# 5. Find a nuqs version 1 import. This must print nothing.
+# 5. Find a nuqs version 1 import and the deprecated write-rate option. Each
+#    one must print nothing.
 rg -n 'queryTypes' src/
+rg -n 'throttleMs' src/
 
 # 6. Find a useSearchParams consumer with no boundary above it. Read every hit.
 rg -l 'useSearchParams' -g '*.tsx' src/
@@ -351,8 +356,8 @@ pnpm build
   `references/form-schema-and-field-binding.md`. The step that this file's
   parsers carry, and the guard over unsaved work, are
   `references/multi-step-forms-and-unsaved-work.md`.
-- The column visibility and the sort model of a table → domain 12
-  `data-tables-and-visualization`. Not integrated yet.
+- The column visibility and the sort model of a table →
+  `references/data-table-and-server-driven-state.md`.
 - The theme token behind a stored preference, and the class that must reach
   `<html>` before the first paint →
   `references/design-tokens-and-theming.md`.

@@ -282,8 +282,9 @@ element as its first child. A decorative inline SVG takes `aria-hidden="true"`.
 Every icon of `lucide-react` is decorative by default, so the control around it
 must carry the name.
 
-Domain 12 `data-tables-and-visualization` owns the text alternative of a chart
-and of a data table. It is not integrated yet.
+`references/charts-and-visual-encoding.md` owns the text alternative of a
+chart. `references/data-table-and-server-driven-state.md` owns the header cells
+and the caption of a data table.
 
 ### The language of the document and of a passage
 
@@ -500,8 +501,9 @@ pnpm lint
   `references/form-submission-and-server-errors.md`.
 - The step, the guard over unsaved work, and the answer that the flow must not
   request twice → `references/multi-step-forms-and-unsaved-work.md`.
-- The text alternative of a chart, and the header cells of a data table →
-  domain 12 `data-tables-and-visualization`. Not integrated yet.
+- The text alternative of a chart → `references/charts-and-visual-encoding.md`.
+- The header cells and the caption of a data table →
+  `references/data-table-and-server-driven-state.md`.
 - The bytes of an image and the video player → domain 13
   `media-and-file-handling`. Not integrated yet.
 - The words inside a label, a hint, and an error message → domain 15
