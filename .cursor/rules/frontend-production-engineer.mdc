@@ -50,6 +50,10 @@ or an ICU plural.
 
 The fifteenth group is performance — a slow page, LCP, INP, CLS, a bundle that
 grew, a third-party script, a prefetch, or a Lighthouse report. The sixteenth
+group is security — `dangerouslySetInnerHTML`, a sanitiser, a Content Security
+Policy, a nonce, a response header, a Server Action that the network reaches, a
+destination taken from a request, an open redirect, a `NEXT_PUBLIC_` variable,
+or a CVE. The seventeenth
 group is the project setup — a folder move, a barrel
 file, `eslint.config.ts`, the lockfile, a git hook, or a new dependency. The
 last group is any change to the headers or the build.

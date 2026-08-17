@@ -91,7 +91,7 @@ Tier 4 is the non-functional guarantees, applied as a review pass before done.
 - `16 performance-and-web-vitals` — INP, LCP, CLS, bundles, budgets,
   measurement. Integrated.
 - `17 frontend-security` — XSS, CSP, response headers, server action safety,
-  supply chain. Pending.
+  supply chain. Integrated.
 - `18 seo-and-metadata` — the Metadata API, JSON-LD, sitemaps, canonical URLs,
   Open Graph. Pending.
 - `19 internationalization-and-rtl` — next-intl, locale routing, RTL and
@@ -256,7 +256,7 @@ run.
 
 ## Example output
 
-At 1.15.0 the integrated material is the operating doctrine, the App Router
+At 1.16.0 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -270,10 +270,16 @@ holds the file that leaves for a user, and the animation over all of them.
 It holds the copy — the words on a control, the message that a failure
 produces, and the string as data behind a key.
 
-The newest part is speed as a measured property. It holds the thresholds, the
-budget, and the gate over them. It also holds the bytes of JavaScript, and
-the third-party script beside them. The last part is the largest paint, the
-layout shift, and the answer to a tap. The worked
+It holds speed as a measured property — the thresholds, the budget, and the
+gate over them, the bytes of JavaScript with the third-party script beside
+them, and the largest paint, the layout shift, and the answer to a tap.
+
+The newest part is the browser-side threat model, and it holds a veto. It is
+the sink that turns data into code, and the sanitiser in front of it. It also
+holds the policy and the header set that the response carries, the endpoint
+that the network reaches, and the destination that the server reaches back. The
+last part is what must never cross to the browser, and the code that arrives
+there that nobody on the team wrote. The worked
 example is the shape of a task and the facts that gate it:
 
 ```
@@ -404,6 +410,7 @@ frontend-production-engineer/
 │   ├── design-tokens-and-theming.md
 │   ├── directory-and-module-boundaries.md
 │   ├── error-and-empty-state-copy.md
+│   ├── exposed-endpoints-and-destinations.md
 │   ├── file-upload-and-transport.md
 │   ├── form-schema-and-field-binding.md
 │   ├── form-submission-and-server-errors.md
@@ -422,6 +429,8 @@ frontend-production-engineer/
 │   ├── performance-budgets-and-measurement.md
 │   ├── push-transport-and-connection.md
 │   ├── route-protection-and-permissions.md
+│   ├── secret-boundary-and-supply-chain.md
+│   ├── security-headers-and-csp.md
 │   ├── served-content-and-downloads.md
 │   ├── semantics-and-accessible-names.md
 │   ├── server-and-client-components.md
@@ -431,6 +440,7 @@ frontend-production-engineer/
 │   ├── suspense-and-actions.md
 │   ├── type-modeling-and-narrowing.md
 │   ├── typescript-config-and-enforcement.md
+│   ├── untrusted-markup-and-injection.md
 │   ├── view-transitions-and-animation-libraries.md
 │   ├── visual-and-motor-criteria.md
 │   └── wcag-conformance-and-verification.md
@@ -439,7 +449,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds sixteen domains at 1.15.0 and fills one domain at a time.
+`references/` holds seventeen domains at 1.16.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 

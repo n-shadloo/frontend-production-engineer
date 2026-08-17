@@ -24,7 +24,7 @@ foundations, backend contract and state, interface craft, and non-functional
 guarantees. A Tier 0 operating doctrine sits under them, and it is always in
 effect.
 
-At 1.15.0 the integrated material in `references/` is that doctrine, the
+At 1.16.0 the integrated material in `references/` is that doctrine, the
 App Router foundation, the type system, and the React component tree. It also
 holds the project structure, the DRF contract, and the client cache and state.
 It holds the session with the gates over it, and the push transport with the
@@ -38,10 +38,16 @@ holds the file that leaves for a user, and the animation over all of them.
 It holds the copy — the words on a control, the message that a failure
 produces, and the string as data behind a key.
 
-The newest part is speed as a measured property. It holds the thresholds, the
-budget, and the gate over them. It also holds the bytes of JavaScript, and
-the third-party script beside them. The last part is the largest paint, the
-layout shift, and the answer to a tap. `SKILL.md`
+It holds speed as a measured property — the thresholds, the budget, and the
+gate over them, the bytes of JavaScript with the third-party script beside
+them, and the largest paint, the layout shift, and the answer to a tap.
+
+The newest part is the browser-side threat model, and it holds a veto. It is
+the sink that turns data into code, and the sanitiser in front of it. It also
+holds the policy and the header set that the response carries, the endpoint
+that the network reaches, and the destination that the server reaches back. The
+last part is what must never cross to the browser, and the code that arrives
+there that nobody on the team wrote. `SKILL.md`
 is the authoritative list of what is loadable.
 
 ## Two modes
