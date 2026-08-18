@@ -329,8 +329,10 @@ git ls-files | rg '^\.env'
   `references/openapi-schema-and-codegen.md`.
 - The consent gate over a tag manager, and the lawful basis → domain 23
   `analytics-privacy-and-consent`. Not integrated yet.
-- The Docker image, the build secret, and the deployment environment → domain 22
-  `build-deploy-and-runtime-ops`. Not integrated yet.
+- The Docker image, and the build context that produces it →
+  `references/build-output-and-container-image.md`. The environment file on the
+  host → `references/runtime-process-and-reverse-proxy.md`. The credential
+  that a pipeline holds → `references/release-pipeline-and-rollback.md`.
 - Secret storage on the server, password hashing, and the Django settings that
   hold a credential → the sibling skill `secure-code-auditor`. This file owns
   what the browser receives.

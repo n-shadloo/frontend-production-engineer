@@ -260,8 +260,8 @@ curl -si -X POST "$NEXT_PUBLIC_API_BASE_URL/api/auth/login/" | rg -i 'set-cookie
   response headers → `references/security-headers-and-csp.md`. The judgment of
   an injection sink is `references/untrusted-markup-and-injection.md`. That
   domain holds a veto.
-- The Nginx configuration in front of Node, and the TLS termination → domain 22
-  `build-deploy-and-runtime-ops`. Not integrated yet.
+- The Nginx configuration in front of Node, and the TLS termination →
+  `references/runtime-process-and-reverse-proxy.md`.
 - The DRF permission class, the server-side CSRF enforcement, the CORS
   settings, and the cookie attributes → the sibling skill
   `secure-code-auditor`. This file owns what the browser sends and stores, and

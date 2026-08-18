@@ -314,5 +314,6 @@ pnpm exec tsc --noEmit --extendedDiagnostics
 - The Vitest setup and the test file layout →
   `references/test-strategy-and-component-tests.md`. The contract test against
   the schema → `references/network-mocks-and-contract-tests.md`.
-- The CI pipeline that runs these gates, and the Docker build → domain 22
-  `build-deploy-and-runtime-ops`. Not integrated yet.
+- The CI pipeline that runs these gates →
+  `references/release-pipeline-and-rollback.md`. The Docker build →
+  `references/build-output-and-container-image.md`.

@@ -573,7 +573,9 @@ curl -s "$APP_ORIGIN/sitemap.xml" | rg -c '<loc>'
   `references/locale-routing-and-catalogs.md`. The key inside that file →
   `references/message-catalog-and-plurals.md`.
 - The reverse proxy that serves a static file, and the 410 status at that layer
-  → domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.
+  → `references/runtime-process-and-reverse-proxy.md`. The environment value
+  that a pipeline supplies to a non-production deployment →
+  `references/release-pipeline-and-rollback.md`.
 - The slow list endpoint behind an enumeration, and the index on the ordering
   field → the sibling skill `django-performance-optimizer`. The permission
   check over the enumerated rows → the sibling skill `secure-code-auditor`.

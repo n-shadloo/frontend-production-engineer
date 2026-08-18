@@ -271,5 +271,6 @@ rg -n 'camelcase|humps|ts-case-convert' package.json
   `references/server-state-and-query-cache.md`.
 - The MSW handlers and the contract test against the schema →
   `references/network-mocks-and-contract-tests.md`.
-- The CI job that downloads the schema artifact → domain 22
-  `build-deploy-and-runtime-ops`. Not integrated yet.
+- The CI job that downloads the schema artifact, and the order of the two
+  deploys that change the contract →
+  `references/release-pipeline-and-rollback.md`.

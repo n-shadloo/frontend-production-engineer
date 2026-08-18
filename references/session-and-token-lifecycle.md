@@ -449,8 +449,8 @@ curl -sI -X POST "$NEXT_PUBLIC_API_BASE_URL/api/auth/login/" | rg -i 'set-cookie
 - The MSW handler for each auth state, and the expired-token fixture →
   `references/network-mocks-and-contract-tests.md`. The Playwright storage
   state → `references/end-to-end-journeys-and-flake-control.md`.
-- The reverse proxy in front of Node that must forward `Set-Cookie` → domain 22
-  `build-deploy-and-runtime-ops`. Not integrated yet.
+- The reverse proxy in front of Node that must forward `Set-Cookie` →
+  `references/runtime-process-and-reverse-proxy.md`.
 - The SimpleJWT settings, the blacklist migration, the password hash, the
   rate limit on the login endpoint, and the server-side CSRF enforcement → the
   sibling skill `secure-code-auditor`. This file owns what the browser sends

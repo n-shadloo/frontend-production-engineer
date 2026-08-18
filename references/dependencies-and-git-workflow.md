@@ -265,7 +265,7 @@ rg -n 'linguist-generated' .gitattributes
   `references/secret-boundary-and-supply-chain.md`. That domain holds a veto.
 - The test job that a pre-push hook runs →
   `references/merge-gates-and-quality-signals.md`.
-- The CI workflow, the cache, the release pipeline, and the deploy → domain 22
-  `build-deploy-and-runtime-ops`. Not integrated yet.
+- The CI workflow, the cache, the release pipeline, and the deploy →
+  `references/release-pipeline-and-rollback.md`.
 - The server-side secret storage and the rotation procedure → the sibling
   skill `secure-code-auditor`.

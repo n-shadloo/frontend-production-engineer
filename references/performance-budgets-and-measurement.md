@@ -352,8 +352,10 @@ rg -n 'useReportWebVitals' -g '*.tsx' src/
 - The transport that carries a field report, and the trace →
   `references/correlation-and-telemetry.md`. The error tracker is
   `references/error-capture-and-reporting.md`.
-- The CI workflow file, the reverse proxy, the compression, and the CDN →
-  domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.
+- The CI workflow file that runs the budget stage →
+  `references/release-pipeline-and-rollback.md`. The reverse proxy and the
+  compression in front of Node →
+  `references/runtime-process-and-reverse-proxy.md`.
 - The test runner → `references/test-strategy-and-component-tests.md`. The
   place of the budget stage in the gate order →
   `references/merge-gates-and-quality-signals.md`.

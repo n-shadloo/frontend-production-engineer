@@ -365,5 +365,6 @@ git log --oneline -- src/api/generated
   `references/design-tokens-and-theming.md`.
 - The test file layout under a feature →
   `references/test-strategy-and-component-tests.md`.
-- The CI pipeline that downloads the schema artifact, and the Docker build →
-  domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.
+- The CI pipeline that downloads the schema artifact →
+  `references/release-pipeline-and-rollback.md`. The Docker build →
+  `references/build-output-and-container-image.md`.

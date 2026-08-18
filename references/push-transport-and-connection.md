@@ -514,9 +514,9 @@ depends on, so that a review can fail on it.
 | Cloudflare | A client heartbeat under the idle close. Only the Enterprise plan configures the period. | The connection closes with 1006 about every 100 seconds |
 | The ASGI server | Daphne or Uvicorn behind the proxy, and a channel layer that is up | A `group_send` raises on the server, no event arrives, and the view must show degraded rather than empty |
 
-Domain 22 `build-deploy-and-runtime-ops` owns the Nginx file itself. The
-sibling skill `django-release-readiness` owns the ASGI process and the health
-check. This file owns the list above, and the `curl -N` command in the
+`references/runtime-process-and-reverse-proxy.md` owns the Nginx file itself.
+The sibling skill `django-release-readiness` owns the ASGI process and the
+health check. This file owns the list above, and the `curl -N` command in the
 verification block that proves the third row.
 
 ### The Django seam
@@ -699,7 +699,7 @@ npx wscat -c "wss://staging.example.com/ws/feed/"
   that file owns the rule that gives an alert an owner and an action. The
   transport of a field report is `references/correlation-and-telemetry.md`.
 - The Nginx file, the TLS termination, and the reverse proxy in front of Node →
-  domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.
+  `references/runtime-process-and-reverse-proxy.md`.
 - The MSW `ws` namespace and the fixture for a dropped connection →
   `references/network-mocks-and-contract-tests.md`. The Playwright `routeWebSocket`
   mock → `references/end-to-end-journeys-and-flake-control.md`. Three

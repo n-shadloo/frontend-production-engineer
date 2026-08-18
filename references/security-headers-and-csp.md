@@ -52,9 +52,11 @@ beside it only where the product must serve a browser that reads no policy.
 
 One layer emits the set. A header that both the application and the reverse
 proxy set arrives twice. The browser then resolves the pair by its own rule, and
-not by the intention of the team. Domain 22 `build-deploy-and-runtime-ops` owns which
-layer that is, and it is not integrated yet. Until it lands, emit the set from the
-application and confirm that the proxy adds none of these headers.
+not by the intention of the team.
+`references/runtime-process-and-reverse-proxy.md` owns which layer that is. The
+default for this stack is the application, because `proxy.ts` is the only
+source of a per-request nonce. Confirm that the proxy adds none of these
+headers.
 
 Read the headers of the deployed application after every deploy. A header that a
 configuration states and a response omits is the common failure, and no test in
@@ -349,7 +351,7 @@ curl -sI "$APP_ORIGIN" | rg -ic 'content-security-policy'
   `references/performance-budgets-and-measurement.md`. The strategy of a vendor
   script is `references/client-bundle-and-third-party-scripts.md`.
 - The reverse proxy, the TLS termination, and the layer that emits the header set
-  → domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.
+  → `references/runtime-process-and-reverse-proxy.md`.
 - The consent gate over a tag manager → domain 23
   `analytics-privacy-and-consent`. Not integrated yet.
 - The endpoint that receives a violation report, and the rule over its count →

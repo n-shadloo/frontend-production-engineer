@@ -384,5 +384,5 @@ rg -n 'prefetch' -g '*.tsx' src/
   a veto.
 - The consent gate over a script, the lawful basis, and the event schema →
   domain 23 `analytics-privacy-and-consent`. Not integrated yet.
-- The compression, the cache headers, and the CDN in front of `_next/static` →
-  domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.
+- The compression, and the cache headers in front of `_next/static` →
+  `references/runtime-process-and-reverse-proxy.md`.

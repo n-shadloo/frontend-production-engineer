@@ -291,8 +291,8 @@ curl -sSI "$MEDIA_ORIGIN/media/avatars/42.svg"
   `references/paint-and-interaction-cost.md`.
 - The words in a download message and in an expiry warning →
   `references/error-and-empty-state-copy.md`.
-- The reverse proxy, the storage bucket, and the header that it sends → domain
-  22 `build-deploy-and-runtime-ops`. Not integrated yet.
+- The reverse proxy in front of Node, and the body limit on it →
+  `references/runtime-process-and-reverse-proxy.md`.
 - The test that follows a download and reads the file →
   `references/end-to-end-journeys-and-flake-control.md`.
 - The server-side check over a stored file, the name that it is stored under,

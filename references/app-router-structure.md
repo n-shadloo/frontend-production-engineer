@@ -233,8 +233,10 @@ each default before you assume the Next 15 behavior.
 A variable without the `NEXT_PUBLIC_` prefix stays on the server. A variable
 with the prefix is inlined into the browser bundle at build time. NEVER put a
 secret, an API key, or a Django admin URL in a `NEXT_PUBLIC_` variable. A
-single Docker image that must read a public variable at run time needs
-`next-runtime-env`; every other case bakes the value at build time.
+single image that serves more than one environment reads such a value on the
+server, and it passes the field to the client leaf that needs it.
+`references/release-pipeline-and-rollback.md` owns that read, and the
+promotion behind it.
 
 ### Version and patch discipline
 
@@ -342,5 +344,6 @@ done
   boundary file → `references/error-capture-and-reporting.md`. The correlation
   identifier that `proxy.ts` generates is
   `references/correlation-and-telemetry.md`.
-- Docker, `output: 'standalone'`, and the reverse proxy in front of Node →
-  domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.
+- Docker and `output: 'standalone'` →
+  `references/build-output-and-container-image.md`. The reverse proxy in front
+  of Node → `references/runtime-process-and-reverse-proxy.md`.

@@ -372,7 +372,8 @@ rg -n 'youtube\.com/embed|player\.vimeo\.com' -g '*.tsx' src/
   `references/error-and-empty-state-copy.md`.
 - The Open Graph image and the metadata around it →
   `references/route-metadata-and-social-cards.md`.
-- The bucket, the CDN, and the infrastructure behind the optimizer → domain 22
-  `build-deploy-and-runtime-ops`. Not integrated yet.
+- The memory and the disk that the optimizer costs on a host →
+  `references/runtime-process-and-reverse-proxy.md`. The `sharp` module inside a
+  container image → `references/build-output-and-container-image.md`.
 - The transcode job and the thumbnail that it produces → the sibling skill
   `django-async-jobs`.

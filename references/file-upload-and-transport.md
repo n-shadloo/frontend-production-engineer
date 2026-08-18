@@ -433,8 +433,8 @@ rg -n 'presign|createPresignedPost|putWithProgress' -g '*.ts*' src/
   `references/error-and-empty-state-copy.md`.
 - The bytes that an upload costs, and the budget over them →
   `references/performance-budgets-and-measurement.md`.
-- The bucket, the storage credential, and the reverse-proxy body limit → domain
-  22 `build-deploy-and-runtime-ops`. Not integrated yet.
+- The body limit at the reverse proxy, and the 413 that it returns →
+  `references/runtime-process-and-reverse-proxy.md`.
 - The handler that refuses a disguised file →
   `references/network-mocks-and-contract-tests.md`. The test that reads the
   message → `references/test-strategy-and-component-tests.md`.

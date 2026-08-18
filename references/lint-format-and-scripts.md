@@ -302,4 +302,4 @@ pnpm check
   file, and the order of the gates →
   `references/merge-gates-and-quality-signals.md`.
 - The CI workflow that calls these scripts, the runners, and the cache →
-  domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.
+  `references/release-pipeline-and-rollback.md`.

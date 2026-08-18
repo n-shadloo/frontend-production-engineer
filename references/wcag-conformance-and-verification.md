@@ -275,8 +275,7 @@ schedule. A baseline that never shrinks is a permanent failure with a
 comfortable name.
 
 `references/lint-format-and-scripts.md` owns the scripts that these stages
-call. Domain 22 `build-deploy-and-runtime-ops` owns the workflow file. It is
-not integrated yet.
+call. `references/release-pipeline-and-rollback.md` owns the workflow file.
 
 ### The output contract
 
@@ -391,8 +390,8 @@ pnpm test:e2e
   `references/test-strategy-and-component-tests.md`. The MSW handlers →
   `references/network-mocks-and-contract-tests.md`. The Playwright project
   config → `references/end-to-end-journeys-and-flake-control.md`.
-- The workflow file that runs these stages → domain 22
-  `build-deploy-and-runtime-ops`. Not integrated yet.
+- The workflow file that runs these stages →
+  `references/release-pipeline-and-rollback.md`.
 - The supply chain of a test dependency →
   `references/secret-boundary-and-supply-chain.md`. That domain holds a veto.
 - The words of the accessibility statement →

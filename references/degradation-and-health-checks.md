@@ -196,10 +196,10 @@ read. The call then fails for that reader alone. Set
 release line. The value is a secret, and
 `references/secret-boundary-and-supply-chain.md` owns where it may sit.
 
-Domain 22 `build-deploy-and-runtime-ops` owns the rollout itself, the cache
-directive at the reverse proxy, and the rollback. It is not integrated yet.
-This file owns the detection of the mismatch and the configuration that
-prevents it.
+`references/release-pipeline-and-rollback.md` owns the rollout itself and the
+rollback. `references/runtime-process-and-reverse-proxy.md` owns the cache
+directive at that layer. This file owns the detection of the mismatch and the
+configuration that prevents it.
 
 ### The health route verifies the chain
 
@@ -391,9 +391,10 @@ curl -s -o /dev/null -w '%{http_code}\n' "$APP_ORIGIN/api/health"
   `references/push-transport-and-connection.md`.
 - The journey that runs against a failed route, and the interception that
   produces it → `references/end-to-end-journeys-and-flake-control.md`.
-- The Docker image, the reverse proxy, the immutable cache directive on
-  `/_next/static`, the rollout, and the rollback → domain 22
-  `build-deploy-and-runtime-ops`. Not integrated yet.
+- The Docker image → `references/build-output-and-container-image.md`. The
+  reverse proxy and the immutable cache directive on `/_next/static` →
+  `references/runtime-process-and-reverse-proxy.md`. The rollout and the
+  rollback → `references/release-pipeline-and-rollback.md`.
 - The Django health endpoint, the ASGI process behind it, and the go-live gate
   → the sibling skill `django-release-readiness`. This file owns the Next.js
   route and what the frontend probe proves.

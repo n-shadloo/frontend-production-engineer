@@ -95,9 +95,9 @@ Three settings undo a gate in silence, and each one is a defect.
   button ignores it.
 
 `references/dependencies-and-git-workflow.md` owns the pre-push hook that runs
-the typecheck and the tests before a push. Domain 22
-`build-deploy-and-runtime-ops` owns the workflow file, the runners, and the
-cache. It is not integrated yet.
+the typecheck and the tests before a push.
+`references/release-pipeline-and-rollback.md` owns the workflow file, the
+runners, and the cache.
 
 ### The change carries the coverage
 
@@ -241,7 +241,7 @@ owns which plugins a test suite needs.
 | Mutation testing | Whether the assertions would notice a changed operator | Over pure logic that carries money, permission, or a tax rule. Never over a component tree. | This file |
 | Type coverage | The share of the tree that carries a real type | Where a team converts a legacy area, as a number that must go down | `references/typescript-config-and-enforcement.md` |
 | Lighthouse CI and `size-limit` | The metric and the byte count of the built routes | Always, as the budget stage above | `references/performance-budgets-and-measurement.md` |
-| A smoke run after a deploy | That the released build serves its critical routes | Always, once a deploy pipeline exists | Domain 22 `build-deploy-and-runtime-ops`. Not integrated yet. |
+| A smoke run after a deploy | That the released build serves its critical routes | Always, once a deploy pipeline exists | `references/release-pipeline-and-rollback.md` |
 | A load run | The behavior of the system under a stated scenario | Before a launch, or after a change to the request pattern | The sibling skill `django-performance-optimizer`. The frontend states the scenario. |
 
 Storybook deserves the honest answer. It is a real cost: a second build, a
@@ -397,8 +397,7 @@ gh api "repos/:owner/:repo/branches/main/protection" --jq '.required_status_chec
 - The audit of a new test dependency →
   `references/secret-boundary-and-supply-chain.md`. That domain holds a veto.
 - The workflow file, the runners, the cache, the artifact upload, and the smoke
-  run after a deploy → domain 22 `build-deploy-and-runtime-ops`. Not integrated
-  yet.
+  run after a deploy → `references/release-pipeline-and-rollback.md`.
 - The error report and the alert that a released build raises →
   `references/error-capture-and-reporting.md`.
 - The Django suite, its runner, and its fixtures → the sibling skill

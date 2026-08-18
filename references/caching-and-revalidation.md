@@ -245,8 +245,10 @@ pnpm build --debug
   domain holds a veto.
 - The database query cost behind a cache miss, and the server-side cache in
   Django → the sibling skill `django-performance-optimizer`.
-- The `Cache-Control` header, the CDN, and the edge → domain 22
-  `build-deploy-and-runtime-ops`. Not integrated yet.
+- The `Cache-Control` header at the reverse proxy, and the immutable directive
+  on a hashed asset → `references/runtime-process-and-reverse-proxy.md`. The
+  revalidation cache that two instances share →
+  `references/release-pipeline-and-rollback.md`.
 - The LCP and the INP effect of a cache decision →
   `references/paint-and-interaction-cost.md`. The first-byte budget over it
   → `references/performance-budgets-and-measurement.md`.
