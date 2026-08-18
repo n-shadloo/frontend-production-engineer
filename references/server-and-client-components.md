@@ -238,15 +238,15 @@ file therefore carries the directive, and a `<Suspense>` fallback does not.
 
 export default function Error({
   error,
-  reset,
+  retry,
 }: {
   error: Error & { digest?: string };
-  reset: () => void;
+  retry: () => void;
 }) {
   return (
     <div role="alert">
       <p>The orders did not load.</p>
-      <button onClick={reset}>Try again</button>
+      <button onClick={retry}>Try again</button>
     </div>
   );
 }
@@ -254,7 +254,7 @@ export default function Error({
 
 `loading.tsx` and `error.tsx` as route files are
 `references/app-router-structure.md`. Where a boundary belongs, the shape that
-a fallback needs, and the retry that `reset()` must perform are
+a fallback needs, and the retry that the boundary must perform are
 `references/suspense-and-actions.md`.
 
 ### Hydration errors

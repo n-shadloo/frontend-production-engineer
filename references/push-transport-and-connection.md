@@ -694,9 +694,10 @@ npx wscat -c "wss://staging.example.com/ws/feed/"
   `references/data-table-and-server-driven-state.md`.
 - The words of a degraded message and of a reconnect message →
   `references/error-and-empty-state-copy.md`.
-- The connection uptime, the reconnect count, and the alarm over them → domain
-  21 `observability-and-resilience`. Not integrated yet. This file emits the
-  status, and that domain wires it to Sentry and to real-user monitoring.
+- The connection uptime, the reconnect count, and the alert over them →
+  `references/error-capture-and-reporting.md`. This file emits the status, and
+  that file owns the rule that gives an alert an owner and an action. The
+  transport of a field report is `references/correlation-and-telemetry.md`.
 - The Nginx file, the TLS termination, and the reverse proxy in front of Node →
   domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.
 - The MSW `ws` namespace and the fixture for a dropped connection →

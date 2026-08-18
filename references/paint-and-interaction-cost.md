@@ -363,7 +363,8 @@ rg --files-with-matches 'addEventListener' -g '*.tsx' src/ \
 - The reduced-motion preference, the contrast ratio, and the conformance verdict
   → `references/visual-and-motor-criteria.md` and
   `references/wcag-conformance-and-verification.md`. That domain holds a veto.
-- The error tracker, the trace, and the transport of a field report → domain 21
-  `observability-and-resilience`. Not integrated yet.
+- The error tracker → `references/error-capture-and-reporting.md`. The trace
+  and the transport of a field report are
+  `references/correlation-and-telemetry.md`.
 - The slow endpoint behind a first byte → sibling skill
   `django-performance-optimizer`.

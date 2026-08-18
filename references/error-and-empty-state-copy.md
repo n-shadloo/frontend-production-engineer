@@ -121,17 +121,17 @@ import { useTranslations } from "next-intl";
 
 export default function Error({
   error,
-  reset,
+  retry,
 }: {
   error: Error & { digest?: string };
-  reset: () => void;
+  retry: () => void;
 }) {
   const t = useTranslations("errors.boundary");
   return (
     <div role="alert">
       <h2>{t("title")}</h2>
       <p>{t("body")}</p>
-      <button type="button" onClick={reset}>{t("retry")}</button>
+      <button type="button" onClick={retry}>{t("retry")}</button>
       {error.digest === undefined ? null : (
         <details>
           <summary>{t("detailsLabel")}</summary>
@@ -155,8 +155,9 @@ disclosure, so it reaches support and never leads the message.
 `references/server-and-client-components.md` owns the directive on a boundary
 file, and `references/app-router-structure.md` owns the route files.
 `references/exposed-endpoints-and-destinations.md` owns the rule that exception
-text must not reach the client. Domain 21 `observability-and-resilience` owns
-the lookup from a digest into a log, and it is not integrated yet. The sibling
+text must not reach the client. `references/error-capture-and-reporting.md`
+owns the capture inside the boundary, and the digest tag that ties the client
+event to the server line. The sibling
 skill `secure-code-auditor` owns the server-side guarantee that no response body
 carries a stack trace.
 
@@ -180,14 +181,14 @@ export default function GlobalError() {
 // Correct: the last-resort copy is literal, and the element tree is complete.
 "use client"; // reason: a root error boundary needs client state
 
-export default function GlobalError({ reset }: { reset: () => void }) {
+export default function GlobalError({ retry }: { retry: () => void }) {
   return (
     <html lang="en">
       <body>
         <div role="alert">
           <h1>This page did not load.</h1>
           <p>Reload the page. Contact support if it fails again.</p>
-          <button type="button" onClick={reset}>Reload</button>
+          <button type="button" onClick={retry}>Reload</button>
         </div>
       </body>
     </html>
@@ -352,7 +353,7 @@ rg -n -i 'oops|something went wrong|unknown error|an error occurred' src/
 rg -n -i 'no data|no results|nothing here|no items' -g '*.tsx' -g '*.json' src/
 
 # 4. Find a route error file that offers no control.
-rg --files-without-match 'reset' -g 'error.tsx' -g 'global-error.tsx' src/
+rg --files-without-match 'retry' -g 'error.tsx' -g 'global-error.tsx' src/
 
 # 5. Find a message hook inside the root boundary. This prints nothing.
 rg -n 'useTranslations|getTranslations' -g 'global-error.tsx' src/
@@ -429,8 +430,9 @@ pnpm build && pnpm start
   `references/message-catalog-and-plurals.md`.
 - The rule that exception text must not reach the client →
   `references/exposed-endpoints-and-destinations.md`. That domain holds a veto.
-- The capture of the error, and the lookup from a digest into a log → domain 21
-  `observability-and-resilience`. Not integrated yet.
+- The capture of the error, and the digest tag that finds the server line →
+  `references/error-capture-and-reporting.md`. The offline state behind an
+  offline message is `references/degradation-and-health-checks.md`.
 - The guarantee that no response body carries exception text or a stack trace →
   sibling skill `secure-code-auditor`.
 - The `code` field as a published contract, and the rename that breaks the map

@@ -349,8 +349,9 @@ rg -n 'useReportWebVitals' -g '*.tsx' src/
   `references/data-table-and-server-driven-state.md`.
 - The install size of a new dependency, and its maintenance status →
   `references/dependencies-and-git-workflow.md`.
-- The transport that carries a field report, the error tracker, and the trace →
-  domain 21 `observability-and-resilience`. Not integrated yet.
+- The transport that carries a field report, and the trace →
+  `references/correlation-and-telemetry.md`. The error tracker is
+  `references/error-capture-and-reporting.md`.
 - The CI workflow file, the reverse proxy, the compression, and the CDN →
   domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.
 - The test runner → `references/test-strategy-and-component-tests.md`. The

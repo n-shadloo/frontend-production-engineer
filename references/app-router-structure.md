@@ -41,7 +41,7 @@ in decline, and alive only in legacy code.
 | `page.tsx` | The unique UI of a route | The route is public only when this file exists. |
 | `template.tsx` | A shell beside `layout.tsx` | Prefer `layout.tsx`. |
 | `loading.tsx` | The Suspense fallback of the segment | Required for a dynamic segment. |
-| `error.tsx` | The error boundary of the segment | Required for a fallible segment. It exports `reset()`. |
+| `error.tsx` | The error boundary of the segment | Required for a fallible segment. Next 16.3 gives it a `retry` prop. |
 | `global-error.tsx` | The error UI for the root layout | — |
 | `not-found.tsx` | The UI for `notFound()` | — |
 | `forbidden.tsx` | The UI for `forbidden()` | The call is EXPERIMENTAL in 16.3, and it needs `authInterrupts: true`. |
@@ -49,8 +49,8 @@ in decline, and alive only in legacy code.
 | `default.tsx` | The fallback UI of a parallel route slot | Next 16 fails the build when a slot has none. |
 | `route.ts` | An HTTP endpoint at that path | Use it for a public API, a webhook, a file upload, or a stream. |
 | `proxy.ts` | The code that runs before the route | It rewrites, redirects, and sets headers. It never authorizes. |
-| `instrumentation.ts` | The server start hook | The content is domain 21 `observability-and-resilience`. |
-| `instrumentation-client.ts` | The browser start hook | The content is domain 21 `observability-and-resilience`. |
+| `instrumentation.ts` | The server start hook | The `register()` body and the `onRequestError` export are `references/error-capture-and-reporting.md`. |
+| `instrumentation-client.ts` | The browser start hook | The `Sentry.init` call inside it is `references/error-capture-and-reporting.md`. |
 
 `middleware.ts` is not on this list. Next 16 renamed it to `proxy.ts`, so
 `middleware.ts` is alive only in legacy code.
@@ -338,5 +338,9 @@ done
   only the existence of the file at the route.
 - Locale routing with `next-intl`, whose proxy code now lives in `proxy.ts` →
   `references/locale-routing-and-catalogs.md`.
+- The `register()` body, the `onRequestError` export, and the report inside a
+  boundary file → `references/error-capture-and-reporting.md`. The correlation
+  identifier that `proxy.ts` generates is
+  `references/correlation-and-telemetry.md`.
 - Docker, `output: 'standalone'`, and the reverse proxy in front of Node →
   domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.

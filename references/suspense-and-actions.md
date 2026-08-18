@@ -351,8 +351,8 @@ rg -n 'action=\{' -g '*.tsx' src/
 
 ## Handoffs
 
-- The `loading.tsx` and `error.tsx` route files, and the `reset()` that the
-  segment boundary exports → `references/app-router-structure.md`.
+- The `loading.tsx` and `error.tsx` route files, and the `retry()` that the
+  segment boundary receives → `references/app-router-structure.md`.
 - The `"use client"` directive on a boundary, and the promise that a Server
   Component streams to the client →
   `references/server-and-client-components.md`.

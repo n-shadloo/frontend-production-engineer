@@ -305,7 +305,7 @@ rule for a mutation.
 | The envelope gains a required field | Every frame fails the parse at once, and the feed stops in full. |
 
 The counter is the detector for the first three rows. Send it to the metric
-that domain 21 `observability-and-resilience` owns, and alarm on a rise. A
+that `references/correlation-and-telemetry.md` owns, and alert on a rise. A
 contract test against the schema catches the first two rows before a deploy,
 and `references/network-mocks-and-contract-tests.md` owns that test.
 
@@ -425,8 +425,8 @@ pnpm typecheck
 - The render cost of a high-frequency feed →
   `references/paint-and-interaction-cost.md`. The budget over it →
   `references/performance-budgets-and-measurement.md`.
-- The metric behind the counter, and the alarm on it → domain 21
-  `observability-and-resilience`. Not integrated yet.
+- The metric behind the counter → `references/correlation-and-telemetry.md`.
+  The alert on it is `references/error-capture-and-reporting.md`.
 - The MSW `ws` handler, the malformed-frame test, and the unnamed-type test →
   `references/network-mocks-and-contract-tests.md`. Three assertions prove
   this domain. They are a view that survives a malformed frame, a counter that

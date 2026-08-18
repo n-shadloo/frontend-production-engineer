@@ -399,8 +399,8 @@ gh api "repos/:owner/:repo/branches/main/protection" --jq '.required_status_chec
 - The workflow file, the runners, the cache, the artifact upload, and the smoke
   run after a deploy → domain 22 `build-deploy-and-runtime-ops`. Not integrated
   yet.
-- The error report and the alarm that a released build raises → domain 21
-  `observability-and-resilience`. Not integrated yet.
+- The error report and the alert that a released build raises →
+  `references/error-capture-and-reporting.md`.
 - The Django suite, its runner, and its fixtures → the sibling skill
   `django-test-auditor`. This file owns the frontend gates only.
 - The load scenario and the server verdict under it → the sibling skill

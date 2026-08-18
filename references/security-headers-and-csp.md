@@ -352,8 +352,8 @@ curl -sI "$APP_ORIGIN" | rg -ic 'content-security-policy'
   → domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.
 - The consent gate over a tag manager → domain 23
   `analytics-privacy-and-consent`. Not integrated yet.
-- The transport that carries a violation report → domain 21
-  `observability-and-resilience`. Not integrated yet.
+- The endpoint that receives a violation report, and the rule over its count →
+  `references/correlation-and-telemetry.md`.
 - The server-side headers of Django, and `ALLOWED_HOSTS` → the sibling skills
   `secure-code-auditor` and `django-release-readiness`. This file owns the
   headers that the Next.js application emits.
