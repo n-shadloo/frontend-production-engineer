@@ -97,7 +97,7 @@ Tier 4 is the non-functional guarantees, applied as a review pass before done.
 - `19 internationalization-and-rtl` — next-intl, locale routing, RTL and
   Persian, the `Intl` APIs. Integrated.
 - `20 testing-and-quality` — Vitest, React Testing Library, MSW, Playwright,
-  contract tests. Pending.
+  contract tests. Integrated.
 - `21 observability-and-resilience` — error boundaries, Sentry, real-user
   monitoring, graceful degradation. Pending.
 - `22 build-deploy-and-runtime-ops` — Docker, standalone output, Nginx, CI/CD,
@@ -112,9 +112,9 @@ output, and email templates.
 Seven of these are blocking. `nextjs-app-router-architecture`,
 `typescript-type-system-discipline`, `django-drf-api-contract`,
 `authentication-and-authorization`, `accessibility-wcag`, `frontend-security`,
-and `testing-and-quality` each hold a veto over completion once integrated. The
-last two are absolute. A task that fails accessibility or security is a failed
-task, and never a follow-up ticket.
+and `testing-and-quality` each hold a veto over completion. All seven are
+integrated. The last two are absolute. A task that fails accessibility or
+security is a failed task, and never a follow-up ticket.
 
 The stack baseline is pinned, and it was verified in August 2026. The framework
 is Next.js 16.3, with Turbopack by default and `proxy.ts` in place of
@@ -256,7 +256,7 @@ run.
 
 ## Example output
 
-At 1.18.0 the integrated material is the operating doctrine, the App Router
+At 1.19.0 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -292,10 +292,15 @@ The last part is the crawl and the index. It holds the robots rules, and the
 sitemap that the DRF data produces. It also holds the status code that a
 missing record returns, and the redirect that a rename ships.
 
-The newest part is the second language. It holds the route that carries a
+Another part is the second language. It holds the route that carries a
 locale, and the file that holds the catalog behind it. It also holds the date,
 the number, and the calendar that each locale writes in its own form. The last
 of it is the direction of a surface, and the script that a font must carry.
+
+The newest part is the proof. It holds the level that each test belongs to,
+and the component test that carries most of the value. It also holds the answer
+that a mock gives to a request, and the journey that a real browser runs. The
+last of it is the gate that a change passes before a merge.
 
 The worked example below is the shape of a task, and the facts that gate
 it:
@@ -368,6 +373,13 @@ Accessibility facts
 - axe clean in the component test, and on /orders in Playwright.
 - Keyboard walkthrough recorded; NVDA with Firefox ran the primary flow.
 
+Test facts
+- Criteria written before the code: rows, empty, error, page 2, sort, axe.
+- Component tests for the four states; MSW answers, and never a stubbed client.
+- One Playwright journey; the route axe scan is its own spec.
+- Clock frozen and TZ=UTC, so the created_at column reads the same in CI.
+- No waitForTimeout anywhere; every assertion waits on the locator.
+
 Table facts
 - manualPagination, manualSorting, and manualFiltering are all set.
 - rowCount comes from the DRF count; a cursor endpoint would drop page numbers.
@@ -429,6 +441,7 @@ frontend-production-engineer/
 │   ├── dependencies-and-git-workflow.md
 │   ├── design-tokens-and-theming.md
 │   ├── directory-and-module-boundaries.md
+│   ├── end-to-end-journeys-and-flake-control.md
 │   ├── error-and-empty-state-copy.md
 │   ├── exposed-endpoints-and-destinations.md
 │   ├── file-upload-and-transport.md
@@ -443,9 +456,11 @@ frontend-production-engineer/
 │   ├── live-events-and-cache-merge.md
 │   ├── locale-formatting-and-calendars.md
 │   ├── locale-routing-and-catalogs.md
+│   ├── merge-gates-and-quality-signals.md
 │   ├── message-catalog-and-plurals.md
 │   ├── motion-primitives-and-reduced-motion.md
 │   ├── multi-step-forms-and-unsaved-work.md
+│   ├── network-mocks-and-contract-tests.md
 │   ├── openapi-schema-and-codegen.md
 │   ├── paint-and-interaction-cost.md
 │   ├── performance-budgets-and-measurement.md
@@ -462,6 +477,7 @@ frontend-production-engineer/
 │   ├── state-and-effects.md
 │   ├── structured-data-and-rich-results.md
 │   ├── suspense-and-actions.md
+│   ├── test-strategy-and-component-tests.md
 │   ├── type-modeling-and-narrowing.md
 │   ├── typescript-config-and-enforcement.md
 │   ├── untrusted-markup-and-injection.md
@@ -473,7 +489,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds nineteen domains at 1.18.0 and fills one domain at a time.
+`references/` holds twenty domains at 1.19.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 

@@ -24,7 +24,7 @@ foundations, backend contract and state, interface craft, and non-functional
 guarantees. A Tier 0 operating doctrine sits under them, and it is always in
 effect.
 
-At 1.18.0 the integrated material in `references/` is that doctrine, the
+At 1.19.0 the integrated material in `references/` is that doctrine, the
 App Router foundation, the type system, and the React component tree. It also
 holds the project structure, the DRF contract, and the client cache and state.
 It holds the session with the gates over it, and the push transport with the
@@ -60,10 +60,16 @@ The last part is the crawl and the index. It holds the robots rules, and the
 sitemap that the DRF data produces. It also holds the status code that a
 missing record returns, and the redirect that a rename ships.
 
-The newest part is the second language. It holds the route that carries a
+Another part is the second language. It holds the route that carries a
 locale, and the file that holds the catalog behind it. It also holds the date,
 the number, and the calendar that each locale writes in its own form. The last
-of it is the direction of a surface, and the script that a font must carry. `SKILL.md` is the authoritative list of what is loadable.
+of it is the direction of a surface, and the script that a font must carry.
+
+The newest part is the proof. It holds the level that each test belongs to,
+and the component test that carries most of the value. It also holds the answer
+that a mock gives to a request, and the journey that a real browser runs. The
+last of it is the gate that a change passes before a merge. `SKILL.md` is the
+authoritative list of what is loadable.
 
 ## Two modes
 - Review-time: audit existing frontend code, produce findings ordered by
