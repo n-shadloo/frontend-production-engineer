@@ -73,7 +73,11 @@ down, an offline state, a `ChunkLoadError` after a deploy, or `/api/health`.
 The twenty-first
 group is the project setup — a folder move, a barrel
 file, `eslint.config.ts`, the lockfile, a git hook, or a new dependency. The
-last group is any change to the headers or the build.
+last group is the release — `output: 'standalone'`, a `Dockerfile`, a
+`.dockerignore`, a base image, a systemd unit, an Nginx server block,
+`proxy_pass`, `client_max_body_size`, a TLS certificate, a GitHub Actions
+workflow, a deploy script, a rollback, a `NEXT_PUBLIC_` value that a promotion
+cannot change, or a `cacheHandler` behind two instances.
 
 Verify the installed versions from `package.json` before you generate code.
 Never mix Next 15 and Next 16 idioms in one file. Report an API you cannot

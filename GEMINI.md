@@ -21,7 +21,7 @@ guarantees: Web Vitals, frontend security, SEO, internationalization and RTL,
 testing, observability, build and deploy, and analytics and consent. A Tier 0
 operating doctrine sits under all four, and it is always in effect.
 
-At 1.20.1 the integrated material in `references/` is that doctrine, the App
+At 1.21.0 the integrated material in `references/` is that doctrine, the App
 Router foundation, the type system, and the React component tree. It also holds
 the project structure, the DRF contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -67,13 +67,18 @@ and the component test that carries most of the value. It also holds the answer
 that a mock gives to a request, and the journey that a real browser runs. The
 last of it is the gate that a change passes before a merge.
 
-The newest part is what happens when something breaks. It holds the report that
+Another part is what happens when something breaks. It holds the report that
 a failure sends, and the personal value that the report must never carry. It
 also holds the identifier that joins one screen to one Django log line, and the
 trace that crosses to the backend. The last of it is the application under an
 outage. That part is the gate over a dead backend, the offline state, and the
-probe that answers for the chain. `SKILL.md` is the authoritative list of what
-is loadable.
+probe that answers for the chain.
+
+The newest part is the release. It holds the artifact that a build produces, and
+the image that carries it. It also holds the process that serves it, and the
+front door in front of that process. The last of it is the pipeline, the deploy
+that a probe proves, and the way back. `SKILL.md` is the authoritative list of
+what is loadable.
 
 Two standing rules govern everything. Verify the installed versions from
 `package.json` before you generate code. Never mix Next 15 and Next 16 idioms

@@ -46,14 +46,18 @@ jobs:
           # Domain 20 tests every other domain, so it carries the most
           # seams of any one so far. Raised again at 1.20.0, where three
           # router rows, nine seam rows, and a report block of
-          # twenty-two conditions for domain 21 passed it. Each domain adds about
-          # 8 kB of rows, seams, and gate conditions, and 2 domains
-          # remain, so this number moves on that schedule. It is
+          # twenty-two conditions for domain 21 passed it. Raised again at
+          # 1.21.0, where three router rows, twelve seam rows, and a report
+          # block of twenty-three conditions for domain 22 passed it. Domain
+          # 22 resolved fifteen router clauses to real paths, which is also
+          # why it grew more than the usual 8 kB. Each domain adds about
+          # 8 kB of rows, seams, and gate conditions, and 1 domain
+          # remains, so this number moves on that schedule. It is
           # a tripwire against depth that belongs in references/, and not a
           # budget. This is a repository gate, not a platform limit; the
           # platform limit is the frontmatter description, which the
           # validate-skill workflow checks at 1024 characters.
-          MAX_SKILL_BYTES = 188416
+          MAX_SKILL_BYTES = 196608
           REFERENCE_LINK = re.compile(r"references/([A-Za-z0-9._-]+\.md)")
 
           root = pathlib.Path(".")
