@@ -145,13 +145,15 @@ during that window.
 ### A Route Handler answers one method, with a cap
 
 ```ts
-// Wrong: one exported function serves every method, with no limit on the body.
+// Wrong: one function serves every method, and no limit bounds the body.
 // Failure: a caller posts 200 MB to a handler that expected a small JSON
 // object. The Node process buffers it, and the route becomes a denial of
 // service.
-export async function GET(request: NextRequest) {
+async function handler(request: NextRequest) {
   return handle(request);
 }
+
+export { handler as GET, handler as POST, handler as PUT, handler as DELETE };
 ```
 
 ```ts
@@ -266,7 +268,7 @@ Two checks are needed, and neither one is enough alone.
    resolves against the origin of the application.
 2. Resolve the value against the origin of the application with `new URL()`, and
    compare the parsed origin. This refuses `/\evil.example`, which the parser
-   normalises into a protocol-relative URL that a string test passes.
+   normalizes into a protocol-relative URL that a string test passes.
 
 NEVER match a raw string alone, and never match a pattern. Validate the parsed
 URL object. `references/route-protection-and-permissions.md` holds the helper
@@ -349,7 +351,7 @@ rg --files-with-matches '"use server"' -g '*.ts' src/ \
   | xargs rg --files-without-match 'safeParse|\.parse\('
 
 # 4. Find a Route Handler that exports a catch-all. This prints nothing.
-rg -n 'export async function (handler|ALL)\b' -g 'route.ts' src/app
+rg -n 'export async function (handler|ALL)\b|handler as (GET|POST)' -g 'route.ts' src/app
 
 # 5. Find an outbound fetch whose destination is a variable. Each hit needs an
 #    allowlist beside it.

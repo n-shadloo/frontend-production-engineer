@@ -6,8 +6,8 @@ the two metadata exports, `metadataBase` with the absolute URL that it
 resolves, and the title template. They also include the canonical link, the
 reciprocal `hreflang` set, and the Open Graph card that a share preview
 renders. The last subjects are the card image that a route builds for one
-record, and the metadata that streams. A reader which runs no JavaScript never
-receives that stream.
+record, and the metadata that streams. A user agent that runs no JavaScript
+never receives that stream.
 
 The machine-readable claim about the content of a page is
 `references/structured-data-and-rich-results.md`. Whether a crawler may reach
@@ -25,11 +25,11 @@ strongest signal that a route controls.
 A relative URL means nothing outside the document that holds it. Another origin
 reads a share card, so every URL in the metadata is absolute.
 
-Metadata that only the browser builds reaches no reader which runs no
-JavaScript. A social crawler is one such reader.
+Metadata that only the browser builds reaches no user agent that runs no
+JavaScript. A social crawler is one such agent.
 
 One system owns one tag. Two systems that each emit a `<title>` emit two of
-them, and the reader takes the first.
+them, and the crawler takes the first.
 
 ## Pinned-stack depth
 
@@ -111,7 +111,7 @@ export async function generateMetadata(props: PageProps<'/products/[id]'>) {
 ```
 
 ```tsx
-// Correct: src/lib/dal/products.ts. One memoized reader serves both.
+// Correct: src/lib/dal/products.ts. One memoised read serves both.
 import "server-only";
 import { cache } from "react";
 import { ProductSchema } from "@/lib/schemas/product";
@@ -152,8 +152,8 @@ export default async function Page(props: PageProps<'/products/[id]'>) {
 }
 ```
 
-Next.js memoizes `fetch` across `generateMetadata`, `generateStaticParams`, a
-layout, and a page in one render. A reader that calls something other than
+Next.js memoises `fetch` across `generateMetadata`, `generateStaticParams`, a
+layout, and a page in one render. A function that calls something other than
 `fetch` needs React `cache` around it, or the request runs twice.
 
 `references/data-access-and-mutations.md` owns the data access layer.
@@ -424,7 +424,7 @@ not state an exact release date for it.
 | Two public routes carry one title | A leaf route sets no title and takes the parent `default` | Read the title of each route in the raw response | Give the leaf its own `title`, under a `template` in the layout |
 | The build fails on a metadata field | A relative URL with no `metadataBase` above it | Read the build error, which names the field | Set `metadataBase` once in the root layout |
 | The card is blank on one platform and correct on another | The metadata streamed, and that platform is not in `htmlLimitedBots` | Read the raw response, never the hydrated document | Confirm the user agent against the default list, and add the one token that it omits |
-| The endpoint carries twice the load of the render count | `generateMetadata` opens its own path to Django | Count the requests for one route render | Call the memoized reader that the page calls |
+| The endpoint carries twice the load of the render count | `generateMetadata` opens its own path to Django | Count the requests for one route render | Call the memoised read that the page calls |
 | The document holds two `<title>` elements | A component renders a title beside the Metadata API | Read the raw response for a second `<title>` | Delete the component tag |
 | The card image is missing for every record | The `ImageResponse` container has no `display` value | Request the image route directly, and read the error | Give every container `display: "flex"` |
 | A locale cluster is ignored | One variant is `noindex`, or one link is missing | Read the link set of each variant | Emit the reciprocal set, the self-reference, and `x-default` |
@@ -495,11 +495,11 @@ curl -sI "$APP_ORIGIN/products/123/opengraph-image" \
 ## Review checklist
 
 - [ ] Does every public route export `metadata` or `generateMetadata`?
-- [ ] Do any two public routes carry the same title?
+- [ ] Does every public route carry its own title?
 - [ ] Is `metadataBase` set once, in the root layout?
 - [ ] Does the base come from a parsed environment value, and not from a
       literal?
-- [ ] Does `generateMetadata` call the same memoized reader as the page?
+- [ ] Does `generateMetadata` call the same memoised read as the page?
 - [ ] Does each route carry one canonical, which points at itself?
 - [ ] Does the canonical target answer 200, carry no `noindex`, and perform no
       redirect?
@@ -528,8 +528,8 @@ curl -sI "$APP_ORIGIN/products/123/opengraph-image" \
   and the rename to `proxy.ts` → `references/app-router-structure.md`.
 - The `"use client"` directive, and the rule that `generateMetadata` never sits
   behind it → `references/server-and-client-components.md`.
-- The data access layer that a metadata reader calls, and the memoization over
-  it → `references/data-access-and-mutations.md`. The prerender and the cached
+- The data access layer that `generateMetadata` calls, and the memoisation
+  over it → `references/data-access-and-mutations.md`. The prerender and the cached
   shell are `references/caching-and-revalidation.md`.
 - The parse over `process.env`, and the module that holds it →
   `references/boundary-validation-and-api-types.md`.
@@ -548,6 +548,6 @@ curl -sI "$APP_ORIGIN/products/123/opengraph-image" \
   because no reader loads it in the document.
 - The locale segment, the router that produces it, and the message catalog →
   domain 19 `internationalization-and-rtl`. Not integrated yet.
-- The serializer field that a metadata reader consumes, and the schema that
+- The serializer field that `generateMetadata` consumes, and the schema that
   types it → `references/openapi-schema-and-codegen.md`. The server side of
   that contract is the sibling skill `django-api-contract`.

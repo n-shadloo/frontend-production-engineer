@@ -22,7 +22,7 @@ computes a value is a second render pass and a stale first frame.
 State belongs to the lowest component that needs it. A value that sits higher
 than its use re-renders a subtree that does not care about it.
 
-A render is a pure function of props, state, and context. A compiler optimizes
+A render is a pure function of props, state, and context. A compiler optimises
 only what is pure, so purity is a build concern and not a matter of taste.
 
 Data from the server is not the state of a component. It has an owner outside

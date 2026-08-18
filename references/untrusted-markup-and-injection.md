@@ -198,8 +198,8 @@ grammars in this repository each hold their own rule.
 ### Trusted Types is a second layer, and never the first
 
 A Trusted Types policy makes the browser refuse a string at a DOM sink, so a sink
-that the review missed fails at run time. Reach the state where the policy is
-possible by sanitising first.
+that the review missed fails at run time. Sanitise first. The policy becomes possible
+after that.
 
 Deploy `require-trusted-types-for 'script'` in report-only mode first, and read
 the reports for a week. Nobody has proven that a strict policy runs clean
@@ -251,7 +251,7 @@ React 19.2.6 is the security floor, for the reason that
 | The change | Detect the stale idiom | The migration |
 | --- | --- | --- |
 | `isomorphic-dompurify` 3.22.0 pins `dompurify` 3.4.13 | A direct `dompurify` dependency below 3.4.13 beside it | Take the pin, and delete the direct dependency where the code renders on both sides |
-| Some registry mirrors still list `dompurify` 3.14.0 and an older protocol allowlist | A lockfile that resolves below 3.4.13 | Refresh the lockfile against the registry, and read the allowlist from the repository of the project |
+| A registry mirror can still serve an older `dompurify`, with an older protocol allowlist | A lockfile that resolves below 3.4.13 | Refresh the lockfile against the registry, and read the allowlist from the repository of the project |
 | Trusted Types reached a cross-browser baseline in February 2026 | An enforced `require-trusted-types-for` with no report-only run before it | Move to report-only, read the reports, then enforce |
 
 ## Verification

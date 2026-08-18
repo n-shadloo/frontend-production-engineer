@@ -256,8 +256,8 @@ slow endpoint belongs to the sibling skill `django-performance-optimizer`.
 
 | The seam point | The client decision | The reason |
 | --- | --- | --- |
-| Reading tens of thousands of rows for a sitemap | Ask the backend for `CursorPagination`, and never for a page or an offset | An offset scan slows as the table grows. A concurrent insert also makes one row appear twice, or not at all, part way through the walk. Cursor pagination needs one unchanging ordering field, and that field needs an index. |
-| Reading a few hundred rows | `PageNumberPagination` is enough | The cursor earns nothing on a small, stable set. |
+| A sitemap over tens of thousands of rows | Ask the backend for `CursorPagination`, and never for a page or an offset | An offset scan slows as the table grows. A concurrent insert also makes one row appear twice, or not at all, part way through the walk. Cursor pagination needs one unchanging ordering field, and that field needs an index. |
+| A sitemap over a few hundred rows | `PageNumberPagination` is enough | The cursor earns nothing on a small, stable set. |
 | The value of `lastModified` | Map it from a server timestamp field, such as `updated_at` | It is the one field that the search engine reads. |
 | A serializer field that the backend renames | Regenerate the types, then run the typecheck | With fresh types the build fails, which is the correct outcome. With stale types the field resolves to `undefined`, and nothing reports it. |
 | Which rows the enumeration may return | Only rows that a signed-out reader can open | The server-side permission check is the sibling skill `secure-code-auditor`. This file owns the rule that the sitemap advertises no private URL. |
@@ -521,7 +521,7 @@ curl -s "$APP_ORIGIN/sitemap.xml" | rg -c '<loc>'
 - [ ] Does every route carry a written indexability decision?
 - [ ] Is every route behind a session marked `index: false, follow: false`?
 - [ ] Is every route behind a session absent from the sitemap?
-- [ ] Is any one path covered by both a `disallow` rule and a `noindex` value?
+- [ ] Does no path carry both a `disallow` rule and a `noindex` value?
 - [ ] Does `robots.ts` refuse everything outside production, on an environment
       value?
 - [ ] Does a non-production deployment send `X-Robots-Tag: noindex`?

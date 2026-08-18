@@ -190,7 +190,7 @@ where the value lives.
 ### The render that the compiler removes
 
 React Compiler 1.0 became stable on 7 October 2025. With `reactCompiler: true`
-the build inserts the memoization that a hand-written `useMemo`, `useCallback`,
+the build inserts the memoisation that a hand-written `useMemo`, `useCallback`,
 or `memo` used to carry. Meta reported up to 12 percent faster initial loads and
 more than 2.5 times faster interactions on one product after it adopted the
 compiler.
@@ -239,7 +239,7 @@ state an exact release date for it.
 | --- | --- | --- | --- | --- | --- | --- |
 | Recommend | `scheduler.yield()`, with a `setTimeout` fallback | Every loop in an interaction handler that can run past 50 ms. | Web platform | — | Chrome and Edge 129 and later, Firefox 143 and later | None |
 | Recommend | `startTransition` and `useDeferredValue` | Every expensive update that the reader does not wait on. | react 19.2.x | Current | Meta, active | None |
-| Recommend | The React Compiler, behind `reactCompiler: true` | Every project on React 19. It writes the memoization that a hand-written hook used to carry. | 1.0 | 2025-10-07 | Meta, active | None |
+| Recommend | The React Compiler, behind `reactCompiler: true` | Every project on React 19. It writes the memoisation that a hand-written hook used to carry. | 1.0 | 2025-10-07 | Meta, active | None |
 | Conditional | The React DevTools profiler | Only for a render cost, and only on the production profiling build. | — | — | — | — |
 | Conditional | The Rust port of the compiler, behind `turbopackRustReactCompiler` | Only where the build time is the problem. It is experimental. | Ships with Next 16.3 | 2026-08-03 | Vercel, active | None |
 | Reject | A hand-written `useMemo`, `useCallback`, or `memo` with no measurement, in a project that runs the compiler | The build already wrote it. The hand-written form hides the bailout that matters. | — | — | — | — |

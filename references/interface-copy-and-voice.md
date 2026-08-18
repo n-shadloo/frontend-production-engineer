@@ -260,7 +260,7 @@ holds a veto. This file owns the sentence.
 | The pattern | What it does | The replacement |
 | --- | --- | --- |
 | Confirmshaming | The decline control shames the reader | A neutral verb on both controls |
-| A pre-checked consent | The reader agrees by doing nothing | An unchecked control, and an explicit press |
+| A pre-checked consent | The reader agrees when they press nothing | An unchecked control, and an explicit press |
 | A false deadline | A timer that resets on each visit | The real deadline, or none |
 | A disguised advertisement | An advertisement in the shape of a control | A label that names the advertiser |
 | A hidden cost | A charge that appears at the last step | The whole total at the first step |

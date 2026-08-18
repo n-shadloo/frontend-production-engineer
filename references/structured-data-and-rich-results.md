@@ -76,7 +76,7 @@ export function ProductJsonLd({ product }: { product: ProductRecord }) {
 `as const` and import it.
 
 `JSON.stringify` produces valid JSON. It does not produce a safe script body,
-and it sanitizes nothing. Replace every `<` with the escape `\u003c`. The JSON
+and it sanitises nothing. Replace every `<` with the escape `\u003c`. The JSON
 parser inside the browser turns the escape back into `<`, so the value that the
 consumer reads is unchanged.
 
@@ -290,7 +290,7 @@ curl -s "$APP_ORIGIN/products/123" | rg -o 'application/ld\+json.{0,400}'
 
 ## Handoffs
 
-- Every other sink that `dangerouslySetInnerHTML` opens, the sanitizer in front
+- Every other sink that `dangerouslySetInnerHTML` opens, the sanitiser in front
   of it, and the rule that the escape happens at render →
   `references/untrusted-markup-and-injection.md`. That domain holds a veto.
 - The policy that admits an inline block, the nonce, and `object-src` →

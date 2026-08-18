@@ -121,8 +121,9 @@ import moment from "moment";
 
 ```ts
 // Correct: the platform first, then a named import from an ESM package.
+import { debounce } from "lodash-es";
+
 const dateFormat = new Intl.DateTimeFormat("en-GB", { dateStyle: "medium" });
-import debounce from "lodash-es/debounce";
 ```
 
 Reach for `Intl.DateTimeFormat` and `Intl.NumberFormat` before any date or
@@ -358,7 +359,7 @@ rg -n 'prefetch' -g '*.tsx' src/
   `references/performance-budgets-and-measurement.md`.
 - The largest paint, the layout shift, the long task, and the yield →
   `references/paint-and-interaction-cost.md`.
-- The `"use client"` directive, the leaf rule, and the serialised prop →
+- The `"use client"` directive, the leaf rule, and the serialized prop →
   `references/server-and-client-components.md`.
 - `optimizePackageImports`, the barrel rule, and the folder that holds a module
   → `references/directory-and-module-boundaries.md`.

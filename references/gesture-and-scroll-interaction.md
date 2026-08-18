@@ -87,7 +87,7 @@ can move the page by its own amount. That handler breaks the scrollbar, the
 keyboard, the trackpad, and the reading position. It also makes some readers
 sick.
 
-State the scroll behaviour in CSS rather than in a handler. `scroll-snap-type`
+State the scroll behavior in CSS rather than in a handler. `scroll-snap-type`
 holds a sectioned page at its section edges. `overscroll-behavior` states what
 happens at the end of a scroll container. `touch-action` states which gestures
 the element handles itself. Each of the three runs with no listener, and a
@@ -200,7 +200,7 @@ state an exact release date for it.
 | --- | --- | --- | --- |
 | A list that only a drag reorders | No pointer path beside the drag | Reorder the list with one pointer and no drag | Add the move controls that `references/visual-and-motor-criteria.md` states |
 | A handle that the keyboard reaches and cannot use | No keyboard sensor | Tab to the handle, and press the arrow keys | Add `KeyboardSensor` to the sensor list |
-| A drag that fires on a click | No activation constraint | Click a row without moving the pointer | Set a distance constraint on the pointer sensor |
+| A drag that fires on a click | No activation constraint | Click a row, and do not move the pointer | Set a distance constraint on the pointer sensor |
 | The scroll stutters on a phone | A scroll listener reads a layout value | Long task bars in the Performance recording | Take a scroll timeline, and delete the listener |
 | A scroll animation does nothing in one browser | No scroll timeline support, and no fallback | Load the page in a browser with no support | Wrap the rule in `@supports` |
 | The element snaps back at the top of the page | No `animation-fill-mode` | Scroll down, then scroll back to the top | Add `both` to the animation shorthand |
@@ -267,7 +267,7 @@ rg -n -B6 'parallax' -g '*.css' -g '*.tsx' src/
 - [ ] Does the pointer sensor carry an activation constraint?
 - [ ] Does every drag carry a single-pointer path that needs no drag?
 - [ ] Is a handler that moves the page itself absent from the project?
-- [ ] Does the scroll behaviour come from `scroll-snap-type`,
+- [ ] Does the scroll behavior come from `scroll-snap-type`,
       `overscroll-behavior`, and `touch-action`, rather than from a listener?
 - [ ] Does every scroll-driven animation sit behind `@supports`?
 - [ ] Does every scroll-driven animation set `animation-fill-mode: both`?

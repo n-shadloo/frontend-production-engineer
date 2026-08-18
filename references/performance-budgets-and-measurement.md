@@ -138,7 +138,7 @@ no note. Raise a limit only where the release states what the bytes buy.
 
 ### The field gives the verdict
 
-```tsx
+```text
 // Wrong: the team reads the Lighthouse score alone.
 // Failure: the laboratory runs a fast machine on a fast link. The p75 reader
 // runs a mid-range phone on a slow link. The score is green while the field

@@ -20,7 +20,7 @@ from the code changes nothing; only rotation does.
 The boundary between the server and the browser is a security boundary. A build
 error on that boundary is cheaper than a review that has to notice a value.
 
-Serialisation carries whatever the object holds. A component that renders three
+Serialization carries whatever the object holds. A component that renders three
 fields still ships every field that reached it.
 
 A dependency runs with the authority of the code that imports it. The team owns
@@ -56,7 +56,7 @@ misses both.
 
 ```tsx
 // Wrong: the configuration object crosses the boundary whole.
-// Failure: the server serialises every field of config into the payload that
+// Failure: the server serializes every field of config into the payload that
 // the browser receives. The widget renders the store name, and the API secret
 // travels beside it in readable text.
 <ClientWidget config={{ storeId: config.storeId, apiSecret: process.env.API_SECRET }} />
@@ -81,7 +81,7 @@ value sits in the response of every reader.
 
 React ships `experimental_taintObjectReference` and
 `experimental_taintUniqueValue`. They mark an object or a value, and React then
-refuses to serialise it across the boundary.
+refuses to serialize it across the boundary.
 
 Both are experimental, and both need `experimental.taint: true` in
 `next.config.ts`. Take them as a second layer over the rules above. NEVER take a
@@ -122,7 +122,7 @@ nine defects on the 16 line.
 Two reference points set the urgency. CVE-2025-29927 of March 2025 carries a
 CVSS score of 9.1, and it skips the authorization file completely.
 CVE-2025-55182 of December 2025 carries a CVSS score of 10.0. It is
-unauthenticated remote code execution in the deserialisation of a React Server
+unauthenticated remote code execution in the deserialization of a React Server
 Components payload. Attackers used it in the wild within days of its
 disclosure.
 
@@ -211,7 +211,7 @@ state an exact release date for it.
 | Conditional | `experimental_taintObjectReference` and `experimental_taintUniqueValue` | Only as a second layer. Both are experimental, and both need `experimental.taint: true`. | react 19.2.x | Current | Meta, active | None |
 | Conditional | An `integrity` attribute on a vendor script | Only where the vendor publishes a fixed file. Prefer self-hosting. | Web platform | — | — | — |
 | Reject | A credential, a token, or a private address in a `NEXT_PUBLIC_` variable | The build inlines it into a chunk that anybody downloads. | — | — | — | — |
-| Reject | A whole configuration record passed as a prop | Serialisation carries every field, and not only the rendered ones. | — | — | — | — |
+| Reject | A whole configuration record passed as a prop | Serialization carries every field, and not only the rendered ones. | — | — | — | — |
 | Reject | A React version read from `package.json` as proof that the application is patched | Next.js bundles its own React Server Components runtime. Read the Next.js version too. | — | — | — | — |
 | Reject | An audit report dismissed with no written judgment | It is the plain form of a supply chain failure. | — | — | — | — |
 
@@ -224,7 +224,7 @@ state an exact release date for it.
 | A value reaches the browser that no component renders | A whole record crossed as a prop | Read the payload of the route | Pass the fields that the component renders |
 | A build fails after a boundary change | A client module imported a `server-only` module | Read the build error, which names the import chain | Move the read to the server, and pass a field |
 | An application is patched on `react` and still vulnerable | The Next.js version carries the affected runtime | Read both versions from the installed tree | Upgrade Next.js to the current security release |
-| A vendor script changes behaviour with no deploy | The vendor rewrote the file | The `integrity` attribute fails, or nothing does | Self-host the file, or pin it by hash |
+| A vendor script changes behavior with no deploy | The vendor rewrote the file | The `integrity` attribute fails, or nothing does | Self-host the file, or pin it by hash |
 | An audit reports the same advisory each week | Nobody recorded a judgment | Read the CI log | Triage by severity and reachability, and record the outcome |
 | A rotated secret still works | The history rewrite ran, and the rotation did not | Test the old credential | Rotate first, always |
 

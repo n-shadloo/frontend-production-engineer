@@ -102,7 +102,7 @@ That `server-only` guard belongs to a data access module, and
 
 ### The key factory
 
-The key is hierarchical, and every level is serialisable. A key that starts
+The key is hierarchical, and every level is serializable. A key that starts
 with `["orders"]` matches a prefix invalidation of `orderKeys.all`, and a key
 under `orderKeys.lists()` matches a prefix invalidation of the lists alone.
 
