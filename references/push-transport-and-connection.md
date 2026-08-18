@@ -699,10 +699,11 @@ npx wscat -c "wss://staging.example.com/ws/feed/"
   status, and that domain wires it to Sentry and to real-user monitoring.
 - The Nginx file, the TLS termination, and the reverse proxy in front of Node →
   domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.
-- The MSW `ws` namespace, the Playwright `routeWebSocket` mock, and the fixture
-  for a dropped connection → domain 20 `testing-and-quality`. Not integrated
-  yet. Three assertions prove this domain. They are one connection after a
-  navigation, a reconnect delay that grows, and a degraded state on a close.
+- The MSW `ws` namespace and the fixture for a dropped connection →
+  `references/network-mocks-and-contract-tests.md`. The Playwright `routeWebSocket`
+  mock → `references/end-to-end-journeys-and-flake-control.md`. Three
+  assertions prove this domain. They are one connection after a navigation, a
+  reconnect delay that grows, and a degraded state on a close.
 - The consumer, the channel layer, the queue, and the worker behind the
   connection → the sibling skill `django-async-jobs`. This file owns the
   transport for the state of a job and the interface for its progress.

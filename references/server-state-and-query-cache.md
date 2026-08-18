@@ -626,8 +626,9 @@ pnpm exec eslint . --max-warnings=0
   `references/error-and-empty-state-copy.md`.
 - The request count and the payload cost of a cache decision →
   `references/performance-budgets-and-measurement.md`.
-- The MSW handlers and the test harness → domain 20 `testing-and-quality`. Not
-  integrated yet. The assertions that prove this domain are the rollback after
-  a failure, the empty state, and one `QueryClient` for each test.
+- The MSW handlers → `references/network-mocks-and-contract-tests.md`. The
+  test harness → `references/test-strategy-and-component-tests.md`. The
+  assertions that prove this domain are the rollback after a failure, the empty
+  state, and one `QueryClient` for each test.
 - The N+1 query and the latency behind a slow endpoint → the sibling skill
   `django-performance-optimizer`.

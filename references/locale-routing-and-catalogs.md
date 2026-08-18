@@ -539,7 +539,7 @@ pnpm build
   `references/api-client-and-request-safety.md`.
 - The warning before a navigation discards unsaved values →
   `references/multi-step-forms-and-unsaved-work.md`.
-- The test that renders each locale → domain 20 `testing-and-quality`. Not
-  integrated yet.
+- The test that renders each locale →
+  `references/test-strategy-and-component-tests.md`.
 - The serializer that returns a stable code for an enumeration, and the
   translated model field behind it → the sibling skill `django-api-contract`.

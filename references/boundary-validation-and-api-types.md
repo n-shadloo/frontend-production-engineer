@@ -300,5 +300,5 @@ rg -n 'createEnv|EnvSchema' src/env.ts
   field is `references/form-submission-and-server-errors.md`.
 - The words in a validation message that a user reads, and the map from an
   error `code` onto them → `references/error-and-empty-state-copy.md`.
-- The MSW handlers and the contract test against the schema → domain 20
-  `testing-and-quality`. Not integrated yet.
+- The MSW handlers and the contract test against the schema →
+  `references/network-mocks-and-contract-tests.md`.

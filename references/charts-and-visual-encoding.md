@@ -328,7 +328,7 @@ rg -ln 'aria:\s*\{' -g '*.ts*' src/ | \
   never mirrors → `references/bidirectional-layout-and-scripts.md`. The locale
   and the calendar behind a label →
   `references/locale-formatting-and-calendars.md`.
-- The visual regression test over a chart → domain 20 `testing-and-quality`.
-  Not integrated yet.
+- The visual regression test over a chart →
+  `references/end-to-end-journeys-and-flake-control.md`.
 - The aggregate query behind a grouped series, and its index → the sibling skill
   `django-performance-optimizer`.

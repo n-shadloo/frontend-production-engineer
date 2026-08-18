@@ -387,8 +387,10 @@ pnpm test:e2e
   `references/state-and-effects.md`.
 - The dark theme that the route lane must also run →
   `references/design-tokens-and-theming.md`.
-- The test runner, the fixtures, the MSW handlers, and the Playwright project
-  config → domain 20 `testing-and-quality`. Not integrated yet.
+- The test runner and the fixtures →
+  `references/test-strategy-and-component-tests.md`. The MSW handlers →
+  `references/network-mocks-and-contract-tests.md`. The Playwright project
+  config → `references/end-to-end-journeys-and-flake-control.md`.
 - The workflow file that runs these stages → domain 22
   `build-deploy-and-runtime-ops`. Not integrated yet.
 - The supply chain of a test dependency →

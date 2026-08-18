@@ -223,8 +223,8 @@ test("results is an array, never the bare item", () => {
 ```
 
 Add type-level tests where a shared utility or a generated client is exported
-to other code. Skip them for application components. The test runner itself is
-domain 20 `testing-and-quality`.
+to other code. Skip them for application components. The runner itself is
+`references/test-strategy-and-component-tests.md`.
 
 ### When the compiler is slow
 
@@ -311,7 +311,8 @@ pnpm exec tsc --noEmit --extendedDiagnostics
   the `typecheck` script → `references/lint-format-and-scripts.md`.
 - The package manager, the Node pin, and the lockfile →
   `references/dependencies-and-git-workflow.md`.
-- The Vitest setup, the test file layout, and the contract test against the
-  schema → domain 20 `testing-and-quality`. Not integrated yet.
+- The Vitest setup and the test file layout →
+  `references/test-strategy-and-component-tests.md`. The contract test against
+  the schema → `references/network-mocks-and-contract-tests.md`.
 - The CI pipeline that runs these gates, and the Docker build → domain 22
   `build-deploy-and-runtime-ops`. Not integrated yet.

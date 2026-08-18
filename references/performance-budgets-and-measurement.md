@@ -353,8 +353,9 @@ rg -n 'useReportWebVitals' -g '*.tsx' src/
   domain 21 `observability-and-resilience`. Not integrated yet.
 - The CI workflow file, the reverse proxy, the compression, and the CDN →
   domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.
-- The test runner, and the assertion that guards a budget in a test → domain 20
-  `testing-and-quality`. Not integrated yet.
+- The test runner → `references/test-strategy-and-component-tests.md`. The
+  place of the budget stage in the gate order →
+  `references/merge-gates-and-quality-signals.md`.
 - The slow endpoint, the query count, and the server cache → sibling skill
   `django-performance-optimizer`.
 - The serializer fields and the pagination envelope as a published surface →

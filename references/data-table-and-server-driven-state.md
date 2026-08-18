@@ -225,8 +225,8 @@ query behind it. `references/api-client-and-request-safety.md` holds the same
 rule for a plain request.
 
 A renamed parameter, a renamed envelope key, or a dropped `count` breaks the
-pagination control in silence. The contract test that catches it is domain 20
-`testing-and-quality`.
+pagination control in silence. The contract test that catches it is
+`references/network-mocks-and-contract-tests.md`.
 
 ### The view lives in the URL
 
@@ -584,8 +584,9 @@ test("a sort updates the address and fires one request", async ({ page }) => {
 - The direction of a table under `dir="rtl"` →
   `references/bidirectional-layout-and-scripts.md`. The collator that a sort
   over words needs → `references/locale-formatting-and-calendars.md`.
-- The contract test over the pagination envelope, and the test that runs a sort
-  → domain 20 `testing-and-quality`. Not integrated yet.
+- The contract test over the pagination envelope →
+  `references/network-mocks-and-contract-tests.md`. The test that runs a sort →
+  `references/test-strategy-and-component-tests.md`.
 - The serializer, the filter field, the pagination class, and any breaking change
   in them → the sibling skill `django-api-contract`.
 - The query cost of a filtered list, and the index behind an `ordering` value →

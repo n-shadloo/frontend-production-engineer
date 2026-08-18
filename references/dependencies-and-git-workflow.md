@@ -263,8 +263,8 @@ rg -n 'linguist-generated' .gitattributes
 - The threat model of a dependency, the judgment on a malicious package, and
   the audit of a lockfile advisory →
   `references/secret-boundary-and-supply-chain.md`. That domain holds a veto.
-- The test job that a pre-push hook runs → domain 20 `testing-and-quality`.
-  Not integrated yet.
+- The test job that a pre-push hook runs →
+  `references/merge-gates-and-quality-signals.md`.
 - The CI workflow, the cache, the release pipeline, and the deploy → domain 22
   `build-deploy-and-runtime-ops`. Not integrated yet.
 - The server-side secret storage and the rotation procedure → the sibling

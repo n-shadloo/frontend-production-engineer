@@ -440,8 +440,8 @@ curl -i -X POST "$APP_ORIGIN/" -H "Next-Action: $ACTION_ID"
   `references/secret-boundary-and-supply-chain.md`.
 - The idempotency key on a retried write, and the `ApiError` shape →
   `references/api-client-and-request-safety.md`.
-- The test that posts to an action with no session → domain 20
-  `testing-and-quality`. Not integrated yet.
+- The test that posts to an action with no session →
+  `references/end-to-end-journeys-and-flake-control.md`.
 - The DRF permission class, the object-level check, the rate limit, and every
   server-side enforcement → the sibling skill `secure-code-auditor`. This file
   owns the endpoints that the Next.js application publishes.

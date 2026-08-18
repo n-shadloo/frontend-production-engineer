@@ -320,5 +320,6 @@ rg --files-without-match 'useTranslations' -g 'global-error.tsx' src/
   loads a message → `references/locale-routing-and-catalogs.md`. The layout
   that mirrors, and the value whose direction nobody can predict →
   `references/bidirectional-layout-and-scripts.md`.
-- The test that renders each locale, and the snapshot over the pseudo-locale →
-  domain 20 `testing-and-quality`. Not integrated yet.
+- The test that renders each locale →
+  `references/test-strategy-and-component-tests.md`. The visual snapshot over
+  the pseudo-locale → `references/end-to-end-journeys-and-flake-control.md`.

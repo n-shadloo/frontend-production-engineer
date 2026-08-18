@@ -462,8 +462,8 @@ pnpm build
   a veto.
 - The words of a 403 explanation → `references/error-and-empty-state-copy.md`.
   The words on a disabled control → `references/interface-copy-and-voice.md`.
-- The test that posts to a Server Action with no session → domain 20
-  `testing-and-quality`. Not integrated yet.
+- The test that posts to a Server Action with no session →
+  `references/end-to-end-journeys-and-flake-control.md`.
 - The DRF permission class, the object-level check, the impersonation
   procedure, and every server-side gate → the sibling skill
   `secure-code-auditor`. This file owns the three frontend layers above it.

@@ -307,7 +307,7 @@ rule for a mutation.
 The counter is the detector for the first three rows. Send it to the metric
 that domain 21 `observability-and-resilience` owns, and alarm on a rise. A
 contract test against the schema catches the first two rows before a deploy,
-and domain 20 `testing-and-quality` owns that test.
+and `references/network-mocks-and-contract-tests.md` owns that test.
 
 ### Version discipline
 
@@ -428,7 +428,7 @@ pnpm typecheck
 - The metric behind the counter, and the alarm on it → domain 21
   `observability-and-resilience`. Not integrated yet.
 - The MSW `ws` handler, the malformed-frame test, and the unnamed-type test →
-  domain 20 `testing-and-quality`. Not integrated yet. Three assertions prove
+  `references/network-mocks-and-contract-tests.md`. Three assertions prove
   this domain. They are a view that survives a malformed frame, a counter that
   rises on an unnamed type, and one row after an optimistic edit.
 - The event envelope as a published surface, its version, and its deprecation →

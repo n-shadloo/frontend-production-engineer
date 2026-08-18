@@ -427,4 +427,4 @@ pnpm typecheck
   digits that a reader types into a numeric field →
   `references/locale-formatting-and-calendars.md`.
 - The test that fills a form by its accessible label, and the schema test →
-  domain 20 `testing-and-quality`. Not integrated yet.
+  `references/test-strategy-and-component-tests.md`.

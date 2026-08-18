@@ -446,8 +446,9 @@ curl -sI -X POST "$NEXT_PUBLIC_API_BASE_URL/api/auth/login/" | rg -i 'set-cookie
   domain holds a veto.
 - The words in a session-expiry message →
   `references/error-and-empty-state-copy.md`.
-- The MSW handler for each auth state, the Playwright storage state, and the
-  expired-token fixture → domain 20 `testing-and-quality`. Not integrated yet.
+- The MSW handler for each auth state, and the expired-token fixture →
+  `references/network-mocks-and-contract-tests.md`. The Playwright storage
+  state → `references/end-to-end-journeys-and-flake-control.md`.
 - The reverse proxy in front of Node that must forward `Set-Cookie` → domain 22
   `build-deploy-and-runtime-ops`. Not integrated yet.
 - The SimpleJWT settings, the blacklist migration, the password hash, the

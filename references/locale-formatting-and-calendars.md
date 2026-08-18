@@ -441,8 +441,8 @@ node -e "console.log(new Intl.DateTimeFormat('fa-IR-u-ca-persian').resolvedOptio
   `references/interface-copy-and-voice.md`.
 - The shape of a date picker component →
   `references/component-composition.md`.
-- The test over a rendered locale → domain 20 `testing-and-quality`. Not
-  integrated yet.
+- The test over a rendered locale →
+  `references/test-strategy-and-component-tests.md`.
 - The aware datetime that the serializer emits, and the field that carries a
   currency code → the sibling skill `django-api-contract`. The index behind an
   ordering field → the sibling skill `django-performance-optimizer`.

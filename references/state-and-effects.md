@@ -457,5 +457,5 @@ pnpm build && pnpm start
   rules for an effect, and that file owns the connection inside one.
 - The render cost that a state change produces, and the INP that it costs →
   `references/paint-and-interaction-cost.md`.
-- The test for a reducer and for a custom hook → domain 20
-  `testing-and-quality`. Not integrated yet.
+- The test for a reducer and for a custom hook →
+  `references/test-strategy-and-component-tests.md`.

@@ -293,8 +293,8 @@ curl -sSI "$MEDIA_ORIGIN/media/avatars/42.svg"
   `references/error-and-empty-state-copy.md`.
 - The reverse proxy, the storage bucket, and the header that it sends → domain
   22 `build-deploy-and-runtime-ops`. Not integrated yet.
-- The test that follows a download and reads the file → domain 20
-  `testing-and-quality`. Not integrated yet.
+- The test that follows a download and reads the file →
+  `references/end-to-end-journeys-and-flake-control.md`.
 - The server-side check over a stored file, the name that it is stored under,
   and the headers that Django sends → the sibling skill `secure-code-auditor`.
 - The worker that builds a large file, and its retries → the sibling skill

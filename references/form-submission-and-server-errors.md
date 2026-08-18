@@ -415,7 +415,9 @@ curl -sSi -X POST "$ORDERS_URL"
   `references/security-headers-and-csp.md`. The Server Action as a public
   endpoint is `references/exposed-endpoints-and-destinations.md`. That domain
   holds a veto.
-- The MSW handler that returns a DRF 400, and the test that proves the message
-  lands on the field → domain 20 `testing-and-quality`. Not integrated yet.
+- The MSW handler that returns a DRF 400 →
+  `references/network-mocks-and-contract-tests.md`. The test that proves the
+  message lands on the field →
+  `references/test-strategy-and-component-tests.md`.
 - The serializer, the status code, and the error envelope on the server → the
   sibling skill `django-api-contract`. This file changes nothing on the server.

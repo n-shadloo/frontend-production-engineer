@@ -546,7 +546,7 @@ rg -n -A8 'localFont\(|from "next/font' -g '*.ts' src/app/fonts.ts
   `references/data-table-and-server-driven-state.md`.
 - The schema over a text field, and the control that binds to it →
   `references/form-schema-and-field-binding.md`.
-- The snapshot test in each direction → domain 20 `testing-and-quality`. Not
-  integrated yet.
+- The snapshot test in each direction →
+  `references/end-to-end-journeys-and-flake-control.md`.
 - The index behind a folded search on the server → the sibling skill
   `django-performance-optimizer`.

@@ -297,7 +297,9 @@ pnpm check
   `references/design-tokens-and-theming.md`.
 - The `jsx-a11y` rule set and the accessibility gate →
   `references/wcag-conformance-and-verification.md`. That domain holds a veto.
-- The test layout, the fixtures, the coverage threshold, and the lint plugins
-  for tests → domain 20 `testing-and-quality`. Not integrated yet.
+- The test layout, the fixtures, and the coverage threshold →
+  `references/test-strategy-and-component-tests.md`. The lint plugins for a test
+  file, and the order of the gates →
+  `references/merge-gates-and-quality-signals.md`.
 - The CI workflow that calls these scripts, the runners, and the cache →
   domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.

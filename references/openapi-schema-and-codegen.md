@@ -269,7 +269,7 @@ rg -n 'camelcase|humps|ts-case-convert' package.json
   this contract. This file owns what the frontend generates from it.
 - The query keys and the cache built on the generated types →
   `references/server-state-and-query-cache.md`.
-- The MSW handlers and the contract test against the schema → domain 20
-  `testing-and-quality`. Not integrated yet.
+- The MSW handlers and the contract test against the schema →
+  `references/network-mocks-and-contract-tests.md`.
 - The CI job that downloads the schema artifact → domain 22
   `build-deploy-and-runtime-ops`. Not integrated yet.

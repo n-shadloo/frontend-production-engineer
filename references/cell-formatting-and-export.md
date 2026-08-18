@@ -287,8 +287,8 @@ head -c 3 export.csv | xxd | grep -q "efbb bf" && echo "the BOM is present"
   `references/bidirectional-layout-and-scripts.md`.
 - The words in a download message and in an expiry warning →
   `references/error-and-empty-state-copy.md`.
-- The test that opens an export and reads its rows → domain 20
-  `testing-and-quality`. Not integrated yet.
+- The test that opens an export and reads its rows →
+  `references/end-to-end-journeys-and-flake-control.md`.
 - The worker that builds a large export, its retries, and its idempotency → the
   sibling skill `django-async-jobs`.
 - The permission check on an export endpoint, and the escape inside a file that

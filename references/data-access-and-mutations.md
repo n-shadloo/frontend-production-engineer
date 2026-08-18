@@ -334,5 +334,5 @@ rg -n 'NEXT_PUBLIC_[A-Z_]*(KEY|SECRET|TOKEN|PASSWORD)' .
 - The N+1 query and the endpoint latency behind a slow call → the sibling
   skill `django-performance-optimizer`. This file owns only the number of
   frontend requests and the place where each one starts.
-- MSW handlers and the contract test against the schema → domain 20
-  `testing-and-quality`. Not integrated yet.
+- MSW handlers and the contract test against the schema →
+  `references/network-mocks-and-contract-tests.md`.

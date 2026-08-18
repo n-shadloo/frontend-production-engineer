@@ -237,5 +237,5 @@ rg -n 'useQueryState\(.*(password|token|card|ssn)' -g '*.ts*' src/
 - The words in a warning dialog and in a step label →
   `references/interface-copy-and-voice.md`.
 - The test that reloads the page in the middle of the flow, and the test that
-  presses the back button → domain 20 `testing-and-quality`. Not integrated
-  yet.
+  presses the back button →
+  `references/end-to-end-journeys-and-flake-control.md`.

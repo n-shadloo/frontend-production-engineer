@@ -435,8 +435,9 @@ rg -n 'presign|createPresignedPost|putWithProgress' -g '*.ts*' src/
   `references/performance-budgets-and-measurement.md`.
 - The bucket, the storage credential, and the reverse-proxy body limit → domain
   22 `build-deploy-and-runtime-ops`. Not integrated yet.
-- The test that uploads a disguised file and reads the message → domain 20
-  `testing-and-quality`. Not integrated yet.
+- The handler that refuses a disguised file →
+  `references/network-mocks-and-contract-tests.md`. The test that reads the
+  message → `references/test-strategy-and-component-tests.md`.
 - The server-side sniff, the virus scan, the name of a stored file, and the scope
   of a presigned credential → the sibling skill `secure-code-auditor`.
 - The shape of the presigned response and of the confirm endpoint → the sibling

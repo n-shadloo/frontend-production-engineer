@@ -363,7 +363,7 @@ git log --oneline -- src/api/generated
 - The tokens that `src/components/ui` renders, and the stylesheet in
   `src/styles/` that publishes them →
   `references/design-tokens-and-theming.md`.
-- The test file layout under a feature → domain 20 `testing-and-quality`. Not
-  integrated yet.
+- The test file layout under a feature →
+  `references/test-strategy-and-component-tests.md`.
 - The CI pipeline that downloads the schema artifact, and the Docker build →
   domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.
