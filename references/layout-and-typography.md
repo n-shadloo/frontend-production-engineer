@@ -81,9 +81,10 @@ Author every new component with `ms-`, `me-`, `ps-`, `pe-`, `start`, and `end`.
 A physical property is still correct for a concern that is physical, such as
 the offset of a drop shadow. State the reason in a comment where you write one.
 
-Domain 19 `internationalization-and-rtl` owns the locale route, the `dir`
-attribute, and the font subset for a non-Latin script. It is not integrated
-yet. This file owns only the authoring rule that makes that work cheap.
+`references/bidirectional-layout-and-scripts.md` owns the `dir` attribute, the
+element that must not mirror, and the property that no logical utility reaches.
+`references/locale-routing-and-catalogs.md` owns the locale route. This file
+owns only the authoring rule that makes that work cheap.
 
 ### The unit that survives a mobile browser
 
@@ -190,8 +191,8 @@ can therefore shift the layout when a heading in a second weight arrives.
 
 `references/performance-budgets-and-measurement.md` owns the byte budget over
 this setup, and `references/paint-and-interaction-cost.md` owns the layout
-shift budget. Domain 19 `internationalization-and-rtl` owns the subset for a
-non-Latin script, and it is not integrated yet.
+shift budget. `references/bidirectional-layout-and-scripts.md` owns the subset,
+the fallback family, and the line height for a non-Latin script.
 
 ### The surface as a whole
 
@@ -335,5 +336,6 @@ rg -n 'next/font' src/
 - The layout shift budget and the LCP element →
   `references/paint-and-interaction-cost.md`. The font byte budget →
   `references/performance-budgets-and-measurement.md`.
-- The locale route, the `dir` attribute, and the subset for a non-Latin script
-  → domain 19 `internationalization-and-rtl`. Not integrated yet.
+- The `dir` attribute, the element that must not mirror, and the subset for a
+  non-Latin script → `references/bidirectional-layout-and-scripts.md`. The
+  locale route → `references/locale-routing-and-catalogs.md`.

@@ -376,7 +376,8 @@ rg -n 'defaultChecked|checked=\{true\}' -g '*.tsx' src/
   `references/form-schema-and-field-binding.md`.
 - `useActionState`, `useFormStatus`, and the pending state of a submit →
   `references/suspense-and-actions.md`.
-- The locale route, the direction of the document, and the file that holds the
-  catalog → domain 19 `internationalization-and-rtl`. Not integrated yet.
+- The locale route, and the file that holds the catalog →
+  `references/locale-routing-and-catalogs.md`. The direction of the document →
+  `references/bidirectional-layout-and-scripts.md`.
 - The lawful basis of a consent string, and the consent mechanism → domain 23
   `analytics-privacy-and-consent`. Not integrated yet.

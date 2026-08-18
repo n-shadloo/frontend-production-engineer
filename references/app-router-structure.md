@@ -337,6 +337,6 @@ done
   and `robots.ts` is `references/crawl-and-index-control.md`. This file owns
   only the existence of the file at the route.
 - Locale routing with `next-intl`, whose proxy code now lives in `proxy.ts` →
-  domain 19 `internationalization-and-rtl`. Not integrated yet.
+  `references/locale-routing-and-catalogs.md`.
 - Docker, `output: 'standalone'`, and the reverse proxy in front of Node →
   domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.

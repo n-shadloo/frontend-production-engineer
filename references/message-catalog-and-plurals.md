@@ -213,11 +213,11 @@ object of a label that overflows, and keep the verb.
 `eslint-plugin-jsx-a11y`, and that domain requires it. Do not add a second row
 for it here.
 
-Domain 19 `internationalization-and-rtl` owns the file that holds the catalog,
-and the route that carries the locale. It also owns the provider that loads a
-message, and the layout that mirrors. It is not integrated yet. This file owns
-the key, the body of the message, and the rule that no string sits in the
-markup.
+`references/locale-routing-and-catalogs.md` owns the file that holds the
+catalog, the route that carries the locale, and the provider that loads a
+message. `references/bidirectional-layout-and-scripts.md` owns the layout that
+mirrors. This file owns the key, the body of the message, and the rule that no
+string sits in the markup.
 
 ### What breaks, and how it looks
 
@@ -316,7 +316,9 @@ rg --files-without-match 'useTranslations' -g 'global-error.tsx' src/
   `references/lint-format-and-scripts.md`.
 - The `eslint-plugin-jsx-a11y` rule set and the accessibility gate →
   `references/wcag-conformance-and-verification.md`. That domain holds a veto.
-- The file that holds the catalog, the locale route, and the layout that mirrors
-  → domain 19 `internationalization-and-rtl`. Not integrated yet.
+- The file that holds the catalog, the locale route, and the provider that
+  loads a message → `references/locale-routing-and-catalogs.md`. The layout
+  that mirrors, and the value whose direction nobody can predict →
+  `references/bidirectional-layout-and-scripts.md`.
 - The test that renders each locale, and the snapshot over the pseudo-locale →
   domain 20 `testing-and-quality`. Not integrated yet.

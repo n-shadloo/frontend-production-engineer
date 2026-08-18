@@ -302,10 +302,12 @@ on `<html>` produces the wrong voice for the whole document. A missing `lang`
 on a foreign passage produces the wrong voice for that passage.
 
 Set `dir` where the direction of a passage differs from the direction of the
-document. Domain 19 `internationalization-and-rtl` owns the locale route and
-the direction of the whole document. It is not integrated yet.
-`references/layout-and-typography.md` owns the logical property that makes the
-layout mirror correctly.
+document, and where the author knows that language.
+`references/bidirectional-layout-and-scripts.md` owns the direction of the
+whole document. It also owns `dir="auto"` for a value whose direction nobody
+can predict. `references/locale-routing-and-catalogs.md` owns the locale route,
+and `references/layout-and-typography.md` owns the logical property that makes
+the layout mirror correctly.
 
 ### The label, the hint, and the error on a field
 
@@ -511,5 +513,7 @@ pnpm lint
   words in an error message → `references/error-and-empty-state-copy.md`.
 - The catalog key behind a name and a hint →
   `references/message-catalog-and-plurals.md`.
-- The locale route, the file that holds the catalog, and the direction of the
-  document → domain 19 `internationalization-and-rtl`. Not integrated yet.
+- The locale route, and the file that holds the catalog →
+  `references/locale-routing-and-catalogs.md`. The direction of the document,
+  and the value whose direction nobody can predict →
+  `references/bidirectional-layout-and-scripts.md`.

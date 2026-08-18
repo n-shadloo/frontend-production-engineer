@@ -581,8 +581,9 @@ test("a sort updates the address and fires one request", async ({ page }) => {
 - The INP of a sort and of a filter →
   `references/paint-and-interaction-cost.md`. The budget over the row payload
   → `references/performance-budgets-and-measurement.md`.
-- The direction of a table under `dir="rtl"`, and the locale that a sort assumes
-  → domain 19 `internationalization-and-rtl`. Not integrated yet.
+- The direction of a table under `dir="rtl"` →
+  `references/bidirectional-layout-and-scripts.md`. The collator that a sort
+  over words needs → `references/locale-formatting-and-calendars.md`.
 - The contract test over the pagination envelope, and the test that runs a sort
   → domain 20 `testing-and-quality`. Not integrated yet.
 - The serializer, the filter field, the pagination class, and any breaking change

@@ -383,8 +383,8 @@ export function proxy() {
 
 Serve one URL for each locale, and let the reader choose. Offer a banner in the
 client that suggests another locale, and never a redirect that removes the
-choice. The locale router itself is domain 19
-`internationalization-and-rtl`, which is not integrated yet.
+choice. The locale router itself is
+`references/locale-routing-and-catalogs.md`.
 
 ### The files under `.well-known`
 
@@ -569,8 +569,9 @@ curl -s "$APP_ORIGIN/sitemap.xml" | rg -c '<loc>'
   `references/api-client-and-request-safety.md`.
 - The crawl budget as a cost, and the first byte that a sitemap render pays →
   `references/performance-budgets-and-measurement.md`.
-- The locale router, the locale segment, and the message catalog → domain 19
-  `internationalization-and-rtl`. Not integrated yet.
+- The locale router, the locale segment, and the file that holds the catalog →
+  `references/locale-routing-and-catalogs.md`. The key inside that file →
+  `references/message-catalog-and-plurals.md`.
 - The reverse proxy that serves a static file, and the 410 status at that layer
   → domain 22 `build-deploy-and-runtime-ops`. Not integrated yet.
 - The slow list endpoint behind an enumeration, and the index on the ordering

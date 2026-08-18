@@ -324,8 +324,10 @@ rg -ln 'aria:\s*\{' -g '*.ts*' src/ | \
 - The bundle bytes of a chart library →
   `references/client-bundle-and-third-party-scripts.md`. The main-thread cost
   of a paint → `references/paint-and-interaction-cost.md`.
-- The direction of an axis under `dir="rtl"`, and the locale of a label →
-  domain 19 `internationalization-and-rtl`. Not integrated yet.
+- The direction of an axis under `dir="rtl"`, and the rule that a time axis
+  never mirrors → `references/bidirectional-layout-and-scripts.md`. The locale
+  and the calendar behind a label →
+  `references/locale-formatting-and-calendars.md`.
 - The visual regression test over a chart → domain 20 `testing-and-quality`.
   Not integrated yet.
 - The aggregate query behind a grouped series, and its index → the sibling skill

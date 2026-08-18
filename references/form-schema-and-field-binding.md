@@ -423,7 +423,8 @@ pnpm typecheck
   file owns the text.
 - The catalog key and the plural rule behind a translated message →
   `references/message-catalog-and-plurals.md`. The file that holds the catalog
-  and the locale route → domain 19 `internationalization-and-rtl`. Not
-  integrated yet.
+  and the locale route → `references/locale-routing-and-catalogs.md`. The
+  digits that a reader types into a numeric field →
+  `references/locale-formatting-and-calendars.md`.
 - The test that fills a form by its accessible label, and the schema test →
   domain 20 `testing-and-quality`. Not integrated yet.

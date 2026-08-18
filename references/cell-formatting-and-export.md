@@ -79,11 +79,10 @@ Right-align a numeric column, and give it `tabular-nums`, so the digits form a
 column that the eye can compare.
 
 `references/message-catalog-and-plurals.md` owns the catalog key and the ICU
-message. The locale itself, the file that holds the catalog, and the direction
-of the document are domain 19 `internationalization-and-rtl`. Until that domain
-lands, take the locale from one constant in the application, and never from the
-browser. The
-server and the browser then always agree.
+message. The locale that the request resolves, and the currency that a record
+carries, are `references/locale-formatting-and-calendars.md`. Take the locale
+from the request, and never from the browser. The server and the browser then
+always agree.
 
 ### The export covers the current query
 
@@ -282,9 +281,10 @@ head -c 3 export.csv | xxd | grep -q "efbb bf" && echo "the BOM is present"
 - The download trigger, and the `Content-Disposition` header →
   `references/served-content-and-downloads.md`.
 - The object URL, and its release → `references/image-and-video-delivery.md`.
-- The locale that the application chooses, the currency for each locale, and the
-  direction of the document → domain 19 `internationalization-and-rtl`. Not
-  integrated yet.
+- The locale that the request resolves, the currency that a record carries, and
+  the calendar behind a date → `references/locale-formatting-and-calendars.md`.
+  The direction of the document →
+  `references/bidirectional-layout-and-scripts.md`.
 - The words in a download message and in an expiry warning →
   `references/error-and-empty-state-copy.md`.
 - The test that opens an export and reads its rows → domain 20

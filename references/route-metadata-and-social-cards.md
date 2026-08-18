@@ -223,11 +223,11 @@ whole cluster.
 Every variant in the set must be indexable. One `noindex` variant breaks the
 cluster for all of them.
 
-The locale segment, the router that produces it, and the message catalog behind
-it are domain 19 `internationalization-and-rtl`, which is not integrated yet.
-The `lang` and the `dir` attributes on the document are
-`references/semantics-and-accessible-names.md`. This file owns the link set
-alone.
+The locale segment, and the router that produces it, are
+`references/locale-routing-and-catalogs.md`. The `lang` attribute is
+`references/semantics-and-accessible-names.md`, and the `dir` attribute on the
+document is `references/bidirectional-layout-and-scripts.md`. This file owns
+the link set alone.
 
 ### One asset serves every card
 
@@ -546,8 +546,9 @@ curl -sI "$APP_ORIGIN/products/123/opengraph-image" \
   largest area → `references/image-and-video-delivery.md` and
   `references/paint-and-interaction-cost.md`. A card image is in neither,
   because no reader loads it in the document.
-- The locale segment, the router that produces it, and the message catalog →
-  domain 19 `internationalization-and-rtl`. Not integrated yet.
+- The locale segment, the router that produces it, and the file that holds the
+  catalog → `references/locale-routing-and-catalogs.md`. The `dir` attribute on
+  the document → `references/bidirectional-layout-and-scripts.md`.
 - The serializer field that `generateMetadata` consumes, and the schema that
   types it → `references/openapi-schema-and-codegen.md`. The server side of
   that contract is the sibling skill `django-api-contract`.

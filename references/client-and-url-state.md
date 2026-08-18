@@ -361,7 +361,7 @@ pnpm build
 - The theme token behind a stored preference, and the class that must reach
   `<html>` before the first paint →
   `references/design-tokens-and-theming.md`.
-- The locale segment in the address → domain 19
-  `internationalization-and-rtl`. Not integrated yet.
+- The locale segment in the address, and the switcher that keeps the current
+  view → `references/locale-routing-and-catalogs.md`.
 - The re-render cost of a store read, and the INP that it produces →
   `references/paint-and-interaction-cost.md`.
