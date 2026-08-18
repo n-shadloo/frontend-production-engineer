@@ -256,7 +256,7 @@ run.
 
 ## Example output
 
-At 1.17.0 the integrated material is the operating doctrine, the App Router
+At 1.17.1 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -271,8 +271,9 @@ It holds the copy — the words on a control, the message that a failure
 produces, and the string as data behind a key.
 
 It holds speed as a measured property — the thresholds, the budget, and the
-gate over them, the bytes of JavaScript with the third-party script beside
-them, and the largest paint, the layout shift, and the answer to a tap.
+gate over them. It also holds the bytes of JavaScript, with the third-party
+script beside them. The last part is the largest paint, the layout shift,
+and the answer to a tap.
 
 It holds the browser-side threat model, and that part holds a veto. It is the
 sink that turns data into code, and the sanitiser in front of it. It also holds
@@ -462,7 +463,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds eighteen domains at 1.17.0 and fills one domain at a time.
+`references/` holds eighteen domains at 1.17.1 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 

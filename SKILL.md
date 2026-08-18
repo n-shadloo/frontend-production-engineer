@@ -21,7 +21,7 @@ license: MIT
 allowed-tools: Read, Grep, Glob, Bash, Edit, Write
 metadata:
   author: n-shadloo
-  version: 1.17.0
+  version: 1.17.1
 ---
 
 # frontend-production-engineer
@@ -268,7 +268,7 @@ go and how they are typed. The backend contract comes before any code that
 touches Django. The domain files that match the feature come after it. The
 non-functional domains come last, as a review pass before done.
 
-The router table above is the integrated material at 1.17.0, and it is the
+The router table above is the integrated material at 1.17.1, and it is the
 authoritative list. The rest of the order applies as the router grows.
 
 Work is not done because it renders. It is done when all of the following
@@ -650,8 +650,9 @@ these:
 - A `view-transition-name` that two elements share in one snapshot, or a
   `startViewTransition` call with no feature detection.
 - A `<ViewTransition>` or an `addTransitionType` call with no statement that the
-  API is experimental, or an import name that nobody read from the installed
-  React build.
+  API is experimental.
+- An import name for either call that nobody read from the installed React
+  build.
 - A `motion/react` import in a Server Component file, rather than
   `motion/react-client` or a file that carries `"use client"`.
 - An `AnimatePresence` or a `layout` prop around a virtualised list.
@@ -660,7 +661,7 @@ these:
 - A `framer-motion` import, a `react-transition-group` entrance in new code, or
   a Lottie file behind a spinner.
 - A sortable list on the native drag and drop API, a sensor list with no
-  keyboard sensor, or a drag with no single-pointer path beside it.
+  keyboard sensor, or a drag with no single-pointer path.
 - A scroll listener that writes a style, or a handler that moves the page by its
   own amount.
 - A scroll-driven animation with no `@supports` guard, or with no
@@ -725,7 +726,7 @@ these:
   score while the field percentile is poor.
 - A transform with no browser API and no interaction that runs on the client.
 - A heavy client widget imported at the top of a shared layout, or a dynamic
-  import with no skeleton of the size of the final component.
+  import with no skeleton of the final size.
 - `moment`, a default `lodash` import, or a date or a number formatted by a
   package where `Intl` answers.
 - A third-party script with no recorded cost, no named owner, or no stated

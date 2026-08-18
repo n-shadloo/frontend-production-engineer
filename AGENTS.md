@@ -24,7 +24,7 @@ foundations, backend contract and state, interface craft, and non-functional
 guarantees. A Tier 0 operating doctrine sits under them, and it is always in
 effect.
 
-At 1.17.0 the integrated material in `references/` is that doctrine, the
+At 1.17.1 the integrated material in `references/` is that doctrine, the
 App Router foundation, the type system, and the React component tree. It also
 holds the project structure, the DRF contract, and the client cache and state.
 It holds the session with the gates over it, and the push transport with the
@@ -39,8 +39,9 @@ It holds the copy — the words on a control, the message that a failure
 produces, and the string as data behind a key.
 
 It holds speed as a measured property — the thresholds, the budget, and the
-gate over them, the bytes of JavaScript with the third-party script beside
-them, and the largest paint, the layout shift, and the answer to a tap.
+gate over them. It also holds the bytes of JavaScript, with the third-party
+script beside them. The last part is the largest paint, the layout shift,
+and the answer to a tap.
 
 It holds the browser-side threat model, and that part holds a veto. It is the
 sink that turns data into code, and the sanitiser in front of it. It also holds
