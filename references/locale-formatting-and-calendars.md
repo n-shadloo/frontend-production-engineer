@@ -355,7 +355,7 @@ Read the installed versions before you write code.
 
 ```bash
 # 1. Read the installed versions before you write code.
-cat package.json | rg '"next-intl"|"date-fns"|"luxon"|"libphonenumber-js"'
+rg -n '"next-intl"|"date-fns"|"luxon"|"libphonenumber-js"' package.json
 
 # 2. Find a locale-sensitive call with no arguments. This must print nothing.
 rg -n 'toLocaleDateString\(\)|toLocaleTimeString\(\)|toLocaleString\(\)' \

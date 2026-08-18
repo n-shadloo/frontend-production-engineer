@@ -310,7 +310,7 @@ client.send(JSON.stringify({ type: "order.updated", data: buildOrder() }));
 // Correct: the test sends the frame that the backend can send by mistake.
 client.send(JSON.stringify({ type: "order.updated", data: { id: null } }));
 expect(await screen.findByRole("row", { name: /ORD-1001/ })).toBeVisible();
-expect(unknownFrameCounter).toBe(1);
+expect(droppedFrameCounter).toBe(1);
 ```
 
 ### The contract test
@@ -414,7 +414,7 @@ version from `package.json` before you write code.
 | The parse throws on the first real response | The fixture holds a number where the API sends a string | Run the fixtures through the boundary schema | Add the contract test over the fixtures |
 | The second page request never fires | Every handler returns `next: null` | Read the request log of the test | Give page one a real `next` URL |
 | The refresh endpoint receives three requests | The single-flight guard is absent | Answer three concurrent calls with 401 | Fix the client, and keep the assertion |
-| A frame with a missing field crashes the view | No test sends a malformed frame | Send `{ id: null }` from the mock socket | Parse every frame, and count the unnamed type |
+| A frame with a missing field crashes the view | No test sends a malformed frame | Send `{ id: null }` from the mock socket | Parse every frame, and count the dropped frame |
 | The worker serves a stale response after an upgrade | The generated worker file predates the library | Compare the worker version against `package.json` | Regenerate the worker asset |
 
 ### Version discipline
@@ -494,7 +494,7 @@ rg -n 'client\.send' src/
 - [ ] Does a contract test run every fixture through the boundary parse that
       the application uses?
 - [ ] Is the boundary schema imported into the test, rather than copied?
-- [ ] Does any real backend run against a seeded, isolated state?
+- [ ] Does every real backend run against a seeded, isolated state?
 - [ ] Does the schema come from the committed artifact, rather than a live
       address?
 - [ ] Is no module of this repository replaced by a stub?

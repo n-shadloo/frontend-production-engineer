@@ -306,9 +306,10 @@ layouts. A screenshot of a whole application page fails on every content
 change, and it reports nothing about the design.
 
 One font paints different pixels on an operating system and inside a container.
-Produce and compare the images in the same image that CI runs, or every local update
-rewrites every file. `references/design-tokens-and-theming.md` owns the theme
-that each comparison must cover in both modes.
+Produce and compare the screenshots inside the same container image that CI
+runs, or every local update rewrites every file.
+`references/design-tokens-and-theming.md` owns the theme that each comparison
+must cover in both modes.
 
 `references/charts-and-visual-encoding.md` owns the chart itself. A chart is a
 reasonable target for this lane, because its output is a picture and no text

@@ -44,7 +44,7 @@ unless the text gives it a different mark.
 // sends the language of the reader, and not the language of the page. A CDN
 // serves the first response to the next reader. A crawler indexes one
 // document, and the second language never enters the index.
-const locale = cookies().get("locale")?.value ?? "en";
+const locale = (await cookies()).get("locale")?.value ?? "en";
 ```
 
 ```ts
@@ -440,7 +440,7 @@ Read the installed versions before you write code.
 
 ```bash
 # 1. Read the installed versions before you write code.
-cat package.json | rg '"next"|"next-intl"|"react"'
+rg -n '"next"|"next-intl"|"react"' package.json
 
 # 2. Confirm that the proxy file carries the Next 16 name. This prints the
 #    file, and any middleware.ts hit is the stale name.

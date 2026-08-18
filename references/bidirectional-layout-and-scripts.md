@@ -125,7 +125,7 @@ content the product cannot predict, so the caret starts at the correct edge.
 | A logo and a brand mark | It does not mirror | It is a fixed image of a name |
 | A code block, a terminal, and a diff | It does not mirror | The syntax is left to right |
 | A number, a phone number, and a version string | It does not mirror | Digits run left to right in every script |
-| A checkmark, a search icon, and a settings icon | It does not mirror | Neither one points along an axis |
+| A checkmark, a search icon, and a settings icon | It does not mirror | None of them points along an axis |
 
 ```tsx
 // Wrong: every icon flips with the layout.
@@ -443,7 +443,7 @@ Read the installed versions before you write code.
 
 ```bash
 # 1. Read the installed versions before you write code.
-cat package.json | rg '"tailwindcss"|"next"|"react"'
+rg -n '"tailwindcss"|"next"|"react"' package.json
 
 # 2. Confirm that the root element carries both attributes. Read the hit.
 rg -n '<html' -g '*.tsx' src/

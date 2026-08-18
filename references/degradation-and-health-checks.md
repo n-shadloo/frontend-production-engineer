@@ -163,9 +163,11 @@ before the deploy still asks for the old names, receives a 404, and raises
 // which loads the current build.
 import type { NextConfig } from "next";
 
+const buildId = process.env.GIT_SHA ?? "development";
+
 const nextConfig: NextConfig = {
-  deploymentId: process.env.GIT_SHA,
-  generateBuildId: async () => process.env.GIT_SHA!,
+  deploymentId: buildId,
+  generateBuildId: async () => buildId,
 };
 
 export default nextConfig;

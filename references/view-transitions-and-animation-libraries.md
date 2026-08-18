@@ -305,8 +305,8 @@ rg -n 'MotionConfig|useReducedMotion' -g '*.tsx' src/
 
 - [ ] Is every `view-transition-name` unique inside one snapshot?
 - [ ] Does a `startViewTransition` call sit behind a feature detection?
-- [ ] Does any use of `<ViewTransition>` or `addTransitionType` state that the
-      API is experimental?
+- [ ] Does every use of `<ViewTransition>` or `addTransitionType` state that
+      the API is experimental?
 - [ ] Was the exported React name read from the installed build, rather than
       assumed?
 - [ ] Does a cross-document `@view-transition` rule carry a fallback?

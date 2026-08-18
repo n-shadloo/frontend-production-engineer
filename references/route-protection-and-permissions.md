@@ -243,7 +243,8 @@ export function safeNext(next: string | undefined): string {
 
   // The string tests above pass "/\evil.example". The URL parser reads the
   // backslash as a second slash, so the value resolves to another origin.
-  const origin = process.env.APP_ORIGIN!;
+  const origin = process.env.APP_ORIGIN;
+  if (origin === undefined) return "/"; // no origin to compare against
   let parsed: URL;
   try {
     parsed = new URL(next, origin);

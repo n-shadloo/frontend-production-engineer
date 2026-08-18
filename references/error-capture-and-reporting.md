@@ -105,9 +105,10 @@ constructor. A click handler, a `setTimeout` callback, and a rejected promise
 run outside all three.
 
 ```tsx
-// Wrong: the throw leaves no trace.
-// Failure: the button does nothing. No boundary renders, no report is sent,
-// and the user clicks a second time.
+// Wrong: the rejection escapes the component.
+// Failure: the button does nothing, and the user clicks a second time. No
+// boundary renders, so nothing on the screen states that the export failed.
+// The global handler records a bare rejection that names no control.
 "use client";
 
 export function ExportButton({ onExport }: { onExport: () => Promise<void> }) {
