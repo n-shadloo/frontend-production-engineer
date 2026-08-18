@@ -21,7 +21,7 @@ guarantees: Web Vitals, frontend security, SEO, internationalization and RTL,
 testing, observability, build and deploy, and analytics and consent. A Tier 0
 operating doctrine sits under all four, and it is always in effect.
 
-At 1.17.1 the integrated material in `references/` is that doctrine, the App
+At 1.18.0 the integrated material in `references/` is that doctrine, the App
 Router foundation, the type system, and the React component tree. It also holds
 the project structure, the DRF contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -48,15 +48,19 @@ too. The last of
 it is what must never cross to the browser, and the code that arrives there
 that nobody on the team wrote.
 
-The newest part is what a machine reads. It is the title, the canonical link,
+One part is what a machine reads. It is the title, the canonical link,
 and the card that a share preview renders. It also holds the claim that a page
 makes in machine-readable form, and the escape that the grammar of that block
 needs.
 
 The last part is the crawl and the index. It holds the robots rules, and the
 sitemap that the DRF data produces. It also holds the status code that a
-missing record returns, and the redirect that a rename ships. `SKILL.md`
-is the authoritative list of what is loadable.
+missing record returns, and the redirect that a rename ships.
+
+The newest part is the second language. It holds the route that carries a
+locale, and the file that holds the catalog behind it. It also holds the date,
+the number, and the calendar that each locale writes in its own form. The last
+of it is the direction of a surface, and the script that a font must carry. `SKILL.md` is the authoritative list of what is loadable.
 
 Two standing rules govern everything. Verify the installed versions from
 `package.json` before you generate code. Never mix Next 15 and Next 16 idioms

@@ -58,7 +58,10 @@ group is what a machine reads — `generateMetadata`, `metadataBase`, a title, a
 canonical URL, an `hreflang` link, or an Open Graph card. It also covers a
 JSON-LD block, `sitemap.ts`, `robots.ts`, `noindex`, a soft 404, and a 308
 redirect. The
-eighteenth group is the project setup — a folder move, a barrel
+eighteenth group is the second language — a locale, a locale route, a message
+catalog, `next-intl`, an `Intl` formatter, a time zone, a Jalali calendar, RTL,
+`dir="rtl"`, a mirrored layout, a Persian font, or a ZWNJ. The nineteenth
+group is the project setup — a folder move, a barrel
 file, `eslint.config.ts`, the lockfile, a git hook, or a new dependency. The
 last group is any change to the headers or the build.
 
