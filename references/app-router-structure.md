@@ -332,9 +332,10 @@ done
   `proxy.ts` emit → `references/security-headers-and-csp.md`. The destination of
   a `rewrites()` or a `redirects()` entry is
   `references/exposed-endpoints-and-destinations.md`. That domain holds a veto.
-- The content of the metadata files, such as `opengraph-image.tsx` → domain 18
-  `seo-and-metadata`. Not integrated yet. This file owns only the existence of
-  the file at the route.
+- The content of the metadata files, such as `opengraph-image.tsx` →
+  `references/route-metadata-and-social-cards.md`. The content of `sitemap.ts`
+  and `robots.ts` is `references/crawl-and-index-control.md`. This file owns
+  only the existence of the file at the route.
 - Locale routing with `next-intl`, whose proxy code now lives in `proxy.ts` →
   domain 19 `internationalization-and-rtl`. Not integrated yet.
 - Docker, `output: 'standalone'`, and the reverse proxy in front of Node →

@@ -287,7 +287,8 @@ between two views is
 React 19 supports `<title>`, `<meta>`, and `<link>` rendered from inside a
 component. It also makes `preload`, `preinit`, `prefetchDNS`, and `preconnect`
 stable. This file records that the APIs exist. The content of the metadata, and
-which mechanism a Next.js route uses for it, are domain 18 `seo-and-metadata`.
+which mechanism a Next.js route uses for it, are
+`references/route-metadata-and-social-cards.md`.
 Which element to preload is `references/paint-and-interaction-cost.md`. The
 origin hint, and the cost of a wrong one, are
 `references/client-bundle-and-third-party-scripts.md`.
@@ -386,5 +387,5 @@ rg -n 'action=\{' -g '*.tsx' src/
 - The words in an error message and in an empty state →
   `references/error-and-empty-state-copy.md`. The words in a pending label →
   `references/interface-copy-and-voice.md`.
-- The content of the document metadata → domain 18 `seo-and-metadata`. Not
-  integrated yet.
+- The content of the document metadata, and the rule that one system owns one
+  tag → `references/route-metadata-and-social-cards.md`.

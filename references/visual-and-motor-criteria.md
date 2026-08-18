@@ -392,7 +392,8 @@ rg -n 'draggable|onDragStart|onPointerMove' -g '*.tsx' src/
   `references/layout-and-typography.md`.
 - `cn()`, the variant API, and the rule against `!important` in a feature file
   → `references/component-styles-and-variants.md`.
-- The `viewport` export and the route files →
+- The `viewport` export as one of the metadata exports →
+  `references/route-metadata-and-social-cards.md`. The route files are
   `references/app-router-structure.md`.
 - The second channel of a chart series → `references/charts-and-visual-encoding.md`.
 - The wide data table, and its alternative on a phone →

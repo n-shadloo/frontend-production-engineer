@@ -370,8 +370,8 @@ rg -n 'youtube\.com/embed|player\.vimeo\.com' -g '*.tsx' src/
 - The words of a caption and of a transcript →
   `references/interface-copy-and-voice.md`. The copy of an empty media state →
   `references/error-and-empty-state-copy.md`.
-- The Open Graph image and the metadata around it → domain 18
-  `seo-and-metadata`. Not integrated yet.
+- The Open Graph image and the metadata around it →
+  `references/route-metadata-and-social-cards.md`.
 - The bucket, the CDN, and the infrastructure behind the optimizer → domain 22
   `build-deploy-and-runtime-ops`. Not integrated yet.
 - The transcode job and the thumbnail that it produces → the sibling skill

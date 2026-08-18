@@ -84,6 +84,11 @@ The comment is not decoration. A reviewer reads one line and knows which library
 cleaned the value, and under which rules. A sink with no such comment is a
 finding, even where a sanitiser ran somewhere else.
 
+A JSON-LD block is the one exception. Its value is a serialized object rather
+than markup, so an escape binds it rather than a sanitiser.
+`references/structured-data-and-rich-results.md` states that escape, and a
+block that omits it fails this domain.
+
 Take `isomorphic-dompurify` where the same module renders on the server and in
 the browser. Take `dompurify` where the code runs in the browser only.
 
@@ -179,9 +184,10 @@ A value that React escapes for HTML is not escaped for another grammar. Three
 grammars in this repository each hold their own rule.
 
 - A `<script type="application/ld+json">` block holds JSON, and its content is
-  not HTML. Domain 18 `seo-and-metadata` owns that block, and it is not
-  integrated yet. Until it lands, treat any value that reaches a JSON-LD block as
-  a sink, and never build the block by string concatenation.
+  not HTML. `references/structured-data-and-rich-results.md` owns that block,
+  and it states the escape that the grammar of the host element needs. Treat any
+  value that reaches the block as a sink, and never build the block by string
+  concatenation.
 - A spreadsheet cell holds a formula grammar.
   `references/cell-formatting-and-export.md` owns the escape for a leading `=`,
   `+`, `-`, `@`, tab, or carriage return.
@@ -257,9 +263,10 @@ rg -n '"react"|"dompurify"|"isomorphic-dompurify"|"rehype-' package.json
 # 2. Find every raw HTML sink. Read every hit.
 rg -n 'dangerouslySetInnerHTML' -g '*.tsx' src/
 
-# 3. Find a sink whose file names no sanitiser. This prints nothing.
+# 3. Find a sink whose file names no sanitiser. A JSON-LD block is the one
+#    exception. Otherwise this prints nothing.
 rg --files-with-matches 'dangerouslySetInnerHTML' -g '*.tsx' src/ \
-  | xargs rg --files-without-match 'DOMPurify|sanitize'
+  | xargs rg --files-without-match 'DOMPurify|sanitize|application/ld\+json'
 
 # 4. Find the raw Markdown plugin. Each hit needs rehype-sanitize after it.
 rg -n -A2 'rehypeRaw|rehype-raw' -g '*.tsx' -g '*.ts' src/
@@ -287,7 +294,8 @@ rg -n 'href=\{|src=\{' -g '*.tsx' src/
 ## Review checklist
 
 - [ ] Does every value that needs no markup render as a text child?
-- [ ] Is every `dangerouslySetInnerHTML` fed the return of a sanitiser call?
+- [ ] Is every `dangerouslySetInnerHTML` fed the return of a sanitiser call,
+      apart from a JSON-LD block?
 - [ ] Does a comment beside each sink name the sanitiser and its configuration?
 - [ ] Does the sanitiser run at the point of render, rather than on write?
 - [ ] Is the default protocol allowlist of DOMPurify unchanged?
@@ -328,7 +336,7 @@ rg -n 'href=\{|src=\{' -g '*.tsx' src/
   `references/error-and-empty-state-copy.md`.
 - The `"use client"` directive on a component that holds a sink →
   `references/server-and-client-components.md`.
-- The JSON-LD block, and the escape that its grammar needs → domain 18
-  `seo-and-metadata`. Not integrated yet.
+- The JSON-LD block, and the escape that its grammar needs →
+  `references/structured-data-and-rich-results.md`.
 - Injection on the server, template injection, and every server-side sink → the
   sibling skill `secure-code-auditor`. This file owns the browser.
