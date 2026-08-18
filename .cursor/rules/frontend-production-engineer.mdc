@@ -54,7 +54,11 @@ group is security — `dangerouslySetInnerHTML`, a sanitiser, a Content Security
 Policy, a nonce, a response header, a Server Action that the network reaches, a
 destination taken from a request, an open redirect, a `NEXT_PUBLIC_` variable,
 or a CVE. The seventeenth
-group is the project setup — a folder move, a barrel
+group is what a machine reads — `generateMetadata`, `metadataBase`, a title, a
+canonical URL, an `hreflang` link, or an Open Graph card. It also covers a
+JSON-LD block, `sitemap.ts`, `robots.ts`, `noindex`, a soft 404, and a 308
+redirect. The
+eighteenth group is the project setup — a folder move, a barrel
 file, `eslint.config.ts`, the lockfile, a git hook, or a new dependency. The
 last group is any change to the headers or the build.
 

@@ -21,7 +21,7 @@ guarantees: Web Vitals, frontend security, SEO, internationalization and RTL,
 testing, observability, build and deploy, and analytics and consent. A Tier 0
 operating doctrine sits under all four, and it is always in effect.
 
-At 1.16.0 the integrated material in `references/` is that doctrine, the App
+At 1.17.0 the integrated material in `references/` is that doctrine, the App
 Router foundation, the type system, and the React component tree. It also holds
 the project structure, the DRF contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -39,12 +39,22 @@ It holds speed as a measured property — the thresholds, the budget, and the
 gate over them, the bytes of JavaScript with the third-party script beside
 them, and the largest paint, the layout shift, and the answer to a tap.
 
-The newest part is the browser-side threat model, and it holds a veto. It is
-the sink that turns data into code, and the sanitiser in front of it. It also
-holds the policy and the header set that the response carries, the endpoint
-that the network reaches, and the destination that the server reaches back. The
-last part is what must never cross to the browser, and the code that arrives
-there that nobody on the team wrote. `SKILL.md`
+It holds the browser-side threat model, and that part holds a veto. It is the
+sink that turns data into code, and the sanitiser in front of it. It also holds
+the policy and the header set that the response carries. The endpoint that the
+network reaches, and the destination that the server reaches back, are in it
+too. The last of
+it is what must never cross to the browser, and the code that arrives there
+that nobody on the team wrote.
+
+The newest part is what a machine reads. It is the title, the canonical link,
+and the card that a share preview renders. It also holds the claim that a page
+makes in machine-readable form, and the escape that the grammar of that block
+needs.
+
+The last part is the crawl and the index. It holds the robots rules, and the
+sitemap that the DRF data produces. It also holds the status code that a
+missing record returns, and the redirect that a rename ships. `SKILL.md`
 is the authoritative list of what is loadable.
 
 Two standing rules govern everything. Verify the installed versions from

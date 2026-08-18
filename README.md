@@ -93,7 +93,7 @@ Tier 4 is the non-functional guarantees, applied as a review pass before done.
 - `17 frontend-security` — XSS, CSP, response headers, server action safety,
   supply chain. Integrated.
 - `18 seo-and-metadata` — the Metadata API, JSON-LD, sitemaps, canonical URLs,
-  Open Graph. Pending.
+  Open Graph. Integrated.
 - `19 internationalization-and-rtl` — next-intl, locale routing, RTL and
   Persian, the `Intl` APIs. Pending.
 - `20 testing-and-quality` — Vitest, React Testing Library, MSW, Playwright,
@@ -256,7 +256,7 @@ run.
 
 ## Example output
 
-At 1.16.0 the integrated material is the operating doctrine, the App Router
+At 1.17.0 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -274,13 +274,23 @@ It holds speed as a measured property — the thresholds, the budget, and the
 gate over them, the bytes of JavaScript with the third-party script beside
 them, and the largest paint, the layout shift, and the answer to a tap.
 
-The newest part is the browser-side threat model, and it holds a veto. It is
-the sink that turns data into code, and the sanitiser in front of it. It also
-holds the policy and the header set that the response carries, the endpoint
-that the network reaches, and the destination that the server reaches back. The
-last part is what must never cross to the browser, and the code that arrives
-there that nobody on the team wrote. The worked
-example is the shape of a task and the facts that gate it:
+It holds the browser-side threat model, and that part holds a veto. It is the
+sink that turns data into code, and the sanitiser in front of it. It also holds
+the policy and the header set that the response carries. The endpoint that the
+network reaches, and the destination that the server reaches back, are in it
+too. The last of
+it is what must never cross to the browser, and the code that arrives there
+that nobody on the team wrote.
+
+The newest part is what a machine reads. It is the title, the canonical link,
+and the card that a share preview renders. It also holds the claim that a page
+makes in machine-readable form, and the escape that the grammar of that block
+needs.
+
+The last part is the crawl and the index. It holds the robots rules, and the
+sitemap that the DRF data produces. It also holds the status code that a
+missing record returns, and the redirect that a rename ships. The worked
+example below is the shape of a task, and the facts that gate it:
 
 ```
 Plan
@@ -403,6 +413,7 @@ frontend-production-engineer/
 │   ├── client-bundle-and-third-party-scripts.md
 │   ├── component-composition.md
 │   ├── component-styles-and-variants.md
+│   ├── crawl-and-index-control.md
 │   ├── cross-origin-and-bff-proxy.md
 │   ├── data-access-and-mutations.md
 │   ├── data-table-and-server-driven-state.md
@@ -428,6 +439,7 @@ frontend-production-engineer/
 │   ├── paint-and-interaction-cost.md
 │   ├── performance-budgets-and-measurement.md
 │   ├── push-transport-and-connection.md
+│   ├── route-metadata-and-social-cards.md
 │   ├── route-protection-and-permissions.md
 │   ├── secret-boundary-and-supply-chain.md
 │   ├── security-headers-and-csp.md
@@ -437,6 +449,7 @@ frontend-production-engineer/
 │   ├── server-state-and-query-cache.md
 │   ├── session-and-token-lifecycle.md
 │   ├── state-and-effects.md
+│   ├── structured-data-and-rich-results.md
 │   ├── suspense-and-actions.md
 │   ├── type-modeling-and-narrowing.md
 │   ├── typescript-config-and-enforcement.md
@@ -449,7 +462,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds seventeen domains at 1.16.0 and fills one domain at a time.
+`references/` holds eighteen domains at 1.17.0 and fills one domain at a time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 
