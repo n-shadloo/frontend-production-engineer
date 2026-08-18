@@ -64,7 +64,13 @@ catalog, `next-intl`, an `Intl` formatter, a time zone, a Jalali calendar, RTL,
 group is the proof — a test, a unit test, a component test, an end-to-end test,
 Vitest, React Testing Library, `getByRole`, `user-event`, MSW, a handler,
 Playwright, `storageState`, `waitForTimeout`, a flaky test, a skipped test,
-coverage, a required check, or Storybook. The twentieth
+coverage, a required check, or Storybook. The twentieth group is what happens
+when something breaks — an error boundary that reports nothing, an empty
+`catch`, `instrumentation.ts`, `onRequestError`, Sentry, `sendDefaultPii`, a
+source map on the public origin, an alert with no owner, a correlation
+identifier, `traceparent`, a structured log, a field report, a backend that is
+down, an offline state, a `ChunkLoadError` after a deploy, or `/api/health`.
+The twenty-first
 group is the project setup — a folder move, a barrel
 file, `eslint.config.ts`, the lockfile, a git hook, or a new dependency. The
 last group is any change to the headers or the build.

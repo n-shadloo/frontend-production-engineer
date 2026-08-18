@@ -24,7 +24,7 @@ foundations, backend contract and state, interface craft, and non-functional
 guarantees. A Tier 0 operating doctrine sits under them, and it is always in
 effect.
 
-At 1.19.0 the integrated material in `references/` is that doctrine, the
+At 1.20.0 the integrated material in `references/` is that doctrine, the
 App Router foundation, the type system, and the React component tree. It also
 holds the project structure, the DRF contract, and the client cache and state.
 It holds the session with the gates over it, and the push transport with the
@@ -65,7 +65,14 @@ locale, and the file that holds the catalog behind it. It also holds the date,
 the number, and the calendar that each locale writes in its own form. The last
 of it is the direction of a surface, and the script that a font must carry.
 
-The newest part is the proof. It holds the level that each test belongs to,
+The newest part is what happens when something breaks. It holds the report that
+a failure sends, and the personal value that the report must never carry. It
+also holds the identifier that joins one screen to one Django log line, and the
+trace that crosses to the backend. The last of it is the application under an
+outage — the gate over a dead backend, the offline state, and the probe that
+answers for the chain.
+
+The next part is the proof. It holds the level that each test belongs to,
 and the component test that carries most of the value. It also holds the answer
 that a mock gives to a request, and the journey that a real browser runs. The
 last of it is the gate that a change passes before a merge. `SKILL.md` is the

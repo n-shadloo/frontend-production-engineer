@@ -99,7 +99,7 @@ Tier 4 is the non-functional guarantees, applied as a review pass before done.
 - `20 testing-and-quality` — Vitest, React Testing Library, MSW, Playwright,
   contract tests. Integrated.
 - `21 observability-and-resilience` — error boundaries, Sentry, real-user
-  monitoring, graceful degradation. Pending.
+  monitoring, graceful degradation. Integrated.
 - `22 build-deploy-and-runtime-ops` — Docker, standalone output, Nginx, CI/CD,
   self-hosting. Pending.
 - `23 analytics-privacy-and-consent` — events, consent gating, GDPR,
@@ -134,7 +134,10 @@ draws the charts. Vitest, React Testing Library, MSW, and Playwright run the
 tests.
 
 `web-vitals` 6.1 reports the field metrics. `@lhci/cli` 0.15 and `size-limit`
-gate the budget in CI.
+gate the budget in CI. `@sentry/nextjs` 10.70 captures the errors, on a floor
+of 10.27 for the advisory GHSA-6465-jgvq-jhgp. `pino` writes the structured
+log, `@vercel/otel` registers the tracer, and `react-error-boundary` covers a
+widget inside a segment.
 
 The backend is Django
 and DRF 3.17, and it publishes OpenAPI 3.0.3 through drf-spectacular 0.30.
@@ -256,7 +259,7 @@ run.
 
 ## Example output
 
-At 1.19.0 the integrated material is the operating doctrine, the App Router
+At 1.20.0 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -297,7 +300,14 @@ locale, and the file that holds the catalog behind it. It also holds the date,
 the number, and the calendar that each locale writes in its own form. The last
 of it is the direction of a surface, and the script that a font must carry.
 
-The newest part is the proof. It holds the level that each test belongs to,
+The newest part is what happens when something breaks. It holds the report that
+a failure sends, and the personal value that the report must never carry. It
+also holds the identifier that joins one screen to one Django log line, and the
+trace that crosses to the backend. The last of it is the application under an
+outage — the gate over a dead backend, the offline state, and the probe that
+answers for the chain.
+
+The next part is the proof. It holds the level that each test belongs to,
 and the component test that carries most of the value. It also holds the answer
 that a mock gives to a request, and the journey that a real browser runs. The
 last of it is the gate that a change passes before a merge.
@@ -434,15 +444,18 @@ frontend-production-engineer/
 │   ├── client-bundle-and-third-party-scripts.md
 │   ├── component-composition.md
 │   ├── component-styles-and-variants.md
+│   ├── correlation-and-telemetry.md
 │   ├── crawl-and-index-control.md
 │   ├── cross-origin-and-bff-proxy.md
 │   ├── data-access-and-mutations.md
 │   ├── data-table-and-server-driven-state.md
+│   ├── degradation-and-health-checks.md
 │   ├── dependencies-and-git-workflow.md
 │   ├── design-tokens-and-theming.md
 │   ├── directory-and-module-boundaries.md
 │   ├── end-to-end-journeys-and-flake-control.md
 │   ├── error-and-empty-state-copy.md
+│   ├── error-capture-and-reporting.md
 │   ├── exposed-endpoints-and-destinations.md
 │   ├── file-upload-and-transport.md
 │   ├── form-schema-and-field-binding.md
@@ -489,7 +502,8 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds twenty domains at 1.19.0 and fills one domain at a time.
+`references/` holds twenty-one domains at 1.20.0 and fills one domain at a
+time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 
