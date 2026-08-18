@@ -21,7 +21,7 @@ license: MIT
 allowed-tools: Read, Grep, Glob, Bash, Edit, Write
 metadata:
   author: n-shadloo
-  version: 1.20.0
+  version: 1.20.1
 ---
 
 # frontend-production-engineer
@@ -313,7 +313,7 @@ go and how they are typed. The backend contract comes before any code that
 touches Django. The domain files that match the feature come after it. The
 non-functional domains come last, as a review pass before done.
 
-The router table above is the integrated material at 1.20.0, and it is the
+The router table above is the integrated material at 1.20.1, and it is the
 authoritative list. The rest of the order applies as the router grows.
 
 Work is not done because it renders. It is done when all of the following
@@ -873,8 +873,8 @@ these:
 - A request config that imports a catalog for a value that `hasLocale` did not
   narrow.
 - A request config that returns no `locale` field, or no `timeZone` field.
-- A layout or a page in the locale tree that calls no `setRequestLocale`, or a
-  locale route that the build reports as dynamic for that reason.
+- A layout or a page in the locale tree that calls no `setRequestLocale`.
+- A locale route that the build reports as dynamic for that missing call.
 - A provider that passes the whole catalog to the browser.
 - A switcher that discards the current path, the query, or the unsaved values
   of a form.

@@ -259,7 +259,7 @@ run.
 
 ## Example output
 
-At 1.20.0 the integrated material is the operating doctrine, the App Router
+At 1.20.1 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -300,17 +300,17 @@ locale, and the file that holds the catalog behind it. It also holds the date,
 the number, and the calendar that each locale writes in its own form. The last
 of it is the direction of a surface, and the script that a font must carry.
 
-The newest part is what happens when something breaks. It holds the report that
-a failure sends, and the personal value that the report must never carry. It
-also holds the identifier that joins one screen to one Django log line, and the
-trace that crosses to the backend. The last of it is the application under an
-outage — the gate over a dead backend, the offline state, and the probe that
-answers for the chain.
-
 The next part is the proof. It holds the level that each test belongs to,
 and the component test that carries most of the value. It also holds the answer
 that a mock gives to a request, and the journey that a real browser runs. The
 last of it is the gate that a change passes before a merge.
+
+The newest part is what happens when something breaks. It holds the report that
+a failure sends, and the personal value that the report must never carry. It
+also holds the identifier that joins one screen to one Django log line, and the
+trace that crosses to the backend. The last of it is the application under an
+outage. That part is the gate over a dead backend, the offline state, and the
+probe that answers for the chain.
 
 The worked example below is the shape of a task, and the facts that gate
 it:
@@ -502,7 +502,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds twenty-one domains at 1.20.0 and fills one domain at a
+`references/` holds twenty-one domains at 1.20.1 and fills one domain at a
 time.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
