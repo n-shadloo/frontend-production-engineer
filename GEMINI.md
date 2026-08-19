@@ -21,7 +21,7 @@ guarantees: Web Vitals, frontend security, SEO, internationalization and RTL,
 testing, observability, build and deploy, and analytics and consent. A Tier 0
 operating doctrine sits under all four, and it is always in effect.
 
-At 1.21.0 the integrated material in `references/` is that doctrine, the App
+At 1.22.0 the integrated material in `references/` is that doctrine, the App
 Router foundation, the type system, and the React component tree. It also holds
 the project structure, the DRF contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -74,11 +74,17 @@ trace that crosses to the backend. The last of it is the application under an
 outage. That part is the gate over a dead backend, the offline state, and the
 probe that answers for the chain.
 
-The newest part is the release. It holds the artifact that a build produces, and
+Another part is the release. It holds the artifact that a build produces, and
 the image that carries it. It also holds the process that serves it, and the
 front door in front of that process. The last of it is the pipeline, the deploy
-that a probe proves, and the way back. `SKILL.md` is the authoritative list of
-what is loadable.
+that a probe proves, and the way back.
+
+The newest part is the measurement, and the permission that comes before it. It
+holds the event, its name, and the one module that sends it. It also holds the
+consent that a script waits for, the record that keeps the answer, and the
+inventory that proves the cookie policy true. The last of it is the export, the
+deletion, and the retention window that the interface states. `SKILL.md` is the
+authoritative list of what is loadable.
 
 Two standing rules govern everything. Verify the installed versions from
 `package.json` before you generate code. Never mix Next 15 and Next 16 idioms

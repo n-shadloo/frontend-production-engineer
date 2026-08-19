@@ -73,11 +73,18 @@ down, an offline state, a `ChunkLoadError` after a deploy, or `/api/health`.
 The twenty-first
 group is the project setup — a folder move, a barrel
 file, `eslint.config.ts`, the lockfile, a git hook, or a new dependency. The
-last group is the release — `output: 'standalone'`, a `Dockerfile`, a
+twenty-second group is the release — `output: 'standalone'`, a `Dockerfile`, a
 `.dockerignore`, a base image, a systemd unit, an Nginx server block,
 `proxy_pass`, `client_max_body_size`, a TLS certificate, a GitHub Actions
 workflow, a deploy script, a rollback, a `NEXT_PUBLIC_` value that a promotion
-cannot change, or a `cacheHandler` behind two instances.
+cannot change, or a `cacheHandler` behind two instances. The last group is the
+measurement and the permission for it — analytics, an event name, `track()`, a
+tracking plan, PostHog, Plausible, Google Analytics, `gtag`, a page view that
+fires twice, an ad blocker that drops an event, or an A/B variant. It also
+covers consent, a cookie banner, a consent category, GDPR, the ePrivacy
+Directive, `Sec-GPC`, a cookie inventory, a session replay, a data export, an
+account deletion, a retention window, a privacy policy page, and a cookie
+policy page.
 
 Verify the installed versions from `package.json` before you generate code.
 Never mix Next 15 and Next 16 idioms in one file. Report an API you cannot

@@ -103,11 +103,11 @@ Tier 4 is the non-functional guarantees, applied as a review pass before done.
 - `22 build-deploy-and-runtime-ops` — Docker, standalone output, Nginx, CI/CD,
   self-hosting. Integrated.
 - `23 analytics-privacy-and-consent` — events, consent gating, GDPR,
-  third-party scripts. Pending.
+  third-party scripts. Integrated.
 
-Six further domains follow the same pipeline once the twenty-four are in. They
-are commerce and checkout, the admin shell, chat UI, maps, PDF and print
-output, and email templates.
+All twenty-four domains are integrated. Six further domains follow the same
+pipeline. They are commerce and checkout, the admin shell, chat UI, maps, PDF
+and print output, and email templates.
 
 Seven of these are blocking. `nextjs-app-router-architecture`,
 `typescript-type-system-discipline`, `django-drf-api-contract`,
@@ -259,7 +259,7 @@ run.
 
 ## Example output
 
-At 1.21.0 the integrated material is the operating doctrine, the App Router
+At 1.22.0 the integrated material is the operating doctrine, the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -312,10 +312,16 @@ trace that crosses to the backend. The last of it is the application under an
 outage. That part is the gate over a dead backend, the offline state, and the
 probe that answers for the chain.
 
-The newest part is the release. It holds the artifact that a build produces, and
+Another part is the release. It holds the artifact that a build produces, and
 the image that carries it. It also holds the process that serves it, and the
 front door in front of that process. The last of it is the pipeline, the deploy
 that a probe proves, and the way back.
+
+The newest part is the measurement, and the permission that comes before it. It
+holds the event, its name, and the one module that sends it. It also holds the
+consent that a script waits for, the record that keeps the answer, and the
+inventory that proves the cookie policy true. The last of it is the export, the
+deletion, and the retention window that the interface states.
 
 The worked example below is the shape of a task, and the facts that gate
 it:
@@ -450,10 +456,12 @@ frontend-production-engineer/
 │   ├── client-bundle-and-third-party-scripts.md
 │   ├── component-composition.md
 │   ├── component-styles-and-variants.md
+│   ├── consent-gate-and-cookie-inventory.md
 │   ├── correlation-and-telemetry.md
 │   ├── crawl-and-index-control.md
 │   ├── cross-origin-and-bff-proxy.md
 │   ├── data-access-and-mutations.md
+│   ├── data-rights-and-privacy-surfaces.md
 │   ├── data-table-and-server-driven-state.md
 │   ├── degradation-and-health-checks.md
 │   ├── dependencies-and-git-workflow.md
@@ -462,6 +470,7 @@ frontend-production-engineer/
 │   ├── end-to-end-journeys-and-flake-control.md
 │   ├── error-and-empty-state-copy.md
 │   ├── error-capture-and-reporting.md
+│   ├── event-taxonomy-and-tracking-plan.md
 │   ├── exposed-endpoints-and-destinations.md
 │   ├── file-upload-and-transport.md
 │   ├── form-schema-and-field-binding.md
@@ -510,8 +519,8 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds twenty-two domains at 1.21.0 and fills one domain at a
-time.
+`references/` holds twenty-three domains at 1.22.0, which is every domain that
+has a router entry.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.
 
