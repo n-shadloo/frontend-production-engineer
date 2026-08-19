@@ -217,6 +217,8 @@ and the definition of done.
 The paths that nobody edits by hand are `src/api/generated/`, the lockfile, and
 `next-env.d.ts`. `AGENTS.md` is plain Markdown with no schema. The file closest
 to the edited file wins, and a direct instruction in the chat wins over both.
+`references/instruction-files-and-skill-discovery.md` owns the size cap on the
+joined text, and the region that `next dev` writes into this file.
 
 A single `.cursorrules` file is deprecated, and it is alive only in legacy
 code. Use `.cursor/rules/*.mdc`, or
@@ -303,3 +305,6 @@ pnpm check
   `references/merge-gates-and-quality-signals.md`.
 - The CI workflow that calls these scripts, the runners, and the cache →
   `references/release-pipeline-and-rollback.md`.
+- The precedence of `AGENTS.md`, its 32 KiB cap, the managed
+  `nextjs-agent-rules` region, and the audit of an installed skill →
+  `references/instruction-files-and-skill-discovery.md`.
