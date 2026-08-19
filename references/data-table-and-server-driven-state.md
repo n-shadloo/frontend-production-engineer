@@ -278,8 +278,20 @@ layout does not shift.
   <caption>Orders, newest first</caption>
   <thead>
     <tr>
-      <th scope="col" aria-sort={sort === "reference" ? "ascending" : "none"}>
-        <button type="button" onClick={() => setSort("reference")}>
+      <th
+        scope="col"
+        aria-sort={
+          sort === "reference"
+            ? "ascending"
+            : sort === "-reference"
+              ? "descending"
+              : "none"
+        }
+      >
+        <button
+          type="button"
+          onClick={() => setSort(sort === "reference" ? "-reference" : "reference")}
+        >
           Reference
         </button>
       </th>
@@ -295,8 +307,10 @@ APG grid pattern, which is the arrow keys, `Home`, `End`, `Page Up`, and
 `Page Down`. `references/keyboard-focus-and-live-regions.md` owns the APG rule,
 and that domain holds a veto.
 
-Carry `aria-sort` on one header at a time. Put the control inside the `<th>` as
-a `<button>`, so a keyboard reaches it and a screen reader names it.
+Carry `aria-sort` on one header at a time. The value states the direction that
+the request carries, so a descending sort never announces `ascending`. Put the
+control inside the `<th>` as a `<button>`, so a keyboard reaches it and a screen
+reader names it.
 `references/semantics-and-accessible-names.md` owns the accessible name.
 
 Announce the result count after a sort or a filter, through the polite region
@@ -333,11 +347,15 @@ const rows = useVirtualizer({ count: 30, estimateSize: () => 48, getScrollElemen
 // declared for the screen reader.
 <table aria-rowcount={page.count}>
   <tbody>
-    {virtualRows.map((virtualRow) => (
-      <tr key={rows[virtualRow.index].id} aria-rowindex={offset + virtualRow.index + 1}>
-        {/* cells */}
-      </tr>
-    ))}
+    {virtualRows.map((virtualRow) => {
+      const row = rows[virtualRow.index];
+      if (row === undefined) return null;
+      return (
+        <tr key={row.id} aria-rowindex={offset + virtualRow.index + 1}>
+          {/* cells */}
+        </tr>
+      );
+    })}
   </tbody>
 </table>
 ```
@@ -523,6 +541,7 @@ test("a sort updates the address and fires one request", async ({ page }) => {
 - [ ] Is `placeholderData: keepPreviousData` set on the paginated query?
 - [ ] Is the markup a semantic `<table>`, with `role="grid"` only beside a full
       keyboard model?
+- [ ] Does the `aria-sort` value match the direction of the request?
 - [ ] Does one header at a time carry `aria-sort`, with a `<button>` inside the
       `<th>`?
 - [ ] Does the result count announce through a polite region after a sort or a

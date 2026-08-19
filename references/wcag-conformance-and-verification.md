@@ -341,7 +341,7 @@ rg -n 'vitest-axe|jest-axe' src/ vitest.config.* package.json
 
 # 5. Confirm that every route is in the end-to-end accessibility spec.
 rg -n 'AxeBuilder' e2e/
-rg -c 'page.tsx' -g 'page.tsx' src/app/
+rg --files -g 'page.tsx' src/app/
 
 # 6. Run the three automated lanes.
 pnpm lint

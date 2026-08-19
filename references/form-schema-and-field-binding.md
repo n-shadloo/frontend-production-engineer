@@ -286,10 +286,9 @@ what the form submits. State which one the schema validates.
 ### The libraries
 
 The table gives each package its latest version, its last release date, and its
-maintenance status. The research supplied those facts in August 2026, and it
-supplied no advisory count for any of them, so this table states none. A cell
-that holds no date is a package whose exact release date this material does not
-state.
+maintenance status. This skill read those facts in August 2026. It read no
+advisory count for any of them, so this table states none. A cell that holds no
+date is a package whose exact release date this material does not state.
 
 | Tier | Package | The rule | Latest version | Last release | Maintenance |
 | --- | --- | --- | --- | --- | --- |

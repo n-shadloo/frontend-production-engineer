@@ -173,7 +173,7 @@ URL. A `srcdoc` attribute takes markup rather than a URL, so it is the
 | `document.write()` | Parses a string into the document | Alive only in legacy code. Remove it. |
 | `javascript:` in an `href` or a `src` | Runs on a press | Parse the URL, and admit `http` and `https` only. |
 | `srcdoc` on an `<iframe>` | Parses markup into a frame | Treat it as raw HTML, and sanitise it. |
-| A `message` event from `postMessage` | Delivers a value from another window | It is input from outside the program. `references/boundary-validation-and-api-types.md` states the parse that every such value needs. |
+| A `message` event from `postMessage` | Delivers a value from another window | Test `event.origin` against an allowlist, then parse the payload. `references/boundary-validation-and-api-types.md` states the parse. A parse proves the shape, and never the sender. |
 
 React does not see these calls. A component that reaches for one steps outside
 the escape that the framework performs, so the review reads the call itself.
@@ -308,6 +308,7 @@ rg -n 'href=\{|src=\{' -g '*.tsx' src/
 - [ ] Is `innerHTML`, `eval`, `new Function`, and `document.write` absent from
       the code that this repository owns?
 - [ ] Is every `srcdoc` value sanitised as raw HTML?
+- [ ] Does every `message` handler test `event.origin` against an allowlist?
 - [ ] Is every `postMessage` payload parsed before use?
 - [ ] Does a Trusted Types policy run in report-only mode before it enforces?
 

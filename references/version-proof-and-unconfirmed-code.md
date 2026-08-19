@@ -225,7 +225,7 @@ React 19.2.6 is the security floor, for the reason that
 | Next 16 removed `next lint` | `rg -n 'next lint' package.json .github/` reports a hit | `references/lint-format-and-scripts.md` owns the direct `eslint` call |
 | Next 16.2 bundles the docs into the install | `ls node_modules/next/dist/docs/` fails on an older minor | Upgrade, or read the docs of the installed version from another source |
 | The React 19.2 line moved its security floor to 19.2.6 | `node -p "require('react/package.json').version"` reports a lower version | `references/secret-boundary-and-supply-chain.md` owns the floor. That domain holds a veto |
-| CVE-2026-64642 of July 2026 is a second bypass of `proxy.ts` | `node -p "require('next/package.json').version"` reports a version below the patched minor | `references/route-protection-and-permissions.md` owns the layers that do not depend on that file |
+| CVE-2026-64642 of July 2026 is a second bypass of `proxy.ts` | `node -p "require('next/package.json').version"` reports a version below 16.2.11 on the 16 line, or below 15.5.21 on the 15 line | Upgrade to that release. `references/route-protection-and-permissions.md` owns the layers that do not depend on that file |
 
 ### What breaks, and how it looks
 

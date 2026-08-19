@@ -351,14 +351,15 @@ the advisory behind it.
 
 `references/security-headers-and-csp.md` owns the `script-src` and `connect-src`
 entries. `references/runtime-process-and-reverse-proxy.md` owns the layer in
-front of Node, which may hold the same rewrite. The judgment of the vendor
-package, and the `integrity` attribute on a versioned file, are
+front of Node. Put the vendor path in one layer alone. The layer in front
+answers first, so a second entry in `next.config.ts` is dead code. The judgment
+of the vendor package, and the `integrity` attribute on a versioned file, are
 `references/secret-boundary-and-supply-chain.md`. That domain holds a veto.
 
-The research reports that a content blocker removes between about 20 and 40
-percent of client-side events. It names no source for that range. Measure the
-loss in this property, and compare the client count of one event against the
-server count of the same event.
+A content blocker removes between about 20 and 40 percent of client-side events.
+This skill names no source for that range. Measure the loss in this property,
+and compare the client count of one event against the server count of the same
+event.
 
 NEVER build a feature that a reader needs on a script that a blocker can remove.
 
@@ -445,7 +446,7 @@ number makes that number an estimate.
 
 ### The libraries
 
-The research names each vendor. It compares them on privacy posture, cookie
+The table names each vendor. It compares them on privacy posture, cookie
 requirement, self-hosting, bundle weight, data ownership, and legal exposure in
 the European Union. It states no version, no release date, and no advisory record
 for any of them. Those three columns hold `Not stated`. Read the registry entry

@@ -144,10 +144,22 @@ work.
 folder and the name. Only Chromium browsers carry it, and a cross-origin frame
 cannot call it. Feature-detect it, and fall back to the `<a download>` path.
 
+`lib.dom.d.ts` carries no `showSaveFilePicker` on TypeScript 5.9, so the bare
+`in` guard narrows the value to `unknown` and the call fails the typecheck.
+Declare the optional method first.
+
 ```ts
 // Correct: the picker where the browser has it, and the anchor everywhere else.
+declare global {
+  interface Window {
+    showSaveFilePicker?: (options: {
+      suggestedName?: string;
+    }) => Promise<FileSystemFileHandle>;
+  }
+}
+
 export async function saveFile(blob: Blob, suggestedName: string): Promise<void> {
-  if ("showSaveFilePicker" in window) {
+  if (typeof window.showSaveFilePicker === "function") {
     const handle = await window.showSaveFilePicker({ suggestedName });
     const stream = await handle.createWritable();
     await stream.write(blob);

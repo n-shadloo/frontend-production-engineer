@@ -215,6 +215,8 @@ export function putWithProgress(
         ? resolve()
         : reject(new Error(`The storage service refused the file: ${xhr.status}`));
     xhr.onerror = () => reject(new Error("The network dropped the upload."));
+    xhr.onabort = () =>
+      reject(new DOMException("The upload was cancelled.", "AbortError"));
     signal.addEventListener("abort", () => xhr.abort(), { once: true });
     xhr.send(file);
   });
@@ -222,7 +224,9 @@ export function putWithProgress(
 ```
 
 `XMLHttpRequest` is the older API, and it is the correct tool for this one job.
-Take `fetch` for every request that carries no file.
+Take `fetch` for every request that carries no file. WARNING: `abort()` fires
+neither `load` nor `error`. A helper that handles those two events alone leaves
+the promise open for the life of the page, so the row keeps its last percentage.
 
 Each file in a set needs its own percentage, its own cancel control, its own
 retry control, and its own message. A set of ten files with one bar hides which

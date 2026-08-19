@@ -256,8 +256,8 @@ export function proxy(request: NextRequest) {
 
 Three rules hold. A `Sec-GPC` of `1` sets every non-essential category to
 `false` by default. The reader may still turn a category on themselves, and that
-press is the record. Do Not Track carries no such legal weight, and the research
-names it as a signal to read, not to rely on.
+press is the record. Do Not Track carries no such legal weight. Read it as a
+signal, and never rely on it.
 
 CPRA also expects a "Do Not Sell or Share My Personal Information" control where
 the product sells or shares personal data.
@@ -349,7 +349,7 @@ list.
 
 ### The libraries
 
-The research names each consent product, and it compares a self-built layer
+The table names each consent product, and it compares a self-built layer
 against them. It states no version, no release date, and no advisory record for
 any of them. Those three columns hold `Not stated`. Read the registry entry and
 the advisory database of a package before the project installs it.

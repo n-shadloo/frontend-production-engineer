@@ -282,10 +282,11 @@ rg -n 'className=\{`[^`]*\$\{' src/
 rg -n 'export function cn' src/lib/
 rg -c 'from "@/lib/utils"' -g '*.tsx' src/ | head
 
-# 4. Find an !important in a feature file. Only the global reduced-motion
-#    block of the stylesheet may hold one, and
-#    references/visual-and-motor-criteria.md owns that block.
-rg -n '!important|![a-z-]+-\[' src/
+# 4. Find an !important in a feature file. Tailwind v4 writes the important
+#    modifier as a suffix, as in bg-destructive!. Only the global
+#    reduced-motion block of the stylesheet may hold one, and
+#    references/visual-and-motor-criteria.md owns that block. Read every hit.
+rg -n '!important|[a-z0-9\]]!["\s]' src/
 
 # 5. Find outline-none with no replacement ring. Read every hit.
 rg -n 'outline-none' src/ | rg -v 'ring'

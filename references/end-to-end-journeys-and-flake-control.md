@@ -347,10 +347,9 @@ the defect ships.
 
 ### The libraries
 
-The table gives each package its rule and its maintenance status. The dossier
-for this domain carries no registry facts, so no cell states a version number
-or a release date that this repository cannot confirm. Read the installed
-version from `package.json` before you write code.
+The table gives each package its rule and its maintenance status. This skill
+cannot confirm a version number or a release date for them, so no cell states
+one. Read the installed version from `package.json` before you write code.
 
 | Tier | Package | The rule | Latest version | Last release | Maintenance | Open advisories |
 | --- | --- | --- | --- | --- | --- | --- |

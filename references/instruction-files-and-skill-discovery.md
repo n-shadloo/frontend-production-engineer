@@ -277,10 +277,9 @@ owns the audit of an instruction file and of a skill.
 
 ### The libraries
 
-The table gives each item its rule and its maintenance status. The dossier for
-this domain carries no registry facts for the specifications, so no cell states
-a release date that this repository cannot confirm. Read the installed version
-before you write code.
+The table gives each item its rule and its maintenance status. This skill
+cannot confirm a release date for a specification, so no cell states one. Read
+the installed version before you write code.
 
 | Tier | Item | The rule | Latest version | Last release | Maintenance | Open advisories |
 | --- | --- | --- | --- | --- | --- | --- |
