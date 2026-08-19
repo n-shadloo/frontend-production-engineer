@@ -38,72 +38,115 @@ level above it.
 ## What it covers
 
 The roster below holds all twenty-four domains, in four tiers under the
-operating doctrine. The router table in `SKILL.md` is the authoritative list of
-what is loadable.
+operating doctrine. Each entry names the files under `references/` that carry
+the domain. The router table in `SKILL.md` is the authoritative list of what is
+loadable.
 
 Tier 0 is the operating discipline, in effect on every task.
 
-- `24 agent-operating-doctrine` — how the agent plans, verifies the installed
-  versions, and refuses to guess at an API. It also keeps the diff minimal,
-  runs the commands, and decides the work is done. Integrated.
+- `24 agent-operating-doctrine` — how the agent plans, verifies the
+  installed versions, and refuses to guess at an API. It also keeps the diff
+  minimal, runs the commands, and decides the work is done. Integrated.
+  `task-plan-and-scope-control`, `version-proof-and-unconfirmed-code`, and
+  `instruction-files-and-skill-discovery` carry it.
 
 Tier 1 is the foundations: where files go and how they are typed.
 
 - `01 nextjs-app-router-architecture` — routing, rendering, caching, the
-  server/client boundary, `proxy.ts`. Integrated.
-- `02 typescript-type-system-discipline` — type safety, generics, `tsconfig`,
-  the no-`any` doctrine. Integrated.
+  server/client boundary, `proxy.ts`. Integrated. `app-router-structure`,
+  `server-and-client-components`, `data-access-and-mutations`, and
+  `caching-and-revalidation` carry it.
+- `02 typescript-type-system-discipline` — type safety, generics,
+  `tsconfig`, the no-`any` doctrine. Integrated.
+  `typescript-config-and-enforcement`, `type-modeling-and-narrowing`, and
+  `boundary-validation-and-api-types` carry it.
 - `03 react-component-architecture` — composition, hooks, the React 19 APIs,
-  render correctness. Integrated.
+  render correctness. Integrated. `component-composition`,
+  `state-and-effects`, and `suspense-and-actions` carry it.
 - `04 project-structure-and-tooling` — folders, ESLint and Prettier, Git,
-  monorepos, dependencies. Integrated.
+  monorepos, dependencies. Integrated. `directory-and-module-boundaries`,
+  `lint-format-and-scripts`, and `dependencies-and-git-workflow` carry it.
 
 Tier 2 is the backend contract and the state built on it.
 
 - `05 django-drf-api-contract` — OpenAPI codegen, DRF error and pagination
-  shapes, CSRF and CORS. Integrated.
+  shapes, CSRF and CORS. Integrated. `openapi-schema-and-codegen`,
+  `api-client-and-request-safety`, and `cross-origin-and-bff-proxy` carry
+  it.
 - `06 data-fetching-and-state` — TanStack Query, cache design, client state,
-  URL state. Integrated.
+  URL state. Integrated. `server-state-and-query-cache` and
+  `client-and-url-state` carry it.
 - `07 authentication-and-authorization` — session and token strategy, route
-  protection, RBAC in the UI. Integrated.
+  protection, RBAC in the UI. Integrated. `session-and-token-lifecycle` and
+  `route-protection-and-permissions` carry it.
 - `08 realtime-and-streaming` — WebSockets and Channels, server-sent events,
-  optimistic concurrency. Integrated.
+  optimistic concurrency. Integrated. `push-transport-and-connection` and
+  `live-events-and-cache-merge` carry it.
 
 Tier 3 is interface craft.
 
 - `09 design-system-and-styling` — tokens, Tailwind v4, shadcn/ui, theming,
-  layout. Integrated.
+  layout. Integrated. `design-tokens-and-theming`,
+  `component-styles-and-variants`, and `layout-and-typography` carry it.
 - `10 accessibility-wcag` — WCAG 2.2 AA, the ARIA authoring practices,
   keyboard, focus, screen readers. Integrated.
+  `semantics-and-accessible-names`, `keyboard-focus-and-live-regions`,
+  `visual-and-motor-criteria`, and `wcag-conformance-and-verification` carry
+  it.
 - `11 forms-and-validation` — React Hook Form with Zod, React 19 Actions,
   server-error mapping, multi-step flows. Integrated.
+  `form-schema-and-field-binding`, `form-submission-and-server-errors`, and
+  `multi-step-forms-and-unsaved-work` carry it.
 - `12 data-tables-and-visualization` — TanStack Table, server-driven tables,
-  charts. Integrated.
-- `13 media-and-file-handling` — uploads, images, video, downloads, progress.
-  Integrated.
+  charts. Integrated. `data-table-and-server-driven-state`,
+  `charts-and-visual-encoding`, and `cell-formatting-and-export` carry it.
+- `13 media-and-file-handling` — uploads, images, video, downloads,
+  progress. Integrated. `file-upload-and-transport`,
+  `image-and-video-delivery`, and `served-content-and-downloads` carry it.
 - `14 motion-and-interaction` — Motion and View Transitions, gestures, the
   performance cost of animation. Integrated.
+  `motion-primitives-and-reduced-motion`,
+  `view-transitions-and-animation-libraries`, and
+  `gesture-and-scroll-interaction` carry it.
 - `15 ux-writing-and-content-design` — microcopy, error and empty states,
-  voice, information architecture. Integrated.
+  voice, information architecture. Integrated. `interface-copy-and-voice`,
+  `error-and-empty-state-copy`, and `message-catalog-and-plurals` carry it.
 
 Tier 4 is the non-functional guarantees, applied as a review pass before done.
 
 - `16 performance-and-web-vitals` — INP, LCP, CLS, bundles, budgets,
-  measurement. Integrated.
+  measurement. Integrated. `performance-budgets-and-measurement`,
+  `client-bundle-and-third-party-scripts`, and `paint-and-interaction-cost`
+  carry it.
 - `17 frontend-security` — XSS, CSP, response headers, server action safety,
-  supply chain. Integrated.
-- `18 seo-and-metadata` — the Metadata API, JSON-LD, sitemaps, canonical URLs,
-  Open Graph. Integrated.
+  supply chain. Integrated. `untrusted-markup-and-injection`,
+  `security-headers-and-csp`, `exposed-endpoints-and-destinations`, and
+  `secret-boundary-and-supply-chain` carry it.
+- `18 seo-and-metadata` — the Metadata API, JSON-LD, sitemaps, canonical
+  URLs, Open Graph. Integrated. `route-metadata-and-social-cards`,
+  `structured-data-and-rich-results`, and `crawl-and-index-control` carry
+  it.
 - `19 internationalization-and-rtl` — next-intl, locale routing, RTL and
-  Persian, the `Intl` APIs. Integrated.
+  Persian, the `Intl` APIs. Integrated. `locale-routing-and-catalogs`,
+  `locale-formatting-and-calendars`, and `bidirectional-layout-and-scripts`
+  carry it.
 - `20 testing-and-quality` — Vitest, React Testing Library, MSW, Playwright,
-  contract tests. Integrated.
+  contract tests. Integrated. `test-strategy-and-component-tests`,
+  `network-mocks-and-contract-tests`,
+  `end-to-end-journeys-and-flake-control`, and
+  `merge-gates-and-quality-signals` carry it.
 - `21 observability-and-resilience` — error boundaries, Sentry, real-user
   monitoring, graceful degradation. Integrated.
-- `22 build-deploy-and-runtime-ops` — Docker, standalone output, Nginx, CI/CD,
-  self-hosting. Integrated.
+  `error-capture-and-reporting`, `correlation-and-telemetry`, and
+  `degradation-and-health-checks` carry it.
+- `22 build-deploy-and-runtime-ops` — Docker, standalone output, Nginx,
+  CI/CD, self-hosting. Integrated. `build-output-and-container-image`,
+  `runtime-process-and-reverse-proxy`, and `release-pipeline-and-rollback`
+  carry it.
 - `23 analytics-privacy-and-consent` — events, consent gating, GDPR,
-  third-party scripts. Integrated.
+  third-party scripts. Integrated. `event-taxonomy-and-tracking-plan`,
+  `consent-gate-and-cookie-inventory`, and
+  `data-rights-and-privacy-surfaces` carry it.
 
 All twenty-four domains are integrated.
 
@@ -263,7 +306,7 @@ run.
 
 ## Example output
 
-At 1.23.3 the integrated material is the App Router foundation, the type
+At 1.23.4 the integrated material is the App Router foundation, the type
 system, and the React component tree. It also holds the project structure, the
 backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -454,6 +497,10 @@ frontend-production-engineer/
 ├── .cursor/
 │   └── rules/
 │       └── frontend-production-engineer.mdc   # Cursor reinforcement rule
+├── .github/
+│   └── workflows/
+│       ├── docs-integrity.yml                 # router, orphan, and size gate
+│       └── validate-skill.yml                 # frontmatter gate
 ├── references/                                # domain depth, one release each
 │   ├── api-client-and-request-safety.md
 │   ├── app-router-structure.md
@@ -533,7 +580,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds twenty-four domains at 1.23.3, which is every domain that
+`references/` holds twenty-four domains at 1.23.4, which is every domain that
 has a router entry.
 `scripts/` and `assets/` are not present, because no domain ships an executable
 or a template.

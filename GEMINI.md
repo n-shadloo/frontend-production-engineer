@@ -21,7 +21,7 @@ guarantees: Web Vitals, frontend security, SEO, internationalization and RTL,
 testing, observability, build and deploy, and analytics and consent. A Tier 0
 operating doctrine sits under all four, and it is always in effect.
 
-At 1.23.3 the integrated material in `references/` is the App Router
+At 1.23.4 the integrated material in `references/` is the App Router
 foundation, the type system, and the React component tree. It also holds
 the project structure, the DRF contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -97,6 +97,42 @@ Two standing rules govern everything. Verify the installed versions from
 in one file, and report an unconfirmed API as unconfirmed. Apply the conflict
 rule: security > accessibility > correctness > performance > developer
 convenience. No level trades down to satisfy a level above it.
+
+Resolve the domains in this order on a feature task. The standing rules come
+first, and they always apply. The foundations come next, for where files go and
+how they are typed. The backend contract comes before any code that touches
+Django. The domain files that match the feature come after it. The
+non-functional domains come last, as a review pass before done.
+
+Work is not done because it renders. Verify the versions first, and let no file
+mix idioms from two major versions. The typecheck, the lint, the tests that
+cover the change, and the production build must pass. Add no suppression to
+make a gate pass. Let the diff hold nothing that the request did not ask for.
+
+Seven domains hold a veto over completion. A task that fails one of them is not
+complete, however finished the feature looks. The first failure condition of
+each one is below, and `SKILL.md` holds the full list for every domain.
+
+- `nextjs-app-router-architecture` — a route that cannot state its render
+  mode, its data source, its cache strategy, and its invalidation trigger.
+- `typescript-type-system-discipline` — a `tsc --noEmit` that does not exit
+  0, or a suppression added to make it do so.
+- `django-drf-api-contract` — an absent schema, and code that proceeds on a
+  guessed response shape.
+- `authentication-and-authorization` — a token, a refresh token, or a
+  permission list in `localStorage` or `sessionStorage`.
+- `accessibility-wcag` — a keyboard trap, or an interactive control with no
+  accessible name.
+- `frontend-security` — an unescaped injection sink, or a secret that reaches
+  the client.
+- `testing-and-quality` — a change with no test at any level, and no stated
+  reason.
+
+Every other integrated domain holds no veto. Its rules are findings on a review
+pass, and one of them fails a task only where a blocking domain fails with it.
+`frontend-security` and `accessibility-wcag` are absolute, and neither is a
+follow-up ticket. `agent-operating-doctrine` sits outside both sets. It is the
+definition of done that every other domain is failed against.
 
 Primary integration is Claude; this file exists so Gemini CLI uses the same
 single source of truth. Modes (review-time / write-time), the standing rules,

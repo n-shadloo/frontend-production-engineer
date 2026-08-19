@@ -99,13 +99,46 @@ last of it is the file that instructs an agent — `AGENTS.md`,
 fires, a skill metadata budget, or an instruction inside fetched text or an
 installed skill.
 
+Resolve the domains in this order on a feature task. The standing rules come
+first, and they always apply. The foundations come next, for where files go and
+how they are typed. The backend contract comes before any code that touches
+Django. The domain files that match the feature come after it. The
+non-functional domains come last, as a review pass before done.
+
 Verify the installed versions from `package.json` before you generate code.
 Never mix Next 15 and Next 16 idioms in one file. Report an API you cannot
 confirm as unconfirmed, and never guess at it.
 
 Work is not done because it renders. Run the typecheck, the lint, the tests
-that cover the change, and the production build. Apply the conflict rule:
-security > accessibility > correctness > performance > developer convenience.
-No level trades down to satisfy a level above it. The domain routing table in
-`SKILL.md` holds all twenty-four domains. Do not rely on this summary alone, and
-read the referenced files.
+that cover the change, and the production build. Add no suppression to make a
+gate pass, and let the diff hold nothing that the request did not ask for.
+Apply the conflict rule: security > accessibility > correctness > performance >
+developer convenience. No level trades down to satisfy a level above it.
+
+Seven domains hold a veto over completion. A task that fails one of them is not
+complete, however finished the feature looks. The first failure condition of
+each one is below, and `SKILL.md` holds the full list for every domain.
+
+- `nextjs-app-router-architecture` — a route that cannot state its render
+  mode, its data source, its cache strategy, and its invalidation trigger.
+- `typescript-type-system-discipline` — a `tsc --noEmit` that does not exit
+  0, or a suppression added to make it do so.
+- `django-drf-api-contract` — an absent schema, and code that proceeds on a
+  guessed response shape.
+- `authentication-and-authorization` — a token, a refresh token, or a
+  permission list in `localStorage` or `sessionStorage`.
+- `accessibility-wcag` — a keyboard trap, or an interactive control with no
+  accessible name.
+- `frontend-security` — an unescaped injection sink, or a secret that reaches
+  the client.
+- `testing-and-quality` — a change with no test at any level, and no stated
+  reason.
+
+Every other integrated domain holds no veto. Its rules are findings on a review
+pass, and one of them fails a task only where a blocking domain fails with it.
+`frontend-security` and `accessibility-wcag` are absolute, and neither is a
+follow-up ticket. `agent-operating-doctrine` sits outside both sets. It is the
+definition of done that every other domain is failed against.
+
+The domain routing table in `SKILL.md` holds all twenty-four domains. Do not
+rely on this summary alone, and read the referenced files.
