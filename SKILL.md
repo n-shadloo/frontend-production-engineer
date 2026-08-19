@@ -21,7 +21,7 @@ license: MIT
 allowed-tools: Read, Grep, Glob, Bash, Edit, Write
 metadata:
   author: n-shadloo
-  version: 1.23.1
+  version: 1.23.2
 ---
 
 # frontend-production-engineer
@@ -296,7 +296,7 @@ each one.
 | 17 ↔ 23 | 17 owns the `script-src` and `connect-src` entries, the review over a tag manager, and the `integrity` attribute. It holds a veto. 23 owns the consent that must arrive before the tag renders. |
 | 20 ↔ 23 | 20 owns the runner, the fixture, and the browser test. 23 owns the two assertions that such a test makes: no vendor request with consent refused, and one event for one navigation. |
 | 21 ↔ 23 | 21 owns the scrub inside an error report, and the mask over a session replay. 23 owns the consent that must arrive before a replay starts, and the same scrub on the analytics path. |
-| 22 ↔ 23 | 22 owns the layer in front of Node, and the environment value that reaches the process. 23 owns the rewrite that puts a vendor script and its collector on this origin. |
+| 22 ↔ 23 | 22 owns the layer in front of Node, and the environment value that reaches the process. 23 owns the vendor path on this origin, and the rule that one layer alone answers it. |
 | 01 ↔ 24 | 01 owns the route idiom that the installed Next.js minor carries. 24 owns the read of that version before any route file is written. |
 | 02 ↔ 24 | 02 owns whether a suppression may exist at all, and the description that `@ts-expect-error` needs. 24 owns the narrower rule that this change added none to make a gate pass. |
 | 03 ↔ 24 | 03 owns the React 19 API and the advisory that set the floor of the line. 24 owns the read that confirms the installed minor carries that API. |
@@ -363,7 +363,7 @@ go and how they are typed. The backend contract comes before any code that
 touches Django. The domain files that match the feature come after it. The
 non-functional domains come last, as a review pass before done.
 
-The router table above is the integrated material at 1.23.1, and it is the
+The router table above is the integrated material at 1.23.2, and it is the
 authoritative list. It holds all twenty-four domains.
 
 Work is not done because it renders. It is done when all of the following

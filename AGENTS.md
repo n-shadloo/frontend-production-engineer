@@ -24,7 +24,7 @@ foundations, backend contract and state, interface craft, and non-functional
 guarantees. A Tier 0 operating doctrine sits under them, and it is always in
 effect.
 
-At 1.23.1 the integrated material in `references/` is the App Router
+At 1.23.2 the integrated material in `references/` is the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the DRF contract, and the client cache and state.
 It holds the session with the gates over it, and the push transport with the

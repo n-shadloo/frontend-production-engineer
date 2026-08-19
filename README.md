@@ -111,7 +111,7 @@ Seven of these are blocking. `nextjs-app-router-architecture`,
 `typescript-type-system-discipline`, `django-drf-api-contract`,
 `authentication-and-authorization`, `accessibility-wcag`, `frontend-security`,
 and `testing-and-quality` each hold a veto over completion. All seven are
-integrated. The last two are absolute. A task that fails accessibility or
+integrated. Two of them are absolute. A task that fails accessibility or
 security is a failed task, and never a follow-up ticket.
 
 The stack baseline is pinned, and it was verified in August 2026. The framework
@@ -184,8 +184,8 @@ For claude.ai or the API, upload the folder as a custom skill in Settings.
 
 ### Codex CLI
 
-Codex CLI discovers Agent Skills from the `.agents/skills/` directory and uses
-the bundled pointer skill to load the canonical `SKILL.md`.
+Codex CLI discovers Agent Skills from the `.agents/skills/` directory, so the
+cloned repository is the skill and Codex reads `SKILL.md` directly.
 
 One project:
 
@@ -201,8 +201,8 @@ git clone https://github.com/n-shadloo/frontend-production-engineer.git \
   ~/.agents/skills/frontend-production-engineer
 ```
 
-`AGENTS.md` provides project-wide context, while the pointer skill forwards to
-the canonical instructions in the repository root.
+`AGENTS.md` provides project-wide context, while `SKILL.md` in the repository
+root holds the canonical instructions.
 
 ### Cursor
 
@@ -218,9 +218,15 @@ reinforcement that points back to the canonical `SKILL.md`.
 
 ### Gemini CLI
 
-Gemini CLI doesn't read Agent Skills directly; it reads `GEMINI.md`.
+Gemini CLI doesn't read Agent Skills directly; it reads `GEMINI.md`. Clone the
+repository first, then copy the context file out of the clone:
 
-- **Per project:** copy `GEMINI.md` into the repository root.
+```bash
+git clone https://github.com/n-shadloo/frontend-production-engineer.git \
+  .gemini/skills/frontend-production-engineer
+```
+
+- **Per project:** copy `GEMINI.md` from the clone into the repository root.
 - **All projects:** copy it to `~/.gemini/GEMINI.md`.
 
 `GEMINI.md` points Gemini to the canonical `SKILL.md` and `references/`, and it
@@ -257,7 +263,7 @@ run.
 
 ## Example output
 
-At 1.23.1 the integrated material is the App Router foundation, the type
+At 1.23.2 the integrated material is the App Router foundation, the type
 system, and the React component tree. It also holds the project structure, the
 backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -527,7 +533,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds twenty-four domains at 1.23.1, which is every domain that
+`references/` holds twenty-four domains at 1.23.2, which is every domain that
 has a router entry.
 `scripts/` and `assets/` are not present, because no domain ships an executable
 or a template.
