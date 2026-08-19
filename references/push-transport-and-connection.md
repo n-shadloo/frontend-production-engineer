@@ -136,10 +136,10 @@ import { backoffDelay } from "@/lib/realtime/backoff";
 export type ConnectionStatus = "connecting" | "open" | "reconnecting" | "failed";
 type Listener = (frame: string) => void;
 
-interface SocketApi {
+type SocketApi = {
   subscribe: (fn: Listener) => () => void;
   send: (message: unknown) => void;
-}
+};
 
 const SocketContext = createContext<SocketApi | null>(null);
 const StatusContext = createContext<ConnectionStatus>("connecting");
@@ -346,11 +346,13 @@ for the radio, the battery, and the render.
 const onVisibilityChange = () => {
   if (document.hidden) {
     closedByUs = true; // a deliberate close, so no reconnect runs
+    clearTimeout(timer); // a pending reconnect would open a second socket
     socketRef.current?.close(1000, "hidden");
+    socketRef.current = null;
     return;
   }
   closedByUs = false;
-  connect(); // connect() resyncs on open
+  if (socketRef.current === null) connect(); // connect() resyncs on open
 };
 
 document.addEventListener("visibilitychange", onVisibilityChange);

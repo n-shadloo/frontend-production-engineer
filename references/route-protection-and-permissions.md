@@ -367,7 +367,7 @@ input. A switch of the tenant also clears the entries of the previous one, and
 rg --files-without-match 'verifySession|getSession' -g 'page.tsx' src/app
 
 # 2. Confirm that proxy.ts holds no authorization. This must print nothing.
-rg -nE 'jwtVerify|jsonwebtoken|decode\(|\.role|verifySession|DJANGO_URL' proxy.ts src/proxy.ts
+rg -n 'jwtVerify|jsonwebtoken|decode\(|\.role|verifySession|DJANGO_URL' proxy.ts src/proxy.ts
 
 # 3. Find a Server Action that takes an identity as a parameter. Read every
 #    hit.

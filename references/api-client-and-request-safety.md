@@ -157,14 +157,14 @@ catch (e) { toast((e as Error).message); }
 
 ```ts
 // Correct: src/lib/api/errors.ts gives every failure one shape.
-export interface ApiError {
+export type ApiError = {
   status: number;
   code: string;                          // the DRF code, never the message
   message: string;                       // a fallback for a person to read
   fieldErrors?: Record<string, string[]>;
   retryable: boolean;
   raw: unknown;
-}
+};
 
 const RETRYABLE = new Set([429, 502, 503, 504]);
 

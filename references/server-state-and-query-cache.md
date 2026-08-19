@@ -59,10 +59,10 @@ import { queryOptions } from "@tanstack/react-query";
 import { api } from "@/lib/api/client";
 import { normalizeApiError } from "@/lib/api/errors";
 
-export interface OrderFilters {
+export type OrderFilters = {
   search: string;
   page: number;
-}
+};
 
 export const orderKeys = {
   all: ["orders"] as const,
@@ -517,7 +517,7 @@ node -p "require('@tanstack/react-query/package.json').version"
 rg -n 'queryFn:' src/app src/components src/features --glob '!**/api/**'
 
 # 3. Find a QueryClient in module scope. This must print nothing.
-rg -nE '^(const|let) [A-Za-z]+ = new QueryClient\(' src/
+rg -n '^(const|let) [A-Za-z]+ = new QueryClient\(' src/
 
 # 4. Find a query key that is a literal array rather than a factory call.
 rg -n 'queryKey: \[' src/

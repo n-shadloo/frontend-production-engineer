@@ -224,7 +224,9 @@ rg -n '^\s*enum ' src/api/generated/
 # 7. Find a hand-written response model beside the generated one.
 rg -n 'interface .*(Response|Payload|Dto)\b' src/ -g '!src/api/generated/**'
 
-# 8. Confirm one case convention. One of these two must print nothing.
+# 8. Confirm one case convention. Snake hits with no package is snake end to
+#    end. No snake hits with no package is the backend hook. Snake hits with a
+#    package is the client boundary. Any other pair is two conventions.
 rg -n '[a-z]_[a-z].*:' src/api/generated/schema.d.ts | head
 rg -n 'camelcase|humps|ts-case-convert' package.json
 ```

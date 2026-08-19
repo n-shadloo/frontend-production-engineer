@@ -188,10 +188,11 @@ interactive element inside the first.
 
 ```tsx
 // Correct: the caller supplies the element, and the component merges its
-// props and its ref into it.
-<Button asChild>
-  <a href="/orders">Orders</a>
-</Button>
+// props and its ref into it. This is the Base UI form, which shadcn/ui takes.
+<Button render={<a href="/orders" />}>Orders</Button>
+
+// On a Radix codebase the same call is:
+// <Button asChild><a href="/orders">Orders</a></Button>
 ```
 
 Confirm the prop name in the installed library before you write the code. The
@@ -349,8 +350,8 @@ rg -n -B1 -A8 '^\s*(type|interface) \w+Props' -g '*.tsx' src/ | rg '\?: boolean'
 ## Review checklist
 
 - [ ] Does every component have one responsibility?
-- [ ] Is every component file under 200 lines, and every component under five
-      `useState` calls?
+- [ ] Is every component file at 200 lines or fewer, and every component at
+      five `useState` calls or fewer?
 - [ ] Does every layout variant come from composition rather than from three or
       more boolean props?
 - [ ] Does a compound component share its state through a context rather than

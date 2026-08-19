@@ -164,14 +164,14 @@ table states only what a pushed event changes about that choice.
 // Failure: invalidateQueries marks the entry stale, and the setQueryData that
 // follows clears that mark. The refetch never runs, so the total that the
 // server computes keeps the value it held before the event.
-queryClient.invalidateQueries({ queryKey: orderKeys.lists() });
+queryClient.invalidateQueries({ queryKey: orderKeys.detail(id) });
 queryClient.setQueryData(orderKeys.detail(id), payload);
 ```
 
 ```ts
-// Correct: write first, and invalidate last.
+// Correct: write first, and invalidate last. Both calls name one entry.
 queryClient.setQueryData(orderKeys.detail(id), payload);
-queryClient.invalidateQueries({ queryKey: orderKeys.lists() });
+queryClient.invalidateQueries({ queryKey: orderKeys.detail(id) });
 ```
 
 An event writes into the entry that the request filled, under the key that

@@ -307,7 +307,7 @@ differs there, so the one-level behavior is the behavior that the case needs.
 rg -n '^\s*["'"'"']use client["'"'"']' -g '*.tsx' -g '*.ts' .
 
 # 2. Find the directive on a layout or a page shell. This must print nothing.
-rg -l 'use client' -g 'app/**/layout.tsx' -g 'app/**/page.tsx' .
+rg -l 'use client' -g '**/app/**/layout.tsx' -g '**/app/**/page.tsx' .
 
 # 3. Confirm that every secret-reading module is server-only.
 rg --files-without-match 'server-only' src/lib/dal

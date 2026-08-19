@@ -57,7 +57,6 @@ in decline, and alive only in legacy code.
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
 
     "plugins": [{ "name": "next" }],
     "baseUrl": ".",
@@ -75,7 +74,6 @@ in decline, and alive only in legacy code.
 | `isolatedModules` | A file that only one compiler can read. Required for a single-file transpiler. |
 | `verbatimModuleSyntax` | A type-only import that survives to run time, or a side-effect import that the bundler removes. It reports `TS1484`. |
 | `noImplicitOverride` | A method that stops overriding a base method after a rename, and silently becomes a new method. |
-| `noPropertyAccessFromIndexSignature` | A typo on an index signature that reads as a valid property. |
 | `moduleResolution: "bundler"` | A resolution mode that disagrees with Turbopack. |
 | `jsx: "preserve"` and `noEmit: true` | A second, competing build. Next.js owns the emit. |
 | `plugins: [{ "name": "next" }]` | The editor loses the Next.js type service. |

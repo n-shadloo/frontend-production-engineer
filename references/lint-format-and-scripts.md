@@ -43,7 +43,7 @@ in decline, and alive only in legacy code.
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
-    "lint:fix": "eslint . --fix",
+    "lint:fix": "eslint . --fix --max-warnings=0",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -188,8 +188,7 @@ import { InvoiceRow } from "@/features/billing/components/invoice-row";
 ```tsx
 // Correct: two hyphens separate the rule from the reason, and the reason
 // states when the line goes away.
-// eslint-disable-next-line boundaries/element-types -- FE-412 lifts this part
-// to src/components/common in the next change
+// eslint-disable-next-line boundaries/element-types -- FE-412 lifts this to src/components/common
 import { InvoiceRow } from "@/features/billing/components/invoice-row";
 ```
 

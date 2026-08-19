@@ -80,11 +80,14 @@ hooks around it.
 // Correct: the panel fails alone, and the user retries the panel alone.
 "use client"; // reason: an error boundary needs client state
 import { ErrorBoundary } from "react-error-boundary";
+import { useRouter } from "next/navigation";
 import { Suspense } from "react";
 
 export function RevenuePanel({ promise }: { promise: Promise<Revenue> }) {
+  const router = useRouter();
   return (
     <ErrorBoundary
+      onReset={() => router.refresh()} // the server makes a new promise
       fallbackRender={({ resetErrorBoundary }) => (
         <div role="alert">
           <p>The revenue did not load.</p>
@@ -101,7 +104,9 @@ export function RevenuePanel({ promise }: { promise: Promise<Revenue> }) {
 ```
 
 Confirm that the retry works. A boundary whose button changes nothing is a dead
-end for the user. Put the error boundary outside the `<Suspense>`, so that a
+end for the user. A Server Component made this promise, so the client cannot
+make it again. `resetErrorBoundary` alone re-reads the rejected promise, and the
+error returns in the same commit. `onReset` must reach the server. Put the error boundary outside the `<Suspense>`, so that a
 throw during the retry reaches it.
 
 ### `use()` needs a promise that already exists

@@ -177,9 +177,9 @@ export const metadata: Metadata = { title: "Home" };
 ```
 
 ```ts
-// Correct: satisfies checks the shape and keeps the literal.
+// Correct: satisfies checks the shape, and as const keeps the literal.
 import type { Metadata } from "next";
-export const metadata = { title: "Home" } satisfies Metadata;
+export const metadata = { title: "Home" } as const satisfies Metadata;
 ```
 
 Order matters when both operators appear. Write `as const satisfies T`. The

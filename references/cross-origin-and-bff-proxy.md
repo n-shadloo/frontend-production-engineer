@@ -142,6 +142,7 @@ export async function POST(request: NextRequest) {
     headers: {
       "Content-Type": "application/json",
       cookie: request.headers.get("cookie") ?? "",
+      "X-CSRFToken": request.headers.get("x-csrftoken") ?? "",
     },
     body,
     signal: AbortSignal.timeout(15_000),
@@ -160,7 +161,8 @@ Four rules hold for every proxy route. The upstream host is a constant in the
 code, and it never comes from a parameter, a header, or a body. Each exported
 function serves one method, so no allowlist is needed. The body has a size cap,
 and the request has a timeout. Only the headers that the upstream needs are
-forwarded.
+forwarded, and the CSRF header is one of them wherever the upstream enforces
+CSRF.
 
 A rewrite in `next.config.ts` serves the same purpose with no code, and it
 suits a plain pass-through. Take the Route Handler where the request needs a

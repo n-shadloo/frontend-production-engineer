@@ -158,15 +158,15 @@ export function proxy(request: NextRequest) {
 ```
 
 ```tsx
-// Correct: the real check runs in the layout, on the server, with the data.
-// app/dashboard/layout.tsx
+// Correct: the real check runs in the page, on the server, with the data.
+// app/dashboard/page.tsx
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/dal/session";
 
-export default async function DashboardLayout(props: LayoutProps<'/dashboard'>) {
+export default async function DashboardPage(props: PageProps<'/dashboard'>) {
   const session = await getSession();
   if (!session?.isStaff) redirect("/login");
-  return <>{props.children}</>;
+  return <Dashboard searchParams={await props.searchParams} />;
 }
 ```
 
@@ -300,8 +300,8 @@ done
 - [ ] Is `middleware.ts` absent, unless the Edge runtime is a requirement?
 - [ ] Does `proxy.ts` hold only rewrites, redirects, headers, locale logic,
       and cookie-presence tests?
-- [ ] Does a layout, a page, a Server Action, or the data access layer verify
-      the session?
+- [ ] Does a page, a Server Action, or the data access layer verify the
+      session? A layout alone does not, because it does not re-render.
 - [ ] Does every dynamic segment hold a `loading.tsx`, or a `<Suspense>` in
       the page?
 - [ ] Does every fallible segment hold an `error.tsx`?

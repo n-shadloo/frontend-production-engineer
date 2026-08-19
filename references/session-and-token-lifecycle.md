@@ -232,7 +232,7 @@ export function endSession() {
 ```ts
 // Correct: src/lib/auth/end-session.ts revokes on the server first, then
 // clears every client copy, then tells the other tabs.
-import { queryClient } from "@/lib/query/client";
+import { getQueryClient } from "@/lib/query/client";
 
 const authChannel = new BroadcastChannel("auth");
 
@@ -242,7 +242,7 @@ export async function endSession(): Promise<void> {
     credentials: "include", // the server blacklists the token and clears the cookie
   });
   setAccessToken(null);
-  queryClient.clear();
+  getQueryClient().clear();
   authChannel.postMessage({ type: "SESSION_ENDED" });
   window.location.assign("/login"); // a full load, so no cached RSC payload survives
 }
@@ -353,7 +353,7 @@ node -p "require('react/package.json').version"
 
 # 2. Find a token, a refresh token, or a permission list in web storage. This
 #    must print nothing.
-rg -niE 'localStorage|sessionStorage' src/ | rg -iE 'token|access|refresh|permission|role'
+rg -ni 'localStorage|sessionStorage' src/ | rg -i 'token|access|refresh|permission|role'
 
 # 3. Find a refresh call outside the one module. Read every hit.
 rg -n 'auth/refresh' src/ -g '!src/lib/auth/refresh.ts'
