@@ -485,6 +485,10 @@ curl -s -o /dev/null -w '%{http_code}\n' "$APP_ORIGIN/_next/static/chunks/$CHUNK
 - The connection status, the reconnect count, and the parse counter that feed
   an alert → `references/push-transport-and-connection.md` and
   `references/live-events-and-cache-merge.md`.
+- The consent that must arrive before a session replay starts →
+  `references/consent-gate-and-cookie-inventory.md`. The same scrub on the path
+  that an analytics event takes →
+  `references/event-taxonomy-and-tracking-plan.md`.
 - The test that proves a boundary renders and recovers →
   `references/test-strategy-and-component-tests.md`.
 - The server-side guarantee that no response body carries a stack trace → the

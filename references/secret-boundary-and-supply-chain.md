@@ -175,10 +175,11 @@ A tag manager is a channel through which somebody adds code after the review.
 Treat it as such, and hold the record of who may publish through it.
 
 `references/client-bundle-and-third-party-scripts.md` owns the strategy, the
-measured cost, and the named owner of each script. Domain 23
-`analytics-privacy-and-consent` owns the lawful basis and the consent gate, and
-it is not integrated yet. This file owns the integrity of the file and the
-decision to self-host.
+measured cost, and the named owner of each script.
+`references/consent-gate-and-cookie-inventory.md` owns the consent that must
+arrive before a tag renders, and it states that the gate covers the container and
+never what somebody publishes into it. This file owns the integrity of the file
+and the decision to self-host.
 
 ### The secret that reaches a commit
 
@@ -327,8 +328,8 @@ git ls-files | rg '^\.env'
   `references/session-and-token-lifecycle.md`.
 - The environment variable that a generated client reads →
   `references/openapi-schema-and-codegen.md`.
-- The consent gate over a tag manager, and the lawful basis → domain 23
-  `analytics-privacy-and-consent`. Not integrated yet.
+- The consent that must arrive before a tag manager renders, and the cookie
+  inventory → `references/consent-gate-and-cookie-inventory.md`.
 - The Docker image, and the build context that produces it →
   `references/build-output-and-container-image.md`. The environment file on the
   host → `references/runtime-process-and-reverse-proxy.md`. The credential

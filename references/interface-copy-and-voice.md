@@ -268,9 +268,9 @@ holds a veto. This file owns the sentence.
 Ship every consent control unchecked. A pre-checked control records an
 agreement that nobody made.
 
-Domain 23 `analytics-privacy-and-consent` owns the lawful basis of a consent
-string and the mechanism behind it. It is not integrated yet. This file owns
-the plain language and the five rows above.
+`references/consent-gate-and-cookie-inventory.md` owns the category, the record
+that keeps the answer, and the gate that reads it. This file owns the plain
+language and the five rows above.
 
 ### What breaks, and how it looks
 
@@ -379,5 +379,5 @@ rg -n 'defaultChecked|checked=\{true\}' -g '*.tsx' src/
 - The locale route, and the file that holds the catalog →
   `references/locale-routing-and-catalogs.md`. The direction of the document →
   `references/bidirectional-layout-and-scripts.md`.
-- The lawful basis of a consent string, and the consent mechanism → domain 23
-  `analytics-privacy-and-consent`. Not integrated yet.
+- The consent category, the record that keeps the answer, and the gate that
+  reads it → `references/consent-gate-and-cookie-inventory.md`.

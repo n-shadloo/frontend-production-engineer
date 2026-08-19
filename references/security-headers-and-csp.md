@@ -352,8 +352,8 @@ curl -sI "$APP_ORIGIN" | rg -ic 'content-security-policy'
   script is `references/client-bundle-and-third-party-scripts.md`.
 - The reverse proxy, the TLS termination, and the layer that emits the header set
   → `references/runtime-process-and-reverse-proxy.md`.
-- The consent gate over a tag manager → domain 23
-  `analytics-privacy-and-consent`. Not integrated yet.
+- The consent that must arrive before a tag manager renders, and the cookie
+  inventory → `references/consent-gate-and-cookie-inventory.md`.
 - The endpoint that receives a violation report, and the rule over its count →
   `references/correlation-and-telemetry.md`.
 - The server-side headers of Django, and `ALLOWED_HOSTS` → the sibling skills

@@ -175,8 +175,10 @@ Take the component from `@next/third-parties` for a vendor that it covers. It
 already carries the correct strategy and the correct attributes.
 
 `references/image-and-video-delivery.md` owns the facade in front of a video
-player. Domain 23 `analytics-privacy-and-consent` owns the lawful basis, the
-consent gate, and the event schema. This file owns the cost and the moment.
+player. `references/consent-gate-and-cookie-inventory.md` owns the condition that
+holds a tag out of the document, and
+`references/event-taxonomy-and-tracking-plan.md` owns the event that it sends.
+This file owns the cost and the moment.
 
 ### The origin hint
 
@@ -382,7 +384,9 @@ rg -n 'prefetch' -g '*.tsx' src/
   `references/secret-boundary-and-supply-chain.md`. The Content Security Policy
   that admits it is `references/security-headers-and-csp.md`. That domain holds
   a veto.
-- The consent gate over a script, the lawful basis, and the event schema →
-  domain 23 `analytics-privacy-and-consent`. Not integrated yet.
+- The consent that must arrive before a script renders, and the cookie
+  inventory → `references/consent-gate-and-cookie-inventory.md`. The event that a
+  script sends, its name, and its properties →
+  `references/event-taxonomy-and-tracking-plan.md`.
 - The compression, and the cache headers in front of `_next/static` →
   `references/runtime-process-and-reverse-proxy.md`.
