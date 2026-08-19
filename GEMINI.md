@@ -11,7 +11,7 @@ tree, and the typed contract with the backend. They also include the
 non-functional guarantees a shipped frontend owes its users. The Django backend
 itself is out of scope.
 
-Domains are integrated one per release across four tiers. Tier 1 is the
+Twenty-four domains are integrated across four tiers. Tier 1 is the
 foundations: App Router architecture, the type system, React component
 architecture, and project structure and tooling. Tier 2 is the backend contract
 and the state built on it: DRF contract and OpenAPI codegen, data fetching,
@@ -21,7 +21,7 @@ guarantees: Web Vitals, frontend security, SEO, internationalization and RTL,
 testing, observability, build and deploy, and analytics and consent. A Tier 0
 operating doctrine sits under all four, and it is always in effect.
 
-At 1.23.0 the integrated material in `references/` is the App Router
+At 1.23.1 the integrated material in `references/` is the App Router
 foundation, the type system, and the React component tree. It also holds
 the project structure, the DRF contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the

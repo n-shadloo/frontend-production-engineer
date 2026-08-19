@@ -5,8 +5,8 @@ production Next.js and TypeScript against a Django / Django REST Framework
 backend. The deep specialty is the pinned stack: Next.js 16, React 19,
 TypeScript 5, Tailwind v4, and a DRF contract that a generated OpenAPI client
 consumes. A portable principle layer sits under that stack, and it survives the
-next major version. It covers the browser-facing application only; the Django
-backend belongs to the author's other skills.
+next major version. It covers the browser-facing application only, and the
+Django backend is out of scope.
 
 ## Why this exists
 
@@ -37,9 +37,9 @@ level above it.
 
 ## What it covers
 
-Domains are integrated one per release. The roster below is the full plan, and
-each entry carries its current status. The router table in `SKILL.md` is the
-authoritative list of what is loadable today.
+The roster below holds all twenty-four domains, in four tiers under the
+operating doctrine. The router table in `SKILL.md` is the authoritative list of
+what is loadable.
 
 Tier 0 is the operating discipline, in effect on every task.
 
@@ -105,9 +105,7 @@ Tier 4 is the non-functional guarantees, applied as a review pass before done.
 - `23 analytics-privacy-and-consent` — events, consent gating, GDPR,
   third-party scripts. Integrated.
 
-All twenty-four domains are integrated. Six further domains follow the same
-pipeline. They are commerce and checkout, the admin shell, chat UI, maps, PDF
-and print output, and email templates.
+All twenty-four domains are integrated.
 
 Seven of these are blocking. `nextjs-app-router-architecture`,
 `typescript-type-system-discipline`, `django-drf-api-contract`,
@@ -259,7 +257,7 @@ run.
 
 ## Example output
 
-At 1.23.0 the integrated material is the App Router foundation, the type
+At 1.23.1 the integrated material is the App Router foundation, the type
 system, and the React component tree. It also holds the project structure, the
 backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -432,8 +430,9 @@ number is therefore the count of router domains minus one, and **1.23.0** is
 all twenty-four domains. The standing rules and the gate of the operating
 doctrine stay in `SKILL.md`, because they are always in effect.
 
-A patch release corrects material that is already integrated. Domains land in
-any order, so read the router rather than the version string.
+A patch release corrects material that is already integrated. The minor number
+counts the domains and not their order, so read the router rather than the
+version string.
 
 The reference material is a strong, current baseline, not a guarantee. The
 stack moves; verify the installed version before you trust a pinned-stack
@@ -528,10 +527,10 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds twenty-four domains at 1.23.0, which is every domain that
+`references/` holds twenty-four domains at 1.23.1, which is every domain that
 has a router entry.
-`scripts/` and `assets/` are not present; they are added when a domain ships
-something executable or a template worth copying.
+`scripts/` and `assets/` are not present, because no domain ships an executable
+or a template.
 
 ## License
 

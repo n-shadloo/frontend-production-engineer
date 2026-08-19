@@ -1,5 +1,5 @@
 ---
-description: Production-grade frontend engineering for Next.js and TypeScript against a Django/DRF backend — plan first, verify the installed versions, never invent an API, keep the diff minimal, run the checks, and hold the work to a stated definition of done. Covers routing and rendering, the server/client boundary, the React component tree, the typed backend contract, and the non-functional guarantees (accessibility, security, performance, testing) that gate completion. Domains are integrated one per release; the router in SKILL.md is the authoritative list of what is loadable. Canonical instructions live in SKILL.md and references/.
+description: Production-grade frontend engineering for Next.js and TypeScript against a Django/DRF backend — plan first, verify the installed versions, never invent an API, keep the diff minimal, run the checks, and hold the work to a stated definition of done. Covers routing and rendering, the server/client boundary, the React component tree, the typed backend contract, and the non-functional guarantees (accessibility, security, performance, testing) that gate completion. All twenty-four domains are integrated; the router in SKILL.md is the authoritative list of what is loadable. Canonical instructions live in SKILL.md and references/.
 globs: ["**/*.ts", "**/*.tsx", "**/package.json"]
 alwaysApply: false
 ---
@@ -106,6 +106,6 @@ confirm as unconfirmed, and never guess at it.
 Work is not done because it renders. Run the typecheck, the lint, the tests
 that cover the change, and the production build. Apply the conflict rule:
 security > accessibility > correctness > performance > developer convenience.
-No level trades down to satisfy a level above it. The domain routing table
-grows one entry per release. Do not rely on this summary alone, and read the
-referenced files.
+No level trades down to satisfy a level above it. The domain routing table in
+`SKILL.md` holds all twenty-four domains. Do not rely on this summary alone, and
+read the referenced files.
