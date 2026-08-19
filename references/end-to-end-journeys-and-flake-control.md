@@ -250,10 +250,9 @@ leaves no record that the next run reads.
 The unique value comes from the worker index and the test id. A timestamp is
 not unique under a parallel run on one machine.
 
-Where the backend offers a transactional reset or a seed command, the sibling
-skill `django-test-auditor` owns it. This file owns only the call that the
-frontend makes, and the rule that no frontend test depends on a record that
-another test wrote.
+Where the backend offers a transactional reset or a seed command, it owns both.
+This file owns only the call that the frontend makes, and the rule that no
+frontend test depends on a record that another test wrote.
 
 ### The failure path uses interception
 
@@ -360,7 +359,7 @@ version from `package.json` before you write code.
 | Recommend | `@axe-core/playwright` | The route scan that `references/wcag-conformance-and-verification.md` requires. That domain holds a veto. | Current | Current | Deque, active | None |
 | Conditional | Playwright component testing | Only where a component needs a real layout or a real pointer. React Testing Library covers the rest here, and two component runners is one too many. It is experimental. | Ships with Playwright | Current | Microsoft, active | None |
 | Conditional | A container image for the visual lane | Only where the project runs a visual comparison. The image must match the CI image exactly. | — | — | — | — |
-| Conditional | `k6` | Only for a load scenario that the frontend defines. The run and the server verdict belong to the sibling skill `django-performance-optimizer`. | Current | Current | Grafana Labs, active | None |
+| Conditional | `k6` | Only for a load scenario that the frontend defines. The run and the server verdict belong to the backend. | Current | Current | Grafana Labs, active | None |
 | Reject | `cypress` in a new project here | It runs one browser process per spec and carries its own assertion library. Playwright already covers the journey, the visual lane, and the route scan. | — | — | — | — |
 | Reject | `selenium-webdriver` | It has no auto-wait, so every test needs an explicit poll. | — | — | — | — |
 | Reject | `page.waitForTimeout` | There is no correct use of it in this suite. | — | — | — | — |
@@ -503,9 +502,8 @@ npx playwright show-report
 - The production build that the run serves →
   `references/app-router-structure.md`.
 - The seed command, the transactional reset, and the test-only endpoint on the
-  server → the sibling skill `django-test-auditor`.
+  server → the backend.
 - The Django process, the health check, and the container that CI brings up →
-  the sibling skill `django-release-readiness`.
-- The load run and the server verdict under it → the sibling skill
-  `django-performance-optimizer`. This file owns only the scenario that the
-  frontend states.
+  the backend.
+- The load run and the server verdict under it → the backend. This file owns
+  only the scenario that the frontend states.

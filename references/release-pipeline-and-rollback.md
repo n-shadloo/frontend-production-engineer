@@ -183,8 +183,8 @@ Run that command against production once, at a quiet hour, before you depend on
 it. A path that nobody has executed is a plan, and not a rollback.
 
 CAUTION: a rollback of the frontend alone does not undo a migration. Where the
-release changed the schema, the sibling skill `django-migration-safety` owns the
-reverse, and the order below is what keeps the two independent.
+release changed the schema, the backend owns the reverse, and the order below is
+what keeps the two independent.
 
 ### More than one instance changes three answers
 
@@ -249,9 +249,9 @@ two deploys. A release that performs both steps at once has no period in which
 a rollback of one side is safe.
 
 `references/openapi-schema-and-codegen.md` owns the schema, the generator, and
-the drift gate that fails a build on a renamed field. The sibling skill
-`django-api-contract` owns the classification of a change as breaking or
-additive. This file owns the order in which the two deploys run.
+the drift gate that fails a build on a renamed field. The backend owns the
+classification of a change as breaking or additive. This file owns the order in
+which the two deploys run.
 
 ### A non-production deployment differs in its values, and never in its code
 
@@ -413,8 +413,7 @@ curl -s "$STAGING_ORIGIN/robots.txt" | rg 'Disallow: /'
   selects them → `references/crawl-and-index-control.md`.
 - The report that a released build raises, and the alert over it →
   `references/error-capture-and-reporting.md`.
-- The classification of a contract change as breaking or additive → the sibling
-  skill `django-api-contract`. The reverse of a schema change → the sibling
-  skill `django-migration-safety`. The Django process, its go-live gate, and its
-  own deploy → the sibling skill `django-release-readiness`. This file owns the
-  order of the two deploys, and the Next.js side of each one.
+- The classification of a contract change as breaking or additive → the
+  backend. The reverse of a schema change → the backend. The Django process, its
+  go-live gate, and its own deploy → the backend. This file owns the order of
+  the two deploys, and the Next.js side of each one.

@@ -71,7 +71,7 @@ owns the ring token and the rule that `outline-none` never stands alone. This
 file owns the three criteria that the indicator must meet.
 
 1. The indicator has a contrast ratio of at least 3:1 against the colors next
-   to it, in the focused state and in the unfocused state.
+   to it. That ratio holds in the focused state and in the unfocused state.
 2. The indicator is large enough to see. A one-pixel ring in a low-contrast
    color meets no criterion.
 3. A sticky header, a sticky footer, or a floating panel never hides the

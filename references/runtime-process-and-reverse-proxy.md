@@ -440,5 +440,5 @@ free -m ; df -h ; du -sh /opt/app/.next/cache
 - The security floor of the framework, and the place of a secret →
   `references/secret-boundary-and-supply-chain.md`. That domain holds a veto.
 - Gunicorn, the ASGI server, the worker count, `ALLOWED_HOSTS`, and the Django
-  health endpoint → the sibling skill `django-release-readiness`. This file owns
-  the Next.js process and the proxy in front of it.
+  health endpoint → the backend. This file owns the Next.js process and the
+  proxy in front of it.

@@ -550,5 +550,5 @@ curl -sI "$APP_ORIGIN/products/123/opengraph-image" \
   catalog → `references/locale-routing-and-catalogs.md`. The `dir` attribute on
   the document → `references/bidirectional-layout-and-scripts.md`.
 - The serializer field that `generateMetadata` consumes, and the schema that
-  types it → `references/openapi-schema-and-codegen.md`. The server side of
-  that contract is the sibling skill `django-api-contract`.
+  types it → `references/openapi-schema-and-codegen.md`. The server side of that
+  contract is the backend.

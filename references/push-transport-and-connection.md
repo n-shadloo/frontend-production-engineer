@@ -107,10 +107,9 @@ export async function connectWithTicket(url: string): Promise<WebSocket> {
 The cookie carrier depends on one server-side control. A WebSocket handshake is
 an ordinary HTTP request, and the Same-Origin Policy does not stop it. A cookie
 alone therefore authenticates any page that opens the connection. The backend
-must check the `Origin` header on the handshake. The sibling skill `secure-code-auditor`
-owns that check, and the sibling skill `django-async-jobs` owns the consumer
-that runs behind it. State the requirement in the review, and fail the review
-where nobody can confirm it.
+must check the `Origin` header on the handshake. `secure-code-auditor` owns that
+check, and the backend owns the consumer that runs behind it. State the
+requirement in the review, and fail the review where nobody can confirm it.
 
 ### One connection for the application
 
@@ -515,9 +514,9 @@ depends on, so that a review can fail on it.
 | The ASGI server | Daphne or Uvicorn behind the proxy, and a channel layer that is up | A `group_send` raises on the server, no event arrives, and the view must show degraded rather than empty |
 
 `references/runtime-process-and-reverse-proxy.md` owns the Nginx file itself.
-The sibling skill `django-release-readiness` owns the ASGI process and the
-health check. This file owns the list above, and the `curl -N` command in the
-verification block that proves the third row.
+The backend owns the ASGI process and the health check. This file owns the list
+above, and the `curl -N` command in the verification block that proves the third
+row.
 
 ### The Django seam
 
@@ -537,10 +536,9 @@ The client depends on three response headers on an SSE endpoint:
 the third is an Nginx directive that travels as a header. Confirm all three
 against the real deployment with `curl -N` before you depend on the stream.
 
-The sibling skill `django-async-jobs` owns the consumer, the queue, and the
-worker. The sibling skill `django-api-contract` owns the event as a published
-surface. This file owns the transport, the handshake, and what the browser does
-when the connection ends.
+The backend owns the consumer, the queue, the worker, and the event as a
+published surface. This file owns the transport, the handshake, and what the
+browser does when the connection ends.
 
 ### The libraries
 
@@ -706,9 +704,8 @@ npx wscat -c "wss://staging.example.com/ws/feed/"
   assertions prove this domain. They are one connection after a navigation, a
   reconnect delay that grows, and a degraded state on a close.
 - The consumer, the channel layer, the queue, and the worker behind the
-  connection → the sibling skill `django-async-jobs`. This file owns the
-  transport for the state of a job and the interface for its progress.
-- The `Origin` check on the handshake, the permission class on the consumer,
-  and the rate limit → the sibling skill `secure-code-auditor`.
-- The ASGI server, the health check, and the go-live gate → the sibling skill
-  `django-release-readiness`.
+  connection → the backend. This file owns the transport for the state of a job
+  and the interface for its progress.
+- The `Origin` check on the handshake, the permission class on the consumer, and
+  the rate limit → `secure-code-auditor`.
+- The ASGI server, the health check, and the go-live gate → the backend.

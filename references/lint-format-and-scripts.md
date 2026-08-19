@@ -60,9 +60,9 @@ in decline, and alive only in legacy code.
 complete. It runs the four gates in the order that fails fastest and cheapest
 first.
 
-This file owns the presence of `test`, `test:watch`, and `test:e2e`. Domain 20
-`testing-and-quality` owns the test layout, the fixtures, and the coverage
-threshold.
+This file owns the presence of `test`, `test:watch`, and `test:e2e`.
+`references/test-strategy-and-component-tests.md` owns the test layout, the
+fixtures, and the coverage threshold.
 
 ### Zero warnings
 

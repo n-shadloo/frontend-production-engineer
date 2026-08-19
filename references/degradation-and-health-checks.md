@@ -96,8 +96,8 @@ answer.
 
 Keep that answer on the screen, and mark it. The label states that the value is
 from an earlier moment, and the control offers a new attempt. A view that
-throws away good data because a refresh failed spends the outage showing less
-than it holds.
+throws away good data because a refresh failed shows less than it holds, for the
+whole outage.
 
 Three kinds of data refuse this rule. A balance, a permission, and a count that
 governs a purchase are wrong when they are old. A stale render of one of them
@@ -253,8 +253,8 @@ content network in front of it. Pair it with an external check that requests
 the same route from outside the infrastructure.
 
 The Django health endpoint, the process that serves it, and the go-live gate
-belong to the sibling skill `django-release-readiness`. This file owns the
-Next.js route and what the frontend probe proves.
+belong to the backend. This file owns the Next.js route and what the frontend
+probe proves.
 
 ### The libraries
 
@@ -395,8 +395,8 @@ curl -s -o /dev/null -w '%{http_code}\n' "$APP_ORIGIN/api/health"
   reverse proxy and the immutable cache directive on `/_next/static` →
   `references/runtime-process-and-reverse-proxy.md`. The rollout and the
   rollback → `references/release-pipeline-and-rollback.md`.
-- The Django health endpoint, the ASGI process behind it, and the go-live gate
-  → the sibling skill `django-release-readiness`. This file owns the Next.js
-  route and what the frontend probe proves.
-- The rate limit that produces a 429, and the throttle behind it → the sibling
-  skill `secure-code-auditor`.
+- The Django health endpoint, the ASGI process behind it, and the go-live gate →
+  the backend. This file owns the Next.js route and what the frontend probe
+  proves.
+- The rate limit that produces a 429, and the throttle behind it →
+  `secure-code-auditor`.

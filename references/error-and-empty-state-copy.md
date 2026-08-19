@@ -76,8 +76,8 @@ Two envelope shapes reach the client. The `drf-standardized-errors` shape
 carries a machine `code` beside each error, and the native DRF shape carries a
 human string alone. Key the map off `code` where the backend sends that shape.
 Where the backend sends the native shape, key the map off the status and the
-field name, and record that those messages are less exact. The sibling skill
-`django-api-contract` owns the decision to publish the standardized envelope.
+field name, and record that those messages are less exact. The backend owns the
+decision to publish the standardized envelope.
 
 CAUTION: a renamed code on the server drops every message of that kind to the
 generic key, and the reader loses the specific step. Assert in a test that every
@@ -155,11 +155,10 @@ disclosure, so it reaches support and never leads the message.
 `references/server-and-client-components.md` owns the directive on a boundary
 file, and `references/app-router-structure.md` owns the route files.
 `references/exposed-endpoints-and-destinations.md` owns the rule that exception
-text must not reach the client. `references/error-capture-and-reporting.md`
-owns the capture inside the boundary, and the digest tag that ties the client
-event to the server line. The sibling
-skill `secure-code-auditor` owns the server-side guarantee that no response body
-carries a stack trace.
+text must not reach the client. `references/error-capture-and-reporting.md` owns
+the capture inside the boundary, and the digest tag that ties the client event
+to the server line. `secure-code-auditor` owns the server-side guarantee that no
+response body carries a stack trace.
 
 ### `global-error.tsx` runs with no provider above it
 
@@ -434,6 +433,6 @@ pnpm build && pnpm start
   `references/error-capture-and-reporting.md`. The offline state behind an
   offline message is `references/degradation-and-health-checks.md`.
 - The guarantee that no response body carries exception text or a stack trace →
-  sibling skill `secure-code-auditor`.
-- The `code` field as a published contract, and the rename that breaks the map
-  → sibling skill `django-api-contract`.
+  `secure-code-auditor`.
+- The `code` field as a published contract, and the rename that breaks the map →
+  the backend.

@@ -101,8 +101,9 @@ Take `dir="auto"` on a block that holds one value from a person. Take `<bdi>`
 where that value sits inside a sentence that the product wrote. The element
 isolates the run, so the punctuation of the sentence stays at the correct end.
 
-Five values carry no direction that the product can predict: a name, a comment
-body, a file name, a search term, and a record title that a user authored.
+Five values carry no direction that the product can predict. They are a name, a
+comment body, a file name, a search term, and a record title that a user
+authored.
 
 `references/message-catalog-and-plurals.md` owns the isolate that an ICU
 argument receives, which covers a value that reaches the screen through a
@@ -333,8 +334,7 @@ The fold removes the ZWNJ for the comparison alone, so a reader who omits it
 still finds the record.
 
 A server-side search folds on the server, over the same rules. State the need,
-and never write the query here. The sibling skill `django-performance-optimizer`
-owns the index behind it.
+and never write the query here. The backend owns the index behind it.
 
 `references/locale-formatting-and-calendars.md` owns `Intl.Collator`, which
 gives the order of a language. A collator does not fold ی against ي, because
@@ -548,5 +548,4 @@ rg -n -A8 'localFont\(|from "next/font' -g '*.ts' src/app/fonts.ts
   `references/form-schema-and-field-binding.md`.
 - The snapshot test in each direction →
   `references/end-to-end-journeys-and-flake-control.md`.
-- The index behind a folded search on the server → the sibling skill
-  `django-performance-optimizer`.
+- The index behind a folded search on the server → the backend.

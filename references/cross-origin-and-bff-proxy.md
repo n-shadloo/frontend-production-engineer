@@ -58,9 +58,9 @@ classes of failure disappear together, and none of them can return.
 | The response carries two `Access-Control-Allow-Origin` values | Django and the reverse proxy both add CORS | Ask for one layer only. The browser rejects two values |
 | The request never appears in the Django log | The preflight `OPTIONS` failed | Read the `OPTIONS` response in the network tab, never the view |
 
-The frontend states the origin, the header, and the method that it needs. The
-sibling skill `secure-code-auditor` owns the server settings and their risk.
-NEVER work around a CORS failure with a proxy that forwards an arbitrary host.
+The frontend states the origin, the header, and the method that it needs.
+`secure-code-auditor` owns the server settings and their risk. NEVER work around
+a CORS failure with a proxy that forwards an arbitrary host.
 
 ### CSRF for session auth
 
@@ -185,8 +185,8 @@ application depends on, and the backend team sets them.
 
 A change to any of these breaks a direct browser call, and the frontend sees a
 401 that looks like an application fault. Read the `Set-Cookie` header in the
-network tab before you change any frontend code. The sibling skill
-`secure-code-auditor` owns the server-side choice of each attribute.
+network tab before you change any frontend code. `secure-code-auditor` owns the
+server-side choice of each attribute.
 
 ## Verification
 
@@ -262,7 +262,7 @@ curl -si -X POST "$NEXT_PUBLIC_API_BASE_URL/api/auth/login/" | rg -i 'set-cookie
   domain holds a veto.
 - The Nginx configuration in front of Node, and the TLS termination →
   `references/runtime-process-and-reverse-proxy.md`.
-- The DRF permission class, the server-side CSRF enforcement, the CORS
-  settings, and the cookie attributes → the sibling skill
-  `secure-code-auditor`. This file owns what the browser sends and stores, and
-  the UI behavior for a 401, a 403, and a CSRF failure.
+- The DRF permission class, the server-side CSRF enforcement, the CORS settings,
+  and the cookie attributes → `secure-code-auditor`. This file owns what the
+  browser sends and stores, and the UI behavior for a 401, a 403, and a CSRF
+  failure.

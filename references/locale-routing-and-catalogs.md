@@ -366,8 +366,8 @@ the browser. `references/api-client-and-request-safety.md` owns the client that
 sets it.
 
 A serializer that returns a display string for an enumeration is a contract
-decision, and the sibling skill `django-api-contract` owns it. State the need
-for the stable code, and never write the serializer here.
+decision, and the backend owns it. State the need for the stable code, and never
+write the serializer here.
 
 ### One language today
 
@@ -542,4 +542,4 @@ pnpm build
 - The test that renders each locale →
   `references/test-strategy-and-component-tests.md`.
 - The serializer that returns a stable code for an enumeration, and the
-  translated model field behind it → the sibling skill `django-api-contract`.
+  translated model field behind it → the backend.

@@ -102,7 +102,7 @@ const rows = await fetchAllMatching({ ...view, pageSize: 1000 }); // it follows 
 | The condition | The decision | What forces the change |
 | --- | --- | --- |
 | About 10,000 rows or fewer, and the client can fetch them | Build the file in the browser, with `papaparse` for a CSV | It avoids a round trip and a job queue. The decision flips when the row count or the column count passes what the browser can hold. It also flips when the export must carry a value that the client never loads. |
-| A large set, every matching record, or a set that spans many pages | A job on the backend. The client posts the filter, receives a task id, polls the status, and then downloads the file | The browser cannot hold the whole set. The worker itself belongs to the sibling skill `django-async-jobs`. |
+| A large set, every matching record, or a set that spans many pages | A job on the backend. The client posts the filter, receives a task id, polls the status, and then downloads the file | The browser cannot hold the whole set. The worker itself belongs to the backend. |
 
 The job path needs four states in the interface, and each one needs a design.
 They are queued, in progress with a percentage where the server reports one,
@@ -144,8 +144,8 @@ const blob = new Blob([`\uFEFF${csv}`], { type: "text/csv;charset=utf-8" });
 ```
 
 A file that the server builds is the server's responsibility for the same
-escape, and the sibling skill `secure-code-auditor` owns that check. This file
-owns the escape for a file that the browser builds.
+escape, and `secure-code-auditor` owns that check. This file owns the escape for
+a file that the browser builds.
 
 `references/api-client-and-request-safety.md` owns the request that fetches the
 rows, its timeout, and its abort signal.
@@ -290,6 +290,6 @@ head -c 3 export.csv | xxd | grep -q "efbb bf" && echo "the BOM is present"
 - The test that opens an export and reads its rows →
   `references/end-to-end-journeys-and-flake-control.md`.
 - The worker that builds a large export, its retries, and its idempotency → the
-  sibling skill `django-async-jobs`.
+  backend.
 - The permission check on an export endpoint, and the escape inside a file that
-  the server builds → the sibling skill `secure-code-auditor`.
+  the server builds → `secure-code-auditor`.

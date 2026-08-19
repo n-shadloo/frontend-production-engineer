@@ -45,7 +45,7 @@ decline, and alive only in legacy code.
 | `Referrer-Policy` | A path and a query string leaking to another origin | `strict-origin-when-cross-origin` |
 | `Permissions-Policy` | A frame or a script reaching the camera, the microphone, or the position | An explicit deny list for every feature that the product does not use |
 | `frame-ancestors`, inside the policy | Another site framing the application, so a press lands on a hidden control | `'none'`, or an explicit origin list |
-| No `x-powered-by` | The response naming the framework | `poweredByHeader: false` in `next.config.ts` |
+| No `x-powered-by` | The response that names the framework | `poweredByHeader: false` in `next.config.ts` |
 
 `frame-ancestors` supersedes `X-Frame-Options`. Keep `X-Frame-Options: DENY`
 beside it only where the product must serve a browser that reads no policy.
@@ -356,6 +356,6 @@ curl -sI "$APP_ORIGIN" | rg -ic 'content-security-policy'
   inventory → `references/consent-gate-and-cookie-inventory.md`.
 - The endpoint that receives a violation report, and the rule over its count →
   `references/correlation-and-telemetry.md`.
-- The server-side headers of Django, and `ALLOWED_HOSTS` → the sibling skills
-  `secure-code-auditor` and `django-release-readiness`. This file owns the
-  headers that the Next.js application emits.
+- The server-side headers of Django, and `ALLOWED_HOSTS` → `secure-code-auditor`
+  and the backend. This file owns the headers that the Next.js application
+  emits.

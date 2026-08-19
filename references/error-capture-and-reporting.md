@@ -491,6 +491,6 @@ curl -s -o /dev/null -w '%{http_code}\n' "$APP_ORIGIN/_next/static/chunks/$CHUNK
   `references/event-taxonomy-and-tracking-plan.md`.
 - The test that proves a boundary renders and recovers →
   `references/test-strategy-and-component-tests.md`.
-- The server-side guarantee that no response body carries a stack trace → the
-  sibling skill `secure-code-auditor`. This file owns the browser side and the
-  Node side of the Next.js application.
+- The server-side guarantee that no response body carries a stack trace →
+  `secure-code-auditor`. This file owns the browser side and the Node side of
+  the Next.js application.

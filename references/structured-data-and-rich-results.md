@@ -310,4 +310,4 @@ curl -s "$APP_ORIGIN/products/123" | rg -o 'application/ld\+json.{0,400}'
   `references/dependencies-and-git-workflow.md`.
 - The serializer that supplies the record, and the field that a rename breaks →
   `references/openapi-schema-and-codegen.md`. The server side of that contract
-  is the sibling skill `django-api-contract`.
+  is the backend.

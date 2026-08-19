@@ -203,9 +203,9 @@ match, and `$` for a regular expression. A field with no prefix matches anywhere
 inside the value. Read the prefix before you write the placeholder text of the
 search box, because the box makes a promise about the match.
 
-The sibling skill `django-api-contract` owns which prefix and which lookup each
-field takes, and `references/openapi-schema-and-codegen.md` owns the generated
-types that carry them.
+The backend owns which prefix and which lookup each field takes, and
+`references/openapi-schema-and-codegen.md` owns the generated types that carry
+them.
 
 ### The pagination class decides which control the table may offer
 
@@ -382,8 +382,8 @@ if (scope === "all-matching") {
 
 The server must accept a filter predicate for the whole-set action. Where it
 accepts only a list of identifiers, offer no whole-set control. The bulk
-endpoint itself belongs to the sibling skill `django-performance-optimizer` for
-its query cost, and to `secure-code-auditor` for its permission check.
+endpoint itself belongs to the backend for its query cost, and to
+`secure-code-auditor` for its permission check.
 
 State the count and the scope in the confirmation. "Archive 4,300 orders that
 match this filter" and "Archive 25 orders on this page" are two different
@@ -587,9 +587,9 @@ test("a sort updates the address and fires one request", async ({ page }) => {
 - The contract test over the pagination envelope →
   `references/network-mocks-and-contract-tests.md`. The test that runs a sort →
   `references/test-strategy-and-component-tests.md`.
-- The serializer, the filter field, the pagination class, and any breaking change
-  in them → the sibling skill `django-api-contract`.
+- The serializer, the filter field, the pagination class, and any breaking
+  change in them → the backend.
 - The query cost of a filtered list, and the index behind an `ordering` value →
-  the sibling skill `django-performance-optimizer`.
-- The permission check on a list endpoint and on a bulk endpoint → the sibling
-  skill `secure-code-auditor`.
+  the backend.
+- The permission check on a list endpoint and on a bulk endpoint →
+  `secure-code-auditor`.

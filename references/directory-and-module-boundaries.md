@@ -357,9 +357,9 @@ git log --oneline -- src/api/generated
   `references/app-router-structure.md`.
 - The decomposition threshold that starts a new file →
   `references/component-composition.md`.
-- The drf-spectacular config, the generator choice, the schema artifact, and
-  the drift gate → `references/openapi-schema-and-codegen.md`. The server side
-  belongs to the sibling skill `django-api-contract`.
+- The drf-spectacular config, the generator choice, the schema artifact, and the
+  drift gate → `references/openapi-schema-and-codegen.md`. The server side
+  belongs to the backend.
 - The tokens that `src/components/ui` renders, and the stylesheet in
   `src/styles/` that publishes them →
   `references/design-tokens-and-theming.md`.

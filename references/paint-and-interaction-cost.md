@@ -39,7 +39,7 @@ in decline, and alive only in legacy code.
 
 | The part | What it covers | Who owns the fix |
 | --- | --- | --- |
-| The first byte | The time until the first byte of the document arrives | `references/caching-and-revalidation.md`, and the sibling skill `django-performance-optimizer` |
+| The first byte | The time until the first byte of the document arrives | `references/caching-and-revalidation.md`, and the backend |
 | The resource load delay | The gap between the first byte and the start of the request for the element | This file. The document must name the resource early. |
 | The resource load duration | The download of the resource itself | `references/image-and-video-delivery.md` for the format and the variant |
 | The render delay | The gap between the arrival of the resource and the paint | This file, and `references/client-bundle-and-third-party-scripts.md` |
@@ -366,5 +366,4 @@ rg --files-with-matches 'addEventListener' -g '*.tsx' src/ \
 - The error tracker → `references/error-capture-and-reporting.md`. The trace
   and the transport of a field report are
   `references/correlation-and-telemetry.md`.
-- The slow endpoint behind a first byte → sibling skill
-  `django-performance-optimizer`.
+- The slow endpoint behind a first byte → the backend.

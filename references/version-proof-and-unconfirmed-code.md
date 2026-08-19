@@ -183,15 +183,15 @@ A pre-existing suppression is a finding and never a deletion.
 ### A claim states what was read
 
 ```text
-Wrong: the claim carries no source.
-Failure: the reader cannot separate a read fact from a confident memory, so
-either every claim needs re-checking or none of them does.
+// Wrong: the claim carries no source.
+// Failure: the reader cannot separate a read fact from a confident memory, so
+// either every claim needs re-checking or none of them does.
 
   Cache Components need a cacheLife on every "use cache" scope.
 ```
 
 ```text
-Correct: each claim names what produced it.
+// Correct: each claim names what produced it.
 
   Confirmed: "use cache" takes cacheTag and cacheLife. Read in
   node_modules/next/dist/docs/ and in next/cache.d.ts, at next 16.3.1.
@@ -315,4 +315,4 @@ pnpm lint && pnpm typecheck && pnpm test && pnpm build
 - The layers that authorize a route, and the bypasses of `proxy.ts` →
   `references/route-protection-and-permissions.md`.
 - The installed Django and DRF versions, and what the server carries → the
-  sibling skill `django-api-contract`. This file owns the frontend read only.
+  backend. This file owns the frontend read only.

@@ -195,8 +195,7 @@ group by a period, because that also cuts the payload. Where the client must
 reduce the set, the common algorithm is Largest Triangle Three Buckets. It keeps
 the visible peaks that a plain sample drops.
 
-The aggregate query behind a grouped series belongs to the sibling skill
-`django-performance-optimizer`.
+The aggregate query behind a grouped series belongs to the backend.
 
 ### The numbers on the axis
 
@@ -330,5 +329,4 @@ rg -ln 'aria:\s*\{' -g '*.ts*' src/ | \
   `references/locale-formatting-and-calendars.md`.
 - The visual regression test over a chart →
   `references/end-to-end-journeys-and-flake-control.md`.
-- The aggregate query behind a grouped series, and its index → the sibling skill
-  `django-performance-optimizer`.
+- The aggregate query behind a grouped series, and its index → the backend.

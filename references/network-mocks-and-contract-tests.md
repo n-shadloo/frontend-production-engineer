@@ -196,8 +196,8 @@ export const slowResponse = http.get("*/api/orders/", async () => {
 `references/boundary-validation-and-api-types.md` owns the shape of each DRF
 body, and `references/api-client-and-request-safety.md` owns the
 `normalizeApiError` that turns it into an `ApiError`. This file owns only the
-handler that produces the body. The server side of every one of these
-responses belongs to the sibling skill `django-api-contract`.
+handler that produces the body. The server side of every one of these responses
+belongs to the backend.
 
 The 400 test is the one that most suites omit. It is not optional. A field
 message that reaches a toast rather than its control is a defect that only this
@@ -365,10 +365,9 @@ Three cases justify a real Django instance, and no other case does.
 - A behavior that only the server produces, such as a database constraint.
 
 The instance is seeded to a known state before the run. The seed is a Django
-management command or a test-only endpoint, and the sibling skill
-`django-test-auditor` owns both. This file owns only the call that the frontend
-makes to reach that state. It also owns the rule that no frontend test writes
-to a shared instance.
+management command or a test-only endpoint, and the backend owns both. This file
+owns only the call that the frontend makes to reach that state. It also owns the
+rule that no frontend test writes to a shared instance.
 
 Read the schema from the committed artifact, and never from a live address. A
 build that reads a moving target does not repeat.
@@ -397,7 +396,7 @@ version from `package.json` before you write code.
 | Recommend | `msw/browser` | The worker for Storybook, and for a browser run that needs the same handlers. | Ships with `msw` | Current | Mock Service Worker, active | None |
 | Conditional | Orval mock generation | Where the endpoint count makes a hand-written handler set a maintenance cost. It emits the handlers beside the client, from one schema. | Current | Current | Orval team, active | None |
 | Conditional | `msw-auto-mock` | The same purpose, for a project that generates its client another way. | Current | Current | Community, active | None |
-| Conditional | A seeded Django instance | Only for the release contract test, and for the end-to-end journey. The sibling skill `django-test-auditor` owns the seed. | — | — | — | — |
+| Conditional | A seeded Django instance | Only for the release contract test, and for the end-to-end journey. The backend owns the seed. | — | — | — | — |
 | Reject | A stub of the API client module | It skips the parse, the deadline, the header, and the error normalizer. | — | — | — | — |
 | Reject | `nock` in a browser-facing suite | It intercepts the Node HTTP layer, which the browser path does not use. | — | — | — | — |
 | Reject | `fetch-mock` beside MSW | Two interception layers in one suite give two answers for one request. | — | — | — | — |
@@ -528,7 +527,6 @@ rg -n 'client\.send' src/
 - The credential that must never reach a fixture →
   `references/secret-boundary-and-supply-chain.md`. That domain holds a veto.
 - The serializer, the status code, the pagination class, and the error envelope
-  on the server → the sibling skill `django-api-contract`. This file changes
-  nothing on the server.
-- The seed command, the factory on the server, and the transactional reset →
-  the sibling skill `django-test-auditor`.
+  on the server → the backend. This file changes nothing on the server.
+- The seed command, the factory on the server, and the transactional reset → the
+  backend.

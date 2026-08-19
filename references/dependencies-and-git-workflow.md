@@ -267,5 +267,5 @@ rg -n 'linguist-generated' .gitattributes
   `references/merge-gates-and-quality-signals.md`.
 - The CI workflow, the cache, the release pipeline, and the deploy →
   `references/release-pipeline-and-rollback.md`.
-- The server-side secret storage and the rotation procedure → the sibling
-  skill `secure-code-auditor`.
+- The server-side secret storage and the rotation procedure →
+  `secure-code-auditor`.

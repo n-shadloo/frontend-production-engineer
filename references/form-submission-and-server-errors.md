@@ -114,8 +114,8 @@ the same dotted path, and the separator is a server setting.
 
 DRF 3.17 changed the error output of a list serializer. Confirm the shape
 against the deployed version before you trust an indexed path, with the request
-in the verification block below. The sibling skill `django-api-contract` owns
-the envelope on the server side, and this file changes nothing there.
+in the verification block below. The backend owns the envelope on the server
+side, and this file changes nothing there.
 
 Prefer the DRF `code` over the message where the form must branch. The message
 is translated, and a branch on translated text breaks under a second locale.
@@ -420,4 +420,4 @@ curl -sSi -X POST "$ORDERS_URL"
   message lands on the field →
   `references/test-strategy-and-component-tests.md`.
 - The serializer, the status code, and the error envelope on the server → the
-  sibling skill `django-api-contract`. This file changes nothing on the server.
+  backend. This file changes nothing on the server.

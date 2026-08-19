@@ -137,7 +137,7 @@ const nextConfig: NextConfig = {
 ```
 
 NEVER read that setting as a security control that replaces the gate.
-CVE-2026-27978 affected Next.js 16.0.1 through 16.1.6 and is fixed in 16.1.7: the
+CVE-2026-27978 affected Next.js 16.0.1 through 16.1.6, and 16.1.7 fixes it. The
 framework treated an `Origin` header of `null` as an absent origin, so a request
 from a sandboxed frame passed the check. The gate inside the action is what held
 during that window.
@@ -443,5 +443,5 @@ curl -i -X POST "$APP_ORIGIN/" -H "Next-Action: $ACTION_ID"
 - The test that posts to an action with no session →
   `references/end-to-end-journeys-and-flake-control.md`.
 - The DRF permission class, the object-level check, the rate limit, and every
-  server-side enforcement → the sibling skill `secure-code-auditor`. This file
-  owns the endpoints that the Next.js application publishes.
+  server-side enforcement → `secure-code-auditor`. This file owns the endpoints
+  that the Next.js application publishes.

@@ -192,16 +192,16 @@ report.
 ### The completion claim carries the output
 
 ```text
-Wrong: the report is a sentence.
-Failure: the sentence is a prediction, and the reader cannot tell a run from a
-guess. A suite that never ran, a suite that ran on a stale build, and a suite
-that ran green all produce the same sentence.
+// Wrong: the report is a sentence.
+// Failure: the sentence is a prediction, and the reader cannot tell a run
+// from a guess. A suite that never ran, a suite that ran on a stale build,
+// and a suite that ran green all produce the same sentence.
 
   All tests pass and the build is clean.
 ```
 
 ```text
-Correct: the report is the result of each command that ran.
+// Correct: the report is the result of each command that ran.
 
   pnpm lint         clean, at --max-warnings=0
   pnpm typecheck    clean
@@ -242,10 +242,10 @@ owns which plugins a test suite needs.
 | Type coverage | The share of the tree that carries a real type | Where a team converts a legacy area, as a number that must go down | `references/typescript-config-and-enforcement.md` |
 | Lighthouse CI and `size-limit` | The metric and the byte count of the built routes | Always, as the budget stage above | `references/performance-budgets-and-measurement.md` |
 | A smoke run after a deploy | That the released build serves its critical routes | Always, once a deploy pipeline exists | `references/release-pipeline-and-rollback.md` |
-| A load run | The behavior of the system under a stated scenario | Before a launch, or after a change to the request pattern | The sibling skill `django-performance-optimizer`. The frontend states the scenario. |
+| A load run | The behavior of the system under a stated scenario | Before a launch, or after a change to the request pattern | The backend. The frontend states the scenario. |
 
-Storybook deserves the honest answer. It is a real cost: a second build, a
-second dependency tree, and a second place where a component can render
+Storybook deserves the honest answer. It is a real cost. That cost is a second build and a
+second dependency tree. It is also a second place where a component renders
 correctly while the application renders it wrongly. Take it where the audience
 is outside the team that writes the code. Refuse it where the only reader is
 the author, because the component test already renders every state and asserts
@@ -400,7 +400,6 @@ gh api "repos/:owner/:repo/branches/main/protection" --jq '.required_status_chec
   run after a deploy → `references/release-pipeline-and-rollback.md`.
 - The error report and the alert that a released build raises →
   `references/error-capture-and-reporting.md`.
-- The Django suite, its runner, and its fixtures → the sibling skill
-  `django-test-auditor`. This file owns the frontend gates only.
-- The load scenario and the server verdict under it → the sibling skill
-  `django-performance-optimizer`.
+- The Django suite, its runner, and its fixtures → the backend. This file owns
+  the frontend gates only.
+- The load scenario and the server verdict under it → the backend.

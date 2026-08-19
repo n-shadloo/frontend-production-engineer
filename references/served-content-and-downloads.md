@@ -72,9 +72,9 @@ Where it does not, the three rules above are the whole defence.
 
 The origins that the application may load media from belong in the Content
 Security Policy, which is `references/security-headers-and-csp.md`. That file
-owns the policy, and this file owns the origin that the policy must name. The sibling
-skill `secure-code-auditor` owns the server-side check over the stored file, and
-the response headers that Django sends.
+owns the policy, and this file owns the origin that the policy must name.
+`secure-code-auditor` owns the server-side check over the stored file, and the
+response headers that Django sends.
 
 ### The download of a private file
 
@@ -296,6 +296,5 @@ curl -sSI "$MEDIA_ORIGIN/media/avatars/42.svg"
 - The test that follows a download and reads the file →
   `references/end-to-end-journeys-and-flake-control.md`.
 - The server-side check over a stored file, the name that it is stored under,
-  and the headers that Django sends → the sibling skill `secure-code-auditor`.
-- The worker that builds a large file, and its retries → the sibling skill
-  `django-async-jobs`.
+  and the headers that Django sends → `secure-code-auditor`.
+- The worker that builds a large file, and its retries → the backend.

@@ -234,7 +234,7 @@ A variable without the `NEXT_PUBLIC_` prefix stays on the server. A variable
 with the prefix is inlined into the browser bundle at build time. NEVER put a
 secret, an API key, or a Django admin URL in a `NEXT_PUBLIC_` variable. A
 single image that serves more than one environment reads such a value on the
-server, and it passes the field to the client leaf that needs it.
+server. It passes the field to the client leaf that needs it.
 `references/release-pipeline-and-rollback.md` owns that read, and the
 promotion behind it.
 
@@ -318,18 +318,17 @@ done
   `references/typescript-config-and-enforcement.md`.
 - The DRF schema and the generated client →
   `references/openapi-schema-and-codegen.md`. The error envelope and the client
-  that carries a request are
-  `references/api-client-and-request-safety.md`. CORS, the CSRF token, and the
-  proxy Route Handler are `references/cross-origin-and-bff-proxy.md`. The
-  server side of that contract belongs to the sibling skill
-  `django-api-contract`.
-- The four enforcement layers above `proxy.ts`, the page gate, the Server
-  Action gate, and the role checks in the UI →
+  that carries a request are `references/api-client-and-request-safety.md`.
+  CORS, the CSRF token, and the proxy Route Handler are
+  `references/cross-origin-and-bff-proxy.md`. The server side of that contract
+  belongs to the backend.
+- The four enforcement layers above `proxy.ts`, the page gate, the Server Action
+  gate, and the role checks in the UI →
   `references/route-protection-and-permissions.md`. That file records
   CVE-2026-64642, which is the second bypass of this file. The session, the
   cookie attributes, and the refresh are
   `references/session-and-token-lifecycle.md`. The server-side permission
-  classes belong to the sibling skill `secure-code-auditor`.
+  classes belong to `secure-code-auditor`.
 - The values of the security headers, and the CSP that `next.config.ts` and
   `proxy.ts` emit → `references/security-headers-and-csp.md`. The destination of
   a `rewrites()` or a `redirects()` entry is

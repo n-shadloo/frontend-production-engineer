@@ -136,9 +136,9 @@ Check the size and the count in the same place. The schema that states the type,
 the size, and the count belongs to `references/form-schema-and-field-binding.md`,
 and that file owns the rule. This file owns the check that runs on the bytes.
 
-The sibling skill `secure-code-auditor` owns the server-side sniff and the virus
-scan. It also owns the name that a stored file takes, and the rate limit over
-the endpoint. Never write those steps here.
+`secure-code-auditor` owns the server-side sniff and the virus scan. It also
+owns the name that a stored file takes, and the rate limit over the endpoint.
+Never write those steps here.
 
 ### The bytes change before they leave
 
@@ -237,10 +237,10 @@ announces each percentage floods a screen reader, and that file holds the rule.
 
 ### The presigned upload and the confirm call
 
-The Django endpoint mints the credential and returns `{ url, fields }` for a POST
-policy, or `{ url }` for a PUT. The sibling skill `django-api-contract` owns the
-shape of that response, and the sibling skill `secure-code-auditor` owns the
-scope of the credential. The client has three obligations.
+The Django endpoint mints the credential and returns `{ url, fields }` for a
+POST policy, or `{ url }` for a PUT. The backend owns the shape of that
+response, and `secure-code-auditor` owns the scope of the credential. The client
+has three obligations.
 
 1. Append every entry of `fields` to the `FormData` first, and append the `file`
    entry last. The storage service refuses the request when the file is not last.
@@ -281,8 +281,8 @@ object belongs to the backend.
 
 A scan or a transcode runs after the confirm call. The contract exposes a status
 for it. Render `pending scan` and `processing` as their own states, and never
-present the file as usable while either one holds. The sibling skill
-`django-async-jobs` owns the worker behind that status.
+present the file as usable while either one holds. The backend owns the worker
+behind that status.
 
 ### The failures that reach the interface
 
@@ -438,9 +438,7 @@ rg -n 'presign|createPresignedPost|putWithProgress' -g '*.ts*' src/
 - The handler that refuses a disguised file →
   `references/network-mocks-and-contract-tests.md`. The test that reads the
   message → `references/test-strategy-and-component-tests.md`.
-- The server-side sniff, the virus scan, the name of a stored file, and the scope
-  of a presigned credential → the sibling skill `secure-code-auditor`.
-- The shape of the presigned response and of the confirm endpoint → the sibling
-  skill `django-api-contract`.
-- The worker that scans or transcodes the object, and its retries → the sibling
-  skill `django-async-jobs`.
+- The server-side sniff, the virus scan, the name of a stored file, and the
+  scope of a presigned credential → `secure-code-auditor`.
+- The shape of the presigned response and of the confirm endpoint → the backend.
+- The worker that scans or transcodes the object, and its retries → the backend.

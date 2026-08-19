@@ -99,7 +99,7 @@ The path is fixed. DRF views produce an OpenAPI 3.0.3 document through
 drf-spectacular. `openapi-typescript` turns that document into TypeScript, and
 the data access layer imports the result.
 `references/openapi-schema-and-codegen.md` owns the generation config. The
-sibling skill `django-api-contract` owns the server side of the contract.
+backend owns the server side of the contract.
 
 Four kinds of drift break the frontend. Each one is silent until run time.
 
@@ -310,7 +310,7 @@ rg -n 'NEXT_PUBLIC_[A-Z_]*(KEY|SECRET|TOKEN|PASSWORD)' .
   `references/boundary-validation-and-api-types.md`.
 - The drf-spectacular config, the generator, and the schema artifact →
   `references/openapi-schema-and-codegen.md`. The server side belongs to the
-  sibling skill `django-api-contract`.
+  backend.
 - The typed client that this layer calls, the base URLs, the retry rule, and
   the error normalizer → `references/api-client-and-request-safety.md`.
 - The CSRF token, the CORS symptoms, and the proxy Route Handler that hides the
@@ -319,11 +319,11 @@ rg -n 'NEXT_PUBLIC_[A-Z_]*(KEY|SECRET|TOKEN|PASSWORD)' .
   state → `references/server-state-and-query-cache.md`. The filter that the URL
   holds is `references/client-and-url-state.md`.
 - The memoised `verifySession()` that a module in this layer holds, the page
-  gate, and the role checks →
-  `references/route-protection-and-permissions.md`. That file also states that
-  a Server Action never takes an identity as a parameter. The token storage
-  and the refresh are `references/session-and-token-lifecycle.md`. The DRF
-  permission classes belong to the sibling skill `secure-code-auditor`.
+  gate, and the role checks → `references/route-protection-and-permissions.md`.
+  That file also states that a Server Action never takes an identity as a
+  parameter. The token storage and the refresh are
+  `references/session-and-token-lifecycle.md`. The DRF permission classes belong
+  to `secure-code-auditor`.
 - The pending state of a form, the error that the Action returns, and the
   optimistic value → `references/suspense-and-actions.md`.
 - The form binding and the resolver →
@@ -331,8 +331,8 @@ rg -n 'NEXT_PUBLIC_[A-Z_]*(KEY|SECRET|TOKEN|PASSWORD)' .
   the values that an Action returns with its state, are
   `references/form-submission-and-server-errors.md`. The multi-step flow is
   `references/multi-step-forms-and-unsaved-work.md`.
-- The N+1 query and the endpoint latency behind a slow call → the sibling
-  skill `django-performance-optimizer`. This file owns only the number of
-  frontend requests and the place where each one starts.
+- The N+1 query and the endpoint latency behind a slow call → the backend. This
+  file owns only the number of frontend requests and the place where each one
+  starts.
 - MSW handlers and the contract test against the schema →
   `references/network-mocks-and-contract-tests.md`.

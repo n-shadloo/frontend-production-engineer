@@ -421,5 +421,5 @@ rg -n 'DJANGO_URL|NEXT_PUBLIC_API_BASE_URL' src/lib/api
 - The map from the `code` of an `ApiError` onto the message that a person
   reads → `references/error-and-empty-state-copy.md`. This file owns the
   normalizer, and that file owns the words.
-- The throttle rate, the N+1 query, and the latency behind a slow endpoint →
-  the sibling skill `django-performance-optimizer`.
+- The throttle rate, the N+1 query, and the latency behind a slow endpoint → the
+  backend.

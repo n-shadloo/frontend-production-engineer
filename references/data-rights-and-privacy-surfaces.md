@@ -113,8 +113,8 @@ The download itself is a file that leaves the application for a reader.
 separate origin, and the expiry of the link.
 
 `references/data-access-and-mutations.md` owns the module that holds the call.
-The DRF endpoint, its status codes, and the shape of the job record belong to the
-sibling skill `django-api-contract`.
+The DRF endpoint, its status codes, and the shape of the job record belong to
+the backend.
 
 ### The deletion states its scope, and it asks twice
 
@@ -380,7 +380,6 @@ pnpm test:a11y
 - The browser test that walks an export and a deletion →
   `references/end-to-end-journeys-and-flake-control.md`.
 - The endpoint that starts each job, its status codes, the shape of the job
-  record, and the erasure → the sibling skills `django-api-contract` and
-  `secure-code-auditor`. The background worker that
-  builds the export → the sibling skill `django-async-jobs`. This file owns the
-  surface that starts each one and the state that it renders.
+  record, and the erasure → the backend and `secure-code-auditor`. This file
+  owns the surface that starts each one and the state that it renders.
+- The background worker that builds the export → the backend.

@@ -264,9 +264,9 @@ rg -n 'camelcase|humps|ts-case-convert' package.json
   `references/lint-format-and-scripts.md`.
 - The module that calls the backend, and the Server Action that mutates →
   `references/data-access-and-mutations.md`.
-- The serializer, the viewset, the status code, and the deprecation of a field
-  → the sibling skill `django-api-contract`. That skill owns the server side of
-  this contract. This file owns what the frontend generates from it.
+- The serializer, the viewset, the status code, and the deprecation of a field →
+  the backend. The backend owns the server side of this contract, and this file
+  owns what the frontend generates from it.
 - The query keys and the cache built on the generated types →
   `references/server-state-and-query-cache.md`.
 - The MSW handlers and the contract test against the schema →

@@ -375,5 +375,4 @@ rg -n 'youtube\.com/embed|player\.vimeo\.com' -g '*.tsx' src/
 - The memory and the disk that the optimizer costs on a host →
   `references/runtime-process-and-reverse-proxy.md`. The `sharp` module inside a
   container image → `references/build-output-and-container-image.md`.
-- The transcode job and the thumbnail that it produces → the sibling skill
-  `django-async-jobs`.
+- The transcode job and the thumbnail that it produces → the backend.

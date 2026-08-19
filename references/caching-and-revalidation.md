@@ -244,7 +244,7 @@ pnpm build --debug
   response exposes → `references/exposed-endpoints-and-destinations.md`. That
   domain holds a veto.
 - The database query cost behind a cache miss, and the server-side cache in
-  Django → the sibling skill `django-performance-optimizer`.
+  Django → the backend.
 - The `Cache-Control` header at the reverse proxy, and the immutable directive
   on a hashed asset → `references/runtime-process-and-reverse-proxy.md`. The
   revalidation cache that two instances share →

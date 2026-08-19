@@ -226,9 +226,10 @@ reports a pass.
 Run this lane in the light theme and in the dark theme. The contrast rule
 produces a different result in each one.
 
-Domain 20 `testing-and-quality` owns the test runner, the fixtures, and the
-harness under both lanes. It is not integrated yet. This file owns the
-assertions inside them.
+`references/test-strategy-and-component-tests.md` owns the runner, the
+fixtures, and the harness of the component lane.
+`references/end-to-end-journeys-and-flake-control.md` owns them for the browser
+lane. This file owns the assertions inside both.
 
 ### The manual pass
 

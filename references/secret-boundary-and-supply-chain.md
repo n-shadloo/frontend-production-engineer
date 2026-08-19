@@ -177,8 +177,8 @@ Treat it as such, and hold the record of who may publish through it.
 `references/client-bundle-and-third-party-scripts.md` owns the strategy, the
 measured cost, and the named owner of each script.
 `references/consent-gate-and-cookie-inventory.md` owns the consent that must
-arrive before a tag renders, and it states that the gate covers the container and
-never what somebody publishes into it. This file owns the integrity of the file
+arrive before a tag renders. That file states that the gate covers the container,
+and never what somebody publishes into it. This file owns the integrity of the file
 and the decision to self-host.
 
 ### The secret that reaches a commit
@@ -335,5 +335,5 @@ git ls-files | rg '^\.env'
   host → `references/runtime-process-and-reverse-proxy.md`. The credential
   that a pipeline holds → `references/release-pipeline-and-rollback.md`.
 - Secret storage on the server, password hashing, and the Django settings that
-  hold a credential → the sibling skill `secure-code-auditor`. This file owns
-  what the browser receives.
+  hold a credential → `secure-code-auditor`. This file owns what the browser
+  receives.

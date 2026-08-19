@@ -594,7 +594,7 @@ pnpm exec eslint . --max-warnings=0
   boundary → `references/boundary-validation-and-api-types.md`.
 - The generated `paths` types and the drift gate →
   `references/openapi-schema-and-codegen.md`. The serializer and the pagination
-  class belong to the sibling skill `django-api-contract`.
+  class belong to the backend.
 - The `<Suspense>` boundary, the error boundary, and `useOptimistic` →
   `references/suspense-and-actions.md`.
 - The server cache, `"use cache"`, `updateTag`, and the Router Cache →
@@ -630,5 +630,4 @@ pnpm exec eslint . --max-warnings=0
   test harness → `references/test-strategy-and-component-tests.md`. The
   assertions that prove this domain are the rollback after a failure, the empty
   state, and one `QueryClient` for each test.
-- The N+1 query and the latency behind a slow endpoint → the sibling skill
-  `django-performance-optimizer`.
+- The N+1 query and the latency behind a slow endpoint → the backend.

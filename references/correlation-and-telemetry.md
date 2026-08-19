@@ -182,11 +182,10 @@ state which package registers it.
 `NEXT_OTEL_VERBOSE=1` makes Next.js emit every span rather than the default
 set. Use it to confirm a trace, and never in production.
 
-The Django instrumentation, the settings that enable it, and the propagator
-list on that side belong to the sibling skills `django-release-readiness` and
-`django-performance-optimizer`. This file owns the header that the Next.js side
-injects, and the configuration that decides which origins receive it. A proxy
-that strips `traceparent` breaks the join, and
+The Django instrumentation, the settings that enable it, and the propagator list
+on that side belong to the backend. This file owns the header that the Next.js
+side injects, and the configuration that decides which origins receive it. A
+proxy that strips `traceparent` breaks the join, and
 `references/cross-origin-and-bff-proxy.md` owns the forwarded header set.
 
 ### The field report needs a transport
@@ -384,8 +383,6 @@ curl -s -D - -o /dev/null "$APP_ORIGIN/" | rg -i 'correlation'
 - The rule that no credential sits in a `NEXT_PUBLIC_` variable →
   `references/secret-boundary-and-supply-chain.md`. That domain holds a veto.
 - The Django instrumentation, the propagator on that side, and the server
-  process that emits the spans → the sibling skills `django-release-readiness`
-  and `django-performance-optimizer`. This file owns the header that the
+  process that emits the spans → the backend. This file owns the header that the
   Next.js side injects.
-- The slow endpoint behind a long server span → the sibling skill
-  `django-performance-optimizer`.
+- The slow endpoint behind a long server span → the backend.

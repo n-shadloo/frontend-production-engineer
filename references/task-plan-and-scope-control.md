@@ -48,19 +48,19 @@ in decline, and alive only in legacy code.
 ### The plan comes before the diff
 
 ```text
-Wrong: the answer opens with a file edit.
-Failure: the reader cannot tell which behavior the change targets, so the
-review compares the diff against a guess. Where the goal was wrong, the whole
-diff is waste, and nobody finds that out until the end.
+// Wrong: the answer opens with a file edit.
+// Failure: the reader cannot tell which behavior the change targets, so the
+// review compares the diff against a guess. Where the goal was wrong, the
+// whole diff is waste, and nobody finds that out until the end.
 ```
 
 ```text
-Correct: four parts, under fifteen lines, before any edit.
+// Correct: four parts, under fifteen lines, before any edit.
 
 Goal      One sentence. The behavior that exists after this change.
 Success   The commands that must pass, and the states that must render.
 Assumed   Each choice that the request left open, and the value taken.
-Steps     The ordered edits, each one naming the file it touches.
+Steps     The ordered edits, and the file that each one touches.
 ```
 
 The plan is short because it is a contract and not a document. Four parts hold
@@ -87,15 +87,15 @@ State an assumption where the request left a choice open. Write it as the value
 taken, and never as a question in the past tense.
 
 ```text
-Wrong: the assumption is a question that nobody answered.
-Failure: the reader cannot tell whether the code took a decision or waited for
-one, so the review has to reconstruct it from the diff.
+// Wrong: the assumption is a question that nobody answered.
+// Failure: the reader cannot tell whether the code took a decision or waited
+// for one, so the review has to reconstruct it from the diff.
 
   Not sure whether the filter should live in the URL.
 ```
 
 ```text
-Correct: the assumption is the value taken, with the reason in one clause.
+// Correct: the assumption is the value taken, with the reason in one clause.
 
   Assumed: the filter lives in the URL, because the orders page already
   carries its page number there.
@@ -103,7 +103,7 @@ Correct: the assumption is the value taken, with the reason in one clause.
 
 ### Read the neighbours before you generate
 
-Open the files beside the target before you write. Read the naming, the folder,
+Open the files beside the target before you write. Read the names, the folder,
 the import style, and the shape of the nearest component of the same kind.
 
 Match what you find, even where you would write it differently. A file that
@@ -190,13 +190,13 @@ Remove the import, the variable, and the type that this change left unused.
 Leave the code that was already unused, and name it in the summary.
 
 ```text
-Wrong: the change deletes a helper that nobody in this request mentioned.
-Failure: a second feature imported that helper through a barrel, so the build
-fails on a file that this request never opened.
+// Wrong: the change deletes a helper that nobody in this request mentioned.
+// Failure: a second feature imported that helper through a barrel, so the
+// build fails on a file that this request never opened.
 ```
 
 ```text
-Correct: the change removes what it orphaned, and reports the rest.
+// Correct: the change removes what it orphaned, and reports the rest.
 
   Removed: the useOrderTotals import, which this change orphaned.
   Not done: formatCents in lib/money.ts has no caller. Left in place.
@@ -216,18 +216,18 @@ schema.
 Report three things:
 
 1. The exact contract change, named as a field, a route, or a status code.
-2. The sibling skill that owns it.
+2. The owner that the change belongs to.
 3. The frontend work that the change unblocks.
 
-| The change that the request needs | The sibling skill that owns it |
+| The change that the request needs | The owner |
 | --- | --- |
-| A serializer field, a route, a status code, a pagination or an error envelope | `django-api-contract` |
+| A serializer field, a route, a status code, a pagination or an error envelope | The backend |
 | A permission class, a rate limit, or a server-side CSRF rule | `secure-code-auditor` |
-| A schema change, a data migration, or a backfill | `django-migration-safety` |
-| A Celery task, a queue, or a Channels consumer | `django-async-jobs` |
-| A query that costs too much, or a server cache setting | `django-performance-optimizer` |
-| A Gunicorn or an ASGI process, or a Django health check | `django-release-readiness` |
-| A pytest-django test, a factory, or a fixture | `django-test-auditor` |
+| A schema change, a data migration, or a backfill | The backend |
+| A Celery task, a queue, or a Channels consumer | The backend |
+| A query that costs too much, or a server cache setting | The backend |
+| A Gunicorn or an ASGI process, or a Django health check | The backend |
+| A pytest-django test, a factory, or a fixture | The backend |
 
 `references/openapi-schema-and-codegen.md` owns the generated client and the
 command that regenerates it. This file owns the rule that a missing field stops
@@ -240,14 +240,14 @@ accessibility, and a change that the team cannot maintain. Name the problem,
 give the reason, and offer the correct version.
 
 ```text
-Wrong: the request wins, and the answer says nothing.
-Failure: the interface ships with a keyboard trap, because the request asked
-for a custom dropdown and nobody raised the criterion it fails.
+// Wrong: the request wins, and the answer says nothing.
+// Failure: the interface ships with a keyboard trap, because the request
+// asked for a custom dropdown and nobody raised the criterion it fails.
 ```
 
 ```text
-Correct: the answer names the criterion, and it offers the version that meets
-it.
+// Correct: the answer names the criterion, and it offers the version that
+// meets it.
 
   The div-based dropdown fails WCAG 2.2 criterion 2.1.2, so a keyboard
   reaches it and never leaves. The Base UI select carries the same visual
@@ -266,7 +266,7 @@ task.
 ### The decision record, and when to write none
 
 ```text
-Correct: five parts, in one file under docs/decisions/.
+// Correct: five parts, in one file under docs/decisions/.
 
   Title          0007 — the orders list holds its filters in the URL
   Status         Accepted
@@ -299,20 +299,20 @@ owns the record and the rule that selects it.
 ### The summary that closes the work
 
 ```text
-Wrong: the answer ends at the last edit.
-Failure: the reviewer cannot tell what the change assumed, so every assumption
-becomes a question in the review. Nothing states what the change left undone,
-so the gap reaches production as a surprise.
+// Wrong: the answer ends at the last edit.
+// Failure: the reviewer cannot tell what the change assumed, so every
+// assumption becomes a question in the review. Nothing states what the change
+// left undone, so the gap reaches production as a surprise.
 ```
 
 ```text
-Correct: three lines close the work.
+// Correct: three lines close the work.
 
   Changed    The orders page reads the filter from the URL. 4 files.
   Assumed    The filter is a single status value, because the DRF schema
              carries one status field and no list form.
   Not done   The saved-view feature. It needs a new endpoint, which
-             django-api-contract owns.
+             the backend owns.
 ```
 
 `Not done` is the part that a reader cannot reconstruct. It holds the request
@@ -379,7 +379,7 @@ rg -n '^Status' docs/decisions/
 - [ ] Does each open choice appear under `Assumed` as the value taken?
 - [ ] Are there three or fewer clarifying questions in the answer?
 - [ ] Were the neighbouring files read, and does the new code match their
-      naming, their folder, and their import style?
+      names, their folder, and their import style?
 - [ ] Does every changed line trace to the request?
 - [ ] Is the diff free of a whole-file reformat, an unrequested rename, a
       rewritten comment, and a moved file?
@@ -388,8 +388,8 @@ rg -n '^Status' docs/decisions/
 - [ ] Were only the orphans that this change created removed?
 - [ ] Is every pre-existing orphan reported rather than deleted?
 - [ ] Does the diff touch no server file?
-- [ ] Is every implied contract change named, and routed to the sibling skill
-      that owns it?
+- [ ] Is every implied contract change named, and routed to the owner that it
+      belongs to?
 - [ ] Was a request that fails security, accessibility, or maintainability
       refused with a reason and an alternative?
 - [ ] Does every choice that a small diff cannot reverse carry a decision
@@ -426,16 +426,11 @@ rg -n '^Status' docs/decisions/
 - The size at which a component splits →
   `references/component-composition.md`.
 - The serializer, the route, the status code, and the envelope on the server →
-  the sibling skill `django-api-contract`. This file owns the report only.
-- The permission class, the rate limit, and the server-side CSRF rule → the
-  sibling skill `secure-code-auditor`.
-- The migration, the backfill, and the table lock → the sibling skill
-  `django-migration-safety`.
-- The Celery task, the queue, and the Channels consumer → the sibling skill
-  `django-async-jobs`.
-- The query cost and the server cache setting → the sibling skill
-  `django-performance-optimizer`.
-- The Django process, the server config, and the go-live gate → the sibling
-  skill `django-release-readiness`.
-- The pytest-django test, the factory, and the fixture → the sibling skill
-  `django-test-auditor`.
+  the backend. This file owns the report only.
+- The permission class, the rate limit, and the server-side CSRF rule →
+  `secure-code-auditor`.
+- The migration, the backfill, and the table lock → the backend.
+- The Celery task, the queue, and the Channels consumer → the backend.
+- The query cost and the server cache setting → the backend.
+- The Django process, the server config, and the go-live gate → the backend.
+- The pytest-django test, the factory, and the fixture → the backend.

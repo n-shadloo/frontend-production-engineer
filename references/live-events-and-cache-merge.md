@@ -49,8 +49,8 @@ caused the event, and `payload` holds the record.
 | --- | --- |
 | The envelope, its four fields, and the parse over them | This file |
 | The fields inside `payload` | Domain 05, through `references/openapi-schema-and-codegen.md` and the generated types |
-| The version and the deprecation of an event type | The sibling skill `django-api-contract` |
-| The consumer that sends the event | The sibling skill `django-async-jobs` |
+| The version and the deprecation of an event type | The backend |
+| The consumer that sends the event | The backend |
 
 Type the payload from the generated types, so a renamed serializer field
 becomes a compile error rather than a silent gap.
@@ -432,8 +432,7 @@ pnpm typecheck
   this domain. They are a view that survives a malformed frame, a counter that
   rises on an unnamed type, and one row after an optimistic edit.
 - The event envelope as a published surface, its version, and its deprecation →
-  the sibling skill `django-api-contract`.
-- The consumer that sends the event, and the idempotency of the work behind it
-  → the sibling skill `django-async-jobs`.
-- The payload cost of a feed → the sibling skill
-  `django-performance-optimizer`.
+  the backend.
+- The consumer that sends the event, and the idempotency of the work behind it →
+  the backend.
+- The payload cost of a feed → the backend.

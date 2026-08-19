@@ -72,21 +72,21 @@ the loss.
 | `AGENTS.override.md` | Replaces the inherited text for one subtree, rather than adding to it | A package whose rules contradict the root, such as a legacy area |
 | `CODEX_HOME` | The directory that holds the user-level config and instructions | A shared machine, or a second profile |
 
-Keep `AGENTS.md` under the cap by moving depth out of it. A repository that
+Keep `AGENTS.md` under the cap, and move depth out of it. A repository that
 needs more than 32 KiB of instruction needs reference files, and not a larger
 cap.
 
 ### Next.js writes a managed block, and the repository commits it
 
 ```text
-Wrong: the managed block is deleted on each commit.
-Failure: the next `next dev` writes it back, so `git status` reports AGENTS.md
-dirty after every dev start. The team learns to ignore that file, and a real
-edit to it then reaches nobody.
+// Wrong: the managed block is deleted on each commit.
+// Failure: the next `next dev` writes it back, so `git status` reports
+// AGENTS.md dirty after every dev start. The team learns to ignore that file,
+// and a real edit to it then reaches nobody.
 ```
 
 ```text
-Correct: the block is committed as it stands.
+// Correct: the block is committed as it stands.
 
   <!-- BEGIN:nextjs-agent-rules -->
   ...the framework writes and updates this region...
@@ -163,16 +163,17 @@ rules, the modes, and the definition of done. Every domain sits in
 ### The description decides whether the body ever loads
 
 ```text
-Wrong: the description states a category.
-Failure: the agent has no phrase to match, so the skill never fires. The body
-is correct and it is never read, which reads exactly like a missing skill.
+// Wrong: the description states a category.
+// Failure: the agent has no phrase to match, so the skill never fires. The
+// body is correct and it is never read, which reads exactly like a missing
+// skill.
 
   description: Helps with frontend stuff.
 ```
 
 ```text
-Correct: the third person, what it does, when to use it, and the words that a
-reader actually types.
+// Correct: the third person, what it does, when to use it, and the words that
+// a reader actually types.
 
   description: Enforces the plan before the code, the minimal diff, and the
   definition of done in this repository. Use for any coding task, and when
@@ -245,15 +246,15 @@ tool policy through `agents/openai.yaml`.
 ### A skill that somebody else wrote is untrusted text
 
 ```text
-Wrong: the skill is installed, and the body is never read.
-Failure: the body instructs the agent to read the environment file and to send
-its contents to a host that the task never mentioned. The agent has no
-structural way to separate that instruction from an operator instruction, so it
-follows it.
+// Wrong: the skill is installed, and the body is never read.
+// Failure: the body instructs the agent to read the environment file and to
+// send its contents to a host that the task never mentioned. The agent has no
+// structural way to separate that instruction from an operator instruction,
+// so it follows it.
 ```
 
 ```text
-Correct: the body and every script are read before the skill is enabled.
+// Correct: the body and every script are read before the skill is enabled.
 
   Read     SKILL.md, and every file under scripts/ and references/.
   Look for a network call, a read of an environment value or a credential

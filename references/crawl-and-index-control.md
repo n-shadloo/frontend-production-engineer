@@ -252,7 +252,7 @@ call, and an index file, and it earns nothing under 50,000 URLs.
 
 This domain meets Django and DRF at the enumeration. The schema that types the
 records is `references/openapi-schema-and-codegen.md`, and the query behind a
-slow endpoint belongs to the sibling skill `django-performance-optimizer`.
+slow endpoint belongs to the backend.
 
 | The seam point | The client decision | The reason |
 | --- | --- | --- |
@@ -260,7 +260,7 @@ slow endpoint belongs to the sibling skill `django-performance-optimizer`.
 | A sitemap over a few hundred rows | `PageNumberPagination` is enough | The cursor earns nothing on a small, stable set. |
 | The value of `lastModified` | Map it from a server timestamp field, such as `updated_at` | It is the one field that the search engine reads. |
 | A serializer field that the backend renames | Regenerate the types, then run the typecheck | With fresh types the build fails, which is the correct outcome. With stale types the field resolves to `undefined`, and nothing reports it. |
-| Which rows the enumeration may return | Only rows that a signed-out reader can open | The server-side permission check is the sibling skill `secure-code-auditor`. This file owns the rule that the sitemap advertises no private URL. |
+| Which rows the enumeration may return | Only rows that a signed-out reader can open | `secure-code-auditor` owns the server-side permission check. This file owns the rule that the sitemap advertises no private URL. |
 
 ### The lifetime of the sitemap response
 
@@ -576,8 +576,6 @@ curl -s "$APP_ORIGIN/sitemap.xml" | rg -c '<loc>'
   → `references/runtime-process-and-reverse-proxy.md`. The environment value
   that a pipeline supplies to a non-production deployment →
   `references/release-pipeline-and-rollback.md`.
-- The slow list endpoint behind an enumeration, and the index on the ordering
-  field → the sibling skill `django-performance-optimizer`. The permission
-  check over the enumerated rows → the sibling skill `secure-code-auditor`.
-  The serializer field and the schema → the sibling skill
-  `django-api-contract`.
+- The slow list endpoint behind an enumeration, the index on the ordering
+  field, the serializer field, and the schema → the backend. The permission
+  check over the enumerated rows → `secure-code-auditor`.

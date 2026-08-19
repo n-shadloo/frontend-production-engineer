@@ -56,8 +56,8 @@ in decline, and alive only in legacy code.
 
 The shape is a trophy, and not a pyramid. A React unit test over a component
 proves that the component renders, which nobody doubts. The component level sits
-above it because it exercises the same path that a user takes: the markup, the
-event, the request, and the state that follows.
+above it because it exercises the same path that a user takes. That path is the
+markup, the event, the request, and the state that follows.
 
 The end-to-end level is the most expensive and the least stable. Keep it to the
 journeys that lose money or lock a user out. Nobody runs a journey suite that
@@ -686,6 +686,5 @@ pnpm test && pnpm test && pnpm test
   `references/locale-formatting-and-calendars.md`.
 - The feature folder, the module boundary around it, and the generated client
   path → `references/directory-and-module-boundaries.md`.
-- The Django test suite, the factory on the server, and the pytest fixture →
-  the sibling skill `django-test-auditor`. This file changes nothing on the
-  server.
+- The Django test suite, the factory on the server, and the pytest fixture → the
+  backend. This file changes nothing on the server.

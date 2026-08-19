@@ -87,10 +87,10 @@ transform, a `.default()`, or a coercion makes the two differ.
 | No generated schema exists yet | Parse, and open the codegen task. A hand-written schema is the temporary state, never the target. | The generated schema lands, and the first row then applies. | Every boundary that the task touches carries a schema that a later change deletes. |
 
 NEVER hand-copy the OpenAPI model into TypeScript or into Zod for every
-endpoint. Two sources for one shape drift in silence, and the drift surfaces
-as a run-time crash. `references/openapi-schema-and-codegen.md` owns the
-generation config and the codegen command. The sibling skill
-`django-api-contract` owns the server side of the contract.
+endpoint. Two sources for one shape drift in silence, and the drift surfaces as
+a run-time crash. `references/openapi-schema-and-codegen.md` owns the generation
+config and the codegen command. The backend owns the server side of the
+contract.
 
 ### What a DRF construct produces
 
@@ -283,7 +283,7 @@ rg -n 'createEnv|EnvSchema' src/env.ts
   it → `references/data-access-and-mutations.md`.
 - The drf-spectacular config, the codegen command, and the schema artifact →
   `references/openapi-schema-and-codegen.md`. The server side belongs to the
-  sibling skill `django-api-contract`.
+  backend.
 - The one client, the retry rule, and the `normalizeApiError` that turns every
   envelope into one `ApiError` →
   `references/api-client-and-request-safety.md`.

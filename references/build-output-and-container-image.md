@@ -372,5 +372,4 @@ time docker stop check
 - The bytes that a route ships, and the budget over them →
   `references/performance-budgets-and-measurement.md`.
 - The Gunicorn or ASGI process, its worker count, and `ALLOWED_HOSTS` → the
-  sibling skill `django-release-readiness`. This file owns the Next.js artifact
-  and the image around it.
+  backend. This file owns the Next.js artifact and the image around it.

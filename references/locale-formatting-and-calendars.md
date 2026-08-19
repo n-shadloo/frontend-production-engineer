@@ -74,10 +74,9 @@ config, so the server render and the browser render agree.
 `references/locale-routing-and-catalogs.md` owns that config.
 
 Require an offset on every datetime field in the contract. A DRF field with
-`USE_TZ = True` serializes an aware datetime, and the string ends in `Z` or in
-a numeric offset. A field that ends in neither is naive, and the frontend
-cannot repair it. The sibling skill `django-api-contract` owns that decision on
-the server.
+`USE_TZ = True` serializes an aware datetime, and the string ends in `Z` or in a
+numeric offset. A field that ends in neither is naive, and the frontend cannot
+repair it. The backend owns that decision on the server.
 
 Hold the zone that the reader chose. Read `Intl.DateTimeFormat()
 .resolvedOptions().timeZone` in the browser to offer a default, and store the
@@ -238,7 +237,7 @@ conversion belongs to the client that presented the other one.
 // Wrong: the sort compares code units.
 // Failure: the order puts every uppercase word before every lowercase word,
 // and it puts "Ärger" after "Zeit". A Persian list orders by code point, which
-// no reader of that language recognises as alphabetical.
+// no reader of that language recognizes as alphabetical.
 const sorted = [...names].sort();
 ```
 
@@ -261,8 +260,7 @@ matches. Take `numeric: true`, so "Item 2" sorts before "Item 10".
 A server-side sort and a client-side sort must not disagree. Sort on one side
 only. Where the backend orders the page, the table renders that order and adds
 none of its own. `references/data-table-and-server-driven-state.md` owns the
-sort model, and the sibling skill `django-performance-optimizer` owns the index
-behind the ordering field.
+sort model, and the backend owns the index behind the ordering field.
 
 The normalization of Persian and Arabic characters before a comparison is
 `references/bidirectional-layout-and-scripts.md`. A collator does not settle
@@ -443,6 +441,5 @@ node -e "console.log(new Intl.DateTimeFormat('fa-IR-u-ca-persian').resolvedOptio
   `references/component-composition.md`.
 - The test over a rendered locale →
   `references/test-strategy-and-component-tests.md`.
-- The aware datetime that the serializer emits, and the field that carries a
-  currency code → the sibling skill `django-api-contract`. The index behind an
-  ordering field → the sibling skill `django-performance-optimizer`.
+- The aware datetime that the serializer emits, the field that carries a
+  currency code, and the index behind an ordering field → the backend.

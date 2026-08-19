@@ -203,7 +203,7 @@ changes between two numbers prove nothing about either.
 
 This domain meets Django and DRF at the payload and at the round trip. The
 contract itself is `references/openapi-schema-and-codegen.md`, and the server
-query belongs to the sibling skill `django-performance-optimizer`.
+query belongs to the backend.
 
 | The seam point | What it costs the browser | The decision |
 | --- | --- | --- |
@@ -211,7 +211,7 @@ query belongs to the sibling skill `django-performance-optimizer`.
 | A serializer that returns every field | A large JSON body becomes a large RSC payload, a larger stream, and more work at hydration. | Request the fields that the view renders. Project a large object to the three fields that a client component needs before you pass it as a prop. |
 | A page size that the viewport does not need | 200 rows fetched for 20 rendered inflates the payload and the interaction cost. | Match the page size to the viewport. `references/data-table-and-server-driven-state.md` owns the server-driven table. |
 | The generated client | The types cost no run-time bytes. The client that sends the request does. | `openapi-fetch` is 1 kB to 2 kB. A general-purpose HTTP client is an order of magnitude more. |
-| A slow first byte from Django | Where the largest element is text in a system font, LCP is the first byte plus the render. No image work helps. | Prove it from the LCP sub-parts, then hand the measured server timing to `django-performance-optimizer`. |
+| A slow first byte from Django | Where the largest element is text in a system font, LCP is the first byte plus the render. No image work helps. | Prove it from the LCP sub-parts, then report the endpoint and the measured server timing to the backend team. |
 
 A field name that the backend renames fails the typecheck, which is a
 correctness gate. An endpoint that silently returns more data fails no type. Only
@@ -242,7 +242,7 @@ state an exact release date for it.
 | Symptom | Cause | Detection | Fix |
 | --- | --- | --- | --- |
 | The laboratory LCP is good and the field LCP is poor | The laboratory runs a fast machine on a fast link | Compare the field percentile against the Lighthouse run | Throttle to 4× CPU and Slow 4G, and optimise the sub-part that dominates the field |
-| The largest paint does not move after the image work | The first byte or the render delay dominates, and not the image | Read the four LCP sub-parts | Where it is the first byte, hand the timing to `django-performance-optimizer` |
+| The largest paint does not move after the image work | The first byte or the render delay dominates, and not the image | Read the four LCP sub-parts | Where it is the first byte, report the endpoint and the timing to the backend team |
 | Every branch fails the Lighthouse gate at random | One run on a shared CI machine | Run the same commit twice | Set `numberOfRuns` to 5 or more, and assert on the median |
 | First Load JS rose and nobody noticed | The route table is not read on a pull request | Compare the route table of two builds | Add the byte gate, and read the table in the review |
 | The budget passes and the readers complain | The budget was copied from an article | Compare the budget against the route table of this repository | Set the budget from `next build` on main, less the agreed headroom |
@@ -359,7 +359,6 @@ rg -n 'useReportWebVitals' -g '*.tsx' src/
 - The test runner → `references/test-strategy-and-component-tests.md`. The
   place of the budget stage in the gate order →
   `references/merge-gates-and-quality-signals.md`.
-- The slow endpoint, the query count, and the server cache → sibling skill
-  `django-performance-optimizer`.
-- The serializer fields and the pagination envelope as a published surface →
-  sibling skill `django-api-contract`.
+- The slow endpoint, the query count, and the server cache → the backend.
+- The serializer fields and the pagination envelope as a published surface → the
+  backend.
