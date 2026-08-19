@@ -21,8 +21,8 @@ guarantees: Web Vitals, frontend security, SEO, internationalization and RTL,
 testing, observability, build and deploy, and analytics and consent. A Tier 0
 operating doctrine sits under all four, and it is always in effect.
 
-At 1.22.0 the integrated material in `references/` is that doctrine, the App
-Router foundation, the type system, and the React component tree. It also holds
+At 1.23.0 the integrated material in `references/` is the App Router
+foundation, the type system, and the React component tree. It also holds
 the project structure, the DRF contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
 events on it. It holds the design system and accessibility — the tokens and the
@@ -79,12 +79,18 @@ the image that carries it. It also holds the process that serves it, and the
 front door in front of that process. The last of it is the pipeline, the deploy
 that a probe proves, and the way back.
 
-The newest part is the measurement, and the permission that comes before it. It
+Another part is the measurement, and the permission that comes before it. It
 holds the event, its name, and the one module that sends it. It also holds the
 consent that a script waits for, the record that keeps the answer, and the
 inventory that proves the cookie policy true. The last of it is the export, the
-deletion, and the retention window that the interface states. `SKILL.md` is the
-authoritative list of what is loadable.
+deletion, and the retention window that the interface states.
+
+The newest part is the process that the work runs inside. It holds the plan
+that comes before a diff, and the line that traces to the request. It also
+holds the version read from the install, and the name that the install must
+carry. The last of it is the file that instructs an agent, and the text from
+outside that is never a command. `SKILL.md` is the authoritative list of what
+is loadable.
 
 Two standing rules govern everything. Verify the installed versions from
 `package.json` before you generate code. Never mix Next 15 and Next 16 idioms

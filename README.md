@@ -259,9 +259,9 @@ run.
 
 ## Example output
 
-At 1.22.0 the integrated material is the operating doctrine, the App Router
-foundation, the type system, and the React component tree. It also holds the
-project structure, the backend contract, and the client cache and state. It
+At 1.23.0 the integrated material is the App Router foundation, the type
+system, and the React component tree. It also holds the project structure, the
+backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
 events on it. It holds the design system and accessibility — the tokens and the
 layout, the element and its name, the keyboard, and the measurable criteria.
@@ -317,11 +317,17 @@ the image that carries it. It also holds the process that serves it, and the
 front door in front of that process. The last of it is the pipeline, the deploy
 that a probe proves, and the way back.
 
-The newest part is the measurement, and the permission that comes before it. It
+Another part is the measurement, and the permission that comes before it. It
 holds the event, its name, and the one module that sends it. It also holds the
 consent that a script waits for, the record that keeps the answer, and the
 inventory that proves the cookie policy true. The last of it is the export, the
 deletion, and the retention window that the interface states.
+
+The newest part is the process that the work runs inside. It holds the plan
+that comes before a diff, and the line that traces to the request. It also
+holds the version read from the install, and the name that the install must
+carry. The last of it is the file that instructs an agent, and the text from
+outside that is never a command.
 
 The worked example below is the shape of a task, and the facts that gate
 it:
@@ -421,10 +427,10 @@ Done
 `SKILL.md` frontmatter records the skill version in `metadata.version`, and git
 holds the release tags. The version tracks the integrated domains, and never a
 brief number. **1.0.0** is the scaffold and the first domain, released
-together. Each domain after the first adds one to the minor number. The
-doctrine of domain 24 has no router entry, because `SKILL.md` holds it. The
-minor number is therefore the count of router domains minus one, and
-**1.22.0** is all twenty-four domains.
+together. Each domain after the first adds one to the minor number. The minor
+number is therefore the count of router domains minus one, and **1.23.0** is
+all twenty-four domains. The standing rules and the gate of the operating
+doctrine stay in `SKILL.md`, because they are always in effect.
 
 A patch release corrects material that is already integrated. Domains land in
 any order, so read the router rather than the version string.
@@ -477,6 +483,7 @@ frontend-production-engineer/
 │   ├── form-submission-and-server-errors.md
 │   ├── gesture-and-scroll-interaction.md
 │   ├── image-and-video-delivery.md
+│   ├── instruction-files-and-skill-discovery.md
 │   ├── interface-copy-and-voice.md
 │   ├── keyboard-focus-and-live-regions.md
 │   ├── layout-and-typography.md
@@ -507,10 +514,12 @@ frontend-production-engineer/
 │   ├── state-and-effects.md
 │   ├── structured-data-and-rich-results.md
 │   ├── suspense-and-actions.md
+│   ├── task-plan-and-scope-control.md
 │   ├── test-strategy-and-component-tests.md
 │   ├── type-modeling-and-narrowing.md
 │   ├── typescript-config-and-enforcement.md
 │   ├── untrusted-markup-and-injection.md
+│   ├── version-proof-and-unconfirmed-code.md
 │   ├── view-transitions-and-animation-libraries.md
 │   ├── visual-and-motor-criteria.md
 │   └── wcag-conformance-and-verification.md
@@ -519,7 +528,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds twenty-three domains at 1.22.0, which is every domain that
+`references/` holds twenty-four domains at 1.23.0, which is every domain that
 has a router entry.
 `scripts/` and `assets/` are not present; they are added when a domain ships
 something executable or a template worth copying.

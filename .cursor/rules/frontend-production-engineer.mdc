@@ -77,14 +77,27 @@ twenty-second group is the release — `output: 'standalone'`, a `Dockerfile`, a
 `.dockerignore`, a base image, a systemd unit, an Nginx server block,
 `proxy_pass`, `client_max_body_size`, a TLS certificate, a GitHub Actions
 workflow, a deploy script, a rollback, a `NEXT_PUBLIC_` value that a promotion
-cannot change, or a `cacheHandler` behind two instances. The last group is the
-measurement and the permission for it — analytics, an event name, `track()`, a
-tracking plan, PostHog, Plausible, Google Analytics, `gtag`, a page view that
+cannot change, or a `cacheHandler` behind two instances. The twenty-third group
+is the measurement and the permission for it — analytics, an event name,
+`track()`, a tracking plan, PostHog, Plausible, Google Analytics, `gtag`, a
+page view that
 fires twice, an ad blocker that drops an event, or an A/B variant. It also
 covers consent, a cookie banner, a consent category, GDPR, the ePrivacy
 Directive, `Sec-GPC`, a cookie inventory, a session replay, a data export, an
 account deletion, a retention window, a privacy policy page, and a cookie
 policy page.
+
+The last group is the process that the work runs inside — a written plan,
+success criteria, a stated assumption, scope creep, a minimal diff, a drive-by
+refactor, an abstraction with one caller, a pre-existing orphan, a decision
+record, a push back on a wrong request, or a closing summary. It also covers
+the proof — the installed version read from `package.json`, a Next 15 idiom in
+a Next 16 repository, `node_modules/next/dist/docs/`, an invented API, a
+suppression added to make a gate pass, and a claim that names no source. The
+last of it is the file that instructs an agent — `AGENTS.md`,
+`AGENTS.override.md`, `CLAUDE.md`, `agentRules: false`, a description that never
+fires, a skill metadata budget, or an instruction inside fetched text or an
+installed skill.
 
 Verify the installed versions from `package.json` before you generate code.
 Never mix Next 15 and Next 16 idioms in one file. Report an API you cannot
