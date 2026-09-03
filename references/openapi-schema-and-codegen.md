@@ -269,6 +269,9 @@ rg -n 'camelcase|humps|ts-case-convert' package.json
 - The serializer, the viewset, the status code, and the deprecation of a field →
   the backend. The backend owns the server side of this contract, and this file
   owns what the frontend generates from it.
+- A second backend runtime beside Django, and the two OpenAPI documents that
+  reach one client → `fastapi-alongside-django`. That skill reconciles the two
+  dialects. This file owns what the frontend generates from each document.
 - The query keys and the cache built on the generated types →
   `references/server-state-and-query-cache.md`.
 - The MSW handlers and the contract test against the schema →
