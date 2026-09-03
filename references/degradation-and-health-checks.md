@@ -398,5 +398,5 @@ curl -s -o /dev/null -w '%{http_code}\n' "$APP_ORIGIN/api/health"
 - The Django health endpoint, the ASGI process behind it, and the go-live gate →
   the backend. This file owns the Next.js route and what the frontend probe
   proves.
-- The rate limit that produces a 429, and the throttle behind it →
-  `secure-code-auditor`.
+- The rate limit that produces a 429, and the throttle behind it → the
+  backend's security review.

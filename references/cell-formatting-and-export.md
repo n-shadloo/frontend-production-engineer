@@ -144,8 +144,8 @@ const blob = new Blob([`\uFEFF${csv}`], { type: "text/csv;charset=utf-8" });
 ```
 
 A file that the server builds is the server's responsibility for the same
-escape, and `secure-code-auditor` owns that check. This file owns the escape for
-a file that the browser builds.
+escape, and the backend's security review owns that check. This file owns the
+escape for a file that the browser builds.
 
 `references/api-client-and-request-safety.md` owns the request that fetches the
 rows, its timeout, and its abort signal.
@@ -292,4 +292,4 @@ head -c 3 export.csv | xxd | grep -q "efbb bf" && echo "the BOM is present"
 - The worker that builds a large export, its retries, and its idempotency → the
   backend.
 - The permission check on an export endpoint, and the escape inside a file that
-  the server builds → `secure-code-auditor`.
+  the server builds → the backend's security review.

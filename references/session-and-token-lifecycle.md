@@ -132,8 +132,8 @@ prefix rules. Read the header with `curl -I` through the real proxy, and read
 `Path=/` and the prefix in the output.
 
 The frontend does not set these attributes. It states which ones the application
-depends on, and the backend team sets them. `secure-code-auditor` owns the
-server-side choice of each attribute. `references/cross-origin-and-bff-proxy.md`
+depends on, and the backend team sets them. The backend's security review owns
+the server-side choice of each attribute. `references/cross-origin-and-bff-proxy.md`
 owns what a cross-site request does with the cookie once it exists.
 
 ### The refresh is single-flight
@@ -198,7 +198,7 @@ NEVER decode `exp` on the client to decide when to refresh. The clock of the
 device drifts against the clock of the server, and a drift produces an
 intermittent 401 straight after a successful refresh. Let the 401 from the
 server start the refresh. The SimpleJWT `LEEWAY` setting absorbs the drift on
-the server side, and `secure-code-auditor` owns its value.
+the server side, and the backend's security review owns its value.
 
 ### What ends a session, and what does not
 
@@ -295,8 +295,8 @@ values from the backend team, and record them beside the client.
 | `ROTATE_REFRESH_TOKENS` is turned on | Concurrent refresh calls now blacklist each other, and the session ends mid-visit |
 | A `Set-Cookie` header is rewritten by a proxy | The browser stores nothing, and the login appears to succeed and then fail |
 
-`secure-code-auditor` owns the server-side settings and the migration that the
-blacklist application needs. The backend owns the shape of each auth endpoint.
+The backend's security review owns the server-side settings and the migration
+that the blacklist application needs. The backend owns the shape of each auth endpoint.
 This file owns what the browser sends, what it stores, and what the UI does with
 the answer.
 
@@ -452,6 +452,6 @@ curl -sI -X POST "$NEXT_PUBLIC_API_BASE_URL/api/auth/login/" | rg -i 'set-cookie
   `references/runtime-process-and-reverse-proxy.md`.
 - The SimpleJWT settings, the blacklist migration, the password hash, the rate
   limit on the login endpoint, and the server-side CSRF enforcement →
-  `secure-code-auditor`. This file owns what the browser sends and stores, and
+  the backend's security review. This file owns what the browser sends and stores, and
   the UI behavior for a 401, a 403, and a CSRF failure.
 - The shape of each auth endpoint as a published contract → the backend.

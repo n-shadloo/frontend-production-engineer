@@ -107,8 +107,8 @@ export async function connectWithTicket(url: string): Promise<WebSocket> {
 The cookie carrier depends on one server-side control. A WebSocket handshake is
 an ordinary HTTP request, and the Same-Origin Policy does not stop it. A cookie
 alone therefore authenticates any page that opens the connection. The backend
-must check the `Origin` header on the handshake. `secure-code-auditor` owns that
-check, and the backend owns the consumer that runs behind it. State the
+must check the `Origin` header on the handshake. The backend's security review
+owns that check, and the backend owns the consumer that runs behind it. State the
 requirement in the review, and fail the review where nobody can confirm it.
 
 ### One connection for the application
@@ -709,5 +709,5 @@ npx wscat -c "wss://staging.example.com/ws/feed/"
   connection → the backend. This file owns the transport for the state of a job
   and the interface for its progress.
 - The `Origin` check on the handshake, the permission class on the consumer, and
-  the rate limit → `secure-code-auditor`.
+  the rate limit → the backend's security review.
 - The ASGI server, the health check, and the go-live gate → the backend.

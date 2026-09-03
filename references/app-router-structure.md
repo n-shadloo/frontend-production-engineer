@@ -328,7 +328,7 @@ done
   CVE-2026-64642, which is the second bypass of this file. The session, the
   cookie attributes, and the refresh are
   `references/session-and-token-lifecycle.md`. The server-side permission
-  classes belong to `secure-code-auditor`.
+  classes belong to the backend's security review.
 - The values of the security headers, and the CSP that `next.config.ts` and
   `proxy.ts` emit → `references/security-headers-and-csp.md`. The destination of
   a `rewrites()` or a `redirects()` entry is

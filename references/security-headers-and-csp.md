@@ -356,6 +356,6 @@ curl -sI "$APP_ORIGIN" | rg -ic 'content-security-policy'
   inventory → `references/consent-gate-and-cookie-inventory.md`.
 - The endpoint that receives a violation report, and the rule over its count →
   `references/correlation-and-telemetry.md`.
-- The server-side headers of Django, and `ALLOWED_HOSTS` → `secure-code-auditor`
-  and the backend. This file owns the headers that the Next.js application
+- The server-side headers of Django, and `ALLOWED_HOSTS` → the backend and its
+  security review. This file owns the headers that the Next.js application
   emits.

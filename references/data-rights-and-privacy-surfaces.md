@@ -380,6 +380,6 @@ pnpm test:a11y
 - The browser test that walks an export and a deletion →
   `references/end-to-end-journeys-and-flake-control.md`.
 - The endpoint that starts each job, its status codes, the shape of the job
-  record, and the erasure → the backend and `secure-code-auditor`. This file
+  record, and the erasure → the backend and its security review. This file
   owns the surface that starts each one and the state that it renders.
 - The background worker that builds the export → the backend.

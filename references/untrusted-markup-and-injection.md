@@ -340,4 +340,4 @@ rg -n 'href=\{|src=\{' -g '*.tsx' src/
 - The JSON-LD block, and the escape that its grammar needs →
   `references/structured-data-and-rich-results.md`.
 - Injection on the server, template injection, and every server-side sink →
-  `secure-code-auditor`. This file owns the browser.
+  the backend's security review. This file owns the browser.

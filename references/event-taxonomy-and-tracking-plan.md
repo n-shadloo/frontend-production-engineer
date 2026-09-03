@@ -592,5 +592,5 @@ pnpm test
 - The application under a dead backend, and the offline state →
   `references/degradation-and-health-checks.md`.
 - The Django endpoint that receives a server event, and the retention of that
-  record on the server → the backend and `secure-code-auditor`. This file owns
+  record on the server → the backend and its security review. This file owns
   the event that the frontend sends.

@@ -136,8 +136,8 @@ Check the size and the count in the same place. The schema that states the type,
 the size, and the count belongs to `references/form-schema-and-field-binding.md`,
 and that file owns the rule. This file owns the check that runs on the bytes.
 
-`secure-code-auditor` owns the server-side sniff and the virus scan. It also
-owns the name that a stored file takes, and the rate limit over the endpoint.
+The backend's security review owns the server-side sniff and the virus scan. It
+also owns the name that a stored file takes, and the rate limit over the endpoint.
 Never write those steps here.
 
 ### The bytes change before they leave
@@ -243,7 +243,8 @@ announces each percentage floods a screen reader, and that file holds the rule.
 
 The Django endpoint mints the credential and returns `{ url, fields }` for a
 POST policy, or `{ url }` for a PUT. The backend owns the shape of that
-response, and `secure-code-auditor` owns the scope of the credential. The client
+response, and the backend's security review owns the scope of the credential. The
+client
 has three obligations.
 
 1. Append every entry of `fields` to the `FormData` first, and append the `file`
@@ -443,6 +444,6 @@ rg -n 'presign|createPresignedPost|putWithProgress' -g '*.ts*' src/
   `references/network-mocks-and-contract-tests.md`. The test that reads the
   message → `references/test-strategy-and-component-tests.md`.
 - The server-side sniff, the virus scan, the name of a stored file, and the
-  scope of a presigned credential → `secure-code-auditor`.
+  scope of a presigned credential → the backend's security review.
 - The shape of the presigned response and of the confirm endpoint → the backend.
 - The worker that scans or transcodes the object, and its retries → the backend.

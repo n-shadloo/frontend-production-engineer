@@ -400,8 +400,8 @@ if (scope === "all-matching") {
 
 The server must accept a filter predicate for the whole-set action. Where it
 accepts only a list of identifiers, offer no whole-set control. The bulk
-endpoint itself belongs to the backend for its query cost, and to
-`secure-code-auditor` for its permission check.
+endpoint itself belongs to the backend for its query cost, and to the backend's
+security review for its permission check.
 
 State the count and the scope in the confirmation. "Archive 4,300 orders that
 match this filter" and "Archive 25 orders on this page" are two different
@@ -610,5 +610,5 @@ test("a sort updates the address and fires one request", async ({ page }) => {
   change in them → the backend.
 - The query cost of a filtered list, and the index behind an `ordering` value →
   the backend.
-- The permission check on a list endpoint and on a bulk endpoint →
-  `secure-code-auditor`.
+- The permission check on a list endpoint and on a bulk endpoint → the
+  backend's security review.

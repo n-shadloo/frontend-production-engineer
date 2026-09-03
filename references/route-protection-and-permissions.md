@@ -50,8 +50,8 @@ another. The data access layer is the gate that the frontend owns, and the
 Django permission is the gate that decides. A rule that stops at the data
 access layer is a rule that trusts frontend code with a security decision.
 
-`secure-code-auditor` owns the DRF permission class and every server-side check.
-This file owns the three frontend layers above it.
+The backend's security review owns the DRF permission class and every server-side
+check. This file owns the three frontend layers above it.
 
 ### The data access layer reads the session once
 
@@ -466,5 +466,5 @@ pnpm build
 - The test that posts to a Server Action with no session →
   `references/end-to-end-journeys-and-flake-control.md`.
 - The DRF permission class, the object-level check, the impersonation procedure,
-  and every server-side gate → `secure-code-auditor`. This file owns the three
-  frontend layers above it.
+  and every server-side gate → the backend's security review. This file owns the
+  three frontend layers above it.

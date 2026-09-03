@@ -335,5 +335,5 @@ git ls-files | rg '^\.env'
   host → `references/runtime-process-and-reverse-proxy.md`. The credential
   that a pipeline holds → `references/release-pipeline-and-rollback.md`.
 - Secret storage on the server, password hashing, and the Django settings that
-  hold a credential → `secure-code-auditor`. This file owns what the browser
+  hold a credential → the backend's security review. This file owns what the browser
   receives.

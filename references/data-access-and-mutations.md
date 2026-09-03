@@ -323,7 +323,7 @@ rg -n 'NEXT_PUBLIC_[A-Z_]*(KEY|SECRET|TOKEN|PASSWORD)' .
   That file also states that a Server Action never takes an identity as a
   parameter. The token storage and the refresh are
   `references/session-and-token-lifecycle.md`. The DRF permission classes belong
-  to `secure-code-auditor`.
+  to the backend's security review.
 - The pending state of a form, the error that the Action returns, and the
   optimistic value → `references/suspense-and-actions.md`.
 - The form binding and the resolver →

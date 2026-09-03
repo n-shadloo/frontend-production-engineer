@@ -222,7 +222,7 @@ Report three things:
 | The change that the request needs | The owner |
 | --- | --- |
 | A serializer field, a route, a status code, a pagination or an error envelope | The backend |
-| A permission class, a rate limit, or a server-side CSRF rule | `secure-code-auditor` |
+| A permission class, a rate limit, or a server-side CSRF rule | The backend's security review |
 | A schema change, a data migration, or a backfill | The backend |
 | A Celery task, a queue, or a Channels consumer | The backend |
 | A query that costs too much, or a server cache setting | The backend |
@@ -427,8 +427,8 @@ rg -n '^Status' docs/decisions/
   `references/component-composition.md`.
 - The serializer, the route, the status code, and the envelope on the server →
   the backend. This file owns the report only.
-- The permission class, the rate limit, and the server-side CSRF rule →
-  `secure-code-auditor`.
+- The permission class, the rate limit, and the server-side CSRF rule → the
+  backend's security review.
 - The migration, the backfill, and the table lock → the backend.
 - The Celery task, the queue, and the Channels consumer → the backend.
 - The query cost and the server cache setting → the backend.

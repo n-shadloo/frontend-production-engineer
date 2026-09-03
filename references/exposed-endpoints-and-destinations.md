@@ -443,5 +443,5 @@ curl -i -X POST "$APP_ORIGIN/" -H "Next-Action: $ACTION_ID"
 - The test that posts to an action with no session →
   `references/end-to-end-journeys-and-flake-control.md`.
 - The DRF permission class, the object-level check, the rate limit, and every
-  server-side enforcement → `secure-code-auditor`. This file owns the endpoints
+  server-side enforcement → the backend's security review. This file owns the endpoints
   that the Next.js application publishes.

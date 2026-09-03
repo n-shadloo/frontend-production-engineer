@@ -260,7 +260,7 @@ slow endpoint belongs to the backend.
 | A sitemap over a few hundred rows | `PageNumberPagination` is enough | The cursor earns nothing on a small, stable set. |
 | The value of `lastModified` | Map it from a server timestamp field, such as `updated_at` | It is the one field that the search engine reads. |
 | A serializer field that the backend renames | Regenerate the types, then run the typecheck | With fresh types the build fails, which is the correct outcome. With stale types the field resolves to `undefined`, and nothing reports it. |
-| Which rows the enumeration may return | Only rows that a signed-out reader can open | `secure-code-auditor` owns the server-side permission check. This file owns the rule that the sitemap advertises no private URL. |
+| Which rows the enumeration may return | Only rows that a signed-out reader can open | The backend's security review owns the server-side permission check. This file owns the rule that the sitemap advertises no private URL. |
 
 ### The lifetime of the sitemap response
 
@@ -578,4 +578,4 @@ curl -s "$APP_ORIGIN/sitemap.xml" | rg -c '<loc>'
   `references/release-pipeline-and-rollback.md`.
 - The slow list endpoint behind an enumeration, the index on the ordering
   field, the serializer field, and the schema → the backend. The permission
-  check over the enumerated rows → `secure-code-auditor`.
+  check over the enumerated rows → the backend's security review.

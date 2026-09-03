@@ -492,5 +492,5 @@ curl -s -H 'Sec-GPC: 1' localhost:3000/ | rg -o 'name="analytics"[^>]*'
 - The browser test that refuses every category and counts the vendor requests →
   `references/end-to-end-journeys-and-flake-control.md`.
 - The consent record on the server, its retention, and the endpoint that
-  receives it → the backend and `secure-code-auditor`. This file owns the record
+  receives it → the backend and its security review. This file owns the record
   that the browser holds and the gate that reads it.
