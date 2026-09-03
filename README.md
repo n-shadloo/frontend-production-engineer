@@ -306,7 +306,7 @@ run.
 
 ## Example output
 
-At 1.24.0 the integrated material is the App Router foundation, the type
+At 1.24.1 the integrated material is the App Router foundation, the type
 system, and the React component tree. It also holds the project structure, the
 backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -580,7 +580,7 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds twenty-four domains at 1.24.0, which is every domain that
+`references/` holds twenty-four domains at 1.24.1, which is every domain that
 has a router entry.
 `scripts/` and `assets/` are not present, because no domain ships an executable
 or a template.

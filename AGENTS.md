@@ -16,15 +16,14 @@ Plans, writes, and reviews production Next.js and TypeScript against a Django
 scope is routing and rendering, the React component tree, and the typed
 contract with the backend. It also holds the non-functional guarantees a
 shipped frontend owes its users. The Django backend itself is out of scope.
-Server-side security defers to `secure-code-auditor`, where a project installs
-it.
+Server-side security defers to the backend's own security review.
 
 Twenty-four domains are integrated across four tiers. The tiers are
 foundations, backend contract and state, interface craft, and non-functional
 guarantees. A Tier 0 operating doctrine sits under them, and it is always in
 effect.
 
-At 1.24.0 the integrated material in `references/` is the App Router
+At 1.24.1 the integrated material in `references/` is the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the DRF contract, and the client cache and state.
 It holds the session with the gates over it, and the push transport with the
