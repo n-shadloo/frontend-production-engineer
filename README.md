@@ -277,6 +277,23 @@ does not duplicate the content.
 
 The only requirement is `git` and a Git repository to run in.
 
+## Self-improvement
+
+This skill improves itself. After a task, the agent that used the skill can
+correct wrong or old content and add content that the task needed.
+`SELF-IMPROVEMENT.md` gives the rules. Each change needs evidence from the task.
+The rules keep each change small and keep the core of the skill fixed.
+
+- Your copy: the agent changes your local copy. It writes a record of each
+  change to `~/.skill-improvements/frontend-production-engineer/`. The record
+  stays after an update of the skill. If an update removes a local change, the
+  agent writes the change again at the next use.
+- The owner: the agent asks you to send the records to the owner as a GitHub
+  issue. It sends nothing without your approval. The owner examines each issue
+  and adds the change for all users.
+- To stop it: make the file `~/.skill-improvements/OFF`. Then the agent does not
+  change the skill and writes no record.
+
 ## Use
 
 Two modes, chosen from context.
@@ -483,6 +500,7 @@ example, and treat the principle layer as the part with the longer half-life.
 ```text
 frontend-production-engineer/
 ├── SKILL.md                                   # canonical skill and router
+├── SELF-IMPROVEMENT.md                        # self-improvement rules
 ├── AGENTS.md                                  # always-on project context
 ├── GEMINI.md                                  # Gemini CLI context
 ├── .cursor/

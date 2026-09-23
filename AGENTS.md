@@ -9,6 +9,20 @@ Primary integration: **Claude** (Anthropic Agent Skills). The files below let
 other agents use the same content; they are pointers, not copies. If anything
 here disagrees with `SKILL.md`, `SKILL.md` wins.
 
+## Self-improvement
+
+This skill improves itself after a task. `SELF-IMPROVEMENT.md` gives the rules.
+
+1. Before the main task: if the directory
+   `~/.skill-improvements/frontend-production-engineer/` exists, do section 3 of
+   `SELF-IMPROVEMENT.md`.
+2. During the main task: change no file of this skill, unless the main task is a
+   change to this skill. When this skill gives wrong, old, unclear, or
+   incomplete information, add one item to your task list:
+   "Skill review: frontend-production-engineer".
+3. After the main task: if you found a defect in this skill, load
+   `SELF-IMPROVEMENT.md` and obey it.
+
 ## What this skill does
 Plans, writes, and reviews production Next.js and TypeScript against a Django
 / Django REST Framework backend. Scope is the browser-facing application. That

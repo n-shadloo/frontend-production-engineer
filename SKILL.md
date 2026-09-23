@@ -39,6 +39,20 @@ it does not restate their material. Other agents (Codex,
 Cursor, Gemini CLI) reuse its canonical content through `AGENTS.md`, with
 Claude as the primary integration.
 
+## Self-improvement
+
+This skill improves itself after a task. `SELF-IMPROVEMENT.md` gives the rules.
+
+1. Before the main task: if the directory
+   `~/.skill-improvements/frontend-production-engineer/` exists, do section 3 of
+   `SELF-IMPROVEMENT.md`.
+2. During the main task: change no file of this skill, unless the main task is a
+   change to this skill. When this skill gives wrong, old, unclear, or
+   incomplete information, add one item to your task list:
+   "Skill review: frontend-production-engineer".
+3. After the main task: if you found a defect in this skill, load
+   `SELF-IMPROVEMENT.md` and obey it.
+
 ## How the reference material is organized
 
 Domain depth lives in `references/`, never in this file. Every reference file

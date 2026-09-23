@@ -9,6 +9,18 @@ frontend change. Read `SKILL.md` first for the standing rules, the router, and
 the mode logic. Then open the relevant `references/*.md` file(s). `AGENTS.md`
 is the condensed always-on layer, and it defers to `SKILL.md` on any conflict.
 
+This skill improves itself after a task. `SELF-IMPROVEMENT.md` gives the rules.
+
+- Before the main task: if the directory
+  `~/.skill-improvements/frontend-production-engineer/` exists, do section 3 of
+  `SELF-IMPROVEMENT.md`.
+- During the main task: change no file of this skill, unless the main task is a
+  change to this skill. When this skill gives wrong, old, unclear, or incomplete
+  information, add one item to your task list:
+  "Skill review: frontend-production-engineer".
+- After the main task: if you found a defect in this skill, load
+  `SELF-IMPROVEMENT.md` and obey it.
+
 Review-time produces findings ordered by severity, and each finding names a
 location, the concrete failure a user would experience, and a fix. It ends with
 a statement of what it did not review. Write-time plans first, and then applies
