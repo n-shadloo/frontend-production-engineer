@@ -21,7 +21,7 @@ guarantees: Web Vitals, frontend security, SEO, internationalization and RTL,
 testing, observability, build and deploy, and analytics and consent. A Tier 0
 operating doctrine sits under all four, and it is always in effect.
 
-At 1.24.1 the integrated material in `references/` is the App Router
+The integrated material in `references/` is the App Router
 foundation, the type system, and the React component tree. It also holds
 the project structure, the DRF contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -136,5 +136,4 @@ definition of done that every other domain is failed against.
 
 Primary integration is Claude; this file exists so Gemini CLI uses the same
 single source of truth. Modes (review-time / write-time), the standing rules,
-and the definition of done are in `SKILL.md`. The version is recorded in
-`SKILL.md` frontmatter (`metadata.version`).
+and the definition of done are in `SKILL.md`.

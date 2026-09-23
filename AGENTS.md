@@ -7,8 +7,7 @@ agent working in this repo should load `SKILL.md` first and then read only the
 
 Primary integration: **Claude** (Anthropic Agent Skills). The files below let
 other agents use the same content; they are pointers, not copies. If anything
-here disagrees with `SKILL.md`, `SKILL.md` wins. The current version is
-recorded in `SKILL.md` frontmatter (`metadata.version`).
+here disagrees with `SKILL.md`, `SKILL.md` wins.
 
 ## What this skill does
 Plans, writes, and reviews production Next.js and TypeScript against a Django
@@ -23,7 +22,7 @@ foundations, backend contract and state, interface craft, and non-functional
 guarantees. A Tier 0 operating doctrine sits under them, and it is always in
 effect.
 
-At 1.24.1 the integrated material in `references/` is the App Router
+The integrated material in `references/` is the App Router
 foundation, the type system, and the React component tree. It also holds the
 project structure, the DRF contract, and the client cache and state.
 It holds the session with the gates over it, and the push transport with the

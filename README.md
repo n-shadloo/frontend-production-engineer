@@ -306,7 +306,7 @@ run.
 
 ## Example output
 
-At 1.24.1 the integrated material is the App Router foundation, the type
+The integrated material is the App Router foundation, the type
 system, and the React component tree. It also holds the project structure, the
 backend contract, and the client cache and state. It
 holds the session with the gates over it, and the push transport with the
@@ -471,17 +471,8 @@ Done
 
 ## Notes
 
-`SKILL.md` frontmatter records the skill version in `metadata.version`, and git
-holds the release tags. The version tracks the integrated domains, and never a
-brief number. **1.0.0** is the scaffold and the first domain, released
-together. Each domain after the first adds one to the minor number. The minor
-number is therefore the count of router domains minus one, and **1.23.0** is
-all twenty-four domains. The standing rules and the gate of the operating
-doctrine stay in `SKILL.md`, because they are always in effect.
-
-A patch release corrects material that is already integrated. The minor number
-counts the domains and not their order, so read the router rather than the
-version string.
+The standing rules and the gate of the operating doctrine stay in `SKILL.md`,
+because they are always in effect.
 
 The reference material is a strong, current baseline, not a guarantee. The
 stack moves; verify the installed version before you trust a pinned-stack
@@ -580,8 +571,8 @@ frontend-production-engineer/
 └── .gitignore
 ```
 
-`references/` holds twenty-four domains at 1.24.1, which is every domain that
-has a router entry.
+`references/` holds twenty-four domains, which is every domain that has a
+router entry.
 `scripts/` and `assets/` are not present, because no domain ships an executable
 or a template.
 
