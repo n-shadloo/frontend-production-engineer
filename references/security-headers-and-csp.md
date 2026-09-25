@@ -184,6 +184,18 @@ NEVER make a route dynamic to obtain a nonce. The static render is a performance
 property that `references/performance-budgets-and-measurement.md` measures, and a
 hash-based policy protects the same route at no such cost.
 
+CAUTION: in Next.js 16.3, the App Router writes the payload of each route as
+inline `self.__next_f.push` scripts in every prerendered file. Their text holds
+the content of the page, so a revalidation changes their hashes. Next.js reads
+the headers of `next.config.ts` into the build, before it renders a page.
+`experimental.sri` adds `integrity` to the external bootstrap files only. A
+route that revalidates therefore cannot hold a hash list for its payload.
+Measure it: hash each inline script of the prerendered file, save content,
+revalidate, and compare the hashes. Where the hashes change, write the dated
+exception that "Report first, then enforce" requires. Admit inline script
+elements alone: put `'unsafe-inline'` in `script-src-elem`, and set
+`script-src-attr 'none'`.
+
 ### `connect-src` names the Django origin
 
 A strict policy blocks every request that a directive does not admit. `fetch`,
