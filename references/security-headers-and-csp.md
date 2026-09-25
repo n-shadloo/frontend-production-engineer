@@ -271,6 +271,7 @@ state an exact release date for it.
 | The header set differs between two routes | Two layers emit headers | Read the headers of several routes on the deployed application | Emit the set from one layer |
 | The application works in development and breaks in production | The development allowance for `'unsafe-eval'` never reached production, and inline code depended on it | Compare the two policies | Give the inline code a nonce |
 | Another site frames the application | `frame-ancestors` is absent | Read the response header | Set `frame-ancestors 'none'`, or name the permitted origins |
+| No report from Chromium reaches the endpoint | The policy names `report-to` beside `report-uri`. Chromium then ignores `report-uri`, and in the Playwright 1.63 build its Reporting API delivered nothing in 100 seconds | Cause one violation in each browser, and read the log of the endpoint | Name `report-uri` alone, or prove the `report-to` delivery before the report-only week starts |
 
 ### Version discipline
 
