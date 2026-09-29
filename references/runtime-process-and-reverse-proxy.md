@@ -58,7 +58,8 @@ Restart=always
 RestartSec=5
 TimeoutStopSec=30
 EnvironmentFile=/opt/app/.env.production
-Environment=NODE_ENV=production PORT=3000 HOSTNAME=127.0.0.1
+Environment=NODE_ENV=production PORT=3000 HOSTNAME=localhost
+Environment=NODE_OPTIONS=--dns-result-order=ipv4first
 MemoryMax=512M
 NoNewPrivileges=true
 ProtectSystem=strict
@@ -83,8 +84,15 @@ Environment=DJANGO_SERVICE_TOKEN=8f2c1d94
 Environment=NEXT_SERVER_ACTIONS_ENCRYPTION_KEY=b7a0e3f5
 ```
 
-`HOSTNAME=127.0.0.1` binds the process to the loopback interface, because Nginx
-sits on the same host. A container binds to `0.0.0.0` instead, because the proxy
+`HOSTNAME=localhost` binds the process to the loopback interface, because Nginx
+sits on the same host. `--dns-result-order=ipv4first` resolves that name to
+`127.0.0.1`, the address of the `upstream` block. Do not write a loopback
+address in `HOSTNAME`. In Next.js 16.3, the router takes the origin of each
+request from `HOSTNAME`, and `NextURL` writes each loopback address of a
+`proxy.ts` rewrite as `localhost`. The two origins then differ, so the router
+sends the rewrite out as a proxied request. Behind a proxy that sends
+`X-Forwarded-Proto: https`, that request fails with `EPROTO`, and each rewritten
+page answers 500. A container binds to `0.0.0.0` instead, because the proxy
 reaches it across the network of the container.
 
 `TimeoutStopSec` must cover the drain of the server.
