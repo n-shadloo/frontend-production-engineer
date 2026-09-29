@@ -158,6 +158,7 @@ server {
   location /ws/ {
     proxy_pass http://nextjs;
     proxy_http_version 1.1;
+    proxy_set_header x-middleware-subrequest "";
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection $connection_upgrade;
     proxy_read_timeout 86400s;
@@ -167,6 +168,7 @@ server {
   location / {
     proxy_pass http://nextjs;
     proxy_http_version 1.1;
+    proxy_set_header x-middleware-subrequest "";
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -258,6 +260,11 @@ names.
 # Correct: the header never reaches the application.
 proxy_set_header x-middleware-subrequest "";
 ```
+
+Nginx 1.31 copies `proxy_set_header` from the server block only into a location
+that sets no `proxy_set_header` of its own. Write the strip again in each
+location that proxies to Node and sets a header. Without it, a forged header at
+that location reaches Node unchanged.
 
 CVE-2025-29927 skipped `middleware.ts` completely when a request carried a
 forged `x-middleware-subrequest` header. CVE-2026-64642 of July 2026 is a second
