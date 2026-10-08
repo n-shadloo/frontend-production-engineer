@@ -162,6 +162,6 @@ definition of done that every other domain is failed against.
 ## Tool-specific entry points
 - Claude Code: `SKILL.md` (native Agent Skill).
 - OpenAI Codex CLI: reads this `AGENTS.md`.
-- Cursor: `.cursor/rules/frontend-production-engineer.mdc`.
+- Cursor: `SKILL.md` (native Agent Skill).
 - Gemini CLI: `GEMINI.md`.
 All of them defer to `SKILL.md` and `references/`.

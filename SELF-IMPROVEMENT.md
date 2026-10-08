@@ -56,7 +56,6 @@ Before the final report, before you open a pull request, and before each claim t
 - Mirrors: each mirror repeats content of `SKILL.md` in its own style. No script renders a mirror.
   - `AGENTS.md`: what the skill does, the two modes, how to use the content, and the blocking domains, in prose sections.
   - `GEMINI.md`: the same content as prose with no second-level heading.
-  - `.cursor/rules/frontend-production-engineer.mdc`: its own `description` and `globs` in the frontmatter, and the triggers and the rules as prose with no heading.
   - After a change to content that a mirror repeats, make the same change in that mirror, in its own style, in the same commit.
 - Shared files: `LICENSE` has the same bytes as the license file in other skill repositories of the owner.
 - Protected content: these headings, blocks, and values, and the text under them:
